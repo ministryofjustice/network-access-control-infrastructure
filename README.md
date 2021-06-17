@@ -1,4 +1,4 @@
-# DNS / DHCP AWS Infrastructure
+# MoJ Network Access Control AWS Infrastructure
 
 ## Introduction
 
