@@ -6,7 +6,7 @@ resource "aws_kms_key" "state_key" {
 }
 
 resource "aws_s3_bucket" "s3_state" {
-  bucket = "${module.label.id}-tf-remote-state"
+  bucket = "${module.label.id}-terraform-remote-state"
   acl    = "private"
 
   versioning {
