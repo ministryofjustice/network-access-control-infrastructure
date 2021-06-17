@@ -1,10 +1,10 @@
 resource "aws_iam_instance_profile" "ec2_perf_test_profile" {
-  name = "moj-auth-poc-profile"
+  name = "${var.prefix}-profile"
   role = aws_iam_role.moj_auth_poc_role.name
 }
 
 resource "aws_iam_role" "moj_auth_poc_role" {
-  name = "moj-auth-poc-role"
+  name = "${var.prefix}-role"
   path = "/"
 
   assume_role_policy = <<EOF

@@ -8,5 +8,4 @@ variable "vpc_id" {
 
 variable "prefix" {
   type = string
-  default = "moj-auth-poc"
 }

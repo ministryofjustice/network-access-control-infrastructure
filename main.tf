@@ -14,6 +14,26 @@ terraform {
   }
 }
 
+module "label" {
+  source  = "cloudposse/label/null"
+  version = "0.24.1"
+
+  delimiter = "-"
+  namespace = "mojo"
+  stage     = terraform.workspace
+  name      = var.service_name
+
+  tags = {
+    "business-unit" = "MoJO"
+    "application"   = "nac",
+    "is-production" = "true"
+    "owner"         = "nac@digital.justice.gov.uk"
+    "environment-name" = "global"
+    "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+  }
+}
+
+
 locals {
   private_ip_eu_west_2a = "10.0.0.7"
   private_ip_eu_west_2b = "10.0.1.6"
@@ -27,7 +47,7 @@ provider "aws" {
 
 module "radius" {
   source  = "./modules/radius"
-  prefix = "moj-auth"
+  prefix = module.label.id
   vpc_id = module.radius_vpc.vpc_id
   private_ip_eu_west_2a = local.private_ip_eu_west_2a
   private_ip_eu_west_2b = local.private_ip_eu_west_2b
@@ -45,19 +65,19 @@ module "radius" {
 
 module "radius_vpc" {
   source  = "./modules/vpc"
-  prefix = "moj-auth"
+  prefix = module.label.id
   cidr_block = local.vpc_cidr
 }
 
 module "radius_client_vpc" {
   source  = "./modules/vpc"
-  prefix = "moj-auth-client"
+  prefix = module.label.id
   cidr_block = local.client_vpc_cidr
 }
 
 module "radius_vpc_flow_logs" {
   source = "./modules/vpc_flow_logs"
-  prefix = "radius"
+  prefix = module.label.id
   region = "eu-west-2"
   vpc_id = module.radius_vpc.vpc_id
 }
@@ -76,4 +96,5 @@ module "vpc_peering_internal_authentication" {
 #   source = "./modules/performance_testing"
 #   subnets = module.radius_client_vpc.public_subnets
 #   vpc_id = module.radius_client_vpc.vpc_id
+#   prefix = module.label.id
 # }

@@ -9,3 +9,8 @@ variable "radius_db_username" {
 variable "radius_db_password" {
    type = string
 }
+
+variable "service_name" {
+   type = string
+   default = "nac"
+}
