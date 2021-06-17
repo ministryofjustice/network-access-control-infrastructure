@@ -1,0 +1,98 @@
+resource "aws_instance" "performance_testing_instance" {
+  ami           = "ami-0b3228cca3203786f"
+  instance_type = "t4g.large"
+
+  vpc_security_group_ids = [
+    aws_security_group.performance_testing_instance.id
+  ]
+
+  subnet_id                   = var.subnets[0]
+  key_name                    = aws_key_pair.performance_testing_public_key_pair.key_name
+  monitoring                  = true
+  associate_public_ip_address = true
+  iam_instance_profile = aws_iam_instance_profile.ec2_perf_test_profile.name
+  instance_initiated_shutdown_behavior = "terminate"
+  user_data = data.template_cloudinit_config.config.rendered
+
+  tags = {
+    Name = "MoJ Authentication POC performance"
+  }
+}
+
+data "template_file" "client" {
+  template = file("./modules/performance_testing/user_data.sh")
+}
+
+data "template_cloudinit_config" "config" {
+  gzip          = false
+  base64_encode = false
+  #first part of local config file
+  part {
+    content_type = "text/x-shellscript"
+    content      = data.template_file.client.rendered
+  }
+}
+
+resource "aws_instance" "performance_testing_instance1" {
+  ami           = "ami-066ca69d74f59fe1d"
+  instance_type = "t2.micro"
+
+  vpc_security_group_ids = [
+    aws_security_group.performance_testing_instance.id
+  ]
+
+  subnet_id                   = var.subnets[0]
+  key_name                    = aws_key_pair.performance_testing_public_key_pair.key_name
+  monitoring                  = true
+  associate_public_ip_address = true
+
+  instance_initiated_shutdown_behavior = "terminate"
+}
+
+resource "aws_instance" "performance_testing_instance2" {
+  ami           = "ami-066ca69d74f59fe1d"
+  instance_type = "t2.micro"
+
+  vpc_security_group_ids = [
+    aws_security_group.performance_testing_instance.id
+  ]
+
+  subnet_id                   = var.subnets[0]
+  key_name                    = aws_key_pair.performance_testing_public_key_pair.key_name
+  monitoring                  = true
+  associate_public_ip_address = true
+
+  instance_initiated_shutdown_behavior = "terminate"
+}
+
+resource "aws_instance" "performance_testing_instance3" {
+  ami           = "ami-066ca69d74f59fe1d"
+  instance_type = "t2.micro"
+
+  vpc_security_group_ids = [
+    aws_security_group.performance_testing_instance.id
+  ]
+
+  subnet_id                   = var.subnets[0]
+  key_name                    = aws_key_pair.performance_testing_public_key_pair.key_name
+  monitoring                  = true
+  associate_public_ip_address = true
+
+  instance_initiated_shutdown_behavior = "terminate"
+}
+
+resource "aws_instance" "performance_testing_instance4" {
+  ami           = "ami-066ca69d74f59fe1d"
+  instance_type = "t2.micro"
+
+  vpc_security_group_ids = [
+    aws_security_group.performance_testing_instance.id
+  ]
+
+  subnet_id                   = var.subnets[0]
+  key_name                    = aws_key_pair.performance_testing_public_key_pair.key_name
+  monitoring                  = true
+  associate_public_ip_address = true
+
+  instance_initiated_shutdown_behavior = "terminate"
+}
