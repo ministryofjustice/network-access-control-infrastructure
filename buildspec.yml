@@ -8,6 +8,8 @@ env:
     TF_VAR_env: ${ENV}
   parameter-store:
     TF_VAR_assume_role: "/codebuild/pttp-ci-infrastructure-core-pipeline/$ENV/assume_role"
+    TF_VAR_radius_db_username: "/moj-network-access-control/radius_db_username"
+    TF_VAR_radius_db_password: "/moj-network-access-control/radius_db_password"
 
 phases:
   install:
