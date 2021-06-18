@@ -65,9 +65,6 @@ module "radius" {
     "Reject",
     "did not finish"
   ]
-  providers = {
-    aws = aws.env
-  }
 }
 
 module "radius_vpc" {
@@ -75,9 +72,6 @@ module "radius_vpc" {
   prefix = module.label.id
   cidr_block = local.vpc_cidr
 
-  providers = {
-    aws = aws.env
-  }
 }
 
 module "radius_client_vpc" {
@@ -85,9 +79,6 @@ module "radius_client_vpc" {
   prefix = module.label.id
   cidr_block = local.client_vpc_cidr
 
-  providers = {
-    aws = aws.env
-  }
 }
 
 module "radius_vpc_flow_logs" {
@@ -96,9 +87,7 @@ module "radius_vpc_flow_logs" {
   region = "eu-west-2"
   vpc_id = module.radius_vpc.vpc_id
 
-  providers = {
-    aws = aws.env
-  }
+
 }
 
 # module "vpc_peering_internal_authentication" {
