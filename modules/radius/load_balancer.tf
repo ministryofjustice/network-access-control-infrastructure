@@ -26,17 +26,6 @@ resource "aws_lb_listener" "udp" {
   }
 }
 
-resource "aws_lb_listener" "udp-ttls" {
-  load_balancer_arn = aws_lb.load_balancer.arn
-  port              = "1814"
-  protocol          = "UDP"
-
-  default_action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.target_group_ttls.arn
-  }
-}
-
 resource "aws_lb_listener" "tcp" {
   load_balancer_arn = aws_lb.load_balancer.arn
   port              = "2083"
@@ -53,22 +42,6 @@ resource "aws_lb_target_group" "target_group" {
   protocol             = "TCP_UDP"
   vpc_id               = var.vpc_id
   port                 = "1812"
-  target_type          = "ip"
-  deregistration_delay = 300
-
-  health_check {
-    port     = 8000
-    protocol = "TCP"
-  }
-
-  depends_on = [aws_lb.load_balancer]
-}
-
-resource "aws_lb_target_group" "target_group_ttls" {
-  name                 = "${var.prefix}-ttls"
-  protocol             = "TCP_UDP"
-  vpc_id               = var.vpc_id
-  port                 = "1814"
   target_type          = "ip"
   deregistration_delay = 300
 

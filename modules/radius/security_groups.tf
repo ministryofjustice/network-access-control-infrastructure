@@ -24,17 +24,6 @@ resource "aws_security_group_rule" "radius_container_udp_in" {
   cidr_blocks       = ["0.0.0.0/0"]
 }
 
-resource "aws_security_group_rule" "radius_container_ttls_in" {
-  description       = "Allow inbound traffic to the Radius server"
-  type              = "ingress"
-  from_port         = 1814
-  to_port           = 1814
-  protocol          = "udp"
-  security_group_id = aws_security_group.radius_server.id
-  cidr_blocks       = ["0.0.0.0/0"]
-}
-
-
 resource "aws_security_group_rule" "radius_container_radsec_in" {
   description       = "Allow RADSEC inbound traffic to the Radius server"
   type              = "ingress"

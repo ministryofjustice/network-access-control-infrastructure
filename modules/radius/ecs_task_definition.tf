@@ -20,11 +20,6 @@ resource "aws_ecs_task_definition" "server_task" {
         "hostPort": 2083,
         "containerPort": 2083,
         "protocol": "tcp"
-      },
-      {
-        "hostPort": 1814,
-        "containerPort": 1814,
-        "protocol": "udp"
       }
     ],
     "essential": true,
