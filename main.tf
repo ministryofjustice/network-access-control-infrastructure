@@ -15,6 +15,7 @@ terraform {
 }
 
 provider "aws" {
+  region = "eu-west-2"
   assume_role {
     role_arn = var.assume_role
   }
@@ -45,10 +46,6 @@ locals {
   private_ip_eu_west_2b = "10.0.1.6"
   vpc_cidr = "10.0.0.0/16"
   client_vpc_cidr = "192.168.0.0/16"
-}
-
-provider "aws" {
-  region = "eu-west-2"
 }
 
 module "radius" {
