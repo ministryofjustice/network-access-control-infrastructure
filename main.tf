@@ -16,6 +16,7 @@ terraform {
 
 provider "aws" {
   region = "eu-west-2"
+  alias   = "env"
   assume_role {
     role_arn = var.assume_role
   }
