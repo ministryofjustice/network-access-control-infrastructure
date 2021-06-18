@@ -1,5 +1,5 @@
 resource "aws_lb" "internal_load_balancer" {
-  name               = "${var.prefix}-internal"
+  name               = "${var.prefix}-private"
   load_balancer_type = "network"
   internal           = true
   subnet_mapping {
@@ -49,7 +49,7 @@ resource "aws_lb_listener" "internal_tcp" {
 }
 
 resource "aws_lb_target_group" "internal_target_group" {
-  name                 = "${var.prefix}-internal"
+  name                 = "${var.prefix}-private"
   protocol             = "TCP_UDP"
   vpc_id               = var.vpc_id
   port                 = "1812"
@@ -65,7 +65,7 @@ resource "aws_lb_target_group" "internal_target_group" {
 }
 
 resource "aws_lb_target_group" "internal_target_group_ttls" {
-  name                 = "${var.prefix}-ttls-internal"
+  name                 = "${var.prefix}-ttls-private"
   protocol             = "TCP_UDP"
   vpc_id               = var.vpc_id
   port                 = "1814"
@@ -81,7 +81,7 @@ resource "aws_lb_target_group" "internal_target_group_ttls" {
 }
 
 resource "aws_lb_target_group" "internal_target_group_radsec" {
-  name                 = "${var.prefix}-radsec-internal"
+  name                 = "${var.prefix}-radsec-private"
   protocol             = "TCP"
   vpc_id               = var.vpc_id
   port                 = "2083"
