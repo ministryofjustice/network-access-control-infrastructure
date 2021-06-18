@@ -26,17 +26,6 @@ resource "aws_lb_listener" "internal_udp" {
   }
 }
 
-resource "aws_lb_listener" "internal_udp-ttls" {
-  load_balancer_arn = aws_lb.internal_load_balancer.arn
-  port              = "1814"
-  protocol          = "UDP"
-
-  default_action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.internal_target_group_ttls.arn
-  }
-}
-
 resource "aws_lb_listener" "internal_tcp" {
   load_balancer_arn = aws_lb.internal_load_balancer.arn
   port              = "2083"

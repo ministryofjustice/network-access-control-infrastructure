@@ -56,12 +56,6 @@ resource "aws_ecs_service" "internal_service" {
     container_port   = 2083
   }
 
-  load_balancer {
-    target_group_arn = aws_lb_target_group.internal_target_group_ttls.arn
-    container_name   = "radius-server"
-    container_port   = 1814
-  }
-
   network_configuration {
     subnets = [
       var.private_subnets[0],
