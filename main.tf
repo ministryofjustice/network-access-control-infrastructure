@@ -9,13 +9,14 @@ terraform {
     aws = {
       source  = "hashicorp/aws"
       version = "~> 3.0"
+      configuration_aliases = [aws.env]
     }
   }
 }
 
 provider "aws" {
   region = "eu-west-2"
-  alias   = "env"
+  alias = "env"
   assume_role {
     role_arn = var.assume_role
   }
@@ -70,14 +71,12 @@ module "radius_vpc" {
   source  = "./modules/vpc"
   prefix = module.label.id
   cidr_block = local.vpc_cidr
-
 }
 
 module "radius_client_vpc" {
   source  = "./modules/vpc"
   prefix = module.label.id
   cidr_block = local.client_vpc_cidr
-
 }
 
 module "radius_vpc_flow_logs" {
@@ -85,8 +84,6 @@ module "radius_vpc_flow_logs" {
   prefix = module.label.id
   region = "eu-west-2"
   vpc_id = module.radius_vpc.vpc_id
-
-
 }
 
 # module "vpc_peering_internal_authentication" {
