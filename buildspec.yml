@@ -21,7 +21,9 @@ phases:
   build:
     commands:
       - export AWS_DEFAULT_REGION=eu-west-2
-      - terraform init -no-color --backend-config="key=terraform.$ENV.state"
+      - aws sts assume-role ${ROLE_ARN}
+      - aws s3 ls
+      - terraform init -reconfigure -no-color --backend-config="key=terraform.$ENV.state"
       - terraform workspace new $ENV || true
       - terraform workspace select $ENV
       - terraform apply --auto-approve -no-color
