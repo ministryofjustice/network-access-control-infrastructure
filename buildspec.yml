@@ -6,7 +6,6 @@ env:
     TF_INPUT: 0
     TF_VAR_owner_email: nac@justice.gov.uk
     TF_VAR_env: ${ENV}
-    TF_LOG: debug
   parameter-store:
     TF_VAR_assume_role: "/codebuild/pttp-ci-infrastructure-core-pipeline/$ENV/assume_role"
 
@@ -20,7 +19,7 @@ phases:
   build:
     commands:
       - export AWS_DEFAULT_REGION=eu-west-2
-      - terraform init -reconfigure -no-color --backend-config="key=terraform.$ENV.state"
+      - terraform init -no-color --backend-config="key=terraform.$ENV.state"
       - terraform workspace new $ENV || true
       - terraform workspace select $ENV
       - terraform apply --auto-approve -no-color
