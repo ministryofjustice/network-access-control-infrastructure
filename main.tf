@@ -49,42 +49,42 @@ locals {
   client_vpc_cidr = "192.168.0.0/16"
 }
 
-module "radius" {
-  source  = "./modules/radius"
-  prefix = module.label.id
-  vpc_id = module.radius_vpc.vpc_id
-  private_ip_eu_west_2a = local.private_ip_eu_west_2a
-  private_ip_eu_west_2b = local.private_ip_eu_west_2b
-  public_subnets = module.radius_vpc.public_subnets
-  private_subnets = module.radius_vpc.private_subnets
-  vpc_cidr = local.vpc_cidr
-  radius_db_username = var.radius_db_username
-  radius_db_password = var.radius_db_password
-  log_filters = [
-    "Accept",
-    "Reject",
-    "did not finish"
-  ]
-}
+# module "radius" {
+#   source  = "./modules/radius"
+#   prefix = module.label.id
+#   vpc_id = module.radius_vpc.vpc_id
+#   private_ip_eu_west_2a = local.private_ip_eu_west_2a
+#   private_ip_eu_west_2b = local.private_ip_eu_west_2b
+#   public_subnets = module.radius_vpc.public_subnets
+#   private_subnets = module.radius_vpc.private_subnets
+#   vpc_cidr = local.vpc_cidr
+#   radius_db_username = var.radius_db_username
+#   radius_db_password = var.radius_db_password
+#   log_filters = [
+#     "Accept",
+#     "Reject",
+#     "did not finish"
+#   ]
+# }
 
-module "radius_vpc" {
-  source  = "./modules/vpc"
-  prefix = module.label.id
-  cidr_block = local.vpc_cidr
-}
+# module "radius_vpc" {
+#   source  = "./modules/vpc"
+#   prefix = module.label.id
+#   cidr_block = local.vpc_cidr
+# }
 
-module "radius_client_vpc" {
-  source  = "./modules/vpc"
-  prefix = module.label.id
-  cidr_block = local.client_vpc_cidr
-}
+# module "radius_client_vpc" {
+#   source  = "./modules/vpc"
+#   prefix = module.label.id
+#   cidr_block = local.client_vpc_cidr
+# }
 
-module "radius_vpc_flow_logs" {
-  source = "./modules/vpc_flow_logs"
-  prefix = module.label.id
-  region = "eu-west-2"
-  vpc_id = module.radius_vpc.vpc_id
-}
+# module "radius_vpc_flow_logs" {
+#   source = "./modules/vpc_flow_logs"
+#   prefix = module.label.id
+#   region = "eu-west-2"
+#   vpc_id = module.radius_vpc.vpc_id
+# }
 
 # module "vpc_peering_internal_authentication" {
 #  source = "./modules/vpc_peering_internal_authentication"
