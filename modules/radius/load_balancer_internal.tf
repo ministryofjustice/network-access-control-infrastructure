@@ -54,7 +54,7 @@ resource "aws_lb_target_group" "internal_target_group" {
 }
 
 resource "aws_lb_target_group" "internal_target_group_radsec" {
-  name                 = "${var.prefix}-radsec-int"
+  name                 = "${var.short_prefix}-radsec-int"
   protocol             = "TCP"
   vpc_id               = var.vpc_id
   port                 = "2083"

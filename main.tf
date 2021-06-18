@@ -52,6 +52,7 @@ locals {
 module "radius" {
   source  = "./modules/radius"
   prefix = module.label.id
+  short_prefix = "${label.environment}-nac"
   vpc_id = module.radius_vpc.vpc_id
   private_ip_eu_west_2a = local.private_ip_eu_west_2a
   private_ip_eu_west_2b = local.private_ip_eu_west_2b
