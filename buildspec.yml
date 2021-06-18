@@ -6,6 +6,7 @@ env:
     TF_INPUT: 0
     TF_VAR_owner_email: nac@justice.gov.uk
     TF_VAR_env: ${ENV}
+    TF_LOG: debug
   parameter-store:
     TF_VAR_assume_role: "/codebuild/pttp-ci-infrastructure-core-pipeline/$ENV/assume_role"
     ROLE_ARN: "/codebuild/pttp-ci-infrastructure-core-pipeline/$ENV/assume_role"
