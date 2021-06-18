@@ -9,7 +9,6 @@ env:
     TF_LOG: debug
   parameter-store:
     TF_VAR_assume_role: "/codebuild/pttp-ci-infrastructure-core-pipeline/$ENV/assume_role"
-    ROLE_ARN: "/codebuild/pttp-ci-infrastructure-core-pipeline/$ENV/assume_role"
 
 phases:
   install:
@@ -21,8 +20,6 @@ phases:
   build:
     commands:
       - export AWS_DEFAULT_REGION=eu-west-2
-      - aws sts assume-role --role-arn ${ROLE_ARN} --role-session-name foobar
-      - aws s3 ls
       - terraform init -reconfigure -no-color --backend-config="key=terraform.$ENV.state"
       - terraform workspace new $ENV || true
       - terraform workspace select $ENV

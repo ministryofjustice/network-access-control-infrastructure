@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket = "mojo-bootstrap-nac-infrastructure-terraform-remote-state"
+    bucket = "pttp-ci-infrastructure-nac-client-core-tf-state"
     dynamodb_table = "mojo-bootstrap-nac-infrastructure-terraform-remote-state-lock-dynamo"
     region = "eu-west-2"
   }
