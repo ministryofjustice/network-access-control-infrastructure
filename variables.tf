@@ -14,3 +14,7 @@ variable "service_name" {
    type = string
    default = "nac"
 }
+
+variable "assume_role" {
+   type = string
+}
