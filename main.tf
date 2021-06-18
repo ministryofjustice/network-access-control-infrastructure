@@ -73,11 +73,11 @@ module "radius_vpc" {
   cidr_block = local.vpc_cidr
 }
 
-module "radius_client_vpc" {
-  source  = "./modules/vpc"
-  prefix = module.label.id
-  cidr_block = local.client_vpc_cidr
-}
+# module "radius_client_vpc" {
+#   source  = "./modules/vpc"
+#   prefix = module.label.id
+#   cidr_block = local.client_vpc_cidr
+# }
 
 module "radius_vpc_flow_logs" {
   source = "./modules/vpc_flow_logs"

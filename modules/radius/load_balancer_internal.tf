@@ -64,24 +64,8 @@ resource "aws_lb_target_group" "internal_target_group" {
   depends_on = [aws_lb.internal_load_balancer]
 }
 
-resource "aws_lb_target_group" "internal_target_group_ttls" {
-  name                 = "${var.prefix}-ttls-private"
-  protocol             = "TCP_UDP"
-  vpc_id               = var.vpc_id
-  port                 = "1814"
-  target_type          = "ip"
-  deregistration_delay = 300
-
-  health_check {
-    port     = 8000
-    protocol = "TCP"
-  }
-
-  depends_on = [aws_lb.internal_load_balancer]
-}
-
 resource "aws_lb_target_group" "internal_target_group_radsec" {
-  name                 = "${var.prefix}-radsec-private"
+  name                 = "${var.prefix}-radsec-int"
   protocol             = "TCP"
   vpc_id               = var.vpc_id
   port                 = "2083"
