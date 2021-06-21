@@ -50,6 +50,10 @@ resource "aws_ecs_task_definition" "server_task" {
         "value": "${var.prefix}-config-bucket"
       },
       {
+        "name": "RADIUS_CERTIFICATE_BUCKET_NAME",
+        "value": "${aws_s3_bucket.certificate_bucket.id}"
+      },
+      {
         "name": "ECS_ENABLE_CONTAINER_METADATA",
         "value": "true"
       }
