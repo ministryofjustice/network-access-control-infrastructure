@@ -6,6 +6,13 @@ output "ecr" {
   }
 }
 
+output "ecs" {
+  value = {
+    service_name = aws_ecs_service.service.name
+    cluster_name = aws_ecs_cluster.server_cluster.name
+  }
+}
+
 output "cloudwatch" {
   value = {
     server_log_group_name       = aws_cloudwatch_log_group.server_log_group.name
