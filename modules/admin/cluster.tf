@@ -120,12 +120,12 @@ resource "aws_ecs_task_definition" "admin_task" {
           "value": "${var.cognito_user_pool_id}"
         },
         {
-          "name": "NAC_CLUSTER_NAME",
-          "value": "${var.nac_cluster_name}"
+          "name": "RADIUS_CLUSTER_NAME",
+          "value": "${var.radius_cluster_name}"
         },
         {
-          "name": "NAC_SERVICE_NAME",
-          "value": "${var.nac_service_name}"
+          "name": "RADIUS_SERVICE_NAME",
+          "value": "${var.radius_service_name}"
         }
       ],
       "image": "${aws_ecr_repository.admin_ecr.repository_url}",
