@@ -50,4 +50,5 @@ variable "admin_db_backup_retention_period" {
 
 variable "admin_local_development_domain_affix" {
   type = string
+  default = ""
 }
