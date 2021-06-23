@@ -1,14 +1,14 @@
 terraform {
   backend "s3" {
-    bucket = "pttp-ci-infrastructure-nac-client-core-tf-state"
+    bucket         = "pttp-ci-infrastructure-nac-client-core-tf-state"
     dynamodb_table = "pttp-ci-infrastructure-nac-client-core-tf-lock-table"
-    region = "eu-west-2"
+    region         = "eu-west-2"
   }
 
   required_providers {
     aws = {
-      source  = "hashicorp/aws"
-      version = "~> 3.0"
+      source                = "hashicorp/aws"
+      version               = "~> 3.0"
       configuration_aliases = [aws.env]
     }
   }
@@ -16,7 +16,7 @@ terraform {
 
 provider "aws" {
   region = "eu-west-2"
-  alias = "env"
+  alias  = "env"
   assume_role {
     role_arn = var.assume_role
   }
@@ -32,10 +32,10 @@ module "label" {
   name      = var.service_name
 
   tags = {
-    "business-unit" = "MoJO"
-    "application"   = "nac",
-    "is-production" = "true"
-    "owner"         = "nac@digital.justice.gov.uk"
+    "business-unit"    = "MoJO"
+    "application"      = "nac",
+    "is-production"    = "true"
+    "owner"            = "nac@digital.justice.gov.uk"
     "environment-name" = "global"
     "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
   }
@@ -45,22 +45,22 @@ module "label" {
 locals {
   private_ip_eu_west_2a = "10.0.0.7"
   private_ip_eu_west_2b = "10.0.1.6"
-  vpc_cidr = "10.0.0.0/16"
-  client_vpc_cidr = "192.168.0.0/16"
+  vpc_cidr              = "10.0.0.0/16"
+  client_vpc_cidr       = "192.168.0.0/16"
 }
 
 module "radius" {
-  source  = "./modules/radius"
-  prefix = module.label.id
-  short_prefix = "${module.label.stage}-nac"
-  vpc_id = module.radius_vpc.vpc_id
+  source                = "./modules/radius"
+  prefix                = module.label.id
+  short_prefix          = "${module.label.stage}-nac"
+  vpc_id                = module.radius_vpc.vpc_id
   private_ip_eu_west_2a = local.private_ip_eu_west_2a
   private_ip_eu_west_2b = local.private_ip_eu_west_2b
-  public_subnets = module.radius_vpc.public_subnets
-  private_subnets = module.radius_vpc.private_subnets
-  vpc_cidr = local.vpc_cidr
-  radius_db_username = var.radius_db_username
-  radius_db_password = var.radius_db_password
+  public_subnets        = module.radius_vpc.public_subnets
+  private_subnets       = module.radius_vpc.private_subnets
+  vpc_cidr              = local.vpc_cidr
+  radius_db_username    = var.radius_db_username
+  radius_db_password    = var.radius_db_password
   log_filters = [
     "Accept",
     "Reject",
@@ -72,8 +72,8 @@ module "radius" {
 }
 
 module "radius_vpc" {
-  source  = "./modules/vpc"
-  prefix = module.label.id
+  source     = "./modules/vpc"
+  prefix     = module.label.id
   cidr_block = local.vpc_cidr
 
   providers = {
@@ -82,8 +82,8 @@ module "radius_vpc" {
 }
 
 module "radius_client_vpc" {
-  source  = "./modules/vpc"
-  prefix = module.label.id
+  source     = "./modules/vpc"
+  prefix     = module.label.id
   cidr_block = local.client_vpc_cidr
   providers = {
     aws = aws.env
@@ -102,19 +102,59 @@ module "radius_vpc_flow_logs" {
   }
 }
 
-# module "authentication" {
-#   source                        = "./modules/cognito"
-#   azure_federation_metadata_url = var.azure_federation_metadata_url
-#   prefix                        = module.label.id
-#   enable_authentication         = var.enable_authentication
-#   admin_url                     = module.admin.admin_url
-#   region                        = data.aws_region.current_region.id
-#   vpn_hosted_zone_domain        = var.vpn_hosted_zone_domain
+module "admin" {
+  source                               = "./modules/admin"
+  prefix                               = "${module.label.id}-admin"
+  short_prefix                         = module.label.stage # avoid 32 char limit on certain resources
+  tags                                 = module.label.tags
+  vpc_id                               = module.admin_vpc.vpc_id
+  admin_db_password                    = var.admin_db_password
+  admin_db_username                    = var.admin_db_username
+  subnet_ids                           = module.admin_vpc.public_subnets
+  sentry_dsn                           = var.admin_sentry_dsn
+  secret_key_base                      = "tbc"
+  radius_certificate_bucket_arn        = module.radius.radius_certificate_bucket_arn
+  radius_certificate_bucket_name       = module.radius.radius_certificate_bucket_name
+  region                               = data.aws_region.current_region.id
+  vpn_hosted_zone_id                   = var.vpn_hosted_zone_id
+  vpn_hosted_zone_domain               = var.vpn_hosted_zone_domain
+  admin_db_backup_retention_period     = var.admin_db_backup_retention_period
+  cognito_user_pool_id                 = module.authentication.cognito_user_pool_id
+  cognito_user_pool_domain             = module.authentication.cognito_user_pool_domain
+  cognito_user_pool_client_id          = module.authentication.cognito_user_pool_client_id
+  cognito_user_pool_client_secret      = module.authentication.cognito_user_pool_client_secret
+  radius_cluster_name                  = module.radius.ecs.cluster_name
+  radius_service_name                  = module.radius.ecs.service_name
+  radius_service_arn                   = module.radius.ecs.service_arn
+  is_publicly_accessible               = local.publicly_accessible
+  admin_local_development_domain_affix = var.admin_local_development_domain_affix
 
-#   providers = {
-#     aws = aws.env
-#   }
-# }
+  depends_on = [
+    module.admin_vpc
+  ]
+
+  providers = {
+    aws = aws.env
+  }
+}
+
+locals {
+  publicly_accessible = terraform.workspace == "production" ? false : true
+}
+
+module "authentication" {
+  source                        = "./modules/cognito"
+  azure_federation_metadata_url = var.azure_federation_metadata_url
+  prefix                        = module.label.id
+  enable_authentication         = var.enable_authentication
+  admin_url                     = module.admin.admin_url
+  region                        = data.aws_region.current_region.id
+  vpn_hosted_zone_domain        = var.vpn_hosted_zone_domain
+
+  providers = {
+    aws = aws.env
+  }
+}
 
 data "aws_region" "current_region" {}
 data "aws_caller_identity" "shared_services_account" {}

@@ -41,11 +41,11 @@ variable "tags" {
   type = map(string)
 }
 
-variable "nac_certificate_bucket_arn" {
+variable "radius_certificate_bucket_arn" {
   type = string
 }
 
-variable "nac_certificate_bucket_name" {
+variable "radius_certificate_bucket_name" {
   type = string
 }
 
@@ -77,15 +77,15 @@ variable "cognito_user_pool_client_secret" {
   type = string
 }
 
-variable "nac_cluster_name" {
+variable "radius_cluster_name" {
   type = string
 }
 
-variable "nac_service_name" {
+variable "radius_service_name" {
   type = string
 }
 
-variable "nac_service_arn" {
+variable "radius_service_arn" {
   type = string
 }
 
