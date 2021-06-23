@@ -113,8 +113,8 @@ module "admin" {
   subnet_ids                           = module.admin_vpc.public_subnets
   sentry_dsn                           = var.admin_sentry_dsn
   secret_key_base                      = "tbc"
-  radius_certificate_bucket_arn        = module.radius.radius_certificate_bucket_arn
-  radius_certificate_bucket_name       = module.radius.radius_certificate_bucket_name
+  radius_certificate_bucket_arn        = module.radius.s3.radius_certificate_bucket_arn
+  radius_certificate_bucket_name       = module.radius.s3.radius_certificate_bucket_name
   region                               = data.aws_region.current_region.id
   vpn_hosted_zone_id                   = var.vpn_hosted_zone_id
   vpn_hosted_zone_domain               = var.vpn_hosted_zone_domain
@@ -123,9 +123,9 @@ module "admin" {
   cognito_user_pool_domain             = module.authentication.cognito_user_pool_domain
   cognito_user_pool_client_id          = module.authentication.cognito_user_pool_client_id
   cognito_user_pool_client_secret      = module.authentication.cognito_user_pool_client_secret
-  radius_cluster_name                  = module.radius.ecs.cluster_name
-  radius_service_name                  = module.radius.ecs.service_name
-  radius_service_arn                   = module.radius.ecs.service_arn
+  radius_cluster_name                  = module.radius.ecs.radius_cluster_name
+  radius_service_name                  = module.radius.ecs.radius_service_name
+  radius_service_arn                   = module.radius.ecs.radius_service_arn
   is_publicly_accessible               = local.publicly_accessible
   admin_local_development_domain_affix = var.admin_local_development_domain_affix
 

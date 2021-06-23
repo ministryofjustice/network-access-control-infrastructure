@@ -8,6 +8,7 @@ output "ecr" {
 
 output "ecs" {
   value = {
+    radius_service_arn = aws_ecs_service.service.id
     radius_service_name = aws_ecs_service.service.name
     radius_cluster_name = aws_ecs_cluster.server_cluster.name
   }
@@ -30,6 +31,6 @@ output "iam" {
 output "s3" {
   value = {
     radius_certificate_bucket_arn  = aws_s3_bucket.certificate_bucket.arn
-    radius_certificate_bucket_name = aws_s3_bucket.certificate_bucket.name
+    radius_certificate_bucket_name = aws_s3_bucket.certificate_bucket.id
   }
 }
