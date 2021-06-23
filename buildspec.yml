@@ -6,10 +6,17 @@ env:
     TF_INPUT: 0
     TF_VAR_owner_email: nac@justice.gov.uk
     TF_VAR_env: ${ENV}
+    TF_VAR_enable_authentication: true
   parameter-store:
     TF_VAR_assume_role: "/codebuild/pttp-ci-infrastructure-core-pipeline/$ENV/assume_role"
     TF_VAR_radius_db_username: "/moj-network-access-control/radius_db_username"
     TF_VAR_radius_db_password: "/moj-network-access-control/radius_db_password"
+    TF_VAR_azure_federation_metadata_url: "/moj-network-access-control/$ENV/azure_federation_metadata_url"
+    TF_VAR_vpn_hosted_zone_domain: "/moj-network-access-control/$ENV/vpn_hosted_zone_domain"
+    TF_VAR_vpn_hosted_zone_id: "/moj-network-access-control/$ENV/vpn_hosted_zone_id"
+    TF_VAR_admin_db_username: "/moj-network-access-control/$ENV/admin_db_username"
+    TF_VAR_admin_db_password: "/moj-network-access-control/$ENV/admin_db_password"
+    TF_VAR_admin_sentry_dsn: "/moj-network-access-control/$ENV/admin_sentry_dsn"
 
 phases:
   install:
