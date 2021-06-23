@@ -101,6 +101,46 @@ module "radius_vpc_flow_logs" {
   }
 }
 
+# module "authentication" {
+#   source                        = "./modules/cognito"
+#   azure_federation_metadata_url = var.azure_federation_metadata_url
+#   prefix                        = module.label.id
+#   enable_authentication         = var.enable_authentication
+#   admin_url                     = module.admin.admin_url
+#   region                        = data.aws_region.current_region.id
+#   vpn_hosted_zone_domain        = var.vpn_hosted_zone_domain
+
+#   providers = {
+#     aws = aws.env
+#   }
+# }
+
+data "aws_region" "current_region" {}
+data "aws_caller_identity" "shared_services_account" {}
+
+module "admin_vpc" {
+  source     = "./modules/admin_vpc"
+  prefix     = "${module.label.id}-admin"
+  region     = data.aws_region.current_region.id
+  cidr_block = "10.0.0.0/16"
+
+  providers = {
+    aws = aws.env
+  }
+}
+
+# module "admin_vpc_flow_logs" {
+#   source = "./modules/vpc_flow_logs"
+#   prefix = "nac-admin-${terraform.workspace}"
+#   region = data.aws_region.current_region.id
+#   tags   = module.label.tags
+#   vpc_id = module.admin_vpc.vpc_id
+
+#   providers = {
+#     aws = aws.env
+#   }
+# }
+
 # module "vpc_peering_internal_authentication" {
 #  source = "./modules/vpc_peering_internal_authentication"
 #  target_aws_account_id = var.target_aws_account_id
