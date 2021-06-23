@@ -95,6 +95,7 @@ module "radius_vpc_flow_logs" {
   prefix = module.label.id
   region = "eu-west-2"
   vpc_id = module.radius_vpc.vpc_id
+  tags   = module.label.tags
 
   providers = {
     aws = aws.env
@@ -129,17 +130,17 @@ module "admin_vpc" {
   }
 }
 
-# module "admin_vpc_flow_logs" {
-#   source = "./modules/vpc_flow_logs"
-#   prefix = "nac-admin-${terraform.workspace}"
-#   region = data.aws_region.current_region.id
-#   tags   = module.label.tags
-#   vpc_id = module.admin_vpc.vpc_id
+module "admin_vpc_flow_logs" {
+  source = "./modules/vpc_flow_logs"
+  prefix = "nac-admin-${terraform.workspace}"
+  region = data.aws_region.current_region.id
+  tags   = module.label.tags
+  vpc_id = module.admin_vpc.vpc_id
 
-#   providers = {
-#     aws = aws.env
-#   }
-# }
+  providers = {
+    aws = aws.env
+  }
+}
 
 # module "vpc_peering_internal_authentication" {
 #  source = "./modules/vpc_peering_internal_authentication"
