@@ -170,7 +170,7 @@ resource "aws_ecs_service" "admin_service" {
 
 resource "aws_alb_target_group" "admin_tg" {
   depends_on           = [aws_lb.admin_alb]
-  name                 = "${var.short_prefix}-tg"
+  name                 = "${var.short_prefix}-admin-nac-tg"
   port                 = "3000"
   protocol             = "HTTP"
   vpc_id               = var.vpc_id
