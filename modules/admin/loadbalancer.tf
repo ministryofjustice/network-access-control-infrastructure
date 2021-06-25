@@ -1,5 +1,5 @@
 resource "aws_lb" "admin_alb" {
-  name     = "${var.short_prefix}-lb"
+  name     = "${var.short_prefix}-nac-lb"
   internal = false
   subnets  = var.subnet_ids
 

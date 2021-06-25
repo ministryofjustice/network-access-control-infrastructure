@@ -3,5 +3,8 @@ output "terraform_outputs" {
     radius = {
       ecs = module.radius.ecs
     }
+    admin = {
+      ecr = module.admin.ecr
+    }
   }
 }
