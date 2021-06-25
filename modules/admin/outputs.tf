@@ -15,6 +15,6 @@ output "ecs" {
 
 output "ecr" {
   value = {
-    repository_name = aws_ecr_repository.admin_ecr.repository_url
+    repository_url = aws_ecr_repository.admin_ecr.repository_url
   }
 }
