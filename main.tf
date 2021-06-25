@@ -119,10 +119,10 @@ module "admin" {
   vpn_hosted_zone_id                   = var.vpn_hosted_zone_id
   vpn_hosted_zone_domain               = var.vpn_hosted_zone_domain
   admin_db_backup_retention_period     = var.admin_db_backup_retention_period
-  cognito_user_pool_id                 = module.authentication.cognito_user_pool_id
-  cognito_user_pool_domain             = module.authentication.cognito_user_pool_domain
-  cognito_user_pool_client_id          = module.authentication.cognito_user_pool_client_id
-  cognito_user_pool_client_secret      = module.authentication.cognito_user_pool_client_secret
+  # cognito_user_pool_id                 = module.authentication.cognito_user_pool_id
+  # cognito_user_pool_domain             = module.authentication.cognito_user_pool_domain
+  # cognito_user_pool_client_id          = module.authentication.cognito_user_pool_client_id
+  # cognito_user_pool_client_secret      = module.authentication.cognito_user_pool_client_secret
   radius_cluster_name                  = module.radius.ecs.radius_cluster_name
   radius_service_name                  = module.radius.ecs.radius_service_name
   radius_service_arn                   = module.radius.ecs.radius_service_arn
@@ -142,19 +142,19 @@ locals {
   publicly_accessible = terraform.workspace == "production" ? false : true
 }
 
-module "authentication" {
-  source                        = "./modules/cognito"
-  azure_federation_metadata_url = var.azure_federation_metadata_url
-  prefix                        = module.label.id
-  enable_authentication         = var.enable_authentication
-  admin_url                     = module.admin.admin_url
-  region                        = data.aws_region.current_region.id
-  vpn_hosted_zone_domain        = var.vpn_hosted_zone_domain
+# module "authentication" {
+#   source                        = "./modules/cognito"
+#   azure_federation_metadata_url = var.azure_federation_metadata_url
+#   prefix                        = module.label.id
+#   enable_authentication         = var.enable_authentication
+#   admin_url                     = module.admin.admin_url
+#   region                        = data.aws_region.current_region.id
+#   vpn_hosted_zone_domain        = var.vpn_hosted_zone_domain
 
-  providers = {
-    aws = aws.env
-  }
-}
+#   providers = {
+#     aws = aws.env
+#   }
+# }
 
 data "aws_region" "current_region" {}
 data "aws_caller_identity" "shared_services_account" {}

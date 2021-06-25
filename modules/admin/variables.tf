@@ -61,21 +61,21 @@ variable "admin_db_backup_retention_period" {
   type = number
 }
 
-variable "cognito_user_pool_id" {
-  type = string
-}
+# variable "cognito_user_pool_id" {
+#   type = string
+# }
 
-variable "cognito_user_pool_domain" {
-  type = string
-}
+# variable "cognito_user_pool_domain" {
+#   type = string
+# }
 
-variable "cognito_user_pool_client_id" {
-  type = string
-}
+# variable "cognito_user_pool_client_id" {
+#   type = string
+# }
 
-variable "cognito_user_pool_client_secret" {
-  type = string
-}
+# variable "cognito_user_pool_client_secret" {
+#   type = string
+# }
 
 variable "radius_cluster_name" {
   type = string
