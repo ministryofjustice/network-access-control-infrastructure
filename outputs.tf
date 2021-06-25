@@ -6,6 +6,7 @@ output "terraform_outputs" {
     }
     admin = {
       ecr = module.admin.ecr
+      ecs = module.admin.ecs
     }
   }
 }
