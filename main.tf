@@ -57,6 +57,7 @@ module "radius" {
   vpc_id                = module.radius_vpc.vpc_id
   private_ip_eu_west_2a = local.private_ip_eu_west_2a
   private_ip_eu_west_2b = local.private_ip_eu_west_2b
+  private_ip_eu_west_2c = local.private_ip_eu_west_2c
   public_subnets        = module.radius_vpc.public_subnets
   private_subnets       = module.radius_vpc.private_subnets
   vpc_cidr              = local.vpc_cidr

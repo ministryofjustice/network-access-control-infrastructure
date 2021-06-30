@@ -39,6 +39,10 @@ variable "private_ip_eu_west_2b" {
   type = string
 }
 
+variable "private_ip_eu_west_2c" {
+  type = string
+}
+
 variable "log_filters" {
   type = list(string)
 }
