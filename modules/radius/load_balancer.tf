@@ -4,15 +4,17 @@ resource "aws_lb" "load_balancer" {
   internal           = false
   subnet_mapping {
     subnet_id = var.public_subnets[0]
-    allocation_id = aws_eip.radius_ip.id
+  }
+
+  subnet_mapping {
+    subnet_id = var.public_subnets[1]
+  }
+
+  subnet_mapping {
+    subnet_id = var.public_subnets[2]
   }
 
   enable_deletion_protection = false
-}
-
-resource "aws_eip" "radius_ip" {
-  vpc              = true
-  public_ipv4_pool = "amazon"
 }
 
 resource "aws_lb_listener" "udp" {

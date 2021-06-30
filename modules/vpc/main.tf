@@ -26,7 +26,8 @@ module "vpc" {
 
   azs = [
     "eu-west-2a",
-    "eu-west-2b"
+    "eu-west-2b",
+    "eu-west-2c"
   ]
 
   enable_ecr_dkr_endpoint              = true
@@ -55,11 +56,13 @@ module "vpc" {
   default_security_group_egress  = []
   private_subnets = [
     cidrsubnet(var.cidr_block, var.cidr_block_new_bits, 0),
-    cidrsubnet(var.cidr_block, var.cidr_block_new_bits, 1)
+    cidrsubnet(var.cidr_block, var.cidr_block_new_bits, 2),
+    cidrsubnet(var.cidr_block, var.cidr_block_new_bits, 4)
   ]
 
   public_subnets = [
-    cidrsubnet(var.cidr_block, var.cidr_block_new_bits, 2),
-    cidrsubnet(var.cidr_block, var.cidr_block_new_bits, 3)
+    cidrsubnet(var.cidr_block, var.cidr_block_new_bits, 1),
+    cidrsubnet(var.cidr_block, var.cidr_block_new_bits, 3),
+    cidrsubnet(var.cidr_block, var.cidr_block_new_bits, 5),
   ]
 }

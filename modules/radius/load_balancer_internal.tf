@@ -12,6 +12,11 @@ resource "aws_lb" "internal_load_balancer" {
     private_ipv4_address = var.private_ip_eu_west_2b
   }
 
+  subnet_mapping {
+    subnet_id = var.private_subnets[2]
+    private_ipv4_address = var.private_ip_eu_west_2c
+  }
+
   enable_deletion_protection = false
 }
 

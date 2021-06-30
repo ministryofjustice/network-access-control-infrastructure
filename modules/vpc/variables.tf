@@ -1,10 +1,10 @@
 variable cidr_block {
-    type = string 
+    type = string
 }
 
 variable "cidr_block_new_bits" {
-    type = number 
-    default = 8
+    type = number
+    default = 3
 }
 
 variable "prefix" {
