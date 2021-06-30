@@ -43,9 +43,9 @@ module "label" {
 
 
 locals {
-  private_ip_eu_west_2a = "10.180.100.5"
-  private_ip_eu_west_2b = "10.180.101.5"
-  private_ip_eu_west_2c = "10.180.102.5"
+  private_ip_eu_west_2a = "10.180.100.10"
+  private_ip_eu_west_2b = "10.180.101.10"
+  private_ip_eu_west_2c = "10.180.102.10"
   vpc_cidr              = "10.180.100.0/22"
   client_vpc_cidr       = "192.168.0.0/16"
 }
