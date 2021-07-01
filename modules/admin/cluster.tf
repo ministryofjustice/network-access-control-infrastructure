@@ -105,19 +105,19 @@ resource "aws_ecs_task_definition" "admin_task" {
           "value": "${var.short_prefix}"
         },{
           "name": "COGNITO_CLIENT_ID",
-          "value": "tbc"
+          "value": "${var.cognito_user_pool_client_id}"
         },
         {
           "name": "COGNITO_CLIENT_SECRET",
-          "value": "tbc"
+          "value": "${var.cognito_user_pool_client_secret}"
         },
         {
           "name": "COGNITO_USER_POOL_SITE",
-          "value": "tbc"
+          "value": "${var.cognito_user_pool_domain}"
         },
         {
           "name": "COGNITO_USER_POOL_ID",
-          "value": "tbc"
+          "value": "${var.cognito_user_pool_id}"
         },
         {
           "name": "RADIUS_CLUSTER_NAME",
