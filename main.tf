@@ -125,9 +125,9 @@ module "admin" {
   # cognito_user_pool_domain             = module.authentication.cognito_user_pool_domain
   # cognito_user_pool_client_id          = module.authentication.cognito_user_pool_client_id
   # cognito_user_pool_client_secret      = module.authentication.cognito_user_pool_client_secret
-  radius_cluster_name                  = module.radius.ecs.radius_cluster_name
-  radius_service_name                  = module.radius.ecs.radius_service_name
-  radius_service_arn                   = module.radius.ecs.radius_service_arn
+  radius_cluster_name                  = module.radius.ecs.cluster_name
+  radius_service_name                  = module.radius.ecs.service_name
+  radius_service_arn                   = module.radius.ecs.service_arn
   is_publicly_accessible               = local.publicly_accessible
   admin_local_development_domain_affix = var.admin_local_development_domain_affix
 
