@@ -4,7 +4,7 @@ locals {
 
 resource "aws_cognito_user_pool" "pool" {
   count                    = local.enabled
-  name                     = "${var.prefix}_azure_ad_pool"
+  name                     = "${var.prefix}_nac_azure_ad_pool"
   auto_verified_attributes = ["email"]
 
   schema {
