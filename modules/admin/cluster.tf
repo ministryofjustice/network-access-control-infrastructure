@@ -113,7 +113,7 @@ resource "aws_ecs_task_definition" "admin_task" {
         },
         {
           "name": "COGNITO_USER_POOL_SITE",
-          "value": "${var.cognito_user_pool_domain}"
+          "value": "https://${var.cognito_user_pool_domain}.auth.${var.region}.amazoncognito.com"
         },
         {
           "name": "COGNITO_USER_POOL_ID",
