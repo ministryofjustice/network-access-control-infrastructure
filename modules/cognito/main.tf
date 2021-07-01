@@ -4,7 +4,7 @@ locals {
 
 resource "aws_cognito_user_pool" "pool" {
   count                    = local.enabled
-  name                     = "${var.prefix}_nac_azure_ad_pool"
+  name                     = "${var.prefix}_azure_ad_pool"
   auto_verified_attributes = ["email"]
 
   schema {
@@ -36,7 +36,7 @@ resource "aws_cognito_user_pool_client" "client" {
 resource "aws_cognito_user_pool_domain" "main" {
   count = local.enabled
   # domain names can't have underscores
-  domain       = "${replace(var.vpn_hosted_zone_domain, ".", "-")}-auth"
+  domain       = "${replace(var.vpn_hosted_zone_domain, ".", "-")}-nac-auth"
   user_pool_id = aws_cognito_user_pool.pool[0].id
 }
 
