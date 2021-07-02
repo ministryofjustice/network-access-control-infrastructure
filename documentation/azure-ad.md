@@ -15,7 +15,7 @@ Azure AD provides the authorization backend, via [AWS Cognito](https://aws.amazo
 - You will need access to the Devl MoJ Azure account.
 - In Azure you will need to elevate your permissions using `Privileged Identity Management (PIM)`
     1. In `Privileged Identity Management`, go to `My roles`
-    1. Under `Eligible assignments`, find the `Application Administrator` role and select `Activate on the right
+    1. Under `Eligible assignments`, find the `Application Administrator` role and select `Activate` on the right
     1. Specify a reason then select `Activate`
 
 - You should now have the role of `Application Administrator` under `Active assignments`
