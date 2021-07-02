@@ -5,7 +5,6 @@ env:
     #TF_IN_AUTOMATION: true
     TF_INPUT: 0
     TF_VAR_owner_email: nac@justice.gov.uk
-    TF_VAR_env: "$ENV"
     TF_VAR_enable_authentication: true
   parameter-store:
     TF_VAR_assume_role: "/codebuild/pttp-ci-infrastructure-core-pipeline/$ENV/assume_role"
