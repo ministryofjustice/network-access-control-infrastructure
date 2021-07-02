@@ -64,3 +64,7 @@ variable "transit_gateway_route_table_id" {
 variable "env" {
   type = string
 }
+
+variable "ocsp_endpoint" {
+  type = string
+}
