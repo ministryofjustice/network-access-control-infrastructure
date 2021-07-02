@@ -15,6 +15,10 @@ variable "prefix" {
     type = string
 }
 
+variable "tags" {
+  type = map(string)
+}
+
 variable "transit_gateway_id" {
     type = string
 }

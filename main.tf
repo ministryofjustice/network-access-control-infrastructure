@@ -80,6 +80,7 @@ module "radius_vpc" {
   enable_nac_transit_gateway_attachment = true
   transit_gateway_id = var.transit_gateway_id
   transit_gateway_route_table_id = var.transit_gateway_route_table_id
+  tags = module.label.tags
 
   providers = {
     aws = aws.env
@@ -93,6 +94,7 @@ module "radius_client_vpc" {
   enable_nac_transit_gateway_attachment = false
   transit_gateway_id = var.transit_gateway_id
   transit_gateway_route_table_id = var.transit_gateway_route_table_id
+  tags = module.label.tags
 
   providers = {
     aws = aws.env
