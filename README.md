@@ -16,3 +16,4 @@ This repository defines the **system infrastructure only**. Specific components 
 ## Other Documentation
 
 - [Getting Started](documentation/getting-started.md)
+- [Authentication with Azure AD](documentation/azure-ad.md)
