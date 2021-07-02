@@ -7,6 +7,18 @@ variable "cidr_block_new_bits" {
     default = 3
 }
 
+variable "enable_nac_transit_gateway_attachment" {
+    type = bool
+}
+
 variable "prefix" {
+    type = string
+}
+
+variable "transit_gateway_id" {
+    type = string
+}
+
+variable "transit_gateway_route_table_id" {
     type = string
 }

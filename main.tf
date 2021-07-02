@@ -77,6 +77,9 @@ module "radius_vpc" {
   source     = "./modules/vpc"
   prefix     = module.label.id
   cidr_block = local.vpc_cidr
+  enable_nac_transit_gateway_attachment = true
+  transit_gateway_id = var.transit_gateway_id
+  transit_gateway_route_table_id = var.transit_gateway_route_table_id
 
   providers = {
     aws = aws.env
@@ -87,6 +90,10 @@ module "radius_client_vpc" {
   source     = "./modules/vpc"
   prefix     = module.label.id
   cidr_block = local.client_vpc_cidr
+  enable_nac_transit_gateway_attachment = false
+  transit_gateway_id = var.transit_gateway_id
+  transit_gateway_route_table_id = var.transit_gateway_route_table_id
+
   providers = {
     aws = aws.env
   }
