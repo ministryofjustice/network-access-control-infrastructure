@@ -63,6 +63,7 @@ module "radius" {
   vpc_cidr              = local.vpc_cidr
   radius_db_username    = var.radius_db_username
   radius_db_password    = var.radius_db_password
+  env                   = var.env
   log_filters = [
     "Accept",
     "Reject",

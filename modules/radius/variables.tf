@@ -46,3 +46,7 @@ variable "private_ip_eu_west_2c" {
 variable "log_filters" {
   type = list(string)
 }
+
+variable "env" {
+  type = string
+}

@@ -56,6 +56,10 @@ resource "aws_ecs_task_definition" "server_task" {
       {
         "name": "ECS_ENABLE_CONTAINER_METADATA",
         "value": "true"
+      },
+      {
+        "name": "ENV",
+        "value": "${var.env}"
       }
     ],
     "image": "${aws_ecr_repository.docker_repository.repository_url}",
