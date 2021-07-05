@@ -59,6 +59,10 @@ variable "enable_nlb_deletion_protection" {
   type = bool
 }
 
-variable "ocsp_endpoint" {
+variable "ocsp_endpoint_ip" {
+  type = string
+}
+
+variable "ocsp_endpoint_port" {
   type = string
 }

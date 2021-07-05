@@ -65,7 +65,8 @@ module "radius" {
   radius_db_password    = var.radius_db_password
   env                   = module.label.stage
   byoip_pool_id         = var.byoip_pool_id
-  ocsp_endpoint         = var.ocsp_endpoint
+  ocsp_endpoint_ip      = var.ocsp_endpoint_ip
+  ocsp_endpoint_port    = var.ocsp_endpoint_port
 
   enable_nlb_deletion_protection = module.label.stage == "production" ? true : false
   log_filters = [
