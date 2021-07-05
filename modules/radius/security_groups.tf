@@ -77,3 +77,12 @@ resource "aws_security_group_rule" "radius_db_in" {
   security_group_id = aws_security_group.radius_db_in.id
   cidr_blocks       = ["0.0.0.0/0"]
 }
+
+resource "aws_security_group_rule" "ocsp_out" {
+  type              = "egress"
+  from_port         = var.ocsp_endpoint_port
+  to_port           = var.ocsp_endpoint_port
+  protocol          = "tcp"
+  security_group_id        = aws_security_group.radius_server.id
+  cidr_blocks       = ["${var.ocsp_endpoint_ip}/32"]
+}
