@@ -65,6 +65,7 @@ module "radius" {
   radius_db_password    = var.radius_db_password
   env                   = module.label.stage
   byoip_pool_id         = var.byoip_pool_id
+  enable_nlb_deletion_protection = module.label.stage == "production" ? true : false
   log_filters = [
     "Accept",
     "Reject",

@@ -54,3 +54,7 @@ variable "env" {
 variable "byoip_pool_id" {
   type = string
 }
+
+variable "enable_nlb_deletion_protection" {
+  type = bool
+}
