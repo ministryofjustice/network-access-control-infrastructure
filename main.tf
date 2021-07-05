@@ -80,14 +80,14 @@ module "radius" {
 }
 
 module "radius_vpc" {
-  source     = "./modules/vpc"
-  prefix     = module.label.id
-  cidr_block = local.vpc_cidr
+  source                                = "./modules/vpc"
+  prefix                                = module.label.id
+  cidr_block                            = local.vpc_cidr
   enable_nac_transit_gateway_attachment = var.enable_nac_transit_gateway_attachment
-  transit_gateway_id = var.transit_gateway_id
-  transit_gateway_route_table_id = var.transit_gateway_route_table_id
-  tags = module.label.tags
-  ocsp_endpoint_ip = var.ocsp_endpoint_ip
+  transit_gateway_id                    = var.transit_gateway_id
+  transit_gateway_route_table_id        = var.transit_gateway_route_table_id
+  tags                                  = module.label.tags
+  ocsp_endpoint_ip                      = var.ocsp_endpoint_ip
 
   providers = {
     aws = aws.env
@@ -95,14 +95,14 @@ module "radius_vpc" {
 }
 
 module "radius_client_vpc" {
-  source     = "./modules/vpc"
-  prefix     = module.label.id
-  cidr_block = local.client_vpc_cidr
+  source                                = "./modules/vpc"
+  prefix                                = module.label.id
+  cidr_block                            = local.client_vpc_cidr
   enable_nac_transit_gateway_attachment = false
-  transit_gateway_id = var.transit_gateway_id
-  transit_gateway_route_table_id = var.transit_gateway_route_table_id
-  tags = module.label.tags
-  ocsp_endpoint_ip = var.ocsp_endpoint_ip
+  transit_gateway_id                    = var.transit_gateway_id
+  transit_gateway_route_table_id        = var.transit_gateway_route_table_id
+  tags                                  = module.label.tags
+  ocsp_endpoint_ip                      = var.ocsp_endpoint_ip
 
   providers = {
     aws = aws.env

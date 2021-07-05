@@ -49,16 +49,16 @@ variable "admin_db_backup_retention_period" {
 }
 
 variable "admin_local_development_domain_affix" {
-  type = string
+  type    = string
   default = ""
 }
 
 variable "transit_gateway_id" {
-    type = string
+  type = string
 }
 
 variable "transit_gateway_route_table_id" {
-    type = string
+  type = string
 }
 
 variable "ocsp_endpoint_ip" {
@@ -74,6 +74,6 @@ variable "byoip_pool_id" {
 }
 
 variable "enable_nac_transit_gateway_attachment" {
-  type = bool
+  type    = bool
   default = false
 }
