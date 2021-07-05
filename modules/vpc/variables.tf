@@ -27,6 +27,6 @@ variable "transit_gateway_route_table_id" {
     type = string
 }
 
-variable "ocsp_endpoint" {
+variable "ocsp_endpoint_ip" {
   type = string
 }

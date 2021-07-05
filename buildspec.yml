@@ -19,7 +19,8 @@ env:
     TF_VAR_admin_sentry_dsn: "/moj-network-access-control/$ENV/admin_sentry_dsn"
     TF_VAR_transit_gateway_id: "/moj-network-access-control/$ENV/transit_gateway_id"
     TF_VAR_transit_gateway_route_table_id: "/moj-network-access-control/$ENV/transit_gateway_route_table_id"
-    TF_VAR_ocsp_endpoint: "/moj-network-access-control/$ENV/ocsp/endpoint"
+    TF_VAR_ocsp_endpoint_ip: "/moj-network-access-control/$ENV/ocsp/endpoint_ip"
+    TF_VAR_ocsp_endpoint_port: "/moj-network-access-control/$ENV/ocsp/endpoint_port"
     TF_VAR_byoip_pool_id: "/moj-network-access-control/$ENV/public_ip_pool_id"
 
 phases:

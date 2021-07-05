@@ -86,7 +86,7 @@ module "radius_vpc" {
   transit_gateway_id = var.transit_gateway_id
   transit_gateway_route_table_id = var.transit_gateway_route_table_id
   tags = module.label.tags
-  ocsp_endpoint = var.ocsp_endpoint
+  ocsp_endpoint_ip = var.ocsp_endpoint_ip
 
   providers = {
     aws = aws.env
@@ -101,7 +101,7 @@ module "radius_client_vpc" {
   transit_gateway_id = var.transit_gateway_id
   transit_gateway_route_table_id = var.transit_gateway_route_table_id
   tags = module.label.tags
-  ocsp_endpoint = var.ocsp_endpoint
+  ocsp_endpoint_ip = var.ocsp_endpoint_ip
 
   providers = {
     aws = aws.env
