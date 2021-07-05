@@ -50,3 +50,7 @@ variable "log_filters" {
 variable "env" {
   type = string
 }
+
+variable "byoip_pool_id" {
+  type = string
+}

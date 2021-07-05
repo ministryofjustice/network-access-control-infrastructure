@@ -4,17 +4,35 @@ resource "aws_lb" "load_balancer" {
   internal           = false
   subnet_mapping {
     subnet_id = var.public_subnets[0]
+    allocation_id = aws_eip.nac_eu_west_2a.id
   }
 
   subnet_mapping {
     subnet_id = var.public_subnets[1]
+    allocation_id = aws_eip.nac_eu_west_2b.id
   }
 
   subnet_mapping {
     subnet_id = var.public_subnets[2]
+    allocation_id = aws_eip.nac_eu_west_2c.id
   }
 
   enable_deletion_protection = false
+}
+
+resource "aws_eip" "nac_eu_west_2a" {
+  vpc              = true
+  public_ipv4_pool = var.byoip_pool_id
+}
+
+resource "aws_eip" "nac_eu_west_2b" {
+  vpc              = true
+  public_ipv4_pool = var.byoip_pool_id
+}
+
+resource "aws_eip" "nac_eu_west_2c" {
+  vpc              = true
+  public_ipv4_pool = var.byoip_pool_id
 }
 
 resource "aws_lb_listener" "udp" {
