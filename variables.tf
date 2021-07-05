@@ -64,3 +64,12 @@ variable "transit_gateway_route_table_id" {
 variable "ocsp_endpoint" {
   type = string
 }
+
+variable "byoip_pool_id" {
+  type = string
+}
+
+variable "enable_nac_transit_gateway_attachment" {
+  type = bool
+  default = false
+}

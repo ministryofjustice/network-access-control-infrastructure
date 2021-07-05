@@ -64,6 +64,7 @@ module "radius" {
   radius_db_username    = var.radius_db_username
   radius_db_password    = var.radius_db_password
   env                   = module.label.stage
+  byoip_pool_id         = var.byoip_pool_id
   log_filters = [
     "Accept",
     "Reject",
@@ -78,7 +79,7 @@ module "radius_vpc" {
   source     = "./modules/vpc"
   prefix     = module.label.id
   cidr_block = local.vpc_cidr
-  enable_nac_transit_gateway_attachment = true
+  enable_nac_transit_gateway_attachment = var.enable_nac_transit_gateway_attachment
   transit_gateway_id = var.transit_gateway_id
   transit_gateway_route_table_id = var.transit_gateway_route_table_id
   tags = module.label.tags

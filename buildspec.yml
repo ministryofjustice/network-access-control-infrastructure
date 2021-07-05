@@ -6,6 +6,7 @@ env:
     TF_INPUT: 0
     TF_VAR_owner_email: nac@justice.gov.uk
     TF_VAR_enable_authentication: true
+    TF_VAR_enable_nac_transit_gateway_attachment: true
   parameter-store:
     TF_VAR_assume_role: "/codebuild/pttp-ci-infrastructure-core-pipeline/$ENV/assume_role"
     TF_VAR_radius_db_username: "/moj-network-access-control/radius_db_username"
@@ -19,6 +20,7 @@ env:
     TF_VAR_transit_gateway_id: "/moj-network-access-control/$ENV/transit_gateway_id"
     TF_VAR_transit_gateway_route_table_id: "/moj-network-access-control/$ENV/transit_gateway_route_table_id"
     TF_VAR_ocsp_endpoint: "/moj-network-access-control/$ENV/ocsp/endpoint"
+    TF_VAR_byoip_pool_id: "/moj-network-access-control/$ENV/public_ip_pool_id"
 
 phases:
   install:
