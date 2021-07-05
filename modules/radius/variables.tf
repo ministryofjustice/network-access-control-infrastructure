@@ -58,3 +58,7 @@ variable "byoip_pool_id" {
 variable "enable_nlb_deletion_protection" {
   type = bool
 }
+
+variable "ocsp_endpoint" {
+  type = string
+}

@@ -60,6 +60,10 @@ resource "aws_ecs_task_definition" "server_task" {
       {
         "name": "ENV",
         "value": "${var.env}"
+      },
+      {
+        "name": "OCSP_URL",
+        "value": "${var.ocsp_endpoint}"
       }
     ],
     "image": "${aws_ecr_repository.docker_repository.repository_url}",
