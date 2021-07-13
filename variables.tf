@@ -35,11 +35,11 @@ variable "admin_sentry_dsn" {
   type = string
 }
 
-variable "vpn_hosted_zone_id" {
+variable "hosted_zone_id" {
   type = string
 }
 
-variable "vpn_hosted_zone_domain" {
+variable "hosted_zone_domain" {
   type = string
 }
 

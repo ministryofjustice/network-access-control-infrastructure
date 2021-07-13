@@ -137,8 +137,8 @@ module "admin" {
   radius_certificate_bucket_arn        = module.radius.s3.radius_certificate_bucket_arn
   radius_certificate_bucket_name       = module.radius.s3.radius_certificate_bucket_name
   region                               = data.aws_region.current_region.id
-  vpn_hosted_zone_id                   = var.vpn_hosted_zone_id
-  vpn_hosted_zone_domain               = var.vpn_hosted_zone_domain
+  hosted_zone_id                       = var.hosted_zone_id
+  hosted_zone_domain                   = var.hosted_zone_domain
   admin_db_backup_retention_period     = var.admin_db_backup_retention_period
   radius_cluster_name                  = module.radius.ecs.cluster_name
   radius_service_name                  = module.radius.ecs.service_name
@@ -170,7 +170,7 @@ module "authentication" {
   enable_authentication         = var.enable_authentication
   admin_url                     = module.admin.admin_url
   region                        = data.aws_region.current_region.id
-  vpn_hosted_zone_domain        = var.vpn_hosted_zone_domain
+  hosted_zone_domain            = var.hosted_zone_domain
 
   providers = {
     aws = aws.env
