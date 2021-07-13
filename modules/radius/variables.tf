@@ -6,7 +6,6 @@ variable "short_prefix" {
   type = string
 }
 
-
 variable "vpc_id" {
   type = string
 }
@@ -65,4 +64,13 @@ variable "ocsp_endpoint_ip" {
 
 variable "ocsp_endpoint_port" {
   type = string
+}
+
+variable "enable_hosted_zone" {
+  type = bool
+  default = false
+}
+
+variable "tags" {
+  type = map(string)
 }
