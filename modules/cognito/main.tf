@@ -36,7 +36,7 @@ resource "aws_cognito_user_pool_client" "client" {
 resource "aws_cognito_user_pool_domain" "main" {
   count = local.enabled
   # domain names can't have underscores
-  domain       = "${replace(var.vpn_hosted_zone_domain, ".", "-")}-nac-auth"
+  domain       = "${replace(var.hosted_zone_domain, ".", "-")}-nac-auth"
   user_pool_id = aws_cognito_user_pool.pool[0].id
 }
 

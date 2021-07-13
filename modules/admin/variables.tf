@@ -49,11 +49,11 @@ variable "radius_certificate_bucket_name" {
   type = string
 }
 
-variable "vpn_hosted_zone_id" {
+variable "hosted_zone_id" {
   type = string
 }
 
-variable "vpn_hosted_zone_domain" {
+variable "hosted_zone_domain" {
   type = string
 }
 
