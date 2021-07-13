@@ -77,3 +77,8 @@ variable "enable_nac_transit_gateway_attachment" {
   type    = bool
   default = false
 }
+
+variable "enable_hosted_zone" {
+  type = bool
+  default = false
+}

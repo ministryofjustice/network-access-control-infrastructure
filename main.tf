@@ -67,8 +67,10 @@ module "radius" {
   byoip_pool_id         = var.byoip_pool_id
   ocsp_endpoint_ip      = var.ocsp_endpoint_ip
   ocsp_endpoint_port    = var.ocsp_endpoint_port
-
   enable_nlb_deletion_protection = module.label.stage == "production" ? true : false
+  enable_hosted_zone    = var.enable_hosted_zone
+  tags                  = module.label.tags
+
   log_filters = [
     "Accept",
     "Reject",

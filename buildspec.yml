@@ -6,6 +6,7 @@ env:
     TF_INPUT: 0
     TF_VAR_owner_email: nac@justice.gov.uk
     TF_VAR_enable_authentication: true
+    TF_VAR_enable_hosted_zone: true
     TF_VAR_enable_nac_transit_gateway_attachment: true
   parameter-store:
     TF_VAR_assume_role: "/codebuild/pttp-ci-infrastructure-core-pipeline/$ENV/assume_role"
