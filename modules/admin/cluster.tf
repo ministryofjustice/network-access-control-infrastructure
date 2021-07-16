@@ -126,6 +126,10 @@ resource "aws_ecs_task_definition" "admin_task" {
         {
           "name": "RADIUS_SERVICE_NAME",
           "value": "${var.radius_service_name}"
+        },
+        {
+          "name": "RADIUS_CONFIG_BUCKET_NAME",
+          "value": "${var.radius_config_bucket_name}"
         }
       ],
       "image": "${aws_ecr_repository.admin_ecr.repository_url}",

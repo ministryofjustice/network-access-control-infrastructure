@@ -47,7 +47,7 @@ resource "aws_ecs_task_definition" "server_task" {
       },
       {
         "name": "RADIUS_CONFIG_BUCKET_NAME",
-        "value": "${var.prefix}-config-bucket"
+        "value": "${aws_s3_bucket.config_bucket.id}"
       },
       {
         "name": "RADIUS_CERTIFICATE_BUCKET_NAME",
