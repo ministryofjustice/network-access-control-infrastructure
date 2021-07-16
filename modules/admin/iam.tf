@@ -27,13 +27,17 @@ resource "aws_iam_role_policy" "ecs_task_policy" {
         "ecs:UpdateService"
       ],
       "Resource": ["*"]
-    },
-    {
+    }, {
       "Effect": "Allow",
       "Action": [
         "kms:GenerateDataKey",
         "kms:Encrypt",
-        "kms:Decrypt",
+        "kms:Decrypt"
+      ],
+      "Resource": ["${var.radius_config_bucket_key_arn}"]
+    }, {
+      "Effect": "Allow",
+      "Action": [
         "s3:PutObject",
         "s3:GetObject"
       ],

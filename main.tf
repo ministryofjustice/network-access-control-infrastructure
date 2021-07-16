@@ -138,6 +138,7 @@ module "admin" {
   radius_certificate_bucket_name       = module.radius.s3.radius_certificate_bucket_name
   radius_config_bucket_name            = module.radius.s3.radius_config_bucket_name
   radius_config_bucket_arn             = module.radius.s3.radius_config_bucket_arn
+  radius_config_bucket_key_arn         = module.radius.s3.radius_config_bucket_key_arn
   region                               = data.aws_region.current_region.id
   hosted_zone_id                       = var.hosted_zone_id
   hosted_zone_domain                   = var.hosted_zone_domain
