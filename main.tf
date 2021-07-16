@@ -136,6 +136,7 @@ module "admin" {
   secret_key_base                      = "tbc"
   radius_certificate_bucket_arn        = module.radius.s3.radius_certificate_bucket_arn
   radius_certificate_bucket_name       = module.radius.s3.radius_certificate_bucket_name
+  radius_config_bucket_name            = module.radius.s3.radius_config_bucket_name
   region                               = data.aws_region.current_region.id
   hosted_zone_id                       = var.hosted_zone_id
   hosted_zone_domain                   = var.hosted_zone_domain

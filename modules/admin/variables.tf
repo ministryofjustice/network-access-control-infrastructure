@@ -49,6 +49,10 @@ variable "radius_certificate_bucket_name" {
   type = string
 }
 
+variable "radius_config_bucket_name" {
+  type = string
+}
+
 variable "hosted_zone_id" {
   type = string
 }
