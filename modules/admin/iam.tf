@@ -37,7 +37,7 @@ resource "aws_iam_role_policy" "ecs_task_policy" {
         "s3:PutObject",
         "s3:GetObject"
       ],
-      "Resource": ["${var.radius_certificate_bucket_arn}/*"]
+      "Resource": ["${var.radius_certificate_bucket_arn}/*", "${var.radius_config_bucket_arn}/*"]
     }
   ]
 }

@@ -32,6 +32,7 @@ output "s3" {
   value = {
     radius_certificate_bucket_arn  = aws_s3_bucket.certificate_bucket.arn
     radius_certificate_bucket_name = aws_s3_bucket.certificate_bucket.id
+    radius_config_bucket_arn = aws_s3_bucket.config_bucket.arn
     radius_config_bucket_name = aws_s3_bucket.config_bucket.id
   }
 }
