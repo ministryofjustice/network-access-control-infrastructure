@@ -64,6 +64,10 @@ resource "aws_ecs_task_definition" "server_task" {
       {
         "name": "OCSP_URL",
         "value": "${var.ocsp_endpoint_ip}:${var.ocsp_endpoint_port}"
+      },
+      {
+        "name": "ENABLE_CRL",
+        "value": "no"
       }
     ],
     "image": "${aws_ecr_repository.docker_repository.repository_url}",
