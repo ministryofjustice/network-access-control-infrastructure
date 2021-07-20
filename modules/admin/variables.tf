@@ -61,6 +61,10 @@ variable "radius_config_bucket_key_arn" {
   type = string
 }
 
+variable "radius_certificate_bucket_key_arn" {
+  type = string
+}
+
 variable "hosted_zone_id" {
   type = string
 }
