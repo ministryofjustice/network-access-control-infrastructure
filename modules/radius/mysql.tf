@@ -1,3 +1,6 @@
+locals {
+  is_production = terraform.workspace == "production" ? true : false
+}
 resource "aws_db_instance" "radius_server_db" {
   allocated_storage           = 20
   storage_type                = "gp2"
