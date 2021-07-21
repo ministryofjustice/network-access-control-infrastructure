@@ -10,12 +10,14 @@ module "vpc" {
 
   azs = [
     "${var.region}a",
-    "${var.region}b"
+    "${var.region}b",
+    "${var.region}c"
   ]
 
   public_subnets = [
     cidrsubnet(var.cidr_block, var.cidr_block_new_bits, 1),
-    cidrsubnet(var.cidr_block, var.cidr_block_new_bits, 2)
+    cidrsubnet(var.cidr_block, var.cidr_block_new_bits, 2),
+    cidrsubnet(var.cidr_block, var.cidr_block_new_bits, 3)
   ]
 
   manage_default_security_group  = true
