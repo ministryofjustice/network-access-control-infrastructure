@@ -89,7 +89,7 @@ resource "aws_ecs_task_definition" "admin_task" {
           "value": "${aws_db_instance.admin_db.name}"
         },{
           "name": "DB_HOST",
-          "value": "${aws_route53_record.admin_db.fqdn}"
+          "value": "${aws_db_instance.admin_db.endpoint}"
         },{
           "name": "RACK_ENV",
           "value": "production"
