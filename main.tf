@@ -86,6 +86,9 @@ module "ecs_auto_scaling_radius_public" {
   prefix                                = module.label.id
   service_name                          = module.radius.ecs.service_name
   cluster_name                          = module.radius.ecs.cluster_name
+  providers = {
+    aws = aws.env
+  }
 }
 
 module "ecs_auto_scaling_radius_internal" {
@@ -93,6 +96,9 @@ module "ecs_auto_scaling_radius_internal" {
   prefix                                = "${module.label.id}-internal"
   service_name                          = module.radius.ecs.internal_service_name
   cluster_name                          = module.radius.ecs.cluster_name
+  providers = {
+    aws = aws.env
+  }
 }
 
 module "ecs_auto_scaling_admin" {
@@ -100,6 +106,9 @@ module "ecs_auto_scaling_admin" {
   prefix                                = "${module.label.id}-admin"
   service_name                          = module.admin.ecs.service_name
   cluster_name                          = module.admin.ecs.cluster_name
+  providers = {
+    aws = aws.env
+  }
 }
 
 module "radius_vpc" {
