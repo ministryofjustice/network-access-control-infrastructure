@@ -56,7 +56,7 @@ resource "aws_security_group" "performance_testing_instance" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["176.26.170.123/32"]
+    cidr_blocks = ["79.173.131.202/32"]
   }
   ingress {
       from_port = 1812
