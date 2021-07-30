@@ -11,8 +11,8 @@ mkdir -p ./test
 chmod 777 /etc/raddb/certs
 chmod 777 ./test
 
-aws s3 sync s3://moj-auth-poc-config-bucket/certs/ /etc/raddb/certs
-aws s3 sync s3://moj-auth-poc-config-bucket/test ./test
+aws s3 sync s3://${s3_bucket_name}/certs/ /etc/raddb/certs
+aws s3 sync s3://${s3_bucket_name}/test ./test
 
 chmod +x ./test/*
 

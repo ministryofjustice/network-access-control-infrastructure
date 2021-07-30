@@ -21,6 +21,9 @@ resource "aws_instance" "performance_testing_instance" {
 
 data "template_file" "client" {
   template = file("./modules/performance_testing/user_data.sh")
+  vars = {
+    s3_bucket_name = aws_s3_bucket.config_bucket.id
+  }
 }
 
 data "template_cloudinit_config" "config" {
