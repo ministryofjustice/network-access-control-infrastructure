@@ -9,7 +9,7 @@ resource "aws_db_instance" "radius_server_db" {
   auto_minor_version_upgrade  = true
   allow_major_version_upgrade = false
   apply_immediately           = true
-  instance_class              = local.is_production ? "db.t2.large" : "db.t2.medium"
+  instance_class              = local.is_production ? "db.t3.xlarge" : "db.t2.medium"
   identifier                  = "${var.prefix}-db"
   name                        = replace(var.prefix, "-", "")
   username                    = var.radius_db_username
