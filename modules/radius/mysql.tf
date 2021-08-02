@@ -1,5 +1,5 @@
 locals {
-  is_production = terraform.workspace == "production" ? true : false
+  is_production = terraform.workspace == "production" ? true : true
 }
 resource "aws_db_instance" "radius_server_db" {
   allocated_storage           = 20
