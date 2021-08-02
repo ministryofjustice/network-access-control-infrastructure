@@ -1,6 +1,6 @@
 resource "aws_instance" "performance_testing_instance" {
-  ami           = "ami-0b3228cca3203786f"
-  instance_type = "t2.medium"
+  ami           = "ami-032598fcc7e9d1c7a"
+  instance_type = "t2.micro"
 
   vpc_security_group_ids = [
     aws_security_group.performance_testing_instance.id
