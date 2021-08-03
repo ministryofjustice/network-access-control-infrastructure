@@ -27,7 +27,11 @@ resource "aws_ecs_service" "service" {
   }
 
   network_configuration {
-    subnets = [var.public_subnets[0]]
+      subnets = [
+        var.public_subnets[0],
+        var.public_subnets[1],
+        var.public_subnets[2]
+      ]
 
     security_groups = [
       aws_security_group.radius_server.id
