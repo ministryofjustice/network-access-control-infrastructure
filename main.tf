@@ -247,13 +247,13 @@ module "admin_vpc_flow_logs" {
 #  destination_cidr = local.client_vpc_cidr
 # }
 
-# module "performance_testing" {
-#   source = "./modules/performance_testing"
-#   prefix = "${module.label.id}-perf"
-#   vpc_id = module.radius_vpc.vpc_id
-#   subnets = module.radius_vpc.public_subnets
+module "performance_testing" {
+  source = "./modules/performance_testing"
+  prefix = "${module.label.id}-perf"
+  vpc_id = module.radius_vpc.vpc_id
+  subnets = module.radius_vpc.public_subnets
 
-#   providers = {
-#     aws = aws.env
-#   }
-# }
+  providers = {
+    aws = aws.env
+  }
+}
