@@ -2,7 +2,7 @@ resource "aws_lb" "load_balancer" {
   name               = var.prefix
   load_balancer_type = "network"
   internal           = false
-  enable_cross_zone_load_balancing = true
+  enable_cross_zone_load_balancing = false
   subnet_mapping {
     subnet_id = var.public_subnets[0]
     allocation_id = aws_eip.nac_eu_west_2a.id
