@@ -19,7 +19,7 @@ resource "aws_db_instance" "radius_server_db" {
   storage_encrypted           = true
   db_subnet_group_name        = aws_db_subnet_group.db.name
   vpc_security_group_ids      = [aws_security_group.radius_db_in.id]
-  publicly_accessible         = local.is_production ? true : true
+  publicly_accessible         = local.is_production ? false : true
   monitoring_role_arn         = aws_iam_role.rds_monitoring_role.arn
   monitoring_interval         = 30
   skip_final_snapshot         = true
