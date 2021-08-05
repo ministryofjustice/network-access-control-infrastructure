@@ -1,7 +1,8 @@
 resource "aws_lb" "internal_load_balancer" {
-  name               = "${var.prefix}-private"
-  load_balancer_type = "network"
-  internal           = true
+  name                             = "${var.prefix}-private"
+  load_balancer_type               = "network"
+  internal                         = true
+  enable_cross_zone_load_balancing = true
   subnet_mapping {
     subnet_id = var.private_subnets[0]
     private_ipv4_address = var.private_ip_eu_west_2a
