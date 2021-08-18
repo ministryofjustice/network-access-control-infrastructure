@@ -26,6 +26,17 @@ resource "aws_ecs_service" "service" {
     container_port   = 2083
   }
 
+  load_balancer {
+    target_group_arn = aws_lb_target_group.target_group_letsencrypt.arn
+    container_name   = "radius-server"
+    container_port   = 443
+  }
+
+  load_balancer {
+    target_group_arn = aws_lb_target_group.target_group_letsencrypt_http.arn
+    container_name   = "radius-server"
+    container_port   = 80
+  }
   network_configuration {
       subnets = [
         var.public_subnets[0],
