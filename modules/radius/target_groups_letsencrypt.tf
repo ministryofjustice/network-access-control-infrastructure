@@ -21,7 +21,7 @@ resource "aws_lb_listener" "letsencrypt_tcp_http" {
 }
 
 resource "aws_lb_target_group" "target_group_letsencrypt" {
-  name                 = "${var.prefix}-lencrypt"
+  name                 = "${var.prefix}-le"
   protocol             = "TCP"
   vpc_id               = var.vpc_id
   port                 = "443"
@@ -37,7 +37,7 @@ resource "aws_lb_target_group" "target_group_letsencrypt" {
 }
 
 resource "aws_lb_target_group" "target_group_letsencrypt_http" {
-  name                 = "${var.prefix}-lencrypt-http"
+  name                 = "${var.prefix}-le-http"
   protocol             = "TCP"
   vpc_id               = var.vpc_id
   port                 = "80"
