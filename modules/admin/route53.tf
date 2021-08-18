@@ -35,7 +35,7 @@ resource "aws_route53_record" "admin_app" {
     country = "GB"
   }
 
-  name    = "admin${var.admin_local_development_domain_affix}"
+  name    = "admin${var.local_development_domain_affix}"
   records = [aws_lb.admin_alb.dns_name]
 }
 
@@ -50,6 +50,6 @@ resource "aws_route53_record" "admin_db" {
     country = "GB"
   }
 
-  name    = "admin-db${var.admin_local_development_domain_affix}"
+  name    = "admin-db${var.local_development_domain_affix}"
   records = [aws_db_instance.admin_db.address]
 }

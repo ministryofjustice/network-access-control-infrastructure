@@ -48,7 +48,7 @@ variable "admin_db_backup_retention_period" {
   default = "30"
 }
 
-variable "admin_local_development_domain_affix" {
+variable "local_development_domain_affix" {
   type    = string
   default = ""
 }

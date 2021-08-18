@@ -78,3 +78,7 @@ variable "enable_hosted_zone" {
 variable "tags" {
   type = map(string)
 }
+
+variable "local_development_domain_affix" {
+  type = string
+}
