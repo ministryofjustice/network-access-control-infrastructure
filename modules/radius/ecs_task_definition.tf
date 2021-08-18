@@ -20,6 +20,16 @@ resource "aws_ecs_task_definition" "server_task" {
         "hostPort": 2083,
         "containerPort": 2083,
         "protocol": "tcp"
+      },
+      {
+        "hostPort": 443,
+        "containerPort": 443,
+        "protocol": "tcp"
+      },
+      {
+        "hostPort": 80,
+        "containerPort": 80,
+        "protocol": "tcp"
       }
     ],
     "essential": true,
