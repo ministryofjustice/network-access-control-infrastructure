@@ -23,5 +23,5 @@ resource "aws_route53_record" "nac_nlb" {
   records = [each.value.record]
   ttl     = 3600
   type    = each.value.type
-  zone_id = var.hosted_zone_id
+  zone_id = aws_route53_zone.radius.zone_id
 }
