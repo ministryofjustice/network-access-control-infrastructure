@@ -69,6 +69,7 @@ module "radius" {
   ocsp_endpoint_port    = var.ocsp_endpoint_port
   enable_nlb_deletion_protection = module.label.stage == "production" ? true : false
   enable_hosted_zone    = var.enable_hosted_zone
+  hosted_zone_domain    = var.hosted_zone_domain
   tags                  = module.label.tags
 
   log_filters = [

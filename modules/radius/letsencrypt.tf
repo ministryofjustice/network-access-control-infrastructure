@@ -1,5 +1,5 @@
 resource "aws_acm_certificate" "nac_nlb" {
-  domain_name       = "server.${var.env}.nac.justice.gov.uk"
+  domain_name       = "server.${var.hosted_zone_domain}"
   validation_method = "DNS"
 
   tags = var.tags
@@ -8,6 +8,10 @@ resource "aws_acm_certificate" "nac_nlb" {
 resource "aws_acm_certificate_validation" "nac_nlb" {
   certificate_arn         = aws_acm_certificate.nac_nlb.arn
   validation_record_fqdns = [for record in aws_route53_record.nac_nlb : record.fqdn]
+
+  depends_on = [
+    aws_acm_certificate.nac_nlb
+  ]
 }
 
 resource "aws_route53_record" "nac_nlb" {

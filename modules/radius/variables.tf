@@ -66,6 +66,10 @@ variable "ocsp_endpoint_port" {
   type = string
 }
 
+variable "hosted_zone_domain" {
+  type = string
+}
+
 variable "enable_hosted_zone" {
   type = bool
   default = false
