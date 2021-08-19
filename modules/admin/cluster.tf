@@ -133,6 +133,10 @@ resource "aws_ecs_task_definition" "admin_task" {
           "value": "${var.radius_service_name}"
         },
         {
+          "name": "RADIUS_INTERNAL_SERVICE_NAME",
+          "value": "${var.radius_internal_service_name}"
+        },
+        {
           "name": "RADIUS_CONFIG_BUCKET_NAME",
           "value": "${var.radius_config_bucket_name}"
         },

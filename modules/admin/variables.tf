@@ -101,6 +101,10 @@ variable "radius_service_name" {
   type = string
 }
 
+variable "radius_internal_service_name" {
+  type = string
+}
+
 variable "radius_service_arn" {
   type = string
 }
