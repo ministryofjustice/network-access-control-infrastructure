@@ -178,6 +178,7 @@ module "admin" {
   admin_db_backup_retention_period  = var.admin_db_backup_retention_period
   radius_cluster_name               = module.radius.ecs.cluster_name
   radius_service_name               = module.radius.ecs.service_name
+  radius_internal_service_name      = module.radius.ecs.internal_service_name
   radius_service_arn                = module.radius.ecs.service_arn
   cognito_user_pool_id              = module.authentication.cognito_user_pool_id
   cognito_user_pool_domain          = module.authentication.cognito_user_pool_domain
