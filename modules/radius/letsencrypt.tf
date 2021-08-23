@@ -1,7 +1,7 @@
 resource "aws_route53_record" "letsencrypt" {
   count = var.env == "development" ? 1 : 0
 
-  zone_id = aws_route53_zone.radius.*.zone_id[0]
+  zone_id = var.staff_hosted_zone_id
   ttl     = 3600
   type    = "CNAME"
   name    = "moj-authentication-poc${var.local_development_domain_affix}"

@@ -82,3 +82,7 @@ variable "tags" {
 variable "local_development_domain_affix" {
   type = string
 }
+
+variable "staff_hosted_zone_id" {
+  type = string
+}

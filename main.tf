@@ -72,6 +72,7 @@ module "radius" {
   hosted_zone_domain             = var.hosted_zone_domain
   tags                           = module.label.tags
   local_development_domain_affix = var.local_development_domain_affix
+  staff_hosted_zone_id           = var.staff_hosted_zone_id
 
   log_filters = [
     "Accept",
