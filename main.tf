@@ -155,6 +155,18 @@ module "radius_vpc_flow_logs" {
   }
 }
 
+module "admin_read_replica" {
+  source              = "./modules/admin_read_replica"
+  admin_db_id         = module.admin.rds.admin_db_id
+  subnet_ids          = module.radius_vpc.private_subnets
+  rds_monitoring_role = module.admin.rds.rds_monitoring_role
+  vpc_id              = module.radius_vpc.vpc_id
+  db_username         = var.admin_read_replica_db_username
+  db_password         = var.admin_read_replica_db_password
+  prefix              = "${module.label.id}-admin-read-replica"
+  tags                = module.label.tags
+}
+
 module "admin" {
   source                            = "./modules/admin"
   prefix                            = "${module.label.id}-admin"
