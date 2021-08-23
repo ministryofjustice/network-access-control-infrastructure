@@ -157,7 +157,7 @@ module "radius_vpc_flow_logs" {
 
 module "admin_read_replica" {
   source              = "./modules/admin_read_replica"
-  admin_db_id         = module.admin.rds.admin_db_id
+  admin_db_arn        = module.admin.rds.admin_db_arn
   subnet_ids          = module.radius_vpc.private_subnets
   rds_monitoring_role = module.admin.rds.rds_monitoring_role
   vpc_id              = module.radius_vpc.vpc_id
