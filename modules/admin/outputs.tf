@@ -22,7 +22,7 @@ output "ecr" {
 
 output "rds" {
   value = {
-    admin_db_arn = aws_db_instance.admin_db.arn
+    admin_db_id = aws_db_instance.admin_db.id
     rds_monitoring_role = aws_iam_role.rds_monitoring_role.arn
   }
 }

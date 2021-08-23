@@ -27,6 +27,6 @@ variable "vpc_id" {
   type = string
 }
 
-variable "admin_db_arn" {
+variable "admin_db_id" {
   type = string
 }
