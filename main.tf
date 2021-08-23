@@ -165,6 +165,10 @@ module "admin_read_replica" {
   db_password         = var.admin_read_replica_db_password
   prefix              = "${module.label.id}-admin-read-replica"
   tags                = module.label.tags
+
+  providers = {
+    aws = aws.env
+  }
 }
 
 module "admin" {
