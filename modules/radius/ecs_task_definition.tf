@@ -26,6 +26,22 @@ resource "aws_ecs_task_definition" "server_task" {
     "name": "radius-server",
     "environment": [
       {
+        "name": "READ_REPLICA_DB_NAME",
+        "value": "${var.admin_read_replica_db_name}"
+      },
+      {
+        "name": "READ_REPLICA_DB_USER",
+        "value": "${var.admin_read_replica_db_username}"
+      },
+      {
+        "name": "READ_REPLICA_DB_PASS",
+        "value": "${var.admin_read_replica_db_password}"
+      },
+      {
+        "name": "READ_REPLICA_DB_HOST",
+        "value": "${var.admin_read_replica_db_host}"
+      },
+      {
         "name": "DB_NAME",
         "value": "${aws_db_instance.radius_server_db.name}"
       },
