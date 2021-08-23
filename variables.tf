@@ -15,10 +15,6 @@ variable "assume_role" {
   type = string
 }
 
-variable "staff_hosted_zone_id" {
-  type = string
-}
-
 variable "azure_federation_metadata_url" {
   type = string
 }
