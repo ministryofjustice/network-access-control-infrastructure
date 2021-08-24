@@ -10,6 +10,7 @@ resource "aws_db_instance" "admin_read_replica" {
   identifier                  = var.prefix
   multi_az                    = true
   storage_encrypted           = true
+  password                    = var.db_password
   db_subnet_group_name        = aws_db_subnet_group.admin_read_relica.name
   vpc_security_group_ids      = [aws_security_group.admin_read_replica.id]
   monitoring_role_arn         = var.rds_monitoring_role
