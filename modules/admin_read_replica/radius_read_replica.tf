@@ -8,10 +8,6 @@ resource "aws_db_instance" "admin_read_replica" {
   replicate_source_db         = var.admin_db_id
   instance_class              = "db.t2.medium"
   identifier                  = var.prefix
-  name                        = replace(var.prefix, "-", "")
-  username                    = var.db_username
-  password                    = var.db_password
-  backup_retention_period     = 30
   multi_az                    = true
   storage_encrypted           = true
   db_subnet_group_name        = aws_db_subnet_group.admin_read_relica.name
