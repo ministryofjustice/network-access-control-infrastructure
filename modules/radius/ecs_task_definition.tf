@@ -66,6 +66,14 @@ resource "aws_ecs_task_definition" "server_task" {
         "value": "${var.ocsp_endpoint_ip}:${var.ocsp_endpoint_port}"
       },
       {
+        "name": "ENABLE_OCSP",
+        "value": "${var.enable_ocsp}"
+      },
+      {
+        "name": "OCSP_OVERRIDE_CERT_URL",
+        "value": "${var.ocsp_override_cert_url}"
+      },
+      {
         "name": "ENABLE_CRL",
         "value": "no"
       }

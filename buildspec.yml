@@ -22,6 +22,8 @@ env:
     TF_VAR_transit_gateway_route_table_id: "/moj-network-access-control/$ENV/transit_gateway_route_table_id"
     TF_VAR_ocsp_endpoint_ip: "/moj-network-access-control/$ENV/ocsp/endpoint_ip"
     TF_VAR_ocsp_endpoint_port: "/moj-network-access-control/$ENV/ocsp/endpoint_port"
+    TF_VAR_enable_ocsp: "/moj-network-access-control/$ENV/enable_ocsp"
+    TF_VAR_ocsp_override_cert_url: "/moj-network-access-control/$ENV/ocsp_override_cert_url"
     TF_VAR_byoip_pool_id: "/moj-network-access-control/$ENV/public_ip_pool_id"
     TF_VAR_admin_read_replica_db_username: "/moj-network-access-control/$ENV/admin_read_replica_db_username"
     TF_VAR_admin_read_replica_db_password: "/moj-network-access-control/$ENV/admin_read_replica_db_password"
