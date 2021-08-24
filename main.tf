@@ -67,6 +67,8 @@ module "radius" {
   byoip_pool_id                  = var.byoip_pool_id
   ocsp_endpoint_ip               = var.ocsp_endpoint_ip
   ocsp_endpoint_port             = var.ocsp_endpoint_port
+  ocsp_override_cert_url         = var.ocsp_override_cert_url
+  enable_ocsp                    = var.enable_ocsp
   enable_nlb_deletion_protection = module.label.stage == "production" ? true : false
   enable_hosted_zone             = var.enable_hosted_zone
   hosted_zone_domain             = var.hosted_zone_domain
