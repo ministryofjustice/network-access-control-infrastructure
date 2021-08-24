@@ -5,7 +5,7 @@ resource "aws_db_instance" "admin_read_replica" {
   auto_minor_version_upgrade  = true
   allow_major_version_upgrade = false
   apply_immediately           = true
-  replicate_source_db         = var.admin_db_arn
+  replicate_source_db         = var.admin_db_id
   instance_class              = "db.t2.medium"
   identifier                  = var.prefix
   name                        = replace(var.prefix, "-", "")
