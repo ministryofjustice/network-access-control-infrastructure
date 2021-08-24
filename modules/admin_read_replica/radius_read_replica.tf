@@ -21,6 +21,12 @@ resource "aws_db_instance" "admin_read_replica" {
 
   enabled_cloudwatch_logs_exports = ["audit", "error", "general", "slowquery"]
 
+  lifecycle {
+    ignore_changes = [
+      "replicate_source_db",
+    ]
+  }
+
   tags = var.tags
 }
 
