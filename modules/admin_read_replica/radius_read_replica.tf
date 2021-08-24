@@ -23,7 +23,7 @@ resource "aws_db_instance" "admin_read_replica" {
 
   lifecycle {
     ignore_changes = [
-      "replicate_source_db",
+      replicate_source_db,
     ]
   }
 

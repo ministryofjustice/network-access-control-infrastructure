@@ -60,22 +60,7 @@ resource "aws_security_group_rule" "radius_container_db_out" {
   to_port                  = 3306
   protocol                 = "tcp"
   security_group_id        = aws_security_group.radius_server.id
-  source_security_group_id = aws_security_group.radius_db_in.id
-}
-
-resource "aws_security_group" "radius_db_in" {
-  name        = "${var.prefix}-radius-database-in"
-  description = "Allow connections to the DB"
-  vpc_id      = var.vpc_id
-}
-
-resource "aws_security_group_rule" "radius_db_in" {
-  type              = "ingress"
-  from_port         = 3306
-  to_port           = 3306
-  protocol          = "tcp"
-  security_group_id = aws_security_group.radius_db_in.id
-  cidr_blocks       = ["0.0.0.0/0"]
+  source_security_group_id = var.db_security_group_id
 }
 
 resource "aws_security_group_rule" "ocsp_out" {

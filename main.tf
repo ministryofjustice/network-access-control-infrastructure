@@ -78,6 +78,7 @@ module "radius" {
   admin_read_replica_db_username = var.admin_read_replica_db_username
   admin_read_replica_db_password = var.admin_read_replica_db_password
   local_development_domain_affix = var.local_development_domain_affix
+  db_security_group_id           = module.admin_read_replica.rds.security_group_id
 
   log_filters = [
     "Accept",
