@@ -1,5 +1,5 @@
 resource "aws_lb" "internal_load_balancer" {
-  name                             = "${var.prefix}-private"
+  name                             = "nac-int-${var.prefix}"
   load_balancer_type               = "network"
   internal                         = true
   enable_cross_zone_load_balancing = true
@@ -60,7 +60,7 @@ resource "aws_lb_target_group" "internal_target_group" {
 }
 
 resource "aws_lb_target_group" "internal_target_group_radsec" {
-  name                 = "${var.short_prefix}-radsec-int"
+  name                 = "nac-radsec-int-${var.short_prefix}"
   protocol             = "TCP"
   vpc_id               = var.vpc_id
   port                 = "2083"
