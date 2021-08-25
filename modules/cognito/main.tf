@@ -4,7 +4,7 @@ locals {
 
 resource "aws_cognito_user_pool" "pool" {
   count                    = local.enabled
-  name                     = "${var.prefix}_azure_ad_pool"
+  name                     = "${var.prefix}-azure-ad-pool"
   auto_verified_attributes = ["email"]
 
   schema {
@@ -21,7 +21,7 @@ resource "aws_cognito_user_pool" "pool" {
 
 resource "aws_cognito_user_pool_client" "client" {
   count                                = local.enabled
-  name                                 = "${var.prefix}_azure_ad_client"
+  name                                 = "${var.prefix}-azure-ad-client"
   user_pool_id                         = aws_cognito_user_pool.pool[0].id
   explicit_auth_flows                  = ["ALLOW_ADMIN_USER_PASSWORD_AUTH", "ALLOW_CUSTOM_AUTH", "ALLOW_USER_PASSWORD_AUTH", "ALLOW_USER_SRP_AUTH", "ALLOW_REFRESH_TOKEN_AUTH"]
   callback_urls                        = ["https://${var.admin_url}/users/auth/cognito/callback"]

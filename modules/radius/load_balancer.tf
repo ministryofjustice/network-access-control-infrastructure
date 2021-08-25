@@ -1,5 +1,5 @@
 resource "aws_lb" "load_balancer" {
-  name                             = var.prefix
+  name                             = "nac-radius-lb-${var.short_prefix}"
   load_balancer_type               = "network"
   internal                         = false
   enable_cross_zone_load_balancing = true
