@@ -11,10 +11,6 @@ variable "tags" {
   type = map(string)
 }
 
-variable "db_username" {
-  type = string
-}
-
 variable "db_password" {
   type = string
 }
@@ -27,6 +23,6 @@ variable "vpc_id" {
   type = string
 }
 
-variable "admin_db_id" {
+variable "admin_db_arn" {
   type = string
 }

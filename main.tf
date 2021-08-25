@@ -67,6 +67,8 @@ module "radius" {
   byoip_pool_id                  = var.byoip_pool_id
   ocsp_endpoint_ip               = var.ocsp_endpoint_ip
   ocsp_endpoint_port             = var.ocsp_endpoint_port
+  ocsp_override_cert_url         = var.ocsp_override_cert_url
+  enable_ocsp                    = var.enable_ocsp
   enable_nlb_deletion_protection = module.label.stage == "production" ? true : false
   enable_hosted_zone             = var.enable_hosted_zone
   hosted_zone_domain             = var.hosted_zone_domain
@@ -161,12 +163,11 @@ module "radius_vpc_flow_logs" {
 
 module "admin_read_replica" {
   source              = "./modules/admin_read_replica"
-  admin_db_id         = module.admin.rds.admin_db_id
+  admin_db_arn         = module.admin.rds.admin_db_arn
   subnet_ids          = module.radius_vpc.private_subnets
   rds_monitoring_role = module.admin.rds.rds_monitoring_role
   vpc_id              = module.radius_vpc.vpc_id
-  db_username         = var.admin_read_replica_db_username
-  db_password         = var.admin_read_replica_db_password
+  db_password         = var.admin_db_password
   prefix              = "${module.label.id}-admin-read-replica"
   tags                = module.label.tags
 

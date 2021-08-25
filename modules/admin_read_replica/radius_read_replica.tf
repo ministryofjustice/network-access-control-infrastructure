@@ -5,15 +5,12 @@ resource "aws_db_instance" "admin_read_replica" {
   auto_minor_version_upgrade  = true
   allow_major_version_upgrade = false
   apply_immediately           = true
-  replicate_source_db         = var.admin_db_id
+  replicate_source_db         = var.admin_db_arn
   instance_class              = "db.t2.medium"
   identifier                  = var.prefix
-  name                        = replace(var.prefix, "-", "")
-  username                    = var.db_username
-  password                    = var.db_password
-  backup_retention_period     = 30
   multi_az                    = true
   storage_encrypted           = true
+  password                    = var.db_password
   db_subnet_group_name        = aws_db_subnet_group.admin_read_relica.name
   vpc_security_group_ids      = [aws_security_group.admin_read_replica.id]
   monitoring_role_arn         = var.rds_monitoring_role
@@ -23,6 +20,12 @@ resource "aws_db_instance" "admin_read_replica" {
   deletion_protection         = false
 
   enabled_cloudwatch_logs_exports = ["audit", "error", "general", "slowquery"]
+
+  lifecycle {
+    ignore_changes = [
+      "replicate_source_db",
+    ]
+  }
 
   tags = var.tags
 }

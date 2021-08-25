@@ -98,3 +98,11 @@ variable "admin_read_replica_db_username" {
 variable "admin_read_replica_db_password" {
   type = string
 }
+
+variable "enable_ocsp" {
+  type = string
+}
+
+variable "ocsp_override_cert_url" {
+  type = string
+}
