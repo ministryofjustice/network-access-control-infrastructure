@@ -71,10 +71,13 @@ module "radius" {
   enable_hosted_zone             = var.enable_hosted_zone
   hosted_zone_domain             = var.hosted_zone_domain
   tags                           = module.label.tags
-  admin_read_replica_db_name     = module.admin_read_replica.rds.name
-  admin_read_replica_db_host     = module.admin_read_replica.rds.host
-  admin_read_replica_db_username = var.admin_read_replica_db_username
-  admin_read_replica_db_password = var.admin_read_replica_db_password
+  read_replica = {
+    name = module.admin_read_replica.rds.name
+    host = module.admin_read_replica.rds.host
+    user = var.admin_read_replica_db_username
+    pass = var.admin_read_replica_db_password
+  }
+
   local_development_domain_affix = var.local_development_domain_affix
   read_replica_security_group_id = module.admin_read_replica.rds.security_group_id
 

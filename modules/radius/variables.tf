@@ -75,20 +75,13 @@ variable "local_development_domain_affix" {
   type = string
 }
 
-variable "admin_read_replica_db_name" {
-  type = string
-}
-
-variable "admin_read_replica_db_host" {
-  type = string
-}
-
-variable "admin_read_replica_db_username" {
-  type = string
-}
-
-variable "admin_read_replica_db_password" {
-  type = string
+variable "read_replica" {
+  type = object({
+    name = string
+    host = string
+    user = string
+    pass = string
+  })
 }
 
 variable "enable_ocsp" {
