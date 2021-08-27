@@ -61,8 +61,6 @@ module "radius" {
   public_subnets                 = module.radius_vpc.public_subnets
   private_subnets                = module.radius_vpc.private_subnets
   vpc_cidr                       = local.vpc_cidr
-  radius_db_username             = var.radius_db_username
-  radius_db_password             = var.radius_db_password
   env                            = module.label.stage
   byoip_pool_id                  = var.byoip_pool_id
   ocsp_endpoint_ip               = var.ocsp_endpoint_ip
