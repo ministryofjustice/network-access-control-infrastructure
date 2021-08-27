@@ -94,6 +94,9 @@ resource "aws_ecs_task_definition" "admin_task" {
           "name": "RACK_ENV",
           "value": "production"
         },{
+          "name": "RAILS_ENV",
+          "value": "production"
+        },{
           "name": "SECRET_KEY_BASE",
           "value": "${var.secret_key_base}"
         },{
@@ -105,9 +108,6 @@ resource "aws_ecs_task_definition" "admin_task" {
         },{
           "name": "SENTRY_DSN",
           "value": "${var.sentry_dsn}"
-        },{
-          "name": "SENTRY_CURRENT_ENV",
-          "value": "${var.short_prefix}"
         },{
           "name": "COGNITO_CLIENT_ID",
           "value": "${var.cognito_user_pool_client_id}"
