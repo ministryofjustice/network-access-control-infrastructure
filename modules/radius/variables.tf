@@ -98,3 +98,7 @@ variable "enable_ocsp" {
 variable "ocsp_override_cert_url" {
   type = string
 }
+
+variable "read_replica_security_group_id" {
+  type = string
+}
