@@ -27,19 +27,19 @@ resource "aws_ecs_task_definition" "server_task" {
     "environment": [
       {
         "name": "DB_NAME",
-        "value": "${var.admin_read_replica_db_name}"
+        "value": "${var.read_replica.name}"
       },
       {
         "name": "DB_USER",
-        "value": "${var.admin_read_replica_db_username}"
+        "value": "${var.read_replica.user}"
       },
       {
         "name": "DB_PASS",
-        "value": "${var.admin_read_replica_db_password}"
+        "value": "${var.read_replica.pass}"
       },
       {
         "name": "DB_HOST",
-        "value": "${var.admin_read_replica_db_host}"
+        "value": "${var.read_replica.host}"
       },
       {
         "name": "DB_PORT",
