@@ -82,10 +82,12 @@ module "radius" {
   read_replica_security_group_id = module.admin_read_replica.rds.security_group_id
 
   log_filters = [
-    "Accept",
-    "Reject",
-    "did not finish"
+    "Login OK:",
+    "Login incorrect:",
+    "Invalid user:",
+    "Error: post_auth - Failed to find attribute"
   ]
+
   providers = {
     aws = aws.env
   }
