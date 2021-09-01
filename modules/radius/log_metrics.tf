@@ -2,7 +2,7 @@ resource "aws_cloudwatch_log_metric_filter" "radius_request_filter" {
   for_each = toset(var.log_filters)
 
   name           = replace(each.value, ":", "")
-  pattern        = each.value
+  pattern        = "${each.value}"
   log_group_name = aws_cloudwatch_log_group.server_log_group.name
 
   metric_transformation {
