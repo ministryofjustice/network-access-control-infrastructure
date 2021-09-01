@@ -84,7 +84,7 @@ module "radius" {
   log_filters = [
     "Login OK:",
     "Login incorrect:",
-    "Invalid user:",
+    "Error: Ignoring request",
     "Error: post_auth - Failed to find attribute"
   ]
 
