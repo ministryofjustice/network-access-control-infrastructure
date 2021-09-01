@@ -6,7 +6,7 @@ resource "aws_cloudwatch_log_metric_filter" "radius_request_filter" {
   log_group_name = aws_cloudwatch_log_group.server_log_group.name
 
   metric_transformation {
-    name          = each.value
+    name          = replace(each.value, ":", "")
     namespace     = "${var.prefix}-requests"
     value         = "1"
     default_value = "0"
