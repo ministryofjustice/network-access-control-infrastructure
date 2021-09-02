@@ -35,7 +35,7 @@ resource "aws_db_instance" "admin_db" {
 
 resource "aws_db_subnet_group" "admin_db_group" {
   name       = "${var.prefix}-db-group"
-  subnet_ids = var.vpc.public_subnets
+  subnet_ids = var.vpc.private_subnets
 
   tags = var.tags
 }
