@@ -1,7 +1,7 @@
 resource "aws_db_instance" "admin_read_replica" {
   storage_type                = "gp2"
   engine                      = "mysql"
-  engine_version              = "5.7"
+  engine_version              = "8.0"
   auto_minor_version_upgrade  = true
   allow_major_version_upgrade = false
   apply_immediately           = true
@@ -39,7 +39,7 @@ resource "aws_db_subnet_group" "admin_read_relica" {
 
 resource "aws_db_parameter_group" "admin_read_replica_parameter_group" {
   name        = "${var.prefix}-parameter-group"
-  family      = "mysql5.7"
+  family      = "mysql8.0"
   description = "Admin Read Replica DB parameter group"
 
   parameter {
