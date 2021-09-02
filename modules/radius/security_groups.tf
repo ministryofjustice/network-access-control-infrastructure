@@ -1,7 +1,7 @@
 resource "aws_security_group" "radius_server" {
   name        = "${var.prefix}-radius-container"
   description = "Allow the ECS agent to talk to the ECS endpoints"
-  vpc_id      = var.vpc_id
+  vpc_id      = var.vpc.id
 }
 
 resource "aws_security_group_rule" "radius_container_healthcheck" {
@@ -11,7 +11,7 @@ resource "aws_security_group_rule" "radius_container_healthcheck" {
   to_port           = 8000
   protocol          = "tcp"
   security_group_id = aws_security_group.radius_server.id
-  cidr_blocks       = [var.vpc_cidr]
+  cidr_blocks       = [var.vpc.cidr]
 }
 
 resource "aws_security_group_rule" "radius_container_udp_in" {
@@ -41,7 +41,7 @@ resource "aws_security_group_rule" "radius_container_udp_out" {
   to_port           = 65000
   protocol          = "udp"
   security_group_id = aws_security_group.radius_server.id
-  cidr_blocks       = [var.vpc_cidr]
+  cidr_blocks       = [var.vpc.cidr]
 }
 
 resource "aws_security_group_rule" "radius_container_web_out" {

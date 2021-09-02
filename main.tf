@@ -47,7 +47,6 @@ locals {
   private_ip_eu_west_2b = "10.180.101.10"
   private_ip_eu_west_2c = "10.180.102.10"
   vpc_cidr              = "10.180.100.0/22"
-  client_vpc_cidr       = "192.168.0.0/16"
   is_production = terraform.workspace == "production" ? true : false
 }
 
@@ -55,13 +54,6 @@ module "radius" {
   source                         = "./modules/radius"
   prefix                         = module.label.id
   short_prefix                   = module.label.stage
-  vpc_id                         = module.radius_vpc.vpc_id
-  private_ip_eu_west_2a          = local.private_ip_eu_west_2a
-  private_ip_eu_west_2b          = local.private_ip_eu_west_2b
-  private_ip_eu_west_2c          = local.private_ip_eu_west_2c
-  public_subnets                 = module.radius_vpc.public_subnets
-  private_subnets                = module.radius_vpc.private_subnets
-  vpc_cidr                       = local.vpc_cidr
   env                            = module.label.stage
   byoip_pool_id                  = var.byoip_pool_id
   ocsp_endpoint_ip               = var.ocsp_endpoint_ip
@@ -77,6 +69,16 @@ module "radius" {
     host = module.admin_read_replica.rds.host
     user = var.admin_db_username
     pass = var.admin_db_password
+  }
+
+  vpc = {
+    cidr = local.vpc_cidr
+    id = module.radius_vpc.vpc_id
+    private_ip_eu_west_2a = local.private_ip_eu_west_2a
+    private_ip_eu_west_2b = local.private_ip_eu_west_2b
+    private_ip_eu_west_2c = local.private_ip_eu_west_2c
+    private_subnets = module.radius_vpc.private_subnets
+    public_subnets = module.radius_vpc.public_subnets
   }
 
   local_development_domain_affix = var.local_development_domain_affix

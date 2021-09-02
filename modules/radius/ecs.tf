@@ -28,9 +28,9 @@ resource "aws_ecs_service" "service" {
 
   network_configuration {
       subnets = [
-        var.public_subnets[0],
-        var.public_subnets[1],
-        var.public_subnets[2]
+        var.vpc.public_subnets[0],
+        var.vpc.public_subnets[1],
+        var.vpc.public_subnets[2]
       ]
 
     security_groups = [
@@ -62,8 +62,8 @@ resource "aws_ecs_service" "internal_service" {
 
   network_configuration {
     subnets = [
-      var.private_subnets[0],
-      var.private_subnets[1]
+      var.vpc.private_subnets[0],
+      var.vpc.private_subnets[1]
       ]
 
     security_groups = [
