@@ -6,7 +6,7 @@ resource "aws_db_instance" "admin_read_replica" {
   allow_major_version_upgrade = false
   apply_immediately           = true
   replicate_source_db         = var.admin_db_arn
-  instance_class              = "db.t3.xlarge"
+  instance_class              = var.db_size
   identifier                  = var.prefix
   multi_az                    = true
   storage_encrypted           = true

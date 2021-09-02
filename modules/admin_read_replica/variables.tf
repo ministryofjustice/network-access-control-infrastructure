@@ -26,3 +26,7 @@ variable "vpc_id" {
 variable "admin_db_arn" {
   type = string
 }
+
+variable "db_size" {
+  type = string
+}

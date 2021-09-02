@@ -160,6 +160,7 @@ module "admin_read_replica" {
   rds_monitoring_role = module.admin.rds.rds_monitoring_role
   vpc_id              = module.radius_vpc.vpc_id
   db_password         = var.admin_db_password
+  db_size             = local.is_production ? "db.t3.xlarge" : "db.t2.medium"
   prefix              = "${module.label.id}-admin-read-replica"
   tags                = module.label.tags
 
