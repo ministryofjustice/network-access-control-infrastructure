@@ -13,12 +13,13 @@ variable "vpc" {
   description = "Networking configuration"
 }
 
-variable "admin_db_username" {
-  type = string
-}
-
-variable "admin_db_password" {
-  type = string
+variable "db" {
+  type = object({
+    backup_retention_period = number
+    password = string
+    username = string
+    apply_updates_immediately = bool
+  })
 }
 
 variable "sentry_dsn" {
@@ -71,10 +72,6 @@ variable "hosted_zone_id" {
 
 variable "hosted_zone_domain" {
   type = string
-}
-
-variable "admin_db_backup_retention_period" {
-  type = number
 }
 
 variable "cognito_user_pool_id" {

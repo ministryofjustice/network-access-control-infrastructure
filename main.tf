@@ -170,8 +170,6 @@ module "admin" {
   prefix                            = "${module.label.id}-admin"
   short_prefix                      = module.label.stage # avoid 32 char limit on certain resources
   tags                              = module.label.tags
-  admin_db_password                 = var.admin_db_password
-  admin_db_username                 = var.admin_db_username
   sentry_dsn                        = var.admin_sentry_dsn
   secret_key_base                   = "tbc"
   radius_certificate_bucket_arn     = module.radius.s3.radius_certificate_bucket_arn
@@ -183,7 +181,6 @@ module "admin" {
   region                            = data.aws_region.current_region.id
   hosted_zone_id                    = var.hosted_zone_id
   hosted_zone_domain                = var.hosted_zone_domain
-  admin_db_backup_retention_period  = var.admin_db_backup_retention_period
   radius_cluster_name               = module.radius.ecs.cluster_name
   radius_service_name               = module.radius.ecs.service_name
   radius_internal_service_name      = module.radius.ecs.internal_service_name
@@ -194,6 +191,13 @@ module "admin" {
   cognito_user_pool_client_secret   = module.authentication.cognito_user_pool_client_secret
   is_publicly_accessible            = local.publicly_accessible
   local_development_domain_affix    = var.local_development_domain_affix
+
+  db = {
+    backup_retention_period = var.admin_db_backup_retention_period
+    password = var.admin_db_password
+    username = var.admin_db_username
+    apply_updates_immediately = terraform.workspace == "production" ? false : true
+  }
 
   vpc = {
     id = module.admin_vpc.vpc_id
