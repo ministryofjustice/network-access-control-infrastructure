@@ -48,6 +48,7 @@ locals {
   private_ip_eu_west_2c = "10.180.102.10"
   vpc_cidr              = "10.180.100.0/22"
   client_vpc_cidr       = "192.168.0.0/16"
+  is_production = terraform.workspace == "production" ? true : false
 }
 
 module "radius" {
@@ -67,7 +68,7 @@ module "radius" {
   ocsp_endpoint_port             = var.ocsp_endpoint_port
   ocsp_override_cert_url         = var.ocsp_override_cert_url
   enable_ocsp                    = var.enable_ocsp
-  enable_nlb_deletion_protection = module.label.stage == "production" ? true : false
+  enable_nlb_deletion_protection = local.is_production ? true : false
   enable_hosted_zone             = var.enable_hosted_zone
   hosted_zone_domain             = var.hosted_zone_domain
   tags                           = module.label.tags
@@ -193,10 +194,13 @@ module "admin" {
   local_development_domain_affix    = var.local_development_domain_affix
 
   db = {
+    apply_updates_immediately = local.is_production ? false : true
     backup_retention_period = var.admin_db_backup_retention_period
+    delete_automated_backups = local.is_production ? false : true
+    deletion_protection = local.is_production ? true : false
     password = var.admin_db_password
+    skip_final_snapshot = local.is_production ? false : true
     username = var.admin_db_username
-    apply_updates_immediately = terraform.workspace == "production" ? false : true
   }
 
   vpc = {
@@ -215,7 +219,7 @@ module "admin" {
 }
 
 locals {
-  publicly_accessible = terraform.workspace == "production" ? false : true
+  publicly_accessible = local.is_production ? false : true
 }
 
 module "authentication" {

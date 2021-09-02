@@ -1,7 +1,3 @@
-locals {
-  is_production = terraform.workspace == "production" ? true : false
-}
-
 resource "aws_db_instance" "admin_db" {
   allocated_storage           = 20
   storage_type                = "gp2"
@@ -9,7 +5,9 @@ resource "aws_db_instance" "admin_db" {
   engine_version              = "8.0"
   auto_minor_version_upgrade  = true
   allow_major_version_upgrade = false
+  character_set_name          = "utf8"
   apply_immediately           = var.db.apply_updates_immediately
+  delete_automated_backups    = var.db.delete_automated_backups
   instance_class              = "db.t2.medium"
   identifier                  = "${var.prefix}-db"
   name                        = replace(var.prefix, "-", "")
@@ -22,8 +20,8 @@ resource "aws_db_instance" "admin_db" {
   vpc_security_group_ids      = [aws_security_group.admin_db.id]
   monitoring_role_arn         = aws_iam_role.rds_monitoring_role.arn
   monitoring_interval         = 60
-  skip_final_snapshot         = true
-  deletion_protection         = local.is_production ? true : false
+  skip_final_snapshot         = var.db.skip_final_snapshot
+  deletion_protection         = var.db.deletion_protection
   publicly_accessible         = var.is_publicly_accessible
 
   enabled_cloudwatch_logs_exports = ["audit", "error", "general", "slowquery"]

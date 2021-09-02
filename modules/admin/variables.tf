@@ -15,10 +15,13 @@ variable "vpc" {
 
 variable "db" {
   type = object({
-    backup_retention_period = number
-    password = string
-    username = string
     apply_updates_immediately = bool
+    backup_retention_period = number
+    delete_automated_backups = bool
+    deletion_protection = bool
+    password = string
+    skip_final_snapshot = bool
+    username = string
   })
 }
 
