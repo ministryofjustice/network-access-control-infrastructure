@@ -80,10 +80,10 @@ resource "aws_ecs_task_definition" "admin_task" {
       "environment": [
         {
           "name": "DB_USER",
-          "value": "${var.admin_db_username}"
+          "value": "${var.db.username}"
         },{
           "name": "DB_PASS",
-          "value": "${var.admin_db_password}"
+          "value": "${var.db.password}"
         },{
           "name": "DB_NAME",
           "value": "${aws_db_instance.admin_db.name}"
