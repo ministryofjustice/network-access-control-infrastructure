@@ -4,17 +4,17 @@ resource "aws_lb" "load_balancer" {
   internal                         = false
   enable_cross_zone_load_balancing = true
   subnet_mapping {
-    subnet_id = var.public_subnets[0]
+    subnet_id = var.vpc.public_subnets[0]
     allocation_id = aws_eip.nac_eu_west_2a.id
   }
 
   subnet_mapping {
-    subnet_id = var.public_subnets[1]
+    subnet_id = var.vpc.public_subnets[1]
     allocation_id = aws_eip.nac_eu_west_2b.id
   }
 
   subnet_mapping {
-    subnet_id = var.public_subnets[2]
+    subnet_id = var.vpc.public_subnets[2]
     allocation_id = aws_eip.nac_eu_west_2c.id
   }
 
@@ -61,7 +61,7 @@ resource "aws_lb_listener" "tcp" {
 resource "aws_lb_target_group" "target_group" {
   name                 = var.prefix
   protocol             = "TCP_UDP"
-  vpc_id               = var.vpc_id
+  vpc_id               = var.vpc.id
   port                 = "1812"
   target_type          = "ip"
   deregistration_delay = 300
@@ -77,7 +77,7 @@ resource "aws_lb_target_group" "target_group" {
 resource "aws_lb_target_group" "target_group_radsec" {
   name                 = "${var.prefix}-radsec"
   protocol             = "TCP"
-  vpc_id               = var.vpc_id
+  vpc_id               = var.vpc.id
   port                 = "2083"
   target_type          = "ip"
   deregistration_delay = 300

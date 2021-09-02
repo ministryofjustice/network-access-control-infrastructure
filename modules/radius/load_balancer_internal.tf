@@ -4,18 +4,18 @@ resource "aws_lb" "internal_load_balancer" {
   internal                         = true
   enable_cross_zone_load_balancing = true
   subnet_mapping {
-    subnet_id = var.private_subnets[0]
-    private_ipv4_address = var.private_ip_eu_west_2a
+    subnet_id = var.vpc.private_subnets[0]
+    private_ipv4_address = var.vpc.private_ip_eu_west_2a
   }
 
   subnet_mapping {
-    subnet_id = var.private_subnets[1]
-    private_ipv4_address = var.private_ip_eu_west_2b
+    subnet_id = var.vpc.private_subnets[1]
+    private_ipv4_address = var.vpc.private_ip_eu_west_2b
   }
 
   subnet_mapping {
-    subnet_id = var.private_subnets[2]
-    private_ipv4_address = var.private_ip_eu_west_2c
+    subnet_id = var.vpc.private_subnets[2]
+    private_ipv4_address = var.vpc.private_ip_eu_west_2c
   }
 
   enable_deletion_protection = false
@@ -46,7 +46,7 @@ resource "aws_lb_listener" "internal_tcp" {
 resource "aws_lb_target_group" "internal_target_group" {
   name                 = "${var.prefix}-private"
   protocol             = "TCP_UDP"
-  vpc_id               = var.vpc_id
+  vpc_id               = var.vpc.id
   port                 = "1812"
   target_type          = "ip"
   deregistration_delay = 300
@@ -62,7 +62,7 @@ resource "aws_lb_target_group" "internal_target_group" {
 resource "aws_lb_target_group" "internal_target_group_radsec" {
   name                 = "nac-radsec-int-${var.short_prefix}"
   protocol             = "TCP"
-  vpc_id               = var.vpc_id
+  vpc_id               = var.vpc.id
   port                 = "2083"
   target_type          = "ip"
   deregistration_delay = 300

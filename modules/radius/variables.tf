@@ -6,32 +6,16 @@ variable "short_prefix" {
   type = string
 }
 
-variable "vpc_id" {
-  type = string
-}
-
-variable "public_subnets" {
-  type = list(string)
-}
-
-variable "private_subnets" {
-  type = list(string)
-}
-
-variable "vpc_cidr" {
-  type = string
-}
-
-variable "private_ip_eu_west_2a" {
-  type = string
-}
-
-variable "private_ip_eu_west_2b" {
-  type = string
-}
-
-variable "private_ip_eu_west_2c" {
-  type = string
+variable "vpc" {
+  type = object({
+    cidr = string
+    id = string
+    private_ip_eu_west_2a = string
+    private_ip_eu_west_2b = string
+    private_ip_eu_west_2c = string
+    private_subnets = list(string)
+    public_subnets = list(string)
+  })
 }
 
 variable "log_filters" {
