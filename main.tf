@@ -74,8 +74,8 @@ module "radius" {
   read_replica = {
     name = module.admin_read_replica.rds.name
     host = module.admin_read_replica.rds.host
-    user = var.admin_read_replica_db_username
-    pass = var.admin_read_replica_db_password
+    user = var.admin_db_username
+    pass = var.admin_db_password
   }
 
   local_development_domain_affix = var.local_development_domain_affix

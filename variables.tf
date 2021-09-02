@@ -75,14 +75,6 @@ variable "enable_hosted_zone" {
   default = false
 }
 
-variable "admin_read_replica_db_username" {
-  type = string
-}
-
-variable "admin_read_replica_db_password" {
-  type = string
-}
-
 variable "ocsp_override_cert_url" {
   type = string
 }
