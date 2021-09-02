@@ -175,7 +175,7 @@ resource "aws_ecs_service" "admin_service" {
   }
 
   network_configuration {
-    subnets = var.subnet_ids
+    subnets = var.vpc.public_subnets
 
     security_groups = [
       aws_security_group.admin_ecs.id
@@ -190,7 +190,7 @@ resource "aws_alb_target_group" "admin_tg" {
   name                 = "${var.short_prefix}-admin-nac-tg"
   port                 = "3000"
   protocol             = "HTTP"
-  vpc_id               = var.vpc_id
+  vpc_id               = var.vpc.id
   target_type          = "ip"
   deregistration_delay = 10
 
