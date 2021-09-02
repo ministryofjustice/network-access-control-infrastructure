@@ -1,7 +1,7 @@
 resource "aws_lb" "admin_alb" {
   name     = "nac-admin-lb-${var.short_prefix}"
   internal = false
-  subnets  = var.subnet_ids
+  subnets  = var.vpc.public_subnets
 
   security_groups = [
     aws_security_group.admin_alb.id

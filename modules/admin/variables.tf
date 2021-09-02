@@ -1,16 +1,16 @@
-variable "subnet_ids" {
-  description = "List of AWS subnet IDs to place the EC2 instances and ELB into"
-  type        = list(string)
-}
-
 variable "secret_key_base" {
   type        = string
   description = "Rails secret key base variable used for the admin platform"
 }
 
-variable "vpc_id" {
-  type        = string
-  description = "VPC ID used for placing the ALB into"
+variable "vpc" {
+  type = object({
+    id = string
+    public_subnets = list(string)
+    private_subnets = list(string)
+  })
+
+  description = "Networking configuration"
 }
 
 variable "admin_db_username" {

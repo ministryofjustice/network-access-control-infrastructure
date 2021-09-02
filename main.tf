@@ -170,10 +170,8 @@ module "admin" {
   prefix                            = "${module.label.id}-admin"
   short_prefix                      = module.label.stage # avoid 32 char limit on certain resources
   tags                              = module.label.tags
-  vpc_id                            = module.admin_vpc.vpc_id
   admin_db_password                 = var.admin_db_password
   admin_db_username                 = var.admin_db_username
-  subnet_ids                        = module.admin_vpc.public_subnets
   sentry_dsn                        = var.admin_sentry_dsn
   secret_key_base                   = "tbc"
   radius_certificate_bucket_arn     = module.radius.s3.radius_certificate_bucket_arn
@@ -196,6 +194,12 @@ module "admin" {
   cognito_user_pool_client_secret   = module.authentication.cognito_user_pool_client_secret
   is_publicly_accessible            = local.publicly_accessible
   local_development_domain_affix    = var.local_development_domain_affix
+
+  vpc = {
+    id = module.admin_vpc.vpc_id
+    public_subnets = module.admin_vpc.public_subnets
+    private_subnets = module.admin_vpc.private_subnets
+  }
 
   depends_on = [
     module.admin_vpc
