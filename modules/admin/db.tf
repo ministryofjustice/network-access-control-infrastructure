@@ -5,7 +5,6 @@ resource "aws_db_instance" "admin_db" {
   engine_version              = "8.0"
   auto_minor_version_upgrade  = true
   allow_major_version_upgrade = false
-  character_set_name          = "utf8"
   apply_immediately           = var.db.apply_updates_immediately
   delete_automated_backups    = var.db.delete_automated_backups
   instance_class              = "db.t2.medium"
