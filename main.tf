@@ -88,7 +88,9 @@ module "radius" {
     "Login OK:",
     "Login incorrect",
     "Error: Ignoring request",
-    "Error: post_auth - Failed to find attribute"
+    "Error: post_auth - Failed to find attribute",
+    "Error: python",
+    "Error:"
   ]
 
   providers = {
