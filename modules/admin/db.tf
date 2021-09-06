@@ -2,7 +2,7 @@ resource "aws_db_instance" "admin_db" {
   allocated_storage           = 20
   storage_type                = "gp2"
   engine                      = "mysql"
-  engine_version              = "8.0"
+  engine_version              = "5.7"
   auto_minor_version_upgrade  = true
   allow_major_version_upgrade = false
   apply_immediately           = var.db.apply_updates_immediately
@@ -39,7 +39,7 @@ resource "aws_db_subnet_group" "admin_db_group" {
 
 resource "aws_db_parameter_group" "admin_db_parameter_group" {
   name        = "${var.prefix}-db-parameter-group"
-  family      = "mysql8.0"
+  family      = "mysql5.7"
   description = "Admin DB parameter group"
 
   parameter {
