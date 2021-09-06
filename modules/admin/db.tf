@@ -50,8 +50,4 @@ resource "aws_db_parameter_group" "admin_db_parameter_group" {
     name  = "max_connect_errors"
     value = "10000"
   }
-
-  depends_on = [
-    aws_db_instance.admin_db
-  ]
 }
