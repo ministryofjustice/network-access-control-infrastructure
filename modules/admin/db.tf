@@ -22,6 +22,7 @@ resource "aws_db_instance" "admin_db" {
   skip_final_snapshot         = var.db.skip_final_snapshot
   deletion_protection         = var.db.deletion_protection
   publicly_accessible         = var.is_publicly_accessible
+  final_snapshot_identifier   = "${var.prefix}-final-snapshot"
 
   enabled_cloudwatch_logs_exports = ["audit", "error", "general", "slowquery"]
 
