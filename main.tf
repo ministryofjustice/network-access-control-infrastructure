@@ -204,7 +204,7 @@ module "admin" {
     delete_automated_backups = local.is_production ? false : true
     deletion_protection = local.is_production ? true : false
     password = var.admin_db_password
-    skip_final_snapshot = local.is_production ? false : true
+    skip_final_snapshot = true
     username = var.admin_db_username
   }
 
