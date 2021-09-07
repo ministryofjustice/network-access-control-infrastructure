@@ -8,8 +8,8 @@ resource "aws_db_instance" "admin_db" {
   apply_immediately           = var.db.apply_updates_immediately
   delete_automated_backups    = var.db.delete_automated_backups
   instance_class              = "db.t2.medium"
-  identifier                  = "${var.prefix}-db"
-  name                        = replace(var.prefix, "-", "")
+  identifier                  = var.prefix
+  name                        = replace(var.prefix, "-", "_")
   username                    = var.db.username
   password                    = var.db.password
   backup_retention_period     = var.db.backup_retention_period
@@ -31,14 +31,14 @@ resource "aws_db_instance" "admin_db" {
 }
 
 resource "aws_db_subnet_group" "admin_db_group" {
-  name       = "${var.prefix}-db-group"
+  name       = "${var.prefix}-group"
   subnet_ids = var.vpc.private_subnets
 
   tags = var.tags
 }
 
 resource "aws_db_parameter_group" "admin_db_parameter_group" {
-  name        = "${var.prefix}-db-parameter-group"
+  name        = "${var.prefix}-parameter-group"
   family      = "mysql5.7"
   description = "Admin DB parameter group"
 
