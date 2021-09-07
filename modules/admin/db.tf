@@ -22,6 +22,7 @@ resource "aws_db_instance" "admin_db" {
   skip_final_snapshot         = var.db.skip_final_snapshot
   deletion_protection         = var.db.deletion_protection
   publicly_accessible         = var.is_publicly_accessible
+  option_group_name           = aws_db_option_group.mariadb_audit.name
 
   enabled_cloudwatch_logs_exports = ["audit", "error", "general", "slowquery"]
 
@@ -50,4 +51,18 @@ resource "aws_db_parameter_group" "admin_db_parameter_group" {
     name  = "max_connect_errors"
     value = "10000"
   }
+}
+
+resource "aws_db_option_group" "mariadb_audit" {
+  name = "${var.prefix}-db-audit"
+
+  option_group_description = "Mariadb audit configuration"
+  engine_name              = "mysql"
+  major_engine_version     = "5.7"
+
+  option {
+    option_name = "MARIADB_AUDIT_PLUGIN"
+  }
+
+  tags = var.tags
 }
