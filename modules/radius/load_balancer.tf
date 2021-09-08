@@ -65,7 +65,6 @@ resource "aws_lb_target_group" "target_group" {
   port                 = "1812"
   target_type          = "ip"
   deregistration_delay = 300
-  proxy_protocol_v2    = true
   preserve_client_ip   = true
 
   health_check {
@@ -83,7 +82,6 @@ resource "aws_lb_target_group" "target_group_radsec" {
   port                 = "2083"
   target_type          = "ip"
   deregistration_delay = 300
-  proxy_protocol_v2    = true
   preserve_client_ip   = true
 
   health_check {
