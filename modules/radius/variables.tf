@@ -79,3 +79,11 @@ variable "ocsp_override_cert_url" {
 variable "read_replica_security_group_id" {
   type = string
 }
+
+variable "eap_private_key_password" {
+  type = string
+}
+
+variable "radsec_private_key_password" {
+  type = string
+}

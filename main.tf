@@ -64,6 +64,8 @@ module "radius" {
   enable_hosted_zone             = var.enable_hosted_zone
   hosted_zone_domain             = var.hosted_zone_domain
   tags                           = module.label.tags
+  eap_private_key_password       = var.eap_private_key_password
+  radsec_private_key_password    = var.radsec_private_key_password
   read_replica = {
     name = module.admin_read_replica.rds.name
     host = module.admin_read_replica.rds.host
