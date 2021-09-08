@@ -33,6 +33,7 @@ resource "aws_route53_record" "admin_app" {
 
   name    = "admin${var.local_development_domain_affix}"
   records = [aws_lb.admin_alb.dns_name]
+  allow_overwrite = true
 }
 
 
@@ -43,4 +44,5 @@ resource "aws_route53_record" "admin_db" {
 
   name    = "admin-db${var.local_development_domain_affix}"
   records = [aws_db_instance.admin_db.address]
+  allow_overwrite = true
 }
