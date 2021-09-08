@@ -76,7 +76,15 @@ resource "aws_ecs_task_definition" "server_task" {
       {
         "name": "ENABLE_CRL",
         "value": "no"
-      }
+      },
+      {
+        "name": "EAP_PRIVATE_KEY_PASSWORD",
+        "value": "${var.eap_private_key_password}"
+      },
+      {
+        "name": "RADSEC_PRIVATE_KEY_PASSWORD",
+        "value": "${var.radsec_private_key_password}"
+      },
     ],
     "image": "${aws_ecr_repository.docker_repository.repository_url}",
     "logConfiguration": {

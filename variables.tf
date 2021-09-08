@@ -82,3 +82,11 @@ variable "ocsp_override_cert_url" {
 variable "enable_ocsp" {
   type = string
 }
+
+variable "eap_private_key_password" {
+  type = string
+}
+
+variable "radsec_private_key_password" {
+  type = string
+}
