@@ -19,8 +19,13 @@ resource "aws_db_instance" "admin_read_replica" {
   parameter_group_name        = aws_db_parameter_group.admin_read_replica_parameter_group.name
   deletion_protection         = false
   option_group_name           = aws_db_option_group.mariadb_audit.name
-
   enabled_cloudwatch_logs_exports = ["audit", "error", "general", "slowquery"]
+
+  lifecycle {
+    ignore_changes = [
+      replicate_source_db
+    ]
+  }
 
   tags = var.tags
 }
