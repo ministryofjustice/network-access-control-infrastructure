@@ -23,7 +23,7 @@ variable "vpc_id" {
   type = string
 }
 
-variable "admin_db_arn" {
+variable "replication_source" {
   type = string
 }
 

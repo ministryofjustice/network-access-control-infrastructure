@@ -5,7 +5,7 @@ resource "aws_db_instance" "admin_read_replica" {
   auto_minor_version_upgrade  = true
   allow_major_version_upgrade = false
   apply_immediately           = true
-  replicate_source_db         = var.admin_db_arn
+  replicate_source_db         = var.replication_source
   instance_class              = var.db_size
   identifier                  = var.prefix
   multi_az                    = true
