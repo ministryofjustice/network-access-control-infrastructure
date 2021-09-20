@@ -71,3 +71,21 @@ resource "aws_security_group_rule" "ocsp_out" {
   security_group_id        = aws_security_group.radius_server.id
   cidr_blocks       = ["${var.ocsp_endpoint_ip}/32"]
 }
+
+resource "aws_security_group_rule" "dns_1_out" {
+  type              = "egress"
+  from_port         = 53
+  to_port           = 53
+  protocol          = "udp"
+  security_group_id = aws_security_group.radius_server.id
+  cidr_blocks       = ["${var.mojo_dns_ip_1}/32"]
+}
+
+resource "aws_security_group_rule" "dns_2_out" {
+  type              = "egress"
+  from_port         = 53
+  to_port           = 53
+  protocol          = "udp"
+  security_group_id = aws_security_group.radius_server.id
+  cidr_blocks       = ["${var.mojo_dns_ip_2}/32"]
+}
