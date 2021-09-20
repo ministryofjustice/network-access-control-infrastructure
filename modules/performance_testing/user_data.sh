@@ -27,9 +27,5 @@ chmod +x ./test/*
   cp defconfig .config
   sed -i "s/#CONFIG_EAPOL_TEST=y/CONFIG_EAPOL_TEST=y/g" .config
   cat .config | grep TEST
-
   make eapol_test
-
   sudo cp eapol_test /usr/local/bin
-
-  cd /home/ubuntu/test
