@@ -18,6 +18,8 @@ env:
     TF_VAR_admin_sentry_dsn: "/moj-network-access-control/$ENV/admin_sentry_dsn"
     TF_VAR_transit_gateway_id: "/moj-network-access-control/$ENV/transit_gateway_id"
     TF_VAR_transit_gateway_route_table_id: "/moj-network-access-control/$ENV/transit_gateway_route_table_id"
+    TF_VAR_mojo_dns_ip_1: "/moj-network-access-control/$ENV/mojo_dns_ip_1"
+    TF_VAR_mojo_dns_ip_2: "/moj-network-access-control/$ENV/mojo_dns_ip_2"
     TF_VAR_ocsp_endpoint_ip: "/moj-network-access-control/$ENV/ocsp/endpoint_ip"
     TF_VAR_ocsp_endpoint_port: "/moj-network-access-control/$ENV/ocsp/endpoint_port"
     TF_VAR_enable_ocsp: "/moj-network-access-control/$ENV/enable_ocsp"

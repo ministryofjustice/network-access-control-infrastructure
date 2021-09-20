@@ -30,3 +30,11 @@ variable "transit_gateway_route_table_id" {
 variable "ocsp_endpoint_ip" {
   type = string
 }
+
+variable "mojo_dns_ip_1" {
+  type = string
+}
+
+variable "mojo_dns_ip_2" {
+  type = string
+}
