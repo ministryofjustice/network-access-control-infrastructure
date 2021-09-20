@@ -90,3 +90,11 @@ variable "eap_private_key_password" {
 variable "radsec_private_key_password" {
   type = string
 }
+
+variable "mojo_dns_ip_1" {
+  type = string
+}
+
+variable "mojo_dns_ip_2" {
+  type = string
+}

@@ -21,3 +21,27 @@ resource "aws_route" "transit-gateway-public" {
     module.vpc
   ]
 }
+
+resource "aws_route" "transit-gateway-public-dns-server-1" {
+  for_each = var.enable_nac_transit_gateway_attachment ? toset(module.vpc.public_route_table_ids) : []
+
+  route_table_id         = each.value
+  destination_cidr_block = "${var.mojo_dns_ip_1}/32"
+  transit_gateway_id     = var.transit_gateway_id
+
+  depends_on = [
+    module.vpc
+  ]
+}
+
+resource "aws_route" "transit-gateway-public-dns-server-2" {
+  for_each = var.enable_nac_transit_gateway_attachment ? toset(module.vpc.public_route_table_ids) : []
+
+  route_table_id         = each.value
+  destination_cidr_block = "${var.mojo_dns_ip_2}/32"
+  transit_gateway_id     = var.transit_gateway_id
+
+  depends_on = [
+    module.vpc
+  ]
+}
