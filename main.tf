@@ -66,6 +66,8 @@ module "radius" {
   tags                           = module.label.tags
   eap_private_key_password       = var.eap_private_key_password
   radsec_private_key_password    = var.radsec_private_key_password
+  mojo_dns_ip_1                  = var.mojo_dns_ip_1
+  mojo_dns_ip_2                  = var.mojo_dns_ip_2
   read_replica = {
     name = module.admin_read_replica.rds.name
     host = module.admin_read_replica.rds.host
