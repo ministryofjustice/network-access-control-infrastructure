@@ -139,8 +139,6 @@ module "radius_vpc" {
   enable_nac_transit_gateway_attachment = var.enable_nac_transit_gateway_attachment
   transit_gateway_id                    = var.transit_gateway_id
   transit_gateway_route_table_id        = var.transit_gateway_route_table_id
-  mojo_dns_ip_1                         = var.mojo_dns_ip_1
-  mojo_dns_ip_2                         = var.mojo_dns_ip_2
   tags                                  = module.label.tags
   ocsp_endpoint_ip                      = var.ocsp_endpoint_ip
 
