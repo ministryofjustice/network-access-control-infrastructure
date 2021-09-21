@@ -40,6 +40,7 @@ module "vpc" {
   enable_monitoring_endpoint              = true
   monitoring_endpoint_private_dns_enabled = true
   monitoring_endpoint_security_group_ids  = [aws_security_group.endpoints.id]
+  enable_dhcp_options                     = true
 
   enable_rds_endpoint              = true
   rds_endpoint_private_dns_enabled = true
