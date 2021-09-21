@@ -82,6 +82,14 @@ resource "aws_ecs_task_definition" "server_task" {
         "value": "${var.eap_private_key_password}"
       },
       {
+        "name": "MOJO_DNS_IP_1",
+        "value": "${var.mojo_dns_ip_1}"
+      },
+      {
+        "name": "MOJO_DNS_IP_2",
+        "value": "${var.mojo_dns_ip_2}"
+      },
+      {
         "name": "RADSEC_PRIVATE_KEY_PASSWORD",
         "value": "${var.radsec_private_key_password}"
       }
