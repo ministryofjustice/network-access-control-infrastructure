@@ -36,8 +36,6 @@ module "vpc" {
   ecr_dkr_endpoint_private_dns_enabled = true
   ecr_api_endpoint_private_dns_enabled = true
   ecr_dkr_endpoint_security_group_ids  = [aws_security_group.endpoints.id]
-  dhcp_options_domain_name_servers     = [var.mojo_dns_ip_1, var.mojo_dns_ip_2]
-  enable_dhcp_options                  = true
 
   enable_monitoring_endpoint              = true
   monitoring_endpoint_private_dns_enabled = true
