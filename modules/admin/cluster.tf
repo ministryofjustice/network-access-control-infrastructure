@@ -61,7 +61,7 @@ resource "aws_ecs_task_definition" "admin_task" {
   requires_compatibilities = ["FARGATE"]
   task_role_arn            = aws_iam_role.ecs_task_role.arn
   execution_role_arn       = aws_iam_role.ecs_execution_role.arn
-  cpu                      = "4096"
+  cpu                      = "2048"
   memory                   = "4096"
   network_mode             = "awsvpc"
 
