@@ -46,7 +46,7 @@ locals {
   private_ip_eu_west_2a = "10.180.100.10"
   private_ip_eu_west_2b = "10.180.101.10"
   private_ip_eu_west_2c = "10.180.102.10"
-  vpc_cidr              = "10.180.103.0/22"
+  vpc_cidr              = "10.180.100.0/22"
   is_production = terraform.workspace == "production" ? true : false
 }
 
