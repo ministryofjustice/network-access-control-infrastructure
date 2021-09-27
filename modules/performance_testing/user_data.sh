@@ -16,16 +16,16 @@ aws s3 sync s3://${s3_bucket_name}/test ./test
 
 chmod +x ./test/*
 
-  cd /tmp
-  rm wpa_supplicant-2.9 -fr
+cd /tmp
+rm wpa_supplicant-2.9 -fr
 
-  wget http://w1.fi/releases/wpa_supplicant-2.9.tar.gz
-  tar xzvf wpa_supplicant-2.9.tar.gz
+wget http://w1.fi/releases/wpa_supplicant-2.9.tar.gz
+tar xzvf wpa_supplicant-2.9.tar.gz
 
-  cd wpa_supplicant-2.9/wpa_supplicant
+cd wpa_supplicant-2.9/wpa_supplicant
 
-  cp defconfig .config
-  sed -i "s/#CONFIG_EAPOL_TEST=y/CONFIG_EAPOL_TEST=y/g" .config
-  cat .config | grep TEST
-  make eapol_test
-  sudo cp eapol_test /usr/local/bin
+cp defconfig .config
+sed -i "s/#CONFIG_EAPOL_TEST=y/CONFIG_EAPOL_TEST=y/g" .config
+cat .config | grep TEST
+make eapol_test
+sudo cp eapol_test /usr/local/bin
