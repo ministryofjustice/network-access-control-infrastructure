@@ -11,3 +11,9 @@ resource "local_file" "ec2_private_key" {
 output "ssh_private_key" {
   value = tls_private_key.ec2.private_key_pem
 }
+
+output "iam" {
+  value = {
+    ec2_task_role_arn = aws_iam_role.moj_auth_role.arn
+  }
+}
