@@ -1,33 +1,19 @@
 {
     "Version": "2012-10-17",
     "Id": "ConfigFetch",
-    "Statement": [
+    "Statement":[
         {
-            "Sid": "Get configuration file",
-            "Effect": "Allow",
+            "Sid": "Get configuration files",
+            "Effect":"Allow",
             "Principal": {
-              "AWS": "${ec2_task_role_arn}"
+                "AWS": "${ec2_task_role_arn}"
             },
-            "Action": "s3:GetObject",
-            "Resource": "${config_bucket_arn}/*"
-        },
-        {
-            "Sid": "List configuration files",
-            "Effect": "Allow",
-            "Principal": {
-              "AWS": "${ec2_task_role_arn}"
-            },
-            "Action": "s3:ListObjects",
-            "Resource": "${config_bucket_arn}/*"
-        },
-        {
-            "Sid": "List configuration files",
-            "Effect": "Allow",
-            "Principal": {
-              "AWS": "${ec2_task_role_arn}"
-            },
-            "Action": "s3:ListBucket",
-            "Resource": "${config_bucket_arn}/*"
+            "Action":[
+              "s3:GetObject",
+              "s3:ListBucket",
+              "s3:ListObjects"
+            ],
+            "Resource":"${config_bucket_arn}/*"
         }
-    ]
+     ]
 }
