@@ -6,15 +6,10 @@ sudo apt update && sudo apt install -y nettle-dev openssl libssl-dev gcc libc-de
 cd /home/ubuntu
 
 mkdir -p /etc/raddb/certs
-mkdir -p ./test
 
 chmod 777 /etc/raddb/certs
-chmod 777 ./test
 
-aws s3 sync s3://${s3_bucket_name}/certs/ /etc/raddb/certs
-aws s3 sync s3://${s3_bucket_name}/test ./test
-
-chmod +x ./test/*
+aws s3 sync s3://${s3_bucket_name}/ /etc/raddb/certs
 
 cd /tmp
 rm wpa_supplicant-2.9 -fr
