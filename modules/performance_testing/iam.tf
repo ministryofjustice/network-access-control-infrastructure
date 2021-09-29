@@ -5,8 +5,6 @@ resource "aws_iam_instance_profile" "ec2_perf_test_profile" {
 
 resource "aws_iam_role" "moj_auth_poc_role" {
   name = "${var.prefix}-role"
-  path = "/"
-
   assume_role_policy = data.aws_iam_policy_document.assume_role_policy.json
 }
 
@@ -25,25 +23,19 @@ resource "aws_iam_role_policy" "ec2_task_policy" {
         "kms:Encrypt",
         "kms:Decrypt"
       ],
-      "Resource": ["${aws_kms_key.config_bucket_key.arn}"]
+      "Resource": ["*"]
     },{
       "Effect": "Allow",
       "Action": [
         "s3:GetObject"
       ],
-      "Resource": ["${aws_s3_bucket.config_bucket.arn}/*"]
+      "Resource": ["*"]
     },{
       "Effect": "Allow",
       "Action": [
         "s3:ListBucket"
       ],
-      "Resource": ["${aws_s3_bucket.config_bucket.arn}"]
-    },{
-      "Effect": "Allow",
-      "Action": [
-        "s3:ListBucket"
-      ],
-      "Resource": ["${aws_s3_bucket.config_bucket.arn}"]
+      "Resource": ["*"]
     },{
       "Effect": "Allow",
       "Action": [
