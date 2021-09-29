@@ -1,9 +1,9 @@
 resource "aws_iam_instance_profile" "ec2_perf_test_profile" {
   name = "${var.prefix}-profile"
-  role = aws_iam_role.moj_auth_role.name
+  role = aws_iam_role.moj_auth_poc_role.name
 }
 
-resource "aws_iam_role" "moj_auth_role" {
+resource "aws_iam_role" "moj_auth_poc_role" {
   name = "${var.prefix}-role"
   path = "/"
 
@@ -26,7 +26,7 @@ EOF
 
 resource "aws_iam_role_policy" "ec2_task_policy" {
   name = "${var.prefix}-ec2-task-policy"
-  role = aws_iam_role.moj_auth_role.id
+  role = aws_iam_role.moj_auth_poc_role.id
 
   policy = <<EOF
 {
@@ -46,6 +46,12 @@ resource "aws_iam_role_policy" "ec2_task_policy" {
         "s3:GetObject"
       ],
       "Resource": ["${aws_s3_bucket.config_bucket.arn}/*"]
+    },{
+      "Effect": "Allow",
+      "Action": [
+        "s3:ListBucket"
+      ],
+      "Resource": ["${aws_s3_bucket.config_bucket.arn}"]
     },{
       "Effect": "Allow",
       "Action": [
