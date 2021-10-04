@@ -1,5 +1,5 @@
 resource "aws_acm_certificate" "admin_alb" {
-  domain_name       = "admin.${var.hosted_zone_domain}"
+  domain_name       = "admin.${var.hosted_zone_domain_old}"
   validation_method = "DNS"
 
   tags = var.tags
@@ -23,11 +23,11 @@ resource "aws_route53_record" "admin_alb" {
   records = [each.value.record]
   ttl     = 3600
   type    = each.value.type
-  zone_id = var.hosted_zone_id
+  zone_id = var.hosted_zone_id_old
 }
 
 resource "aws_route53_record" "admin_app" {
-  zone_id = var.hosted_zone_id
+  zone_id = var.hosted_zone_id_old
   ttl     = 3600
   type    = "CNAME"
   set_identifier = "geolocation"
@@ -40,22 +40,8 @@ resource "aws_route53_record" "admin_app" {
   allow_overwrite = true
 }
 
-resource "aws_route53_record" "radsec" {
-  zone_id = var.hosted_zone_id
-  ttl     = 3600
-  type    = "CNAME"
-  set_identifier = "geolocation"
-  geolocation_routing_policy {
-    country = "GB"
-  }
-
-  name    = "radsec${var.local_development_domain_affix}"
-  records = [aws_lb.admin_alb.dns_name]
-  allow_overwrite = true
-}
-
 resource "aws_route53_record" "admin_db" {
-  zone_id = var.hosted_zone_id
+  zone_id = var.hosted_zone_id_old
   ttl     = 3600
   type    = "CNAME"
 
