@@ -13,8 +13,6 @@ env:
     TF_VAR_azure_federation_metadata_url: "/moj-network-access-control/$ENV/azure_federation_metadata_url"
     TF_VAR_hosted_zone_domain: "/moj-network-access-control/$ENV/hosted_zone_domain"
     TF_VAR_hosted_zone_id: "/moj-network-access-control/$ENV/hosted_zone_id"
-    TF_VAR_hosted_zone_domain_old: "/moj-network-access-control/$ENV/hosted_zone_domain_old"
-    TF_VAR_hosted_zone_id_old: "/moj-network-access-control/$ENV/hosted_zone_id_old"
     TF_VAR_admin_db_username: "/moj-network-access-control/$ENV/admin_db_username"
     TF_VAR_admin_db_password: "/moj-network-access-control/$ENV/admin_db_password"
     TF_VAR_admin_sentry_dsn: "/moj-network-access-control/$ENV/admin_sentry_dsn"

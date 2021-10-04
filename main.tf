@@ -193,8 +193,6 @@ module "admin" {
   region                            = data.aws_region.current_region.id
   hosted_zone_id                    = var.hosted_zone_id
   hosted_zone_domain                = var.hosted_zone_domain
-  hosted_zone_id_old                = var.hosted_zone_id_old
-  hosted_zone_domain_old            = var.hosted_zone_domain_old
   radius_cluster_name               = module.radius.ecs.cluster_name
   radius_service_name               = module.radius.ecs.service_name
   radius_internal_service_name      = module.radius.ecs.internal_service_name
