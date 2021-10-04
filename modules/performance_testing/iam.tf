@@ -5,23 +5,7 @@ resource "aws_iam_instance_profile" "ec2_perf_test_profile" {
 
 resource "aws_iam_role" "moj_auth_poc_role" {
   name = "${var.prefix}-role"
-  path = "/"
-
-  assume_role_policy = <<EOF
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Action": "sts:AssumeRole",
-            "Principal": {
-               "Service": "ec2.amazonaws.com"
-            },
-            "Effect": "Allow",
-            "Sid": ""
-        }
-    ]
-}
-EOF
+  assume_role_policy = data.aws_iam_policy_document.assume_role_policy.json
 }
 
 resource "aws_iam_role_policy" "ec2_task_policy" {
@@ -39,25 +23,19 @@ resource "aws_iam_role_policy" "ec2_task_policy" {
         "kms:Encrypt",
         "kms:Decrypt"
       ],
-      "Resource": ["${aws_kms_key.config_bucket_key.arn}"]
+      "Resource": ["*"]
     },{
       "Effect": "Allow",
       "Action": [
         "s3:GetObject"
       ],
-      "Resource": ["${aws_s3_bucket.config_bucket.arn}/*"]
+      "Resource": ["*"]
     },{
       "Effect": "Allow",
       "Action": [
         "s3:ListBucket"
       ],
-      "Resource": ["${aws_s3_bucket.config_bucket.arn}"]
-    },{
-      "Effect": "Allow",
-      "Action": [
-        "s3:ListBucket"
-      ],
-      "Resource": ["${aws_s3_bucket.config_bucket.arn}"]
+      "Resource": ["*"]
     },{
       "Effect": "Allow",
       "Action": [
@@ -68,4 +46,15 @@ resource "aws_iam_role_policy" "ec2_task_policy" {
   ]
 }
 EOF
+}
+
+data "aws_iam_policy_document" "assume_role_policy" {
+  statement {
+    actions = ["sts:AssumeRole"]
+
+    principals {
+      type        = "Service"
+      identifiers = ["ec2.amazonaws.com"]
+    }
+  }
 }
