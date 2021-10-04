@@ -13,6 +13,7 @@ resource "aws_instance" "performance_testing_instance" {
   iam_instance_profile = aws_iam_instance_profile.ec2_perf_test_profile.name
   instance_initiated_shutdown_behavior = "terminate"
   user_data = data.template_cloudinit_config.config.rendered
+  count = 10
 
   tags = {
     Name = "MoJ Authentication Performance"
