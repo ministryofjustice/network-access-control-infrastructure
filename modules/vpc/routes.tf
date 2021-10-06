@@ -1,7 +1,11 @@
+locals {
+  private_table_id = join("_", toset(module.vpc.private_route_table_ids))
+  public_table_id = join("_", toset(module.vpc.public_route_table_ids))
+}
 resource "aws_route" "transit-gateway" {
-  for_each = var.enable_nac_transit_gateway_attachment ? toset(module.vpc.private_route_table_ids) : []
+  count      = length(module.vpc.private_route_table_ids)
 
-  route_table_id         = each.value
+  route_table_id         = split("_", local.private_table_id)[count.index]
   destination_cidr_block = "0.0.0.0/0"
   transit_gateway_id     = var.transit_gateway_id
 
@@ -11,9 +15,9 @@ resource "aws_route" "transit-gateway" {
 }
 
 resource "aws_route" "transit-gateway-public" {
-  for_each = var.enable_nac_transit_gateway_attachment ? toset(module.vpc.public_route_table_ids) : []
+  count      = length(module.vpc.public_route_table_ids)
 
-  route_table_id         = each.value
+  route_table_id         = split("_", local.public_table_id)[count.index]
   destination_cidr_block = "${var.ocsp_endpoint_ip}/32"
   transit_gateway_id     = var.transit_gateway_id
 
@@ -23,9 +27,9 @@ resource "aws_route" "transit-gateway-public" {
 }
 
 resource "aws_route" "transit-gateway-public-dns-server-1" {
-  for_each = var.enable_nac_transit_gateway_attachment ? toset(module.vpc.public_route_table_ids) : []
+  count      = length(module.vpc.public_route_table_ids)
 
-  route_table_id         = each.value
+  route_table_id         = split("_", local.public_table_id)[count.index]
   destination_cidr_block = "${var.mojo_dns_ip_1}/32"
   transit_gateway_id     = var.transit_gateway_id
 
@@ -35,9 +39,9 @@ resource "aws_route" "transit-gateway-public-dns-server-1" {
 }
 
 resource "aws_route" "transit-gateway-public-dns-server-2" {
-  for_each = var.enable_nac_transit_gateway_attachment ? toset(module.vpc.public_route_table_ids) : []
+  count      = length(module.vpc.public_route_table_ids)
 
-  route_table_id         = each.value
+  route_table_id         = split("_", local.public_table_id)[count.index]
   destination_cidr_block = "${var.mojo_dns_ip_2}/32"
   transit_gateway_id     = var.transit_gateway_id
 
