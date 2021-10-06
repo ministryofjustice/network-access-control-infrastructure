@@ -16,7 +16,7 @@ resource "aws_instance" "performance_testing_instance" {
   count = 10
 
   tags = {
-    Name = "MoJ Authentication Performance"
+    Name = "MoJ Authentication Performance-${count.index}"
   }
 }
 
