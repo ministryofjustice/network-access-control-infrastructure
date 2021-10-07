@@ -13,7 +13,7 @@ aws s3 sync s3://${s3_bucket_name}/certs/ /etc/raddb/certs
 aws s3 cp s3://${s3_bucket_name}/perf_test.sh ./
 aws s3 cp s3://${s3_bucket_name}/test.conf ./
 
-chmod 700 ./perf_test.sh
+chmod 777 ./perf_test.sh
 
 cd /tmp
 rm wpa_supplicant-2.9 -fr
