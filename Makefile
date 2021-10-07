@@ -11,4 +11,4 @@ destroy:
 perf-test-setup:
 	sh ./scripts/perf_test_setup.sh                                               
 
-.PHONY: init apply destroy
+.PHONY: init apply destroy perf-test-setup
