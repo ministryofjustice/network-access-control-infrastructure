@@ -3,7 +3,7 @@ env=$AWS_VAULT
 aws s3 cp s3://mojo-$env-nac-config-bucket/clients.conf ./scripts/
 
 # Get all the IPs from EC2 
-ip_addresses=$(aws ec2 describe-instances --filters "Name=tag:Name,Values='MoJ Authentication Performance'" --query "Reservations[].Instances[].PublicIpAddress")
+ip_addresses=$(aws ec2 describe-instances --filters "Name=tag:Name,Values='MoJ Authentication Performance-*'" --query "Reservations[].Instances[].PublicIpAddress")
 trim_brackets=$(echo $ip_addresses | sed 's/^..\(.*\)..$/\1/')
 IFS='", "' read -r -a ip_array <<< $trim_brackets
 
