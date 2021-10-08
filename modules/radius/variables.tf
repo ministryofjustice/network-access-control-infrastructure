@@ -95,3 +95,7 @@ variable "mojo_dns_ip_1" {
 variable "mojo_dns_ip_2" {
   type = string
 }
+
+variable "hosted_zone_id" {
+  type = string
+}
