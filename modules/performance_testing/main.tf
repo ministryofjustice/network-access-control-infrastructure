@@ -1,10 +1,7 @@
-locals {
-  is_development = terraform.workspace == "development" ? true : false
-}
-
 resource "aws_instance" "performance_testing_instance" {
   ami           = "ami-07438ed9014cde68f"
   instance_type = "t4g.medium"
+  count         = 10
 
   vpc_security_group_ids = [
     aws_security_group.performance_testing_instance.id
@@ -17,7 +14,6 @@ resource "aws_instance" "performance_testing_instance" {
   iam_instance_profile = aws_iam_instance_profile.ec2_perf_test_profile.name
   instance_initiated_shutdown_behavior = "terminate"
   user_data = data.template_cloudinit_config.config.rendered
-  count = local.is_development ? 10 : 0
 
   tags = {
     Name = "MoJ Authentication Performance-${count.index}"

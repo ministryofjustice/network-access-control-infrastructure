@@ -48,6 +48,7 @@ locals {
   private_ip_eu_west_2c = "10.180.110.10"
   vpc_cidr              = "10.180.108.0/22"
   is_production = terraform.workspace == "production" ? true : false
+  is_development = terraform.workspace == "development" ? true : false
 }
 
 module "radius" {
@@ -285,6 +286,7 @@ module "admin_vpc_flow_logs" {
 
 module "performance_testing" {
   source = "./modules/performance_testing"
+  count = local.is_development ? 1 : 0
   prefix = "${module.label.id}-perf"
   vpc_id = module.radius_vpc.vpc_id
   subnets = module.radius_vpc.public_subnets
