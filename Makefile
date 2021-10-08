@@ -9,6 +9,6 @@ destroy:
 	aws-vault exec moj-nac-shared-services --duration=2h -- terraform destroy
 
 perf-test-setup:
-	sh ./scripts/perf_test_setup.sh                                               
+	aws-vault exec moj-nac-development -- sh ./scripts/perf_test_setup.sh
 
 .PHONY: init apply destroy perf-test-setup
