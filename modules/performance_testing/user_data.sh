@@ -25,8 +25,10 @@ sudo cp eapol_test /usr/local/bin
 
 cd /home/ubuntu
 
-aws s3 sync s3://${s3_bucket_name}/certs/ /etc/raddb/certs
-aws s3 cp s3://${s3_bucket_name}/perf_test.sh ./
-aws s3 cp s3://${s3_bucket_name}/test.conf ./
+echo "aws s3 sync s3://${s3_bucket_name}/certs/ /etc/raddb/certs" > ./setup_certs.sh
+echo "aws s3 cp s3://${s3_bucket_name}/perf_test.sh ./" >> ./setup_certs.sh
+echo "aws s3 cp s3://${s3_bucket_name}/test.conf ./" >> ./setup_certs.sh
+echo "chmod 777 ./perf_test.sh" >> ./setup_certs.sh
+echo "cd /etc/raddb/certs/ && c_rehash ." >> ./setup_certs.sh
 
-chmod 777 ./perf_test.sh
+chmod 777 setup_certs.sh
