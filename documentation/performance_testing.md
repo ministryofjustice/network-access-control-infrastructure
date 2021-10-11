@@ -38,9 +38,9 @@ make
 
 5. Copy the generated certificates to the performance test config bucket
 ```bash
-aws-vault exec development -- aws s3 cp ./client.pem s3://mojo-development-nac-perf-config-bucket/certs/
+aws-vault exec moj-nac-development -- aws s3 cp ./client.pem s3://mojo-development-nac-perf-config-bucket/certs/
 
-aws-vault exec development -- aws s3 cp ./ca.pem s3://mojo-development-nac-perf-config-bucket/certs/
+aws-vault exec moj-nac-development -- aws s3 cp ./ca.pem s3://mojo-development-nac-perf-config-bucket/certs/
 ```
 
 6. Create a `test.conf` file 
@@ -61,7 +61,7 @@ network={
 and upload it into the perf config bucket
 
 ```bash
-aws-vault exec development -- aws s3 cp ./test.conf s3://mojo-development-nac-perf-config-bucket/
+aws-vault exec moj-nac-development -- aws s3 cp ./test.conf s3://mojo-development-nac-perf-config-bucket/
 ```
 
 7. Decrypt the `server.key` file
@@ -81,9 +81,9 @@ openssl rsa -in server.key -out server.key -passin pass:"<private_key_password>"
 
 9. Copy the server certificate and CA into the certificates bucket
 ```bash
-aws-vault exec development -- aws s3 cp ./server.pem s3://mojo-development-nac-certificate-bucket/
+aws-vault exec moj-nac-development -- aws s3 cp ./server.pem s3://mojo-development-nac-certificate-bucket/
 
-aws-vault exec development -- aws s3 cp ./ca.pem s3://mojo-development-nac-certificate-bucket/
+aws-vault exec moj-nac-development -- aws s3 cp ./ca.pem s3://mojo-development-nac-certificate-bucket/
 ```
 
 ### Authorise test clients
@@ -95,12 +95,12 @@ make perf-test-setup
 ## Running the performance tests
 - Download the key file from parameter store
 ```bash
-aws-vault exec development -- aws ssm get-parameter --name "/network-access-control/mojo-development-nac-perf/ec2/key" --with-decryption --query "Parameter.Value"> mojo-development-nac-perf-performance-testing.pem
+aws-vault exec moj-nac-development -- aws ssm get-parameter --name "/network-access-control/mojo-development-nac-perf/ec2/key" --with-decryption --query "Parameter.Value"> mojo-development-nac-perf-performance-testing.pem
 ```
 
 - Grab the public DNS names of the performance test EC2 instances
 ```bash
-aws-vault exec development -- aws ec2 describe-instances --filters "Name=tag:Name,Values='MoJ Authentication Performance-*'" --query "Reservations[].Instances[].PublicDnsName"
+aws-vault exec moj-nac-development -- aws ec2 describe-instances --filters "Name=tag:Name,Values='MoJ Authentication Performance-*'" --query "Reservations[].Instances[].PublicDnsName"
 ```
 
 - ssh into a client EC2 instance
