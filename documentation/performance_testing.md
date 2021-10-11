@@ -69,7 +69,7 @@ aws-vault exec moj-nac-development -- aws s3 cp ./test.conf s3://mojo-developmen
 openssl rsa -in server.key -out server.key -passin pass:"<private_key_password>"
 ```
 
-8. Copy the decrypted key into `server.pem` the file and remove the generated metadata from it so that it only has the server certificate and the decrypted key. The `server.pem` should look similar to this:
+8. Copy the decrypted key into the `server.pem` file and remove the generated metadata, so that it only has the server certificate and the decrypted key. The `server.pem` should look similar to this:
 ```pem
 -----BEGIN CERTIFICATE-----
 ...Server certificate...
