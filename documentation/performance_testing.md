@@ -1,25 +1,24 @@
 # Network Access Control Performance Testing
 
-- [Deploying the infrastructure](#peploying-the-infrastructure)
+- [Deploying the infrastructure](#deploying-the-infrastructure)
 - [Performance test configuration](#performance-test-configuration)
   - [Generating and signing the performance test certificates](#generating-and-signing-the-performance-test-certificates)
+  - [Authorise test clients](#authorise-test-clients)
 - [Running the performance tests](#running-the-performance-tests)
 
 ## Deploying the infrastructure
-The infrastructure for performance testing is deployed using Terraform. These resources currently consist of ten client EC2 instances and an s3 bucket for configuration. They are defined in [`modules/performance_testing`](./modules/performance_testing) module and deployed only in the development environment.
+The infrastructure for performance testing is deployed using Terraform. These resources currently consist of ten client EC2 instances and an s3 bucket for configuration. They are defined in the [performance testing](https://github.com/ministryofjustice/network-access-control-infrastructure/tree/main/modules/performance_testing) module and deployed only in the development environment.
 
-> The first deployment of EC2 instances will fail to configure the boxes! Prerequisite is to have the certificates and performance test script in the configuration bucket.
-
-## Performance-test-configuration
+## Performance test configuration
 ### Generating and signing the performance test certificates
 1. There is a `generate-certs` script in the [integration tests repository](https://github.com/ministryofjustice/network-access-control-integration-tests/blob/main/Makefile#L33)
 
-2. From the generated ./test/certs folder, run the command to destroy the certificates. These are not signed with the correct `private_key_password` that is used in the development environment
+2. From the generated `./test/certs` folder, run the command to destroy the certificates. These are not signed with the correct `private_key_password` that is used in the development environment
 ```bash
 make destroycerts
 ```
 
-3. Edit the `ca.cnf`, `clients.cnf` and `server.cnf` file to use the `private_key_password` from the parameter Store, to get the password run:
+3. Edit the `ca.cnf`, `clients.cnf` and `server.cnf` file to use the `private_key_password` from the parameter store, to get the password run:
 ```bash
 aws-vault exec moj-nac-shared-services -- aws ssm get-parameter --name "/moj-network-access-control/development/eap_private_key_password" --with-decryption --query "Parameter.Value"
 ```
@@ -37,14 +36,14 @@ output_password		= <private_key_password>
 make
 ```
 
-5. Copy the generated certificate to the performance test config bucket
+5. Copy the generated certificates to the performance test config bucket
 ```bash
 aws-vault exec development -- aws s3 cp ./client.pem s3://mojo-development-nac-perf-config-bucket/certs/
 
 aws-vault exec development -- aws s3 cp ./ca.pem s3://mojo-development-nac-perf-config-bucket/certs/
 ```
 
-6. Create a `test.conf` file and copy it into the s3 bucket
+6. Create a `test.conf` file 
 ```bash
 # test.conf
 network={
@@ -55,29 +54,42 @@ network={
     ca_cert="/etc/raddb/certs/ca.pem"
     client_cert="/etc/raddb/certs/client.pem"
     private_key="/etc/raddb/certs/client.pem"
-    private_key_passwd="<dev_private_key_password>"
+    private_key_passwd="<private_key_password>"
     eapol_flags=3
 }
 ```
-  - Run:
+and upload it into the perf config bucket
+
 ```bash
 aws-vault exec development -- aws s3 cp ./test.conf s3://mojo-development-nac-perf-config-bucket/
 ```
 
-9. Create a `perf_test.sh` file and copy into the s3 bucket
+7. Decrypt the `server.key` file
 ```bash
-# perf_test.sh
-#!/usr/bin/env bash
-
-while true
-do
-  eapol_test -r0 -c test.conf -a<IP-address-of-NLB> -s "PERFTEST"
-done
-
+openssl rsa -in server.key -out server.key -passin pass:"<private_key_password>"
 ```
-- Run:
+
+8. Copy the decrypted key into `server.pem` the file and remove the generated metadata from it so that it only has the server certificate and the decrypted key. The `server.pem` should look similar to this:
+```pem
+-----BEGIN CERTIFICATE-----
+...Server certificate...
+-----END CERTIFICATE-----
+-----BEGIN RSA PRIVATE KEY-----
+...Decrypted key...
+-----END RSA PRIVATE KEY-----
+```
+
+9. Copy the server certificate and CA into the certificates bucket
 ```bash
-aws-vault exec development -- aws s3 cp ./perf_test.sh s3://mojo-development-nac-perf-config-bucket/
+aws-vault exec development -- aws s3 cp ./server.pem s3://mojo-development-nac-certificate-bucket/
+
+aws-vault exec development -- aws s3 cp ./ca.pem s3://mojo-development-nac-certificate-bucket/
+```
+
+### Authorise test clients
+The performance test setup make command updates the list of authorised clients with the IP addresses of the EC2 instance, run from the root folder using:
+```bash
+make perf-test-setup 
 ```
 
 ## Running the performance tests
@@ -86,7 +98,7 @@ aws-vault exec development -- aws s3 cp ./perf_test.sh s3://mojo-development-nac
 aws-vault exec development -- aws ssm get-parameter --name "/network-access-control/mojo-development-nac-perf/ec2/key" --with-decryption --query "Parameter.Value"> mojo-development-nac-perf-performance-testing.pem
 ```
 
-- Grab the public DNS Names of the performance test instances
+- Grab the public DNS names of the performance test EC2 instances
 ```bash
 aws-vault exec development -- aws ec2 describe-instances --filters "Name=tag:Name,Values='MoJ Authentication Performance-*'" --query "Reservations[].Instances[].PublicDnsName"
 ```
@@ -95,4 +107,5 @@ aws-vault exec development -- aws ec2 describe-instances --filters "Name=tag:Nam
 ```bash
 ssh -i mojo-development-nac-perf-performance-testing.pem ubuntu@<PublicDnsName>
 ```
-- run the `perf_test.sh` from the instance
+- run the `setup_certs.sh` script to get the certificates from the config bucket
+- run the `perf_test.sh` script to fire requests
