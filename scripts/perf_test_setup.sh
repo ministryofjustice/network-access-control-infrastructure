@@ -33,12 +33,12 @@ aws ecs update-service --force-new-deployment --service mojo-$env-nac-service --
 load_balancer_ip=$(aws elbv2 describe-load-balancers --names nac-radius-lb-development --query "LoadBalancers[].AvailabilityZones[].LoadBalancerAddresses[].IpAddress | [0]")
 
 TEST_SCRIPT=$(cat <<-END
-#!/usr/bin/env bash
-
-while true
-do
-  eapol_test -r0 -c test.conf -a$load_balancer_ip -s "PERFTEST"
-done
+#!/usr/bin/env bash\n
+\n
+while true\n
+do\n
+  \teapol_test -r0 -c test.conf -a$load_balancer_ip -s "PERFTEST"\n
+done\n
 END
 )
 
