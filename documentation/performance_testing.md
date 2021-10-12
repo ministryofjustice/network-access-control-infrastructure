@@ -38,9 +38,9 @@ make
 
 5. Copy the generated certificates to the performance test config bucket
 ```bash
-aws-vault exec moj-nac-development -- aws s3 cp ./client.pem s3://mojo-development-nac-perf-config-bucket/certs/
+aws-vault exec moj-nac-development -- aws s3 cp ./client.pem s3://$perf_config_bucket/certs/
 
-aws-vault exec moj-nac-development -- aws s3 cp ./ca.pem s3://mojo-development-nac-perf-config-bucket/certs/
+aws-vault exec moj-nac-development -- aws s3 cp ./ca.pem s3://$perf_config_bucket/certs/
 ```
 
 6. Create a `test.conf` file 
@@ -61,7 +61,7 @@ network={
 and upload it into the perf config bucket
 
 ```bash
-aws-vault exec moj-nac-development -- aws s3 cp ./test.conf s3://mojo-development-nac-perf-config-bucket/
+aws-vault exec moj-nac-development -- aws s3 cp ./test.conf s3://$perf_config_bucket/
 ```
 
 7. Decrypt the `server.key` file
@@ -81,9 +81,9 @@ openssl rsa -in server.key -out server.key -passin pass:"<private_key_password>"
 
 9. Copy the server certificate and CA into the certificates bucket
 ```bash
-aws-vault exec moj-nac-development -- aws s3 cp ./server.pem s3://mojo-development-nac-certificate-bucket/
+aws-vault exec moj-nac-development -- aws s3 cp ./server.pem s3://$nac_certificate_bucket/
 
-aws-vault exec moj-nac-development -- aws s3 cp ./ca.pem s3://mojo-development-nac-certificate-bucket/
+aws-vault exec moj-nac-development -- aws s3 cp ./ca.pem s3://$nac_certificate_bucket/
 ```
 
 ### Authorise test clients
