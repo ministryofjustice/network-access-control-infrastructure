@@ -26,7 +26,7 @@ resource "aws_iam_role_policy" "ecs_task_policy" {
       "Action": [
         "ecs:UpdateService"
       ],
-      "Resource": ["*"]
+      "Resource": ["${var.radius_service_arn}"]
     }, {
       "Effect": "Allow",
       "Action": [
