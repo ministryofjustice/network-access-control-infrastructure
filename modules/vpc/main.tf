@@ -41,7 +41,7 @@ module "vpc" {
   monitoring_endpoint_private_dns_enabled = true
   monitoring_endpoint_security_group_ids  = [aws_security_group.endpoints.id]
   enable_dhcp_options                     = true
-  dhcp_options_domain_name_servers        = [var.mojo_dns_ip_1, var.mojo_dns_ip_2]
+  dhcp_options_domain_name_servers        = ["AmazonProvidedDNS"]
 
   enable_rds_endpoint              = true
   rds_endpoint_private_dns_enabled = true
