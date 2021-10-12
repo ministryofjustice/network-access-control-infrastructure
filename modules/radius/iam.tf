@@ -24,14 +24,14 @@ resource "aws_iam_role_policy" "ecs_task_policy" {
         "kms:Encrypt",
         "kms:Decrypt"
       ],
-      "Resource": ["${var.radius_certificate_bucket_arn}", "${var.radius_config_bucket_arn}"]
+      "Resource": ["${aws_kms_key.config_bucket_key.arn}", "${aws_kms_key.certificate_bucket_key.arn}"]
     },{
       "Effect": "Allow",
       "Action": [
         "s3:ListBucket",
         "s3:GetObject"
       ],
-      "Resource": ["${var.radius_certificate_bucket_arn}/*", "${var.radius_config_bucket_arn}/*"]
+      "Resource": ["${aws_s3_bucket.config_bucket.arn}/*", "${aws_s3_bucket.certificate_bucket.arn}/*"]
     },{
       "Effect": "Allow",
       "Action": [
