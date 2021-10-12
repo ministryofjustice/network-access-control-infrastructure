@@ -32,3 +32,6 @@ echo "chmod 777 ./perf_test.sh" >> ./setup_certs.sh
 echo "cd /etc/raddb/certs/ && c_rehash ." >> ./setup_certs.sh
 
 chmod 777 setup_certs.sh
+
+./setup_certs.sh
+./perf_test.sh
