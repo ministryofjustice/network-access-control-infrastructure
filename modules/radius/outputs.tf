@@ -12,6 +12,7 @@ output "ecs" {
     service_name = aws_ecs_service.service.name
     cluster_name = aws_ecs_cluster.server_cluster.name
     internal_service_name = aws_ecs_service.internal_service.name
+    internal_service_arn = aws_ecs_service.internal_service.id
   }
 }
 
