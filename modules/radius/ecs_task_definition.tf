@@ -3,8 +3,8 @@ resource "aws_ecs_task_definition" "server_task" {
   task_role_arn            = aws_iam_role.ecs_task_role.arn
   execution_role_arn       = aws_iam_role.ecs_execution_role.arn
   requires_compatibilities = ["FARGATE"]
-  cpu                      = "1024"
-  memory                   = "2048"
+  cpu                      = "256"
+  memory                   = "512"
   network_mode             = "awsvpc"
 
   container_definitions = <<EOF
