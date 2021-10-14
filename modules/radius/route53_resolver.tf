@@ -8,26 +8,32 @@ resource "aws_route53_resolver_endpoint" "nac_vpc_outbound" {
 
   ip_address {
     subnet_id = var.vpc.public_subnets[0]
+    ip        = aws_eip.nac_eu_west_2a.private_ip
   }
 
   ip_address {
     subnet_id = var.vpc.public_subnets[1]
+    ip        = aws_eip.nac_eu_west_2b.private_ip
   }
 
   ip_address {
     subnet_id = var.vpc.public_subnets[2]
+    ip        = aws_eip.nac_eu_west_2c.private_ip
   }
 
   ip_address {
     subnet_id = var.vpc.private_subnets[0]
+    ip        = aws_eip.nac_eu_west_2a.private_ip
   }
 
   ip_address {
     subnet_id = var.vpc.private_subnets[1]
+    ip        = aws_eip.nac_eu_west_2b.private_ip
   }
 
   ip_address {
     subnet_id = var.vpc.private_subnets[2]
+    ip        = aws_eip.nac_eu_west_2c.private_ip
   }
 }
 
