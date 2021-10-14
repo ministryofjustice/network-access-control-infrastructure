@@ -30,3 +30,7 @@ variable "replication_source" {
 variable "db_size" {
   type = string
 }
+
+variable "radius_server_security_group_id" {
+  type = string
+}
