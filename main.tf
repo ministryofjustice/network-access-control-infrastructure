@@ -298,5 +298,3 @@ module "performance_testing" {
     aws = aws.env
   }
 }
-
-
