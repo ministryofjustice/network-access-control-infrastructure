@@ -22,7 +22,7 @@ env:
     TF_VAR_mojo_dns_ip_2: "/moj-network-access-control/$ENV/mojo_dns_ip_2"
     TF_VAR_ocsp_endpoint_ip: "/moj-network-access-control/$ENV/ocsp/endpoint_ip"
     TF_VAR_ocsp_endpoint_port: "/moj-network-access-control/$ENV/ocsp/endpoint_port"
-    TF_VAR_ocsp_endpoint_name: "/moj-network-access-control/$ENV/ocsp/endpoint_name"
+    TF_VAR_ocsp_atos_domain: "/moj-network-access-control/$ENV/ocsp/atos/domain"
     TF_VAR_enable_ocsp: "/moj-network-access-control/$ENV/enable_ocsp"
     TF_VAR_ocsp_override_cert_url: "/moj-network-access-control/$ENV/ocsp_override_cert_url"
     TF_VAR_byoip_pool_id: "/moj-network-access-control/$ENV/public_ip_pool_id"

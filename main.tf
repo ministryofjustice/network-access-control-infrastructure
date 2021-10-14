@@ -70,7 +70,7 @@ module "radius" {
   radsec_private_key_password    = var.radsec_private_key_password
   mojo_dns_ip_1                  = var.mojo_dns_ip_1
   mojo_dns_ip_2                  = var.mojo_dns_ip_2
-  ocsp_endpoint_name             = var.ocsp_endpoint_name
+  ocsp_atos_domain               = var.ocsp_atos_domain
   read_replica = {
     name = module.admin_read_replica.rds.name
     host = module.admin_read_replica.rds.host

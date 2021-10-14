@@ -99,6 +99,6 @@ variable "mojo_dns_ip_2" {
   type = string
 }
 
-variable "ocsp_endpoint_name" {
+variable "ocsp_atos_domain" {
   type = string
 }

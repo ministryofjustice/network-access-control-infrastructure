@@ -34,7 +34,7 @@ resource "aws_route53_resolver_endpoint" "nac_vpc_outbound" {
 resource "aws_route53_resolver_rule" "nac_dns_rule" {
     name                    = "nac-radius-resolver-rule-${var.short_prefix}"
     rule_type               = "FORWARD"
-    domain_name             = var.ocsp_endpoint_name
+    domain_name             = var.ocsp_atos_domain
     resolver_endpoint_id    = aws_route53_resolver_endpoint.nac_vpc_outbound.id
 
     target_ip {
