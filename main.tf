@@ -64,12 +64,13 @@ module "radius" {
   enable_nlb_deletion_protection = local.is_production ? true : false
   enable_hosted_zone             = var.enable_hosted_zone
   hosted_zone_domain             = var.hosted_zone_domain
-  hosted_zone_id                    = var.hosted_zone_id
+  hosted_zone_id                 = var.hosted_zone_id
   tags                           = module.label.tags
   eap_private_key_password       = var.eap_private_key_password
   radsec_private_key_password    = var.radsec_private_key_password
   mojo_dns_ip_1                  = var.mojo_dns_ip_1
   mojo_dns_ip_2                  = var.mojo_dns_ip_2
+  ocsp_endpoint_name             = var.ocsp_endpoint_name
   read_replica = {
     name = module.admin_read_replica.rds.name
     host = module.admin_read_replica.rds.host
@@ -297,3 +298,5 @@ module "performance_testing" {
     aws = aws.env
   }
 }
+
+

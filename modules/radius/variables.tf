@@ -96,6 +96,10 @@ variable "mojo_dns_ip_2" {
   type = string
 }
 
+variable "ocsp_endpoint_name" {
+  type = string
+}
+
 variable "hosted_zone_id" {
   type = string
 }
