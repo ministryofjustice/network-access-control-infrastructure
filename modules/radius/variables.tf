@@ -13,9 +13,6 @@ variable "vpc" {
     private_ip_eu_west_2a = string
     private_ip_eu_west_2b = string
     private_ip_eu_west_2c = string
-    private_ip_resolver_eu_west_2a = string
-    private_ip_resolver_eu_west_2b = string
-    private_ip_resolver_eu_west_2c = string
     private_subnets = list(string)
     public_subnets = list(string)
   })

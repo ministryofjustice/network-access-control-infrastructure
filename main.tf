@@ -46,9 +46,6 @@ locals {
   private_ip_eu_west_2a = "10.180.108.10"
   private_ip_eu_west_2b = "10.180.109.10"
   private_ip_eu_west_2c = "10.180.110.10"
-  private_ip_resolver_eu_west_2a = "10.180.108.53"
-  private_ip_resolver_eu_west_2b = "10.180.109.53"
-  private_ip_resolver_eu_west_2c = "10.180.110.53"
   vpc_cidr              = "10.180.108.0/22"
   is_production = terraform.workspace == "production" ? true : false
   is_development = terraform.workspace == "development" ? true : false
@@ -87,9 +84,6 @@ module "radius" {
     private_ip_eu_west_2a = local.private_ip_eu_west_2a
     private_ip_eu_west_2b = local.private_ip_eu_west_2b
     private_ip_eu_west_2c = local.private_ip_eu_west_2c
-    private_ip_resolver_eu_west_2a = local.private_ip_resolver_eu_west_2a
-    private_ip_resolver_eu_west_2b = local.private_ip_resolver_eu_west_2b
-    private_ip_resolver_eu_west_2c = local.private_ip_resolver_eu_west_2c
     private_subnets = module.radius_vpc.private_subnets
     public_subnets = module.radius_vpc.public_subnets
   }
