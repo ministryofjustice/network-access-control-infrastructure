@@ -16,6 +16,12 @@ output "ecs" {
   }
 }
 
+output "ec2" {
+  value = {
+    radius_server_security_group_id = aws_security_group.radius_server.id
+  }
+}
+
 output "cloudwatch" {
   value = {
     server_log_group_name       = aws_cloudwatch_log_group.server_log_group.name

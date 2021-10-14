@@ -166,15 +166,16 @@ module "radius_vpc_flow_logs" {
 }
 
 module "admin_read_replica" {
-  source              = "./modules/admin_read_replica"
-  replication_source  = module.admin.rds.admin_db_arn
-  subnet_ids          = module.radius_vpc.private_subnets
-  rds_monitoring_role = module.admin.rds.rds_monitoring_role
-  vpc_id              = module.radius_vpc.vpc_id
-  db_password         = var.admin_db_password
-  db_size             = "db.t3.xlarge"
-  prefix              = "${module.label.id}-admin-read-replica"
-  tags                = module.label.tags
+  source                          = "./modules/admin_read_replica"
+  replication_source              = module.admin.rds.admin_db_arn
+  subnet_ids                      = module.radius_vpc.private_subnets
+  rds_monitoring_role             = module.admin.rds.rds_monitoring_role
+  vpc_id                          = module.radius_vpc.vpc_id
+  db_password                     = var.admin_db_password
+  db_size                         = "db.t3.xlarge"
+  radius_server_security_group_id = module.radius.ec2.radius_server_security_group_id
+  prefix                          = "${module.label.id}-admin-read-replica"
+  tags                            = module.label.tags
 
   providers = {
     aws = aws.env
