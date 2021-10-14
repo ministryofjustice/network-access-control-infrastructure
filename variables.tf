@@ -98,3 +98,7 @@ variable "mojo_dns_ip_1" {
 variable "mojo_dns_ip_2" {
   type = string
 }
+
+variable "ocsp_atos_domain" {
+  type = string
+}
