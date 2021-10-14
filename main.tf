@@ -279,16 +279,6 @@ module "admin_vpc_flow_logs" {
   }
 }
 
-# module "vpc_peering_internal_authentication" {
-#  source = "./modules/vpc_peering_internal_authentication"
-#  target_aws_account_id = var.target_aws_account_id
-#  target_vpc_id = module.radius_vpc.vpc_id
-#  source_vpc_id = module.radius_client_vpc.vpc_id
-#  source_route_table_ids = module.radius_client_vpc.public_route_table_ids
-#  destination_route_table_ids = module.radius_vpc.private_route_table_ids
-#  destination_cidr = local.client_vpc_cidr
-# }
-
 module "performance_testing" {
   source = "./modules/performance_testing"
   count = local.is_development ? 1 : 0
