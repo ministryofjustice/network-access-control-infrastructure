@@ -103,3 +103,7 @@ variable "ocsp_atos_domain" {
 variable "hosted_zone_id" {
   type = string
 }
+
+variable "enable_ocsp_dns_resolver" {
+  type = bool
+}

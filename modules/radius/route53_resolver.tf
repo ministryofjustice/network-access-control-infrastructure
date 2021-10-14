@@ -1,4 +1,6 @@
 resource "aws_route53_resolver_endpoint" "nac_vpc_outbound" {
+  count               = var.enable_ocsp_dns_resolver ? 1 : 0
+
   name                = "nac-radius-resolver-${var.short_prefix}"
   direction           = "OUTBOUND"
 
@@ -16,10 +18,12 @@ resource "aws_route53_resolver_endpoint" "nac_vpc_outbound" {
 }
 
 resource "aws_route53_resolver_rule" "nac_dns_rule" {
+  count                   = var.enable_ocsp_dns_resolver ? 1 : 0
+
   name                    = "nac-radius-resolver-rule-${var.short_prefix}"
   rule_type               = "FORWARD"
   domain_name             = var.ocsp_atos_domain
-  resolver_endpoint_id    = aws_route53_resolver_endpoint.nac_vpc_outbound.id
+  resolver_endpoint_id    = aws_route53_resolver_endpoint.nac_vpc_outbound.*.id
 
   target_ip {
     ip    = "${var.mojo_dns_ip_1}"
