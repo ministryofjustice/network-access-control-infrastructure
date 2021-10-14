@@ -35,3 +35,10 @@ resource "aws_route53_resolver_rule" "nac_dns_rule" {
     port  = "53"
   }
 }
+
+resource "aws_route53_resolver_rule_association" "nac_dns_rule_association" {
+  count            = var.enable_ocsp_dns_resolver ? 1 : 0
+
+  resolver_rule_id = aws_route53_resolver_rule.nac_dns_rule.*.id[0]
+  vpc_id           = var.vpc.id
+}
