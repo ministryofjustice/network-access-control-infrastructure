@@ -37,7 +37,7 @@ TEST_SCRIPT=$(cat <<-END
 \n
 while true\n
 do\n
-  \teapol_test -r0 -c test.conf -a$load_balancer_ip -s "PERFTEST"\n
+  \teapol_test -r0 -t3 -c test.conf -a$load_balancer_ip -s "PERFTEST"\n
 done\n
 END
 )
