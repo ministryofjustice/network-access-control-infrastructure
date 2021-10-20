@@ -102,3 +102,7 @@ variable "mojo_dns_ip_2" {
 variable "ocsp_atos_domain" {
   type = string
 }
+
+variable "radius_verbose_logging" {
+  type = string
+}
