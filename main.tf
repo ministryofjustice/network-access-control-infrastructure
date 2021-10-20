@@ -172,7 +172,7 @@ module "admin_read_replica" {
   rds_monitoring_role             = module.admin.rds.rds_monitoring_role
   vpc_id                          = module.radius_vpc.vpc_id
   db_password                     = var.admin_db_password
-  db_size                         = "db.t3.2xlarge"
+  db_size                         = "db.t3.large"
   radius_server_security_group_id = module.radius.ec2.radius_server_security_group_id
   prefix                          = "${module.label.id}-admin-read-replica"
   tags                            = module.label.tags
