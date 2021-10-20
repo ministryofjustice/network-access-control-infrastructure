@@ -45,7 +45,7 @@ resource "aws_ecs_service" "internal_service" {
   name            = "${var.prefix}-internal-service"
   cluster         = aws_ecs_cluster.server_cluster.id
   task_definition = aws_ecs_task_definition.server_task.arn
-  desired_count   = 3
+  desired_count   = 12
   launch_type     = "FARGATE"
 
   load_balancer {
