@@ -39,7 +39,7 @@ resource "aws_db_instance" "admin_read_replica_xl" {
   apply_immediately           = true
   replicate_source_db         = var.replication_source
   instance_class              = "db.t3.xlarge"
-  identifier                  = "#{var.prefix}-xl"
+  identifier                  = "${var.prefix}-xl"
   multi_az                    = true
   storage_encrypted           = true
   password                    = var.db_password
