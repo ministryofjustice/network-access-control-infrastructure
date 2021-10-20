@@ -30,6 +30,38 @@ resource "aws_db_instance" "admin_read_replica" {
   tags = var.tags
 }
 
+resource "aws_db_instance" "admin_read_replica_xl" {
+  storage_type                = "gp2"
+  engine                      = "mysql"
+  engine_version              = "5.7"
+  auto_minor_version_upgrade  = true
+  allow_major_version_upgrade = false
+  apply_immediately           = true
+  replicate_source_db         = var.replication_source
+  instance_class              = "db.t3.xlarge"
+  identifier                  = var.prefix
+  multi_az                    = true
+  storage_encrypted           = true
+  password                    = var.db_password
+  db_subnet_group_name        = aws_db_subnet_group.admin_read_relica.name
+  vpc_security_group_ids      = [aws_security_group.admin_read_replica.id]
+  monitoring_role_arn         = var.rds_monitoring_role
+  monitoring_interval         = 60
+  skip_final_snapshot         = true
+  parameter_group_name        = aws_db_parameter_group.admin_read_replica_parameter_group.name
+  deletion_protection         = false
+  option_group_name           = aws_db_option_group.mariadb_audit.name
+  enabled_cloudwatch_logs_exports = ["audit", "error", "general", "slowquery"]
+
+  lifecycle {
+    ignore_changes = [
+      replicate_source_db
+    ]
+  }
+
+  tags = var.tags
+}
+
 resource "aws_db_subnet_group" "admin_read_relica" {
   name       = "${var.prefix}-group"
   subnet_ids = var.subnet_ids
