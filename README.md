@@ -17,3 +17,4 @@ This repository defines the **system infrastructure only**. Specific components 
 
 - [Getting Started](documentation/getting-started.md)
 - [Authentication with Azure AD](documentation/azure-ad.md)
+- [Vertically scaling the Read Replica](documentation/database-upgrade.md)
