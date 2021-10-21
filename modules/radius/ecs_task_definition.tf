@@ -92,6 +92,10 @@ resource "aws_ecs_task_definition" "server_task" {
       {
         "name": "RADSEC_PRIVATE_KEY_PASSWORD",
         "value": "${var.radsec_private_key_password}"
+      },
+      {
+        "name": "VERBOSE_LOGGING",
+        "value": "${var.radius_verbose_logging}"
       }
     ],
     "image": "${aws_ecr_repository.docker_repository.repository_url}",

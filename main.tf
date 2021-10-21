@@ -72,6 +72,7 @@ module "radius" {
   mojo_dns_ip_2                  = var.mojo_dns_ip_2
   ocsp_atos_domain               = var.ocsp_atos_domain
   enable_ocsp_dns_resolver       = local.is_production
+  radius_verbose_logging         = var.radius_verbose_logging
   read_replica = {
     name = module.admin_read_replica.rds.name
     host = module.admin_read_replica.rds.host

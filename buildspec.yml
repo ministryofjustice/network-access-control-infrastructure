@@ -28,6 +28,7 @@ env:
     TF_VAR_byoip_pool_id: "/moj-network-access-control/$ENV/public_ip_pool_id"
     TF_VAR_eap_private_key_password: "/moj-network-access-control/$ENV/eap_private_key_password"
     TF_VAR_radsec_private_key_password: "/moj-network-access-control/$ENV/radsec_private_key_password"
+    TF_VAR_radius_verbose_logging: "/moj-network-access-control/$ENV/debug/radius/verbose_logging"
 
 phases:
   install:
