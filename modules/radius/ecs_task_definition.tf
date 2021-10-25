@@ -96,6 +96,14 @@ resource "aws_ecs_task_definition" "server_task" {
       {
         "name": "VERBOSE_LOGGING",
         "value": "${var.radius_verbose_logging}"
+      },
+      {
+        "name": "ENABLE_PACKET_CAPTURE",
+        "value": "${var.enable_packet_capture}"
+      },
+      {
+        "name": "PACKET_CAPTURE_DURATION",
+        "value": "${var.packet_capture_duration}"
       }
     ],
     "image": "${aws_ecr_repository.docker_repository.repository_url}",

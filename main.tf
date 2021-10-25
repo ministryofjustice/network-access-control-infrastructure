@@ -204,6 +204,8 @@ module "admin" {
   radius_internal_service_name      = module.radius.ecs.internal_service_name
   radius_service_arn                = module.radius.ecs.service_arn
   radius_internal_service_arn       = module.radius.ecs.internal_service_arn
+  enable_packet_capture             = var.radius_enable_packet_capture
+  packet_capture_duration           = var.packet_capture_duration
   cognito_user_pool_id              = module.authentication.cognito_user_pool_id
   cognito_user_pool_domain          = module.authentication.cognito_user_pool_domain
   cognito_user_pool_client_id       = module.authentication.cognito_user_pool_client_id

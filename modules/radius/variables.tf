@@ -111,3 +111,11 @@ variable "enable_ocsp_dns_resolver" {
 variable "radius_verbose_logging" {
   type = string
 }
+
+variable "enable_packet_capture" {
+  type = string
+}
+
+variable "packet_capture_duration" {
+  type = string
+}
