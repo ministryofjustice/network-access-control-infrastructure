@@ -30,7 +30,7 @@ env:
     TF_VAR_radsec_private_key_password: "/moj-network-access-control/$ENV/radsec_private_key_password"
     TF_VAR_radius_verbose_logging: "/moj-network-access-control/$ENV/debug/radius/verbose_logging"
     TF_VAR_radius_enable_packet_capture: "/moj-network-access-control/$ENV/debug/radius/enable_packet_capture"
-    TF_VAR_radius_packet_capture_duration_seconds: "/moj-network-access-control/$ENV/debug/radius/packet_capture_duration_seconds"
+    TF_VAR_packet_capture_duration_seconds: "/moj-network-access-control/$ENV/debug/radius/packet_capture_duration_seconds"
 
 phases:
   install:
