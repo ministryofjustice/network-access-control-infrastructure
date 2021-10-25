@@ -52,27 +52,28 @@ locals {
 }
 
 module "radius" {
-  source                         = "./modules/radius"
-  prefix                         = module.label.id
-  short_prefix                   = module.label.stage
-  env                            = module.label.stage
-  byoip_pool_id                  = var.byoip_pool_id
-  ocsp_endpoint_ip               = var.ocsp_endpoint_ip
-  ocsp_endpoint_port             = var.ocsp_endpoint_port
-  ocsp_override_cert_url         = var.ocsp_override_cert_url
-  enable_ocsp                    = var.enable_ocsp
-  enable_nlb_deletion_protection = local.is_production ? true : false
-  enable_hosted_zone             = var.enable_hosted_zone
-  hosted_zone_domain             = var.hosted_zone_domain
-  hosted_zone_id                 = var.hosted_zone_id
-  tags                           = module.label.tags
-  eap_private_key_password       = var.eap_private_key_password
-  radsec_private_key_password    = var.radsec_private_key_password
-  mojo_dns_ip_1                  = var.mojo_dns_ip_1
-  mojo_dns_ip_2                  = var.mojo_dns_ip_2
-  ocsp_atos_domain               = var.ocsp_atos_domain
-  enable_ocsp_dns_resolver       = local.is_production
-  radius_verbose_logging         = var.radius_verbose_logging
+  source                          = "./modules/radius"
+  prefix                          = module.label.id
+  short_prefix                    = module.label.stage
+  env                             = module.label.stage
+  byoip_pool_id                   = var.byoip_pool_id
+  ocsp_endpoint_ip                = var.ocsp_endpoint_ip
+  ocsp_endpoint_port              = var.ocsp_endpoint_port
+  ocsp_override_cert_url          = var.ocsp_override_cert_url
+  enable_ocsp                     = var.enable_ocsp
+  enable_nlb_deletion_protection  = local.is_production ? true : false
+  enable_hosted_zone              = var.enable_hosted_zone
+  hosted_zone_domain              = var.hosted_zone_domain
+  hosted_zone_id                  = var.hosted_zone_id
+  packet_capture_duration_seconds = var.packet_capture_duration_seconds
+  tags                            = module.label.tags
+  eap_private_key_password        = var.eap_private_key_password
+  radsec_private_key_password     = var.radsec_private_key_password
+  mojo_dns_ip_1                   = var.mojo_dns_ip_1
+  mojo_dns_ip_2                   = var.mojo_dns_ip_2
+  ocsp_atos_domain                = var.ocsp_atos_domain
+  enable_ocsp_dns_resolver        = local.is_production
+  radius_verbose_logging          = var.radius_verbose_logging
   read_replica = {
     name = module.admin_read_replica.rds.name
     host = module.admin_read_replica.rds.host
@@ -205,7 +206,6 @@ module "admin" {
   radius_service_arn                = module.radius.ecs.service_arn
   radius_internal_service_arn       = module.radius.ecs.internal_service_arn
   enable_packet_capture             = var.radius_enable_packet_capture
-  packet_capture_duration_seconds   = var.packet_capture_duration_seconds
   cognito_user_pool_id              = module.authentication.cognito_user_pool_id
   cognito_user_pool_domain          = module.authentication.cognito_user_pool_domain
   cognito_user_pool_client_id       = module.authentication.cognito_user_pool_client_id
