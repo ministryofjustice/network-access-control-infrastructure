@@ -1,3 +1,6 @@
+locals {
+  privileged = var.enable_packet_capture == "true" ? true : false #parameter store does not support boolean values
+}
 resource "aws_ecs_task_definition" "server_task" {
   family                   = "${var.prefix}-server-task"
   task_role_arn            = aws_iam_role.ecs_task_role.arn
@@ -6,11 +9,11 @@ resource "aws_ecs_task_definition" "server_task" {
   cpu                      = "1024"
   memory                   = "2048"
   network_mode             = "awsvpc"
-  privileged               = var.enable_packet_capture == "true" ? true : false #parameter store does not support boolean values
 
   container_definitions = <<EOF
 [
   {
+    "privileged": = ${privileged}
     "portMappings": [
       {
         "hostPort": 1812,
