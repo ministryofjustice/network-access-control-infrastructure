@@ -1,3 +1,7 @@
+locals {
+  radius_user = var.enable_packet_capture == "true" ? "root" : "freerad"
+}
+
 resource "aws_ecs_task_definition" "server_task" {
   family                   = "${var.prefix}-server-task"
   task_role_arn            = aws_iam_role.ecs_task_role.arn
@@ -24,6 +28,7 @@ resource "aws_ecs_task_definition" "server_task" {
     ],
     "essential": true,
     "name": "radius-server",
+    "user": "${local.radius_user}",
     "environment": [
       {
         "name": "DB_NAME",
