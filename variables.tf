@@ -111,6 +111,6 @@ variable "radius_enable_packet_capture" {
   type = string
 }
 
-variable "radius_packet_capture_duration" {
+variable "radius_packet_capture_duration_seconds" {
   type = string
 }

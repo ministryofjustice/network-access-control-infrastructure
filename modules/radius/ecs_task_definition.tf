@@ -103,7 +103,7 @@ resource "aws_ecs_task_definition" "server_task" {
       },
       {
         "name": "PACKET_CAPTURE_DURATION",
-        "value": "${var.packet_capture_duration}"
+        "value": "${var.packet_capture_duration_seconds}"
       }
     ],
     "image": "${aws_ecr_repository.docker_repository.repository_url}",

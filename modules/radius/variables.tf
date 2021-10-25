@@ -116,6 +116,6 @@ variable "enable_packet_capture" {
   type = string
 }
 
-variable "packet_capture_duration" {
+variable "packet_capture_duration_seconds" {
   type = string
 }
