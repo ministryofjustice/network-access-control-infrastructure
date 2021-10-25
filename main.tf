@@ -66,6 +66,7 @@ module "radius" {
   hosted_zone_domain              = var.hosted_zone_domain
   hosted_zone_id                  = var.hosted_zone_id
   packet_capture_duration_seconds = var.packet_capture_duration_seconds
+  enable_packet_capture           = var.radius_enable_packet_capture
   tags                            = module.label.tags
   eap_private_key_password        = var.eap_private_key_password
   radsec_private_key_password     = var.radsec_private_key_password
@@ -205,7 +206,6 @@ module "admin" {
   radius_internal_service_name      = module.radius.ecs.internal_service_name
   radius_service_arn                = module.radius.ecs.service_arn
   radius_internal_service_arn       = module.radius.ecs.internal_service_arn
-  enable_packet_capture             = var.radius_enable_packet_capture
   cognito_user_pool_id              = module.authentication.cognito_user_pool_id
   cognito_user_pool_domain          = module.authentication.cognito_user_pool_domain
   cognito_user_pool_client_id       = module.authentication.cognito_user_pool_client_id
