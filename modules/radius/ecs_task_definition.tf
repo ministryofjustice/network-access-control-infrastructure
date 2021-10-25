@@ -13,7 +13,7 @@ resource "aws_ecs_task_definition" "server_task" {
   container_definitions = <<EOF
 [
   {
-    "privileged": ${local.privileged}
+    "privileged": "${local.privileged}",
     "portMappings": [
       {
         "hostPort": 1812,
