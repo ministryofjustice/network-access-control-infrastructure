@@ -59,7 +59,7 @@ Alarms have been set up to notify developers when the CPU of the read replica go
 
 The [schema](https://github.com/ministryofjustice/network-access-control-admin/blob/main/db/schema.rb) for the policy engine read replica is managed by the self service admin portal via [Rails database migrations](https://github.com/ministryofjustice/network-access-control-admin/tree/main/db/migrate).
 
-## Breaking infrastructure changes
+## Breaking infrastructure updates
 
 ### Manual breaking changes made in the console
 
