@@ -2,12 +2,12 @@
 
 The most likely regressions are categorised below:
 
-  - Corrupt radius server container
-  - Corrupt configuration
-  - AWS failure 
-  - RDS backend
-  - Breaking infrastructure updates
-  - Breaking network integration updates
+  - [Corrupt radius server container](#corrupt-radius-server-container)
+  - [Corrupt configuration](#corrupt-configuration)
+  - [AWS failure](#aws-failure)
+  - [RDS backend](#rds-backend)
+  - [Breaking infrastructure updates](#breaking-infrastructure-updates)
+  - [Breaking network integration updates](#breaking-network-integration-updates)
 
 ## Corrupt radius server container
 
