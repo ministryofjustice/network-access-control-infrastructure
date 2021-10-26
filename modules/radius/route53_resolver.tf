@@ -42,3 +42,13 @@ resource "aws_route53_resolver_rule_association" "nac_dns_rule_association" {
   resolver_rule_id = aws_route53_resolver_rule.nac_dns_rule.*.id[0]
   vpc_id           = var.vpc.id
 }
+
+resource "aws_route53_resolver_query_log_config" "nac_resolver_query_log" {
+  name            = "nac-resolver-query-log-${var.short_prefix}"
+  destination_arn = var.vpc_flow_logs_group_id
+}
+
+resource "aws_route53_resolver_query_log_config_association" "nac_resolver_query_log_association" {
+  resolver_query_log_config_id = aws_route53_resolver_query_log_config.nac_resolver_query_log.id
+  resource_id                  = var.vpc.id
+}

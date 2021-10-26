@@ -75,6 +75,7 @@ module "radius" {
   ocsp_atos_domain                = var.ocsp_atos_domain
   enable_ocsp_dns_resolver        = local.is_production
   radius_verbose_logging          = var.radius_verbose_logging
+  vpc_flow_logs_group_id          = module.radius_vpc_flow_logs.flow_log_group_id
   read_replica = {
     name = module.admin_read_replica.rds.name
     host = module.admin_read_replica.rds.host

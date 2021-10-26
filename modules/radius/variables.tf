@@ -119,3 +119,7 @@ variable "enable_packet_capture" {
 variable "packet_capture_duration_seconds" {
   type = string
 }
+
+variable "vpc_flow_logs_group_id" {
+  type = string
+}
