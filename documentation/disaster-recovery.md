@@ -11,7 +11,8 @@ The most likely regressions are categorised below:
 
 ## Corrupt radius server container
 
-Automated integration tests should catch all regressions to the service if a breaking change was introduced, rolling forward to fix the issue is the recommended solution. 
+Automated [integration tests](https://github.com/ministryofjustice/network-access-control-integration-tests) will catch regressions to the service if a breaking change is introduced, this will prevent the deploy from going the build pipeline. 
+If a regression did make it through, rolling forward to fix the issue is the recommended solution. 
 
 If rolling back is the only option, please see interactive automated rollback scripts [here](https://github.com/ministryofjustice/network-access-control-disaster-recovery#corrupt-container)
 
