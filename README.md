@@ -12,10 +12,14 @@ This repository defines the **system infrastructure only**. Specific components 
 
 - [Shared Services](https://github.com/ministryofjustice/staff-device-shared-services-infrastructure)
 - [Radius Server](https://github.com/ministryofjustice/network-access-control-server)
+- [Disaster Recovery](https://github.com/ministryofjustice/network-access-control-disaster-recovery)
+- [Integration Tests](https://github.com/ministryofjustice/network-access-control-integration-tests)
+- [Admin Portal](https://github.com/ministryofjustice/network-access-control-admin)
 
 ## Other Documentation
 
 - [Getting Started](documentation/getting-started.md)
-- [Debug mode](documentation/debug-mode.md)
+- [Debug Mode](documentation/debug-mode.md)
+- [Disaster Recovery](documentation/disaster-recovery.md)
 - [Authentication with Azure AD](documentation/azure-ad.md)
 - [Vertically scaling the Read Replica](documentation/database-upgrade.md)
