@@ -56,6 +56,30 @@ resource "aws_ecr_repository_policy" "admin_docker_nac_repository_policy" {
 EOF
 }
 
+resource "aws_ecr_lifecycle_policy" "admin_container" {
+  repository = aws_ecr_repository.admin_ecr.name
+
+  policy = <<EOF
+{
+    "rules": [
+        {
+            "rulePriority": 1,
+            "description": "Expire images older than 14 days",
+            "selection": {
+                "tagStatus": "untagged",
+                "countType": "sinceImagePushed",
+                "countUnit": "days",
+                "countNumber": 14
+            },
+            "action": {
+                "type": "expire"
+            }
+        }
+    ]
+}
+EOF
+}
+
 resource "aws_ecs_task_definition" "admin_task" {
   family                   = "${var.prefix}-task"
   requires_compatibilities = ["FARGATE"]
