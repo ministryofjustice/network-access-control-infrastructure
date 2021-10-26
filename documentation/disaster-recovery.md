@@ -22,7 +22,7 @@ The self service admin portal validates configurations before allowing them to b
 
 If a corrupt configuration file managed to get through and a deployment was initiated, it would not take down the service. Instead it would fail to boot up new servers and leave the original ones to handle authentications. Alarms have been configured in Grafana to notify developers when this happens.
 
-Two FreeRadius files are managed through the self service admin portal and stored in S3, `clients.conf` and `authorised_macs`.
+Two FreeRadius files are managed through the self service admin portal and stored in S3, [clients.conf](https://linux.die.net/man/5/clients.conf) and [authorised_macs](https://wiki.freeradius.org/guide/mac-auth#plain-mac-auth_raddb-authorized_macs).
 
 At this point an investigation needs to be done to understand what has corrupted the configuration files, rolling forward to fix the issue is the recommended solution. Audit logs exist in the admin portal which will be helpful in diagnosing issues.
 
