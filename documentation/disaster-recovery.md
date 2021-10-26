@@ -11,9 +11,9 @@ The most likely regressions are categorised below:
 
 ## Corrupt radius server container
 
-Automated integration tests should catch all regressions to the service if a breaking change was made, rolling forward to fix the issue is the recommended solution. 
+Automated integration tests should catch all regressions to the service if a breaking change was introduced, rolling forward to fix the issue is the recommended solution. 
 
-If rolling back is the only option, please see interactive rollback scripts [here](https://github.com/ministryofjustice/network-access-control-disaster-recovery#corrupt-container)
+If rolling back is the only option, please see interactive automated rollback scripts [here](https://github.com/ministryofjustice/network-access-control-disaster-recovery#corrupt-container)
 
 ## Corrupt configuration
 
@@ -21,9 +21,9 @@ The self service admin portal validates configurations before allowing them to b
 
 If a corrupt configuration file managed to get through and a deployment was initiated, it would not take down the service. Instead it would fail to boot up new servers and leave the original ones to handle authentications. Alarms have been configured in Grafana to notify developers when this happens.
 
-Two FreeRadius files are stored in S3, `clients.conf` and `authorised_macs`.
+Two FreeRadius files are managed through the self service admin portal and stored in S3, `clients.conf` and `authorised_macs`.
 
-At this point an investigation needs to be done to understand what has corrupted the configuration files, rolling forward to fix the issue is the recommended solution. 
+At this point an investigation needs to be done to understand what has corrupted the configuration files, rolling forward to fix the issue is the recommended solution. Audit logs exist in the admin portal which will be helpful in diagnosing issues.
 
 If rolling back is the only option, please see interactive rollback scripts [here](https://github.com/ministryofjustice/network-access-control-disaster-recovery#corrupt-config)
 
@@ -41,7 +41,7 @@ The service can withstand up to 2 availability zones going down at the same time
 
 ### Region goes down
 
-The service is not designed to do multi-region failover. AWS will be responsible for getting the region back up and running according to their SLAs.
+The service is not designed to do multi-region failover. AWS will be responsible for getting the region back up and running according to their [SLAs](https://aws.amazon.com/compute/sla/).
 
 On-premise fallback options need to be considered in case of such an event, this will be site specific and owned by the local network administrators.
 
@@ -57,21 +57,21 @@ Alarms have been set up to notify developers when the CPU of the read replica go
 
 ### Broken schema change
 
-The [schema](https://github.com/ministryofjustice/network-access-control-admin/blob/main/db/schema.rb) for the policy engine read replica is managed by the self service admin portal via [Rails database migrations](https://github.com/ministryofjustice/network-access-control-admin/tree/main/db/migrate).
+The [schema](https://github.com/ministryofjustice/network-access-control-admin/blob/main/db/schema.rb) for the policy engine read replica is managed by the self service admin portal via [Rails database migrations](https://github.com/ministryofjustice/network-access-control-admin/tree/main/db/migrate). Care needs to be taken to update the schema in a safe way. Any changes can be tested on non-live environments before deploying to production.
 
 ## Breaking infrastructure updates
 
 ### Manual breaking changes made in the console
 
-Any manual changes made in the console can be re-set by running the infrastructure pipeline in CodeBuild. Terraform will re-provision the infrastructure to be in a known good state.
+Any manual changes made in the console can be reset by running the infrastructure pipeline in CodeBuild. Terraform will re-provision the infrastructure to be in a known good state.
 
 ## Breaking network integration updates
 
 ### MoJ network integration
 
-Issues at the network level can be diagnosed by looking at the [VPC Flow logs](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html). If traffic is not flowing as expected, check the VPC route tables and any firewalls in between the client and servers. 
+Issues at the network level can be diagnosed by looking at the [VPC Flow logs](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html). If traffic is not flowing as expected, check the VPC route tables, security groups, network ACLs and any firewalls in between the client and servers. 
 
-All networking configurations for the Network Access Control service are configured with Terraform in version control.
+All networking configurations for the Network Access Control service are configured and managed with Terraform and stored in version control.
 
 ### OCSP integration
 
