@@ -48,6 +48,12 @@ resource "aws_iam_role_policy" "ecs_task_policy" {
         "s3:DeleteObject"
       ],
       "Resource": ["${var.radius_certificate_bucket_arn}/*"]
+    }, {
+      "Effect": "Allow",
+      "Action": [
+        "s3:ListObjectsV2
+      ],
+      "Resource": ["${var.radius_config_bucket_arn}/*"]
     }
   ]
 }
