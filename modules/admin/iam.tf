@@ -51,6 +51,7 @@ resource "aws_iam_role_policy" "ecs_task_policy" {
     }, {
       "Effect": "Allow",
       "Action": [
+        "s3:ListBucket",
         "s3:ListObjectsV2"
       ],
       "Resource": ["${var.radius_config_bucket_arn}/*"]
