@@ -10,10 +10,20 @@
             },
             "Action": [
                 "s3:PutObject",
-                "s3:GetObject",
-                "s3:ListBucket"
+                "s3:GetObject"
             ],
             "Resource": "${bucket_arn}/*"
+        },
+        {
+            "Sid": "List objects",
+            "Effect": "Allow",
+            "Principal": {
+              "AWS": "${ecs_task_role_arn}"
+            },
+            "Action": [
+                "s3:ListBucket"
+            ],
+            "Resource": "${bucket_arn}"
         }
     ]
 }
