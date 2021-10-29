@@ -10,7 +10,7 @@ assume_role_target_aws_account() {
 }
 
 ensure_subdomain_ns_records() {
-  name_servers=$(aws route53 list-resource-record-sets --hosted-zone-id $hosted_zone_id |jq '.ResourceRecordSets[]' | jq 'select(.Type=="NS")') > ns.json
+  name_servers=$(aws route53 list-resource-record-sets --hosted-zone-id $2 |jq '.ResourceRecordSets[]' | jq 'select(.Type=="NS")') > ns.json
   name=$(jq -r '.Name' ns.json)
   jq ".Name = \"${name}\"" record_set_template.json
   jq ".Changes[0].ResourceRecordSet = ${name_servers}" record_set_template.json > upsert.json
