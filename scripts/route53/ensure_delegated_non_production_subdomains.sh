@@ -10,7 +10,7 @@ assume_role_target_aws_account() {
 }
 
 ensure_subdomain_ns_records() {
-  name_servers=$(aws route53 list-resource-record-sets --hosted-zone-id $2 |jq '.ResourceRecordSets[]' | jq 'select(.Type=="NS")') > ns.json
+  name_servers=$(aws route53 list-resource-record-sets --hosted-zone-id $1 |jq '.ResourceRecordSets[]' | jq 'select(.Type=="NS")') > ns.json
   name=$(jq -r '.Name' ns.json)
   jq ".Name = \"${name}\"" record_set_template.json
   jq ".Changes[0].ResourceRecordSet = ${name_servers}" record_set_template.json > upsert.json
@@ -21,9 +21,11 @@ ensure_subdomain_ns_records() {
 }
 
 main() {
-  assume_role_target_aws_account
-  ensure_subdomain_ns_records $DEVELOPMENT_ASSUME_ROLE $DEVELOPMENT_HOSTED_ZONE_ID
-  ensure_subdomain_ns_records PRE_PRODUCTION_ASSUME_ROLE PRE_PRODUCTION_HOSTED_ZONE_ID
+  assume_role_target_aws_account $DEVELOPMENT_ASSUME_ROLE
+  ensure_subdomain_ns_records $DEVELOPMENT_HOSTED_ZONE_ID
+
+  assume_role_target_aws_account $PRE_PRODUCTION_ASSUME_ROLE
+  ensure_subdomain_ns_records PRE_PRODUCTION_HOSTED_ZONE_ID
 }
 
 if [ "$ENV" == "production" ]; then
