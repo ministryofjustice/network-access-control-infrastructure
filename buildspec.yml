@@ -51,4 +51,4 @@ phases:
       - terraform workspace select $ENV
       - terraform apply --auto-approve -no-color
       - ./scripts/publish_terraform_outputs.sh
-      - ./scripts/route_53/ensure_delegated_non_production_subdomains.sh
+      - ./scripts/route53/ensure_delegated_non_production_subdomains.sh
