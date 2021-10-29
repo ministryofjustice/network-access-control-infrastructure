@@ -47,3 +47,9 @@ output "s3" {
     radius_certificate_bucket_key_arn = aws_kms_key.certificate_bucket_key.arn
   }
 }
+
+output "route53" {
+  value = {
+    name_servers = aws_route53_zone.radius_service.name_servers
+  }
+}
