@@ -50,6 +50,6 @@ output "s3" {
 
 output "route53" {
   value = {
-    name_servers = aws_route53_zone.radius_service.name_servers
+    name_servers = aws_route53_zone.radius_service.*.name_servers[0]
   }
 }
