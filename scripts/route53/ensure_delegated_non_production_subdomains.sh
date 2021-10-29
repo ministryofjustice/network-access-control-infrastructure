@@ -3,6 +3,8 @@
 set -e
 
 assume_role_target_aws_account() {
+  env
+
   TEMP_ROLE=`aws sts assume-role --role-arn $1 --role-session-name ci-build-$CODEBUILD_BUILD_NUMBER`
   export AWS_ACCESS_KEY_ID=$(echo "${TEMP_ROLE}" | jq -r '.Credentials.AccessKeyId')
   export AWS_SECRET_ACCESS_KEY=$(echo "${TEMP_ROLE}" | jq -r '.Credentials.SecretAccessKey')
