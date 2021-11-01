@@ -34,6 +34,7 @@ env:
     DEVELOPMENT_ROUTE53_NS_UPSERT: "/moj-network-access-control/development/route53/ns_upsert"
     PRE_PRODUCTION_ROUTE53_NS_UPSERT: "/moj-network-access-control/pre-production/route53/ns_upsert"
     HOSTED_ZONE_ID: "/moj-network-access-control/$ENV/hosted_zone_id"
+    ROLE_ARN: "/codebuild/pttp-ci-infrastructure-core-pipeline/$ENV/assume_role"
 
 phases:
   install:
