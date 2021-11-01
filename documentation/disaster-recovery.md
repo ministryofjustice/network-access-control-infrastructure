@@ -74,6 +74,9 @@ Issues at the network level can be diagnosed by looking at the [VPC Flow logs](h
 
 All networking configurations for the Network Access Control service are configured and managed with Terraform and stored in version control.
 
+VPC flow logs that have a high number REJECT OK values or one way communication (no response) typically suggests that an regression has occurred.
+For more information on debugging VPC Flowlogs, please see [AWS guidance](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs-records-examples.html)
+
 ### OCSP integration
 
 Client certificates are validated by checking [OCSP endpoints](https://en.wikipedia.org/wiki/Online_Certificate_Status_Protocol).
