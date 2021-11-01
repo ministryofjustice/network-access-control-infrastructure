@@ -31,10 +31,9 @@ env:
     TF_VAR_radius_verbose_logging: "/moj-network-access-control/$ENV/debug/radius/verbose_logging"
     TF_VAR_radius_enable_packet_capture: "/moj-network-access-control/$ENV/debug/radius/enable_packet_capture"
     TF_VAR_packet_capture_duration_seconds: "/moj-network-access-control/$ENV/debug/radius/packet_capture_duration_seconds"
-    DEVELOPMENT_ASSUME_ROLE: "/codebuild/pttp-ci-infrastructure-core-pipeline/development/assume_role"
-    PRE_PRODUCTION_ASSUME_ROLE: "/codebuild/pttp-ci-infrastructure-core-pipeline/pre-production/assume_role"
-    DEVELOPMENT_HOSTED_ZONE_ID: "/moj-network-access-control/development/hosted_zone_id"
-    PRE_PRODUCTION_HOSTED_ZONE_ID: "/moj-network-access-control/pre-production/hosted_zone_id"
+    DEVELOPMENT_ROUTE53_NS_UPSERT: "/moj-network-access-control/development/route53/ns_upsert"
+    PRE_PRODUCTION_ROUTE53_NS_UPSERT: "/moj-network-access-control/pre-production/route53/ns_upsert"
+    HOSTED_ZONE_ID: "/moj-network-access-control/$ENV/hosted_zone_id"
 
 phases:
   install:
