@@ -28,23 +28,3 @@ rm ./scripts/clients.conf
 
 # Restart the ECS tasks
 aws ecs update-service --force-new-deployment --service mojo-$env-nac-service --cluster mojo-$env-nac-cluster
-
-# Upload the performance test script to perf config bucket
-load_balancer_ip=$(aws elbv2 describe-load-balancers --names nac-radius-lb-development --query "LoadBalancers[].AvailabilityZones[].LoadBalancerAddresses[].IpAddress | [0]")
-
-TEST_SCRIPT=$(cat <<-END
-#!/usr/bin/env bash\n
-\n
-while true\n
-do\n
-  \teapol_test -r0 -t3 -c test.conf -a$load_balancer_ip -s "PERFTEST"\n
-done\n
-END
-)
-
-echo $TEST_SCRIPT > ./scripts/perf_test.sh
-
-aws s3 cp ./scripts/perf_test.sh s3://mojo-$env-nac-perf-config-bucket/perf_test.sh
-
-# Delete the test script
-rm ./scripts/perf_test.sh
