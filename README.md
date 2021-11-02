@@ -23,3 +23,4 @@ This repository defines the **system infrastructure only**. Specific components 
 - [Disaster Recovery](documentation/disaster-recovery.md)
 - [Authentication with Azure AD](documentation/azure-ad.md)
 - [Vertically scaling the Read Replica](documentation/database-upgrade.md)
+- [Setup Performance Testing](documentation/performance_testing.md)
