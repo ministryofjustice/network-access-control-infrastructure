@@ -43,7 +43,7 @@ aws-vault exec moj-nac-development -- aws s3 cp ./client.pem s3://$perf_config_b
 aws-vault exec moj-nac-development -- aws s3 cp ./ca.pem s3://$perf_config_bucket/certs/
 ```
 
-6. Create a `test.conf` file and `perf_test.sh` script
+6. Create a `test.conf` file and a `perf_test.sh` script
 ```bash
 # test.conf
 network={
@@ -79,7 +79,7 @@ to grab the IP addresses of the load balancer, run
 ```bash
 aws-vault exec moj-nac-development -- aws elbv2 describe-load-balancers --names nac-radius-lb-development --query "LoadBalancers[].AvailabilityZones[].LoadBalancerAddresses[].IpAddress"
 ```
-and upload the created files into the perf config bucket
+upload the created files into the perf config bucket
 
 ```bash
 aws-vault exec moj-nac-development -- aws s3 cp ./test.conf s3://$perf_config_bucket/
@@ -111,25 +111,7 @@ aws-vault exec moj-nac-development -- aws s3 cp ./ca.pem s3://$nac_certificate_b
 The test script executes automatically when the EC2 instances are booted. For further details, see the [User Data script.](/modules/performance_testing/user_data.sh) It is a prerequisite to populate the performance test config bucket before deploying the performance test instances.
 
 ### Authorise test clients
-The performance test setup make command updates the list of authorised clients with the IP addresses of the EC2 instance, run from the root folder using:
+The following make command updates the list of authorised clients with the IP addresses of the EC2 instance, run from the root folder using:
 ```bash
 make authorise-performance-test-clients
 ```
-
-### Running the scripts manually
-- Download the key file from parameter store
-```bash
-aws-vault exec moj-nac-development -- aws ssm get-parameter --name "/network-access-control/mojo-development-nac-perf/ec2/key" --with-decryption --query "Parameter.Value"> mojo-development-nac-perf-performance-testing.pem
-```
-
-- Grab the public DNS names of the performance test EC2 instances
-```bash
-aws-vault exec moj-nac-development -- aws ec2 describe-instances --filters "Name=tag:Name,Values='MoJ Authentication Performance-*'" --query "Reservations[].Instances[].PublicDnsName"
-```
-
-- ssh into a client EC2 instance
-```bash
-ssh -i mojo-development-nac-perf-performance-testing.pem ubuntu@<PublicDnsName>
-```
-- run the `setup_certs.sh` script to get the certificates from the config bucket
-- run the `perf_test.sh` script to fire requests
