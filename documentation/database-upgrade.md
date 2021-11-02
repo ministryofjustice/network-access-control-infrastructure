@@ -5,9 +5,9 @@ This guide explains how to scale the read replica used by the Network Access Con
 ## Overview
 
 The Network Access Control service connects to a single RDS read replica to get access to policy data. This read replica runs in multiple availability zones for reliability.
-During performance testing it was noted that high CPU usage on the read replica was the bottleneck. Unlike the ECS cluster, there is no capability for the read replica to scale horizontally. It needs to be scaled vertically (manually) to increase performance.
+During performance testing it was noted that high CPU usage on the read replica was the bottleneck. Unlike the ECS cluster, there is no capability for the read replica to [scale horizontally](https://aws.amazon.com/blogs/database/scaling-your-amazon-rds-instance-vertically-and-horizontally/). It needs to be scaled vertically (manually) to increase performance.
 
-Alarms have been set up to monitor the CPU of this read replica and set to go off if the CPU usage is over 60%.
+Alarms have been set up to monitor the CPU of this read replica and set to go off if the CPU usage is over 65%.
 
 These alarms will prompt engineers and provide sufficient time to upgrade the database to improve performance of the service.
 
