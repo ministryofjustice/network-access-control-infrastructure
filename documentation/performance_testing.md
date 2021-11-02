@@ -43,7 +43,7 @@ aws-vault exec moj-nac-development -- aws s3 cp ./client.pem s3://$perf_config_b
 aws-vault exec moj-nac-development -- aws s3 cp ./ca.pem s3://$perf_config_bucket/certs/
 ```
 
-6. Create a `test.conf` file 
+6. Create a `test.conf` file and `perf_test.sh` script
 ```bash
 # test.conf
 network={
@@ -58,10 +58,32 @@ network={
     eapol_flags=3
 }
 ```
-and upload it into the perf config bucket
+
+```bash
+# perf_test.sh
+
+#!/usr/bin/env bash\n
+while true
+ do
+	array[0]="18.x.x.x"
+	array[1]="19.x.x.x"
+	array[2]="20.x.x.x"
+	size=${#array[@]}
+	index=$(($RANDOM % $size))
+
+ 	eapol_test -r0 -t3 -c test.conf -a"${array[$index]}" -s "PERFTEST" > /dev/null
+	sleep 0.5
+ done
+```
+to grab the IP addresses of the load balancer, run
+```bash
+aws-vault exec moj-nac-development -- aws elbv2 describe-load-balancers --names nac-radius-lb-development --query "LoadBalancers[].AvailabilityZones[].LoadBalancerAddresses[].IpAddress"
+```
+and upload the created files into the perf config bucket
 
 ```bash
 aws-vault exec moj-nac-development -- aws s3 cp ./test.conf s3://$perf_config_bucket/
+aws-vault exec moj-nac-development -- aws s3 cp ./perf_test.conf s3://$perf_config_bucket/
 ```
 
 7. Decrypt the `server.key` file
@@ -82,18 +104,17 @@ openssl rsa -in server.key -out server.key -passin pass:"<private_key_password>"
 9. Copy the server certificate and CA into the certificates bucket
 ```bash
 aws-vault exec moj-nac-development -- aws s3 cp ./server.pem s3://$nac_certificate_bucket/
-
 aws-vault exec moj-nac-development -- aws s3 cp ./ca.pem s3://$nac_certificate_bucket/
-```
-
-### Authorise test clients
-The performance test setup make command updates the list of authorised clients with the IP addresses of the EC2 instance, run from the root folder using:
-```bash
-make perf-test-setup 
 ```
 
 ## Running the performance tests
 The test script executes automatically when the EC2 instances are booted. For further details, see the [User Data script.](/modules/performance_testing/user_data.sh) It is a prerequisite to populate the performance test config bucket before deploying the performance test instances.
+
+### Authorise test clients
+The performance test setup make command updates the list of authorised clients with the IP addresses of the EC2 instance, run from the root folder using:
+```bash
+make authorise-performance-test-clients
+```
 
 ### Running the scripts manually
 - Download the key file from parameter store
