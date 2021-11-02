@@ -93,6 +93,9 @@ make perf-test-setup
 ```
 
 ## Running the performance tests
+The test script executes automatically when the EC2 instances are booted. For further details, see the [User Data script.](/modules/performance_testing/user_data.sh) It is a prerequisite to populate the performance test config bucket before deploying the performance test instances.
+
+### Running the scripts manually
 - Download the key file from parameter store
 ```bash
 aws-vault exec moj-nac-development -- aws ssm get-parameter --name "/network-access-control/mojo-development-nac-perf/ec2/key" --with-decryption --query "Parameter.Value"> mojo-development-nac-perf-performance-testing.pem
