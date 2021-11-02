@@ -102,7 +102,8 @@ module "radius" {
     "Ignoring request",
     "Error: post_auth - Failed to find attribute",
     "Error: python",
-    "Error:"
+    "Error:",
+    "Shared secret is incorrect"
   ]
 
   providers = {
