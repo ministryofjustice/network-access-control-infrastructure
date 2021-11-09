@@ -19,6 +19,7 @@ This repository defines the **system infrastructure only**. Specific components 
 ## Other Documentation
 
 - [Getting Started](documentation/getting-started.md)
+- [Deploying NACS](documentation/deploying-nacs.md)
 - [Debug Mode](documentation/debug-mode.md)
 - [Disaster Recovery](documentation/disaster-recovery.md)
 - [Authentication with Azure AD](documentation/azure-ad.md)
