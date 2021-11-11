@@ -80,4 +80,4 @@ For more information on debugging VPC Flowlogs, please see [AWS guidance](https:
 ### OCSP integration
 
 Client certificates are validated by checking [OCSP endpoints](https://en.wikipedia.org/wiki/Online_Certificate_Status_Protocol).
-Some of these endpoints are on the private MoJ network. Any connectivity issues would cause authentications to fail for client certificates issued by that PKI. As a short term solution turn of OCSP validation in SSM parameter store until the issue can be fixed.
+Some of these endpoints are on the private MoJ network. Any connectivity issues would cause authentications to fail for client certificates issued by that PKI. As a short term solution turn off OCSP validation in SSM parameter store and re-deploy the infrastructure pipeline. This will disable OCSP checks until the issue has been resolved. This risk has been discussed and agreed with MoJ Security.
