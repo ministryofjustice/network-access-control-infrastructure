@@ -3,7 +3,7 @@ locals {
   public_table_id = join("_", toset(module.vpc.public_route_table_ids))
 }
 resource "aws_route" "transit-gateway" {
-  count      = length(module.vpc.private_route_table_ids)
+  count = var.enable_nac_transit_gateway_attachment ? length(module.vpc.private_route_table_ids) : 0
 
   route_table_id         = split("_", local.private_table_id)[count.index]
   destination_cidr_block = "0.0.0.0/0"
@@ -15,7 +15,7 @@ resource "aws_route" "transit-gateway" {
 }
 
 resource "aws_route" "transit-gateway-public" {
-  count      = length(module.vpc.public_route_table_ids)
+  count = var.enable_nac_transit_gateway_attachment ? length(module.vpc.public_route_table_ids) : 0
 
   route_table_id         = split("_", local.public_table_id)[count.index]
   destination_cidr_block = "${var.ocsp_endpoint_ip}/32"
@@ -27,7 +27,7 @@ resource "aws_route" "transit-gateway-public" {
 }
 
 resource "aws_route" "transit-gateway-public-dns-server-1" {
-  count      = length(module.vpc.public_route_table_ids)
+  count = var.enable_nac_transit_gateway_attachment ? length(module.vpc.public_route_table_ids) : 0
 
   route_table_id         = split("_", local.public_table_id)[count.index]
   destination_cidr_block = "${var.mojo_dns_ip_1}/32"
@@ -39,7 +39,7 @@ resource "aws_route" "transit-gateway-public-dns-server-1" {
 }
 
 resource "aws_route" "transit-gateway-public-dns-server-2" {
-  count      = length(module.vpc.public_route_table_ids)
+  count = var.enable_nac_transit_gateway_attachment ? length(module.vpc.public_route_table_ids) : 0
 
   route_table_id         = split("_", local.public_table_id)[count.index]
   destination_cidr_block = "${var.mojo_dns_ip_2}/32"
