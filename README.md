@@ -15,6 +15,7 @@ This repository defines the **system infrastructure only**. Specific components 
 - [Disaster Recovery](https://github.com/ministryofjustice/network-access-control-disaster-recovery)
 - [Integration Tests](https://github.com/ministryofjustice/network-access-control-integration-tests)
 - [Admin Portal](https://github.com/ministryofjustice/network-access-control-admin)
+- [Monitoring & Alerting](https://github.com/ministryofjustice/staff-infrastructure-monitoring-config)
 
 ## Other Documentation
 
