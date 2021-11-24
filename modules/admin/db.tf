@@ -45,11 +45,46 @@ resource "aws_db_parameter_group" "admin_db_parameter_group" {
 
   parameter {
     name  = "sql_mode"
-    value = "STRICT_ALL_TABLES"
+    value = "STRICT_ALL_TABLES, NO_AUTO_CREATE_USER"
   }
   parameter {
     name  = "max_connect_errors"
     value = "10000"
+  }
+
+  parameter {
+    name  = "log_error_verbosity"
+    value = "2"
+  }
+
+  parameter {
+    name  = "validate-password"
+    value = "FORCE_PLUS_PERMANENT"
+  }
+
+  parameter {
+    name  = "validate_password_length"
+    value = "14"
+  }
+
+  parameter {
+    name = "validate_password_mixed_case_count"
+    value = "1'"
+  }
+
+  parameter {
+    name = "validate_password_number_count"
+    value = "1"
+  }
+
+  parameter {
+    name  = "validate_password_policy"
+    value = "MEDIUM"
+  }
+
+  parameter {
+    name = "validate_password_special_char_count"
+    value = "1"
   }
 }
 
