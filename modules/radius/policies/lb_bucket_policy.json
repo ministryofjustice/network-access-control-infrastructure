@@ -9,7 +9,7 @@
             "AWS": "*"
           },
           "Action": [
-              "s3:PutObject"
+            "s3:*"
           ],
           "Resource": "${bucket_arn}/*"
       }
