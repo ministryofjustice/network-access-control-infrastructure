@@ -112,6 +112,13 @@ resource "aws_s3_bucket" "lb_log_bucket" {
       }
     }
   }
+  lifecycle_rule {
+    id      = "30_day_retention_lb_bucket_logs"
+    enabled = true
+    expiration {
+        days = 30
+    }
+  }
 }
 
 resource "aws_s3_bucket_public_access_block" "lb_log_bucket_public_block" {
