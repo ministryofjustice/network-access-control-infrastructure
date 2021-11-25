@@ -60,3 +60,12 @@ resource "aws_s3_bucket" "config_bucket_logs" {
     }
   }
 }
+
+resource "aws_s3_bucket_public_access_block" "config_log_bucket_public_block" {
+  bucket = aws_s3_bucket.config_bucket_logs.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
