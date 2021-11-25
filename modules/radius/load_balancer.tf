@@ -103,14 +103,6 @@ resource "aws_s3_bucket" "lb_log_bucket" {
   versioning {
     enabled = true
   }
-  server_side_encryption_configuration {
-    rule {
-      apply_server_side_encryption_by_default {
-        kms_master_key_id = aws_kms_key.lb_log_bucket_key.arn
-        sse_algorithm     = "aws:kms"
-      }
-    }
-  }
 
   lifecycle_rule {
     id      = "30_day_retention_lb_bucket_logs"
@@ -128,7 +120,6 @@ data "template_file" "lb_log_bucket_policy" {
 
   vars = {
     bucket_arn = aws_s3_bucket.lb_log_bucket.arn,
-    load_balancer_arn = aws_lb.load_balancer.arn,
     aws_account_id = data.aws_caller_identity.current.account_id
   }
 }
@@ -136,7 +127,32 @@ data "template_file" "lb_log_bucket_policy" {
 resource "aws_s3_bucket_policy" "lb_log_bucket_policy" {
   bucket = aws_s3_bucket.lb_log_bucket.id
 
-  policy = data.template_file.lb_log_bucket_policy.rendered
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Id": "ConfigFetch",
+  "Statement": [
+    {
+      "Sid": "AWSLogDeliveryWrite",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "delivery.logs.amazonaws.com"
+      },
+      "Action": "s3:PutObject",
+      "Resource": "${aws_s3_bucket.lb_log_bucket.arn}/AWSLogs/${data.aws_caller_identity.current.account_id}/*"
+    },
+    {
+      "Sid": "AWSLogDeliveryAclCheck",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "delivery.logs.amazonaws.com"
+      },
+      "Action": "s3:GetBucketAcl",
+      "Resource": "${aws_s3_bucket.lb_log_bucket.arn}"
+    }
+  ]
+}
+EOF
 }
 
 resource "aws_s3_bucket_public_access_block" "lb_log_bucket_public_block" {
@@ -147,10 +163,3 @@ resource "aws_s3_bucket_public_access_block" "lb_log_bucket_public_block" {
   ignore_public_acls      = true
   restrict_public_buckets = true
 }
-
-resource "aws_kms_key" "lb_log_bucket_key" {
-  description             = "This key is used to encrypt bucket objects"
-  deletion_window_in_days = 10
-  enable_key_rotation     = true
-}
-
