@@ -121,11 +121,15 @@ resource "aws_s3_bucket" "lb_log_bucket" {
   }
 }
 
+data "aws_caller_identity" "current" {}
+
 data "template_file" "lb_log_bucket_policy" {
   template = file("${path.module}/policies/lb_bucket_policy.json")
 
   vars = {
-    bucket_arn = aws_s3_bucket.lb_log_bucket.arn
+    bucket_arn = aws_s3_bucket.lb_log_bucket.arn,
+    load_balancer_arn = aws_lb.load_balancer.arn,
+    aws_account_id = data.aws_caller_identity.current.account_id
   }
 }
 
