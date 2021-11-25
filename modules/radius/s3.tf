@@ -5,6 +5,10 @@ resource "aws_s3_bucket" "config_bucket" {
     enabled = true
   }
 
+  logging {
+    target_bucket = aws_s3_bucket.config_bucket_logs.id
+  }
+
   server_side_encryption_configuration {
     rule {
       apply_server_side_encryption_by_default {
@@ -45,3 +49,7 @@ resource "aws_kms_key" "config_bucket_key" {
   enable_key_rotation     = true
 }
 
+resource "aws_s3_bucket" "config_bucket_logs" {
+  bucket = "${var.prefix}-config-bucket-logs"
+  acl    = "private"
+}
