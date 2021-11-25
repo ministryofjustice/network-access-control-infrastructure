@@ -5,7 +5,7 @@ resource "aws_s3_bucket" "certificate_bucket" {
     enabled = true
   }
   logging {
-    target_bucket = aws_s3_bucket.config_bucket_logs.id
+    target_bucket = aws_s3_bucket.certificate_bucket_logs.id
   }
   server_side_encryption_configuration {
     rule {
