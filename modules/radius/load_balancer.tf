@@ -3,6 +3,11 @@ resource "aws_lb" "load_balancer" {
   load_balancer_type               = "network"
   internal                         = false
   enable_cross_zone_load_balancing = true
+  access_logs {
+    bucket  = aws_s3_bucket.lb_log_bucket.bucket
+    enabled = true
+  }
+
   subnet_mapping {
     subnet_id = var.vpc.public_subnets[0]
     allocation_id = aws_eip.nac_eu_west_2a.id
@@ -91,3 +96,43 @@ resource "aws_lb_target_group" "target_group_radsec" {
 
   depends_on = [aws_lb.load_balancer]
 }
+
+
+resource "aws_s3_bucket" "lb_log_bucket" {
+  bucket = "${var.prefix}-lb-log-bucket"
+  acl    = "private"
+  versioning {
+    enabled = true
+  }
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        kms_master_key_id = aws_kms_key.lb_log_bucket_key.arn
+        sse_algorithm     = "aws:kms"
+      }
+    }
+  }
+  lifecycle_rule {
+    id      = "30_day_retention_lb_bucket_logs"
+    enabled = true
+    expiration {
+        days = 30
+    }
+  }
+}
+
+resource "aws_s3_bucket_public_access_block" "lb_log_bucket_public_block" {
+  bucket = aws_s3_bucket.lb_log_bucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
+resource "aws_kms_key" "lb_log_bucket_key" {
+  description             = "This key is used to encrypt bucket objects"
+  deletion_window_in_days = 10
+  enable_key_rotation     = true
+}
+
