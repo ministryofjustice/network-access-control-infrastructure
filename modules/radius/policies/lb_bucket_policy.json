@@ -6,10 +6,10 @@
           "Sid": "Allow Load Balancer to set logs",
           "Effect": "Allow",
           "Principal": {
-            "AWS": "${load_balancer_arn}"
+            "AWS": "*"
           },
           "Action": [
-              "*"
+              "s3:PutObject"
           ],
           "Resource": "${bucket_arn}/*"
       }
