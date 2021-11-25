@@ -1,0 +1,25 @@
+{
+  "Version": "2012-10-17",
+  "Id": "ConfigFetch",
+  "Statement": [
+      {
+        "Sid": "Key management",
+        "Effect": "Allow",
+        "Action": [
+          "kms:GenerateDataKey",
+          "kms:Encrypt",
+          "kms:Decrypt"
+        ],
+        "Resource": "${bucket_arn}/*"
+      },{
+        "Sid": "List, get, and put objects",
+        "Effect": "Allow",
+        "Action": [
+          "s3:ListBucket",
+          "s3:GetObject",
+          "s3:PutObject"
+        ],
+        "Resource": "${bucket_arn}/*"
+      }
+  ]
+}

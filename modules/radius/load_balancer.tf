@@ -97,7 +97,6 @@ resource "aws_lb_target_group" "target_group_radsec" {
   depends_on = [aws_lb.load_balancer]
 }
 
-
 resource "aws_s3_bucket" "lb_log_bucket" {
   bucket = "${var.prefix}-lb-log-bucket"
   acl    = "private"
@@ -112,6 +111,7 @@ resource "aws_s3_bucket" "lb_log_bucket" {
       }
     }
   }
+
   lifecycle_rule {
     id      = "30_day_retention_lb_bucket_logs"
     enabled = true
@@ -119,6 +119,20 @@ resource "aws_s3_bucket" "lb_log_bucket" {
         days = 30
     }
   }
+}
+
+data "template_file" "lb_log_bucket_policy" {
+  template = file("${path.module}/policies/lb_bucket_policy.json")
+
+  vars = {
+    bucket_arn = aws_s3_bucket.lb_log_bucket.arn
+  }
+}
+
+resource "aws_s3_bucket_policy" "lb_log_bucket_policy" {
+  bucket = aws_s3_bucket.lb_log_bucket.id
+
+  policy = data.template_file.lb_log_bucket_policy.rendered
 }
 
 resource "aws_s3_bucket_public_access_block" "lb_log_bucket_public_block" {
