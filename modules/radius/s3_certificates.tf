@@ -50,4 +50,12 @@ resource "aws_kms_key" "certificate_bucket_key" {
 resource "aws_s3_bucket" "certificate_bucket_logs" {
   bucket = "${var.prefix}-certificate-bucket-logs"
   acl    = "private"
+  lifecycle_rule {
+    id      = "30_day_retention_config_bucket_logs"
+    enabled = true
+    expiration {
+        days = 30
+    }
+  }
+
 }

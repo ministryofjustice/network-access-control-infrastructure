@@ -52,4 +52,11 @@ resource "aws_kms_key" "config_bucket_key" {
 resource "aws_s3_bucket" "config_bucket_logs" {
   bucket = "${var.prefix}-config-bucket-logs"
   acl    = "private"
+  lifecycle_rule {
+    id      = "30_day_retention_config_bucket_logs"
+    enabled = true
+    expiration {
+        days = 30
+    }
+  }
 }
