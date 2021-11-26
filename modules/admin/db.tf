@@ -69,7 +69,7 @@ resource "aws_db_parameter_group" "admin_db_parameter_group" {
 
   parameter {
     name = "validate_password_mixed_case_count"
-    value = "1'"
+    value = "1"
   }
 
   parameter {
