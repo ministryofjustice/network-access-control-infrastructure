@@ -171,6 +171,10 @@ resource "aws_ecs_task_definition" "admin_task" {
         {
           "name": "RADIUS_CERTIFICATE_BUCKET_NAME",
           "value": "${var.radius_certificate_bucket_name}"
+        },
+        {
+          "name": "CLOUDWATCH_LINK",
+          "value": "${var.cloudwatch_link}"
         }
       ],
       "image": "${aws_ecr_repository.admin_ecr.repository_url}",

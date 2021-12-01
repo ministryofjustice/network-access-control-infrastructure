@@ -214,6 +214,7 @@ module "admin" {
   cognito_user_pool_client_secret   = module.authentication.cognito_user_pool_client_secret
   is_publicly_accessible            = local.publicly_accessible
   local_development_domain_affix    = var.local_development_domain_affix
+  cloudwatch_link                   = var.cloudwatch_link
 
   db = {
     apply_updates_immediately = local.is_production ? false : true
