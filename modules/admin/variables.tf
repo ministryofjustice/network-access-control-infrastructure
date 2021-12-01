@@ -77,6 +77,10 @@ variable "hosted_zone_domain" {
   type = string
 }
 
+variable "cloudwatch_link" {
+  type = string
+}
+
 variable "cognito_user_pool_id" {
   type = string
 }
