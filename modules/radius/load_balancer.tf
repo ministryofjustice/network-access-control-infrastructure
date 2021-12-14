@@ -23,6 +23,8 @@ resource "aws_lb" "load_balancer" {
     allocation_id = aws_eip.nac_eu_west_2c.id
   }
 
+  tags = var.tags
+
   enable_deletion_protection = var.enable_nlb_deletion_protection
 }
 
