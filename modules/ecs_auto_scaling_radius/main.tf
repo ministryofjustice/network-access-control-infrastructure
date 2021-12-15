@@ -67,7 +67,7 @@ resource "aws_cloudwatch_metric_alarm" "packets_high" {
     metric {
       metric_name = "ProcessedPackets"
       namespace   = "AWS/NetworkELB"
-      period      = "60"
+      period      = "300"
       stat        = "Sum"
 
       dimensions = {
@@ -82,7 +82,7 @@ resource "aws_cloudwatch_metric_alarm" "packets_high" {
     metric {
       metric_name = "CPUUtilization"
       namespace   = "AWS/ECS"
-      period      = "60"
+      period      = "300"
       stat        = "SampleCount"
 
       dimensions = {
@@ -118,7 +118,7 @@ resource "aws_cloudwatch_metric_alarm" "packets_low" {
     metric {
       metric_name = "ProcessedPackets"
       namespace   = "AWS/NetworkELB"
-      period      = "60"
+      period      = "300"
       stat        = "Sum"
 
       dimensions = {
@@ -133,7 +133,7 @@ resource "aws_cloudwatch_metric_alarm" "packets_low" {
     metric {
       metric_name = "CPUUtilization"
       namespace   = "AWS/ECS"
-      period      = "60"
+      period      = "300"
       stat        = "SampleCount"
 
       dimensions = {
