@@ -27,7 +27,7 @@ resource "aws_appautoscaling_policy" "ecs_policy_up" {
 }
 
 resource "aws_appautoscaling_policy" "ecs_policy_down" {
-  name               = "ECS Scale Down"
+  name               = "${var.prefix} ECS Scale Down"
   service_namespace  = "ecs"
   resource_id        = "service/${var.cluster_name}/${var.service_name}"
   policy_type        = "StepScaling"
@@ -47,7 +47,7 @@ resource "aws_appautoscaling_policy" "ecs_policy_down" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "packets_high" {
-  alarm_name                = "nacs-packets-per-container-high"
+  alarm_name                = "${var.prefix}-packets-per-container-high"
   comparison_operator       = "GreaterThanOrEqualToThreshold"
   evaluation_periods        = "2"
   threshold                 = "60"
@@ -98,7 +98,7 @@ resource "aws_cloudwatch_metric_alarm" "packets_high" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "packets_low" {
-  alarm_name                = "nacs-packets-per-container-low"
+  alarm_name                = "${var.prefix}-packets-per-container-low"
   comparison_operator       = "LessThanThreshold"
   evaluation_periods        = "2"
   threshold                 = "60"
