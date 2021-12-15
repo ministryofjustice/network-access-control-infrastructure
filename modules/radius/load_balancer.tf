@@ -115,19 +115,35 @@ resource "aws_s3_bucket" "lb_log_bucket" {
 
 data "aws_caller_identity" "current" {}
 
-data "template_file" "lb_log_bucket_policy" {
-  template = file("${path.module}/policies/lb_bucket_policy.json")
-
-  vars = {
-    bucket_arn = aws_s3_bucket.lb_log_bucket.arn,
-    aws_account_id = data.aws_caller_identity.current.account_id
-  }
-}
-
 resource "aws_s3_bucket_policy" "lb_log_bucket_policy" {
   bucket = aws_s3_bucket.lb_log_bucket.id
 
-  policy = data.template_file.lb_log_bucket_policy.rendered
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Id": "ConfigFetch",
+  "Statement": [
+    {
+      "Sid": "AWSLogDeliveryWrite",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "delivery.logs.amazonaws.com"
+      },
+      "Action": "s3:PutObject",
+      "Resource": "${aws_s3_bucket.lb_log_bucket.arn}/AWSLogs/${data.aws_caller_identity.current.account_id}/*"
+    },
+    {
+      "Sid": "AWSLogDeliveryAclCheck",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "delivery.logs.amazonaws.com"
+      },
+      "Action": "s3:GetBucketAcl",
+      "Resource": "${aws_s3_bucket.lb_log_bucket.arn}"
+    }
+  ]
+}
+EOF
 }
 
 resource "aws_s3_bucket_public_access_block" "lb_log_bucket_public_block" {
