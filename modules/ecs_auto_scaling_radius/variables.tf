@@ -9,3 +9,7 @@ variable "service_name" {
 variable "cluster_name" {
   type = string
 }
+
+variable "load_balancer_arn" {
+  type = string
+}

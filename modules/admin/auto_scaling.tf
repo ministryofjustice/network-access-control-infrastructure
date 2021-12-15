@@ -1,6 +1,6 @@
 resource "aws_appautoscaling_target" "auth_ecs_target" {
   service_namespace  = "ecs"
-  resource_id        = "service/${var.cluster_name}/${var.service_name}"
+  resource_id        = "service/${aws_ecs_cluster.admin_cluster.name}/${aws_ecs_service.admin_service.name}"
   max_capacity       = 21
   min_capacity       = 3
   scalable_dimension = "ecs:service:DesiredCount"
@@ -10,7 +10,7 @@ resource "aws_appautoscaling_policy" "ecs_policy_up" {
   name               = "${var.prefix} ECS Scale Up"
   service_namespace  = "ecs"
   policy_type        = "StepScaling"
-  resource_id        = "service/${var.cluster_name}/${var.service_name}"
+  resource_id        = "service/${aws_ecs_cluster.admin_cluster.name}/${aws_ecs_service.admin_service.name}"
   scalable_dimension = "ecs:service:DesiredCount"
 
   step_scaling_policy_configuration {
@@ -29,7 +29,7 @@ resource "aws_appautoscaling_policy" "ecs_policy_up" {
 resource "aws_appautoscaling_policy" "ecs_policy_down" {
   name               = "ECS Scale Down"
   service_namespace  = "ecs"
-  resource_id        = "service/${var.cluster_name}/${var.service_name}"
+  resource_id        = "service/${aws_ecs_cluster.admin_cluster.name}/${aws_ecs_service.admin_service.name}"
   policy_type        = "StepScaling"
   scalable_dimension = "ecs:service:DesiredCount"
 
@@ -57,8 +57,8 @@ resource "aws_cloudwatch_metric_alarm" "ecs_cpu_alarm_high" {
   threshold           = "15"
 
   dimensions = {
-    ClusterName = var.cluster_name
-    ServiceName = var.service_name
+    ClusterName = aws_ecs_cluster.admin_cluster.name
+    ServiceName = aws_ecs_service.admin_service.name
   }
 
   alarm_description = "This alarm tells ECS to scale out based on high CPU usage"
@@ -81,8 +81,8 @@ resource "aws_cloudwatch_metric_alarm" "ecs_cpu_alarm_low" {
   threshold           = "40"
 
   dimensions = {
-    ClusterName = var.cluster_name
-    ServiceName = var.service_name
+    ClusterName = aws_ecs_cluster.admin_cluster.name
+    ServiceName = aws_ecs_service.admin_service.name
   }
 
   alarm_description = "This alarm tells ECS to scale in based on low CPU usage"
