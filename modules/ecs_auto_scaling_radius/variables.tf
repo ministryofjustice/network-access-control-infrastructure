@@ -10,6 +10,6 @@ variable "cluster_name" {
   type = string
 }
 
-variable "load_balancer_arn" {
+variable "load_balancer_arn_suffix" {
   type = string
 }

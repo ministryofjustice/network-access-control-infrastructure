@@ -20,8 +20,8 @@ output "ecs" {
 output "ec2" {
   value = {
     radius_server_security_group_id = aws_security_group.radius_server.id
-    load_balancer_arn = aws_lb.load_balancer.arn
-    internal_load_balancer_arn = aws_lb.internal_load_balancer.arn
+    load_balancer_arn_suffix = aws_lb.load_balancer.arn_suffix
+    internal_load_balancer_arn_suffix = aws_lb.internal_load_balancer.arn_suffix
   }
 }
 
