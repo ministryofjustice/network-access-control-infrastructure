@@ -71,7 +71,7 @@ resource "aws_cloudwatch_metric_alarm" "packets_high" {
       stat        = "Sum"
 
       dimensions = {
-        LoadBalancer = var.load_balancer_arn
+        LoadBalancer = var.load_balancer_arn_suffix
       }
     }
   }
@@ -122,7 +122,7 @@ resource "aws_cloudwatch_metric_alarm" "packets_low" {
       stat        = "Sum"
 
       dimensions = {
-        LoadBalancer = var.load_balancer_arn
+        LoadBalancer = var.load_balancer_arn_suffix
       }
     }
   }

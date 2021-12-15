@@ -116,7 +116,7 @@ module "ecs_auto_scaling_radius_public" {
   prefix                                = module.label.id
   service_name                          = module.radius.ecs.service_name
   cluster_name                          = module.radius.ecs.cluster_name
-  load_balancer_arn                     = module.radius.ec2.load_balancer_arn
+  load_balancer_arn_suffix              = module.radius.ec2.load_balancer_arn_suffix
   providers = {
     aws = aws.env
   }
@@ -127,7 +127,7 @@ module "ecs_auto_scaling_radius_internal" {
   prefix                                = "${module.label.id}-internal"
   service_name                          = module.radius.ecs.internal_service_name
   cluster_name                          = module.radius.ecs.cluster_name
-  load_balancer_arn                     = module.radius.ec2.internal_load_balancer_arn
+  load_balancer_arn_suffix              = module.radius.ec2.internal_load_balancer_arn_suffix
   providers = {
     aws = aws.env
   }
