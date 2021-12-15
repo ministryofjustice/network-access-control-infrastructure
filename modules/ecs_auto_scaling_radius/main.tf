@@ -91,4 +91,59 @@ resource "aws_cloudwatch_metric_alarm" "packets_high" {
       }
     }
   }
+
+  alarm_actions = [
+    aws_appautoscaling_policy.ecs_policy_up.arn
+  ]
+}
+
+resource "aws_cloudwatch_metric_alarm" "packets_low" {
+  alarm_name                = "nacs-packets-per-container-low"
+  comparison_operator       = "LessThanThreshold"
+  evaluation_periods        = "2"
+  threshold                 = "60"
+  alarm_description         = "Packets processed per container"
+  insufficient_data_actions = []
+
+  metric_query {
+    id          = "e1"
+    expression  = "m1/m2"
+    label       = "Packet count per container"
+    return_data = "true"
+  }
+
+  metric_query {
+    id = "m1"
+
+    metric {
+      metric_name = "ProcessedPackets"
+      namespace   = "AWS/NetworkELB"
+      period      = "60"
+      stat        = "Sum"
+
+      dimensions = {
+        LoadBalancer = var.load_balancer_arn
+      }
+    }
+  }
+
+  metric_query {
+    id = "m2"
+
+    metric {
+      metric_name = "CPUUtilization"
+      namespace   = "AWS/ECS"
+      period      = "60"
+      stat        = "SampleCount"
+
+      dimensions = {
+        ClusterName = var.cluster_name
+        ServiceName = var.service_name
+      }
+    }
+  }
+
+  alarm_actions = [
+    aws_appautoscaling_policy.ecs_policy_down.arn
+  ]
 }
