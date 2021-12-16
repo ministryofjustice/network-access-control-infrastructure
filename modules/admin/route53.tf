@@ -30,6 +30,10 @@ resource "aws_route53_record" "admin_app" {
   zone_id = var.hosted_zone_id
   ttl     = 3600
   type    = "CNAME"
+  set_identifier = "geolocation"
+  geolocation_routing_policy {
+    country = "GB"
+  }
 
   name    = "admin${var.local_development_domain_affix}"
   records = [aws_lb.admin_alb.dns_name]
