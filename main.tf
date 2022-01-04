@@ -207,7 +207,6 @@ module "admin" {
   is_publicly_accessible            = local.publicly_accessible
   local_development_domain_affix    = var.local_development_domain_affix
   cloudwatch_link                   = var.cloudwatch_link
-  is_development                    = local.is_development
 
   db = {
     apply_updates_immediately = local.is_production ? false : true
