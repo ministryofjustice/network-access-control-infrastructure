@@ -7,7 +7,7 @@ resource "aws_db_instance" "admin_db" {
   allow_major_version_upgrade = false
   apply_immediately           = var.db.apply_updates_immediately
   delete_automated_backups    = var.db.delete_automated_backups
-  instance_class              = var.is_development ? "db.t3.large" : "db.t2.medium"
+  instance_class              = "db.t2.medium"
   identifier                  = var.prefix
   name                        = replace(var.prefix, "-", "_")
   username                    = var.db.username

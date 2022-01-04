@@ -124,7 +124,3 @@ variable "is_publicly_accessible" {
 variable "local_development_domain_affix" {
   type = string
 }
-
-variable "is_development" {
-  type = bool
-}
