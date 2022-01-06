@@ -5,7 +5,7 @@ resource "aws_ecs_cluster" "server_cluster" {
     name  = "containerInsights"
     value = "enabled"
   }
-  
+
   tags = var.tags
 }
 
@@ -41,6 +41,10 @@ resource "aws_ecs_service" "service" {
 
     assign_public_ip = true
   }
+
+  lifecycle {
+    ignore_changes = ["desired_count"]
+  }
 }
 
 resource "aws_ecs_service" "internal_service" {
@@ -73,5 +77,8 @@ resource "aws_ecs_service" "internal_service" {
     ]
 
     assign_public_ip = false
+  }
+  lifecycle {
+    ignore_changes = ["desired_count"]
   }
 }
