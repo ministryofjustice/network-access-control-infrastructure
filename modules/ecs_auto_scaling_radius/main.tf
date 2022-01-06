@@ -50,7 +50,7 @@ resource "aws_cloudwatch_metric_alarm" "packets_high" {
   alarm_name                = "${var.prefix}-packets-per-container-high"
   comparison_operator       = "GreaterThanOrEqualToThreshold"
   evaluation_periods        = "2"
-  threshold                 = "350"
+  threshold                 = "35000"
   alarm_description         = "Packets processed per container"
   insufficient_data_actions = []
 
@@ -101,7 +101,7 @@ resource "aws_cloudwatch_metric_alarm" "packets_low" {
   alarm_name                = "${var.prefix}-packets-per-container-low"
   comparison_operator       = "LessThanThreshold"
   evaluation_periods        = "2"
-  threshold                 = "200"
+  threshold                 = "20000"
   alarm_description         = "Packets processed per container"
   insufficient_data_actions = []
 
