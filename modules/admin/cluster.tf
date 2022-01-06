@@ -215,6 +215,10 @@ resource "aws_ecs_service" "admin_service" {
 
     assign_public_ip = true
   }
+
+  lifecycle {
+    ignore_changes = ["desired_count"]
+  }
 }
 
 resource "aws_alb_target_group" "admin_tg" {
