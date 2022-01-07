@@ -15,6 +15,8 @@ resource "aws_security_group" "endpoints" {
     to_port     = 443
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  tags = var.tags
 }
 
 module "vpc" {
@@ -67,4 +69,6 @@ module "vpc" {
     cidrsubnet(var.cidr_block, var.cidr_block_new_bits, 3),
     cidrsubnet(var.cidr_block, var.cidr_block_new_bits, 5),
   ]
+
+  tags = var.tags
 }
