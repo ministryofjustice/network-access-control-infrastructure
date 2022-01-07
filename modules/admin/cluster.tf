@@ -190,6 +190,8 @@ resource "aws_ecs_task_definition" "admin_task" {
     }
 ]
 EOF
+
+  tags = var.tags
 }
 
 resource "aws_ecs_service" "admin_service" {
@@ -219,6 +221,8 @@ resource "aws_ecs_service" "admin_service" {
   lifecycle {
     ignore_changes = ["desired_count"]
   }
+
+  tags = var.tags
 }
 
 resource "aws_alb_target_group" "admin_tg" {

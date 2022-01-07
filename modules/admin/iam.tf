@@ -94,6 +94,8 @@ resource "aws_iam_role" "rds_monitoring_role" {
   ]
 }
 EOF
+
+  tags = var.tags
 }
 
 resource "aws_iam_role_policy" "rds_monitoring_policy" {

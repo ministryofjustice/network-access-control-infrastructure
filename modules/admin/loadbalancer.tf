@@ -24,4 +24,5 @@ resource "aws_alb_listener" "alb_listener" {
     target_group_arn = aws_alb_target_group.admin_tg.arn
     type             = "forward"
   }
+  tags = var.tags
 }

@@ -95,6 +95,8 @@ resource "aws_db_parameter_group" "admin_db_parameter_group" {
     value = "1"
     apply_method = "pending-reboot"
   }
+
+  tags = var.tags
 }
 
 resource "aws_db_option_group" "mariadb_audit" {

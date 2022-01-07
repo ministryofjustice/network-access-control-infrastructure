@@ -68,6 +68,8 @@ resource "aws_cloudwatch_metric_alarm" "ecs_cpu_alarm_high" {
   ]
 
   treat_missing_data = "breaching"
+
+  tags = var.tags
 }
 
 resource "aws_cloudwatch_metric_alarm" "ecs_cpu_alarm_low" {
@@ -92,4 +94,6 @@ resource "aws_cloudwatch_metric_alarm" "ecs_cpu_alarm_low" {
   ]
 
   treat_missing_data = "breaching"
+
+  tags = var.tags
 }
