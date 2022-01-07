@@ -50,6 +50,8 @@ resource "aws_db_parameter_group" "admin_read_replica_parameter_group" {
     name  = "max_connect_errors"
     value = "10000"
   }
+
+  tags = var.tags
 }
 
 resource "aws_db_option_group" "mariadb_audit" {

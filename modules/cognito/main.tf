@@ -17,6 +17,8 @@ resource "aws_cognito_user_pool" "pool" {
       max_length = 255
     }
   }
+
+  tags = var.tags
 }
 
 resource "aws_cognito_user_pool_client" "client" {

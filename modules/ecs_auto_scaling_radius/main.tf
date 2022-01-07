@@ -95,6 +95,8 @@ resource "aws_cloudwatch_metric_alarm" "packets_high" {
   alarm_actions = [
     aws_appautoscaling_policy.ecs_policy_up.arn
   ]
+
+  tags = var.tags
 }
 
 resource "aws_cloudwatch_metric_alarm" "packets_low" {
@@ -146,4 +148,6 @@ resource "aws_cloudwatch_metric_alarm" "packets_low" {
   alarm_actions = [
     aws_appautoscaling_policy.ecs_policy_down.arn
   ]
+
+  tags = var.tags
 }
