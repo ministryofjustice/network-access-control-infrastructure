@@ -15,6 +15,8 @@ resource "aws_s3_bucket" "certificate_bucket" {
       }
     }
   }
+
+  tags = var.tags
 }
 
 data "template_file" "certificate_bucket_policy" {
@@ -57,6 +59,8 @@ resource "aws_s3_bucket" "certificate_bucket_logs" {
         days = 30
     }
   }
+
+  tags = var.tags
 }
 
 resource "aws_s3_bucket_public_access_block" "certificate_log_bucket_public_block" {

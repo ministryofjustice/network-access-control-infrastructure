@@ -15,6 +15,8 @@ resource "aws_route53_resolver_endpoint" "nac_vpc_outbound" {
   ip_address {
     subnet_id = var.vpc.public_subnets[0]
   }
+
+  tags = var.tags
 }
 
 resource "aws_route53_resolver_rule" "nac_dns_rule" {
@@ -34,6 +36,8 @@ resource "aws_route53_resolver_rule" "nac_dns_rule" {
     ip    = "${var.mojo_dns_ip_2}"
     port  = "53"
   }
+
+  tags = var.tags
 }
 
 resource "aws_route53_resolver_rule_association" "nac_dns_rule_association" {
@@ -46,6 +50,8 @@ resource "aws_route53_resolver_rule_association" "nac_dns_rule_association" {
 resource "aws_route53_resolver_query_log_config" "nac_resolver_query_log" {
   name            = "nac-resolver-query-log-${var.short_prefix}"
   destination_arn = var.vpc_flow_logs_group_id
+
+  tags = var.tags
 }
 
 resource "aws_route53_resolver_query_log_config_association" "nac_resolver_query_log_association" {

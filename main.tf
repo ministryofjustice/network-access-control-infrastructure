@@ -117,6 +117,7 @@ module "ecs_auto_scaling_radius_public" {
   service_name                          = module.radius.ecs.service_name
   cluster_name                          = module.radius.ecs.cluster_name
   load_balancer_arn_suffix              = module.radius.ec2.load_balancer_arn_suffix
+  tags                                  = module.label.tags
   providers = {
     aws = aws.env
   }
@@ -128,6 +129,7 @@ module "ecs_auto_scaling_radius_internal" {
   service_name                          = module.radius.ecs.internal_service_name
   cluster_name                          = module.radius.ecs.cluster_name
   load_balancer_arn_suffix              = module.radius.ec2.internal_load_balancer_arn_suffix
+  tags                                  = module.label.tags
   providers = {
     aws = aws.env
   }
@@ -259,6 +261,7 @@ module "admin_vpc" {
   prefix     = "${module.label.id}-admin"
   region     = data.aws_region.current_region.id
   cidr_block = "10.0.0.0/16"
+  tags       = module.label.tags
 
   providers = {
     aws = aws.env

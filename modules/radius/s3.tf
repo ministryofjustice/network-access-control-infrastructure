@@ -17,6 +17,8 @@ resource "aws_s3_bucket" "config_bucket" {
       }
     }
   }
+
+  tags = var.tags
 }
 
 data "template_file" "config_bucket_policy" {
@@ -47,6 +49,8 @@ resource "aws_kms_key" "config_bucket_key" {
   description             = "This key is used to encrypt bucket objects"
   deletion_window_in_days = 10
   enable_key_rotation     = true
+
+  tags = var.tags
 }
 
 resource "aws_s3_bucket" "config_bucket_logs" {
@@ -59,6 +63,8 @@ resource "aws_s3_bucket" "config_bucket_logs" {
         days = 30
     }
   }
+
+  tags = var.tags
 }
 
 resource "aws_s3_bucket_public_access_block" "config_log_bucket_public_block" {

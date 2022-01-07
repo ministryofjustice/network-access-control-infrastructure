@@ -13,3 +13,7 @@ variable "cluster_name" {
 variable "load_balancer_arn_suffix" {
   type = string
 }
+
+variable "tags" {
+  type = map(string)
+}
