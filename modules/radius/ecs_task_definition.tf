@@ -11,6 +11,8 @@ resource "aws_ecs_task_definition" "server_task" {
   memory                   = "2048"
   network_mode             = "awsvpc"
 
+  tags = var.tags
+
   container_definitions = <<EOF
 [
   {

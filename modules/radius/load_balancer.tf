@@ -31,16 +31,19 @@ resource "aws_lb" "load_balancer" {
 resource "aws_eip" "nac_eu_west_2a" {
   vpc              = true
   public_ipv4_pool = var.byoip_pool_id
+  tags = var.tags
 }
 
 resource "aws_eip" "nac_eu_west_2b" {
   vpc              = true
   public_ipv4_pool = var.byoip_pool_id
+  tags = var.tags
 }
 
 resource "aws_eip" "nac_eu_west_2c" {
   vpc              = true
   public_ipv4_pool = var.byoip_pool_id
+  tags = var.tags
 }
 
 resource "aws_lb_listener" "udp" {
@@ -52,6 +55,8 @@ resource "aws_lb_listener" "udp" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.target_group.arn
   }
+
+  tags = var.tags
 }
 
 resource "aws_lb_listener" "tcp" {
@@ -63,6 +68,8 @@ resource "aws_lb_listener" "tcp" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.target_group_radsec.arn
   }
+
+  tags = var.tags
 }
 
 resource "aws_lb_target_group" "target_group" {
@@ -80,6 +87,8 @@ resource "aws_lb_target_group" "target_group" {
   }
 
   depends_on = [aws_lb.load_balancer]
+
+  tags = var.tags
 }
 
 resource "aws_lb_target_group" "target_group_radsec" {
@@ -97,6 +106,8 @@ resource "aws_lb_target_group" "target_group_radsec" {
   }
 
   depends_on = [aws_lb.load_balancer]
+
+  tags = var.tags
 }
 
 resource "aws_s3_bucket" "lb_log_bucket" {
@@ -113,6 +124,8 @@ resource "aws_s3_bucket" "lb_log_bucket" {
         days = 30
     }
   }
+
+  tags = var.tags
 }
 
 data "aws_caller_identity" "current" {}

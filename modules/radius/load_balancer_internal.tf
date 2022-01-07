@@ -19,6 +19,8 @@ resource "aws_lb" "internal_load_balancer" {
   }
 
   enable_deletion_protection = false
+
+  tags = var.tags
 }
 
 resource "aws_lb_listener" "internal_udp" {
@@ -30,6 +32,8 @@ resource "aws_lb_listener" "internal_udp" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.internal_target_group.arn
   }
+
+  tags = var.tags
 }
 
 resource "aws_lb_listener" "internal_tcp" {
@@ -41,6 +45,8 @@ resource "aws_lb_listener" "internal_tcp" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.internal_target_group_radsec.arn
   }
+
+  tags = var.tags
 }
 
 resource "aws_lb_target_group" "internal_target_group" {
@@ -57,6 +63,8 @@ resource "aws_lb_target_group" "internal_target_group" {
   }
 
   depends_on = [aws_lb.internal_load_balancer]
+
+  tags = var.tags
 }
 
 resource "aws_lb_target_group" "internal_target_group_radsec" {
@@ -73,4 +81,6 @@ resource "aws_lb_target_group" "internal_target_group_radsec" {
   }
 
   depends_on = [aws_lb.internal_load_balancer]
+
+  tags = var.tags
 }

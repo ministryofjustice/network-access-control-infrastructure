@@ -38,6 +38,8 @@ resource "aws_ecr_repository" "docker_repository_nginx" {
   image_scanning_configuration {
     scan_on_push = true
   }
+
+  tags = var.tags
 }
 
 resource "aws_ecr_lifecycle_policy" "radius_nginx_sidecar_container" {

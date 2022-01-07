@@ -2,11 +2,16 @@ resource "aws_iam_role" "ecs_task_role" {
   name = "${var.prefix}-ecs-task-role"
 
   assume_role_policy = data.aws_iam_policy_document.assume_role_policy.json
+
+  tags = var.tags
 }
 
 resource "aws_iam_role" "ecs_execution_role" {
   name               = "${var.prefix}-ecs-execution-role"
+
   assume_role_policy = data.aws_iam_policy_document.assume_role_policy.json
+
+  tags = var.tags
 }
 
 resource "aws_iam_role_policy" "ecs_task_policy" {

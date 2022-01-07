@@ -45,6 +45,8 @@ resource "aws_ecs_service" "service" {
   lifecycle {
     ignore_changes = ["desired_count"]
   }
+
+  tags = var.tags
 }
 
 resource "aws_ecs_service" "internal_service" {
@@ -81,4 +83,6 @@ resource "aws_ecs_service" "internal_service" {
   lifecycle {
     ignore_changes = ["desired_count"]
   }
+
+  tags = var.tags
 }

@@ -5,6 +5,8 @@ resource "aws_ecr_repository" "docker_repository" {
   image_scanning_configuration {
     scan_on_push = true
   }
+
+  tags = var.tags
 }
 
 resource "aws_ecr_repository_policy" "docker_repository_policy" {
