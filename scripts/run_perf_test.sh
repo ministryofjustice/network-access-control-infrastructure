@@ -1,10 +1,17 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-set -e
+ while true
+ do
+	array[0]="ENTER IP 1"
+	array[1]="ENTER IP 2"
+	array[2]="ENTER IP 3"
+	size=${#array[@]}
+	index=$(($RANDOM % $size))
 
-echo "starting test"
-while true; do
-    ./test_eap_mab.sh |tail -n 1 >> results
-    date +%s >> results
-    sleep 0.5
-done &
+ 	eapol_test -r0 -t3 -c test.conf -a"${array[$index]}" -s "PERFTEST" > /dev/null
+	sleep 0.5
+ done
+
+
+
+
