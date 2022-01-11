@@ -32,9 +32,9 @@ module "label" {
   name      = var.service_name
 
   tags = {
-    "business-unit"    = "MoJO"
-    "application"      = "nac",
-    "is-production"    = "true"
+    "business-unit"    = "HQ"
+    "application"      = "network-access-control"
+    "is-production"    = tostring(local.is_production)
     "owner"            = "nac@digital.justice.gov.uk"
     "environment-name" = "global"
     "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
