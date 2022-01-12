@@ -198,6 +198,7 @@ module "admin" {
   hosted_zone_id                    = var.hosted_zone_id
   hosted_zone_domain                = var.hosted_zone_domain
   radius_cluster_name               = module.radius.ecs.cluster_name
+  radius_cluster_id                 = module.radius.ecs.cluster_id
   radius_service_name               = module.radius.ecs.service_name
   radius_internal_service_name      = module.radius.ecs.internal_service_name
   radius_service_arn                = module.radius.ecs.service_arn
