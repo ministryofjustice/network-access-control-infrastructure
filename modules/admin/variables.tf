@@ -101,6 +101,10 @@ variable "radius_cluster_name" {
   type = string
 }
 
+variable "radius_cluster_id" {
+  type = string
+}
+
 variable "radius_service_name" {
   type = string
 }

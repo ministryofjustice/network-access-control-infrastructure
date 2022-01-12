@@ -1,14 +1,3 @@
-resource "aws_ecs_cluster" "admin_cluster" {
-  name = "${var.prefix}-cluster"
-
-  setting {
-    name  = "containerInsights"
-    value = "enabled"
-  }
-
-  tags = var.tags
-}
-
 resource "aws_cloudwatch_log_group" "admin_log_group" {
   name = "${var.prefix}-log-group"
 
@@ -197,7 +186,7 @@ EOF
 resource "aws_ecs_service" "admin_service" {
   depends_on      = [aws_alb_listener.alb_listener]
   name            = var.prefix
-  cluster         = aws_ecs_cluster.admin_cluster.id
+  cluster         = var.radius_cluster_id
   task_definition = aws_ecs_task_definition.admin_task.arn
   desired_count   = 3
   launch_type     = "FARGATE"
