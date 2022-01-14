@@ -208,7 +208,9 @@ resource "aws_ecs_service" "admin_service" {
   }
 
   lifecycle {
-    ignore_changes = ["desired_count"]
+    ignore_changes = [
+      desired_count
+    ]
   }
 
   tags = var.tags
