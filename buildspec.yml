@@ -50,11 +50,6 @@ phases:
       - terraform init -no-color --backend-config="key=terraform.$ENV.state"
       - terraform workspace new $ENV || true
       - terraform workspace select $ENV
-      - |
-         if [[ "${PLAN}" == "true" ]]; then
-            terraform plan
-         else
-            terraform apply --auto-approve -no-color
-            ./scripts/publish_terraform_outputs.sh
-            ./scripts/route53/ensure_delegated_non_production_subdomains.sh
-         fi
+      - ./scripts/terraform_plan_or_apply.sh
+      - ./scripts/publish_terraform_outputs.sh
+      - ./scripts/route53/ensure_delegated_non_production_subdomains.sh
