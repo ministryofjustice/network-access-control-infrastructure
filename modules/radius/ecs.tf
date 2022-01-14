@@ -43,7 +43,9 @@ resource "aws_ecs_service" "service" {
   }
 
   lifecycle {
-    ignore_changes = ["desired_count"]
+    ignore_changes = [
+      desired_count
+    ]
   }
 
   tags = var.tags
@@ -81,7 +83,9 @@ resource "aws_ecs_service" "internal_service" {
     assign_public_ip = false
   }
   lifecycle {
-    ignore_changes = ["desired_count"]
+    ignore_changes = [
+      desired_count
+    ]
   }
 
   tags = var.tags
