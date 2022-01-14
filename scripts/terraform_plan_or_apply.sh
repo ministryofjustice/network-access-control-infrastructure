@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -euo pipefail
+set -eo pipefail
 
 if [[ "${PLAN}" == "true" ]]; then
   terraform plan
