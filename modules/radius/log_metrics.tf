@@ -7,7 +7,7 @@ resource "aws_cloudwatch_log_metric_filter" "radius_request_filter" {
 
   metric_transformation {
     name          = replace(each.value, ":", "")
-    namespace     = "${var.prefix}-requests"
+    namespace     = "mojo-nac-requests"
     value         = "1"
     default_value = "0"
   }
