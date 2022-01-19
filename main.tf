@@ -283,7 +283,7 @@ module "admin_vpc_flow_logs" {
 
 module "performance_testing" {
   source = "./modules/performance_testing"
-  count = local.is_development ? 1 : 0
+  count = local.is_development ? 0 : 0
   prefix = "${module.label.id}-perf"
   vpc_id = module.radius_vpc.vpc_id
   subnets = module.radius_vpc.public_subnets
