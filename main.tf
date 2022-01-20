@@ -48,7 +48,9 @@ locals {
   private_ip_eu_west_2c = "10.180.110.10"
   vpc_cidr              = "10.180.108.0/22"
   is_production = terraform.workspace == "production" ? true : false
+  is_pre_production = terraform.workspace == "pre-production" ? true : false
   is_development = terraform.workspace == "development" ? true : false
+  is_local_development = !local.is_development && !local.is_pre_production && !local.is_production
 }
 
 module "radius" {
@@ -76,6 +78,7 @@ module "radius" {
   enable_ocsp_dns_resolver        = local.is_production
   radius_verbose_logging          = var.radius_verbose_logging
   vpc_flow_logs_group_id          = module.radius_vpc_flow_logs.flow_log_group_id
+  log_metrics_namespace           = local.is_local_development ? "${module.label.id}-mojo-nac-requests" : "mojo-nac-requests"
   read_replica = {
     name = module.admin_read_replica.rds.name
     host = module.admin_read_replica.rds.host
