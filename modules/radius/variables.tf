@@ -123,3 +123,7 @@ variable "packet_capture_duration_seconds" {
 variable "vpc_flow_logs_group_id" {
   type = string
 }
+
+variable "log_metrics_namespace" {
+  type = string
+}
