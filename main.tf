@@ -100,13 +100,16 @@ module "radius" {
   read_replica_security_group_id = module.admin_read_replica.rds.security_group_id
 
   log_filters = [
-    "Login OK:",
+    "Sent Access-Accept",
     "Login incorrect",
-    "Ignoring request",
+    "Ignoring request to auth proto tcp address",
+    "Ignoring request to auth address",
     "Error: post_auth - Failed to find attribute",
     "Error: python",
     "Error:",
-    "Shared secret is incorrect"
+    "Shared secret is incorrect",
+    "write:fatal:unknown CA",
+    "authorized_macs: users: Matched entry"
   ]
 
   providers = {
