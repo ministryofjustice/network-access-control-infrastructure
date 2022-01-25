@@ -101,7 +101,7 @@ module "radius" {
 
   log_filters = [
     "Sent Access-Accept",
-    "Login incorrect",
+    "Sent Access-Reject",
     "Ignoring request to auth proto tcp address",
     "Ignoring request to auth address",
     "Error: post_auth - Failed to find attribute",
