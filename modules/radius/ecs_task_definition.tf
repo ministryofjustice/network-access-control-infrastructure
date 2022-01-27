@@ -101,10 +101,6 @@ resource "aws_ecs_task_definition" "server_task" {
         "value": "${var.radsec_private_key_password}"
       },
       {
-        "name": "VERBOSE_LOGGING",
-        "value": "${var.radius_verbose_logging}"
-      },
-      {
         "name": "ENABLE_PACKET_CAPTURE",
         "value": "${var.enable_packet_capture}"
       },
