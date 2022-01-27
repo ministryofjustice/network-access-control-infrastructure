@@ -108,10 +108,6 @@ variable "enable_ocsp_dns_resolver" {
   type = bool
 }
 
-variable "radius_verbose_logging" {
-  type = string
-}
-
 variable "enable_packet_capture" {
   type = string
 }

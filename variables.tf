@@ -107,10 +107,6 @@ variable "ocsp_atos_domain" {
   type = string
 }
 
-variable "radius_verbose_logging" {
-  type = string
-}
-
 variable "radius_enable_packet_capture" {
   type = string
 }

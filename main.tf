@@ -76,7 +76,6 @@ module "radius" {
   mojo_dns_ip_2                   = var.mojo_dns_ip_2
   ocsp_atos_domain                = var.ocsp_atos_domain
   enable_ocsp_dns_resolver        = local.is_production
-  radius_verbose_logging          = var.radius_verbose_logging
   vpc_flow_logs_group_id          = module.radius_vpc_flow_logs.flow_log_group_id
   log_metrics_namespace           = local.is_local_development ? "${module.label.id}-mojo-nac-requests" : "mojo-nac-requests"
   read_replica = {

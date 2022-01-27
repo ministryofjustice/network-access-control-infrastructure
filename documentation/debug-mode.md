@@ -7,19 +7,7 @@ Two debugging features can be used to troubleshoot issues in production and non-
 
 ## Verbose logging
 
-To enable verbose logging on the FreeRadius servers: 
-
-1. Set the following SSM parameter to `true` in the Shared services AWS Account 
-
-`/moj-network-access-control/$ENV/debug/radius/verbose_logging`
-
-2. Re-deploy the infrastructure the Shared Services CodePipeline, this will update the ECS task definition and automatically kick off a rolling deployment.
-
-This will start the radius server with the [-xx](https://github.com/ministryofjustice/network-access-control-server/blob/main/scripts/bootstrap.sh) flag passed for verbose logging.
-
-```bash
-freeradius -fxx -l stdout
-```
+Verbose logging is the default log level for the server. It is required to capture details for monitoring and alerting.
 
 ## Server side packet captures
 
