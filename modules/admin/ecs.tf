@@ -301,7 +301,7 @@ resource "aws_ecs_service" "admin_background_worker_service" {
       aws_security_group.admin_ecs.id
     ]
 
-    assign_public_ip = false
+    assign_public_ip = true
   }
 
   lifecycle {
