@@ -107,7 +107,7 @@ module "radius" {
     "Error: python",
     "Error:",
     "Shared secret is incorrect",
-    "write:fatal:unknown CA",
+    "unknown CA",
     "authorized_macs: users: Matched entry"
   ]
 
