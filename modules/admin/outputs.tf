@@ -10,6 +10,7 @@ output "ecs" {
   value = {
     cluster_name = var.radius_cluster_name
     service_name = aws_ecs_service.admin_service.name
+    background_worker_service_name = aws_ecs_service.admin_background_worker_service.name
     task_definition_name = aws_ecs_task_definition.admin_task.id
   }
 }
