@@ -276,7 +276,7 @@ module "admin_vpc" {
 
 module "admin_vpc_flow_logs" {
   source = "./modules/vpc_flow_logs"
-  prefix = "nac-admin-${terraform.workspace}"
+  prefix = "${module.label.id}-admin-vpc-flow-logs"
   region = data.aws_region.current_region.id
   tags   = module.label.tags
   vpc_id = module.admin_vpc.vpc_id
