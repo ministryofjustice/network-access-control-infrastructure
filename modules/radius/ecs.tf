@@ -29,11 +29,11 @@ resource "aws_ecs_service" "service" {
   }
 
   network_configuration {
-      subnets = [
-        var.vpc.public_subnets[0],
-        var.vpc.public_subnets[1],
-        var.vpc.public_subnets[2]
-      ]
+    subnets = [
+      var.vpc.public_subnets[0],
+      var.vpc.public_subnets[1],
+      var.vpc.public_subnets[2]
+    ]
 
     security_groups = [
       aws_security_group.radius_server.id
@@ -74,7 +74,7 @@ resource "aws_ecs_service" "internal_service" {
     subnets = [
       var.vpc.private_subnets[0],
       var.vpc.private_subnets[1]
-      ]
+    ]
 
     security_groups = [
       aws_security_group.radius_server.id

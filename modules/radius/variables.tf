@@ -8,13 +8,13 @@ variable "short_prefix" {
 
 variable "vpc" {
   type = object({
-    cidr = string
-    id = string
+    cidr                  = string
+    id                    = string
     private_ip_eu_west_2a = string
     private_ip_eu_west_2b = string
     private_ip_eu_west_2c = string
-    private_subnets = list(string)
-    public_subnets = list(string)
+    private_subnets       = list(string)
+    public_subnets        = list(string)
   })
 }
 
@@ -47,7 +47,7 @@ variable "hosted_zone_domain" {
 }
 
 variable "enable_hosted_zone" {
-  type = bool
+  type    = bool
   default = false
 }
 

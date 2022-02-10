@@ -25,7 +25,7 @@ data "template_file" "config_bucket_policy" {
   template = file("${path.module}/policies/bucket_policy.json")
 
   vars = {
-    bucket_arn = aws_s3_bucket.config_bucket.arn,
+    bucket_arn        = aws_s3_bucket.config_bucket.arn,
     ecs_task_role_arn = aws_iam_role.ecs_task_role.arn
   }
 }
@@ -60,7 +60,7 @@ resource "aws_s3_bucket" "config_bucket_logs" {
     id      = "30_day_retention_config_bucket_logs"
     enabled = true
     expiration {
-        days = 30
+      days = 30
     }
   }
 
