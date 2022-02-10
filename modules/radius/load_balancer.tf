@@ -9,17 +9,17 @@ resource "aws_lb" "load_balancer" {
   }
 
   subnet_mapping {
-    subnet_id = var.vpc.public_subnets[0]
+    subnet_id     = var.vpc.public_subnets[0]
     allocation_id = aws_eip.nac_eu_west_2a.id
   }
 
   subnet_mapping {
-    subnet_id = var.vpc.public_subnets[1]
+    subnet_id     = var.vpc.public_subnets[1]
     allocation_id = aws_eip.nac_eu_west_2b.id
   }
 
   subnet_mapping {
-    subnet_id = var.vpc.public_subnets[2]
+    subnet_id     = var.vpc.public_subnets[2]
     allocation_id = aws_eip.nac_eu_west_2c.id
   }
 
@@ -31,19 +31,19 @@ resource "aws_lb" "load_balancer" {
 resource "aws_eip" "nac_eu_west_2a" {
   vpc              = true
   public_ipv4_pool = var.byoip_pool_id
-  tags = var.tags
+  tags             = var.tags
 }
 
 resource "aws_eip" "nac_eu_west_2b" {
   vpc              = true
   public_ipv4_pool = var.byoip_pool_id
-  tags = var.tags
+  tags             = var.tags
 }
 
 resource "aws_eip" "nac_eu_west_2c" {
   vpc              = true
   public_ipv4_pool = var.byoip_pool_id
-  tags = var.tags
+  tags             = var.tags
 }
 
 resource "aws_lb_listener" "udp" {
@@ -121,7 +121,7 @@ resource "aws_s3_bucket" "lb_log_bucket" {
     id      = "30_day_retention_lb_bucket_logs"
     enabled = true
     expiration {
-        days = 30
+      days = 30
     }
   }
 

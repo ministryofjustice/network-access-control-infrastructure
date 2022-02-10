@@ -3,7 +3,7 @@ resource "aws_security_group" "radius_server" {
   description = "Allow ingress and egress traffic for radius server"
   vpc_id      = var.vpc.id
 
-  tags        = var.tags
+  tags = var.tags
 }
 
 resource "aws_security_group_rule" "radius_container_healthcheck" {

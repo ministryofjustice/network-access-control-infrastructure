@@ -1,6 +1,6 @@
 locals {
   zone_prefixes = {
-    "development" = "dev.",
+    "development"    = "dev.",
     "pre-production" = "prep."
   }
 }

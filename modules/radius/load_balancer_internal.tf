@@ -4,17 +4,17 @@ resource "aws_lb" "internal_load_balancer" {
   internal                         = true
   enable_cross_zone_load_balancing = true
   subnet_mapping {
-    subnet_id = var.vpc.private_subnets[0]
+    subnet_id            = var.vpc.private_subnets[0]
     private_ipv4_address = var.vpc.private_ip_eu_west_2a
   }
 
   subnet_mapping {
-    subnet_id = var.vpc.private_subnets[1]
+    subnet_id            = var.vpc.private_subnets[1]
     private_ipv4_address = var.vpc.private_ip_eu_west_2b
   }
 
   subnet_mapping {
-    subnet_id = var.vpc.private_subnets[2]
+    subnet_id            = var.vpc.private_subnets[2]
     private_ipv4_address = var.vpc.private_ip_eu_west_2c
   }
 
