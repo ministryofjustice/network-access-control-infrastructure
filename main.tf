@@ -47,10 +47,10 @@ locals {
   private_ip_eu_west_2b = "10.180.109.10"
   private_ip_eu_west_2c = "10.180.110.10"
   vpc_cidr              = "10.180.108.0/22"
-  is_production = terraform.workspace == "production" ? true : false
-  is_pre_production = terraform.workspace == "pre-production" ? true : false
-  is_development = terraform.workspace == "development" ? true : false
-  is_local_development = !local.is_development && !local.is_pre_production && !local.is_production
+  is_production         = terraform.workspace == "production" ? true : false
+  is_pre_production     = terraform.workspace == "pre-production" ? true : false
+  is_development        = terraform.workspace == "development" ? true : false
+  is_local_development  = !local.is_development && !local.is_pre_production && !local.is_production
 }
 
 module "radius" {
@@ -86,13 +86,13 @@ module "radius" {
   }
 
   vpc = {
-    cidr = local.vpc_cidr
-    id = module.radius_vpc.vpc_id
+    cidr                  = local.vpc_cidr
+    id                    = module.radius_vpc.vpc_id
     private_ip_eu_west_2a = local.private_ip_eu_west_2a
     private_ip_eu_west_2b = local.private_ip_eu_west_2b
     private_ip_eu_west_2c = local.private_ip_eu_west_2c
-    private_subnets = module.radius_vpc.private_subnets
-    public_subnets = module.radius_vpc.public_subnets
+    private_subnets       = module.radius_vpc.private_subnets
+    public_subnets        = module.radius_vpc.public_subnets
   }
 
   local_development_domain_affix = var.local_development_domain_affix
@@ -117,24 +117,24 @@ module "radius" {
 }
 
 module "ecs_auto_scaling_radius_public" {
-  source                                = "./modules/ecs_auto_scaling_radius"
-  prefix                                = module.label.id
-  service_name                          = module.radius.ecs.service_name
-  cluster_name                          = module.radius.ecs.cluster_name
-  load_balancer_arn_suffix              = module.radius.ec2.load_balancer_arn_suffix
-  tags                                  = module.label.tags
+  source                   = "./modules/ecs_auto_scaling_radius"
+  prefix                   = module.label.id
+  service_name             = module.radius.ecs.service_name
+  cluster_name             = module.radius.ecs.cluster_name
+  load_balancer_arn_suffix = module.radius.ec2.load_balancer_arn_suffix
+  tags                     = module.label.tags
   providers = {
     aws = aws.env
   }
 }
 
 module "ecs_auto_scaling_radius_internal" {
-  source                                = "./modules/ecs_auto_scaling_radius"
-  prefix                                = "${module.label.id}-internal"
-  service_name                          = module.radius.ecs.internal_service_name
-  cluster_name                          = module.radius.ecs.cluster_name
-  load_balancer_arn_suffix              = module.radius.ec2.internal_load_balancer_arn_suffix
-  tags                                  = module.label.tags
+  source                   = "./modules/ecs_auto_scaling_radius"
+  prefix                   = "${module.label.id}-internal"
+  service_name             = module.radius.ecs.internal_service_name
+  cluster_name             = module.radius.ecs.cluster_name
+  load_balancer_arn_suffix = module.radius.ec2.internal_load_balancer_arn_suffix
+  tags                     = module.label.tags
   providers = {
     aws = aws.env
   }
@@ -218,17 +218,17 @@ module "admin" {
 
   db = {
     apply_updates_immediately = local.is_production ? false : true
-    backup_retention_period = var.admin_db_backup_retention_period
-    delete_automated_backups = local.is_production ? false : true
-    deletion_protection = local.is_production ? true : false
-    password = var.admin_db_password
-    skip_final_snapshot = true
-    username = var.admin_db_username
+    backup_retention_period   = var.admin_db_backup_retention_period
+    delete_automated_backups  = local.is_production ? false : true
+    deletion_protection       = local.is_production ? true : false
+    password                  = var.admin_db_password
+    skip_final_snapshot       = true
+    username                  = var.admin_db_username
   }
 
   vpc = {
-    id = module.admin_vpc.vpc_id
-    public_subnets = module.admin_vpc.public_subnets
+    id              = module.admin_vpc.vpc_id
+    public_subnets  = module.admin_vpc.public_subnets
     private_subnets = module.admin_vpc.private_subnets
   }
 
@@ -287,10 +287,10 @@ module "admin_vpc_flow_logs" {
 }
 
 module "performance_testing" {
-  source = "./modules/performance_testing"
-  count = local.is_development ? 1 : 0
-  prefix = "${module.label.id}-perf"
-  vpc_id = module.radius_vpc.vpc_id
+  source  = "./modules/performance_testing"
+  count   = local.is_pre_production ? 1 : 0
+  prefix  = "${module.label.id}-perf"
+  vpc_id  = module.radius_vpc.vpc_id
   subnets = module.radius_vpc.public_subnets
 
   providers = {
