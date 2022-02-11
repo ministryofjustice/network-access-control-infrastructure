@@ -17,6 +17,8 @@ tar xzvf wpa_supplicant-2.9.tar.gz
 
 cd wpa_supplicant-2.9/wpa_supplicant
 
+systemctl disable systemd-journald.service
+
 cp defconfig .config
 sed -i "s/#CONFIG_EAPOL_TEST=y/CONFIG_EAPOL_TEST=y/g" .config
 cat .config | grep TEST
