@@ -45,11 +45,3 @@ sleep 5
 ./perf_test.sh &
 sleep 5
 ./perf_test.sh &
-sleep 5
-./perf_test.sh &
-sleep 5
-./perf_test.sh &
-sleep 5
-./perf_test.sh &
-sleep 5
-./perf_test.sh &
