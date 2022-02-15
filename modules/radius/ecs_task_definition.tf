@@ -113,7 +113,7 @@ resource "aws_ecs_task_definition" "server_task" {
     "logConfiguration": {
       "logDriver": "awslogs",
       "options": {
-        "awslogs-group": "${aws_cloudwatch_log_group.server_performance_log_group.name}",
+        "awslogs-group": "${aws_cloudwatch_log_group.server_log_group.name}",
         "awslogs-region": "eu-west-2",
         "awslogs-stream-prefix": "eu-west-2-docker-logs"
       }
