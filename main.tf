@@ -99,7 +99,6 @@ module "radius" {
   read_replica_security_group_id = module.admin_read_replica.rds.security_group_id
 
   log_filters = [
-    "Sent Access-Accept",
     "Sent Access-Reject",
     "Ignoring request to auth proto tcp address",
     "Ignoring request to auth address",
