@@ -18,6 +18,14 @@ output "ecs" {
   }
 }
 
+output "load_balancer" {
+  value = {
+    nac_eu_west_2a_ip_address = aws_eip.nac_eu_west_2a.public_ip
+    nac_eu_west_2b_ip_address = aws_eip.nac_eu_west_2b.public_ip
+    nac_eu_west_2c_ip_address = aws_eip.nac_eu_west_2c.public_ip
+  }
+}
+
 output "ec2" {
   value = {
     radius_server_security_group_id   = aws_security_group.radius_server.id
