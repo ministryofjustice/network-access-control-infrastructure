@@ -81,6 +81,10 @@ variable "cloudwatch_link" {
   type = string
 }
 
+variable "server_ips" {
+  type = string
+}
+
 variable "cognito_user_pool_id" {
   type = string
 }
