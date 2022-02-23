@@ -215,11 +215,11 @@ module "admin" {
   is_publicly_accessible            = local.publicly_accessible
   local_development_domain_affix    = var.local_development_domain_affix
   cloudwatch_link                   = var.cloudwatch_link
-  server_ips                        = join(", ", [
-                                        module.radius.load_balancer.nac_eu_west_2a_ip_address,
-                                        module.radius.load_balancer.nac_eu_west_2b_ip_address,
-                                        module.radius.load_balancer.nac_eu_west_2c_ip_address
-                                      ])
+  server_ips = join(", ", [
+    module.radius.load_balancer.nac_eu_west_2a_ip_address,
+    module.radius.load_balancer.nac_eu_west_2b_ip_address,
+    module.radius.load_balancer.nac_eu_west_2c_ip_address
+  ])
 
   db = {
     apply_updates_immediately = local.is_production ? false : true
