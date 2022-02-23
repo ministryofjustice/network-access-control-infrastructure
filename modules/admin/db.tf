@@ -44,55 +44,55 @@ resource "aws_db_parameter_group" "admin_db_parameter_group" {
   description = "Admin DB parameter group"
 
   parameter {
-    name  = "sql_mode"
-    value = "STRICT_ALL_TABLES, NO_AUTO_CREATE_USER"
+    name         = "sql_mode"
+    value        = "STRICT_ALL_TABLES, NO_AUTO_CREATE_USER"
     apply_method = "pending-reboot"
   }
   parameter {
-    name  = "max_connect_errors"
-    value = "10000"
-    apply_method = "pending-reboot"
-  }
-
-  parameter {
-    name  = "log_error_verbosity"
-    value = "2"
+    name         = "max_connect_errors"
+    value        = "10000"
     apply_method = "pending-reboot"
   }
 
   parameter {
-    name  = "validate-password"
-    value = "FORCE_PLUS_PERMANENT"
+    name         = "log_error_verbosity"
+    value        = "2"
     apply_method = "pending-reboot"
   }
 
   parameter {
-    name  = "validate_password_length"
-    value = "14"
+    name         = "validate-password"
+    value        = "FORCE_PLUS_PERMANENT"
     apply_method = "pending-reboot"
   }
 
   parameter {
-    name = "validate_password_mixed_case_count"
-    value = "1"
+    name         = "validate_password_length"
+    value        = "14"
     apply_method = "pending-reboot"
   }
 
   parameter {
-    name = "validate_password_number_count"
-    value = "1"
+    name         = "validate_password_mixed_case_count"
+    value        = "1"
     apply_method = "pending-reboot"
   }
 
   parameter {
-    name  = "validate_password_policy"
-    value = "MEDIUM"
+    name         = "validate_password_number_count"
+    value        = "1"
     apply_method = "pending-reboot"
   }
 
   parameter {
-    name = "validate_password_special_char_count"
-    value = "1"
+    name         = "validate_password_policy"
+    value        = "MEDIUM"
+    apply_method = "pending-reboot"
+  }
+
+  parameter {
+    name         = "validate_password_special_char_count"
+    value        = "1"
     apply_method = "pending-reboot"
   }
 
