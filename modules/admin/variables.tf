@@ -5,8 +5,8 @@ variable "secret_key_base" {
 
 variable "vpc" {
   type = object({
-    id = string
-    public_subnets = list(string)
+    id              = string
+    public_subnets  = list(string)
     private_subnets = list(string)
   })
 
@@ -16,12 +16,12 @@ variable "vpc" {
 variable "db" {
   type = object({
     apply_updates_immediately = bool
-    backup_retention_period = number
-    delete_automated_backups = bool
-    deletion_protection = bool
-    password = string
-    skip_final_snapshot = bool
-    username = string
+    backup_retention_period   = number
+    delete_automated_backups  = bool
+    deletion_protection       = bool
+    password                  = string
+    skip_final_snapshot       = bool
+    username                  = string
   })
 }
 

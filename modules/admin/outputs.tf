@@ -8,10 +8,10 @@ output "admin_url" {
 
 output "ecs" {
   value = {
-    cluster_name = var.radius_cluster_name
-    service_name = aws_ecs_service.admin_service.name
+    cluster_name                   = var.radius_cluster_name
+    service_name                   = aws_ecs_service.admin_service.name
     background_worker_service_name = aws_ecs_service.admin_background_worker_service.name
-    task_definition_name = aws_ecs_task_definition.admin_task.id
+    task_definition_name           = aws_ecs_task_definition.admin_task.id
   }
 }
 
@@ -23,8 +23,8 @@ output "ecr" {
 
 output "rds" {
   value = {
-    admin_db_id = aws_db_instance.admin_db.id
-    admin_db_arn = aws_db_instance.admin_db.arn
+    admin_db_id         = aws_db_instance.admin_db.id
+    admin_db_arn        = aws_db_instance.admin_db.arn
     rds_monitoring_role = aws_iam_role.rds_monitoring_role.arn
   }
 }
