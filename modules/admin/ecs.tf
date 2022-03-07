@@ -195,7 +195,7 @@ resource "aws_ecs_task_definition" "admin_background_worker" {
   cpu                      = "512"
   memory                   = "2048"
 
-  network_mode             = "awsvpc"
+  network_mode = "awsvpc"
 
   container_definitions = <<EOF
 [
