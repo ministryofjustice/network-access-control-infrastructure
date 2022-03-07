@@ -21,7 +21,7 @@ resource "aws_alb_listener" "alb_listener" {
   certificate_arn   = aws_acm_certificate.admin_alb.arn
 
   default_action {
-    target_group_arn = aws_alb_target_group.admin_tg.arn
+    target_group_arn = aws_alb_target_group.admin.arn
     type             = "forward"
   }
   tags = var.tags
