@@ -109,7 +109,7 @@ resource "aws_ecs_task_definition" "server_task" {
         "value": "${var.packet_capture_duration_seconds}"
       }
     ],
-    "image": "${aws_ecr_repository.docker_repository.repository_url}",
+    "image": "${aws_ecr_repository.radius.repository_url}",
     "logConfiguration": {
       "logDriver": "awslogs",
       "options": {
@@ -135,7 +135,7 @@ resource "aws_ecs_task_definition" "server_task" {
         "containerPort": 8000
       }
     ],
-    "image": "${aws_ecr_repository.docker_repository_nginx.repository_url}",
+    "image": "${aws_ecr_repository.nginx.repository_url}",
     "name": "NGINX"
   }
 ]

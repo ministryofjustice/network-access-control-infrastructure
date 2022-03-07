@@ -1,5 +1,5 @@
-resource "aws_ecr_repository_policy" "docker_nginx_repository_policy" {
-  repository = aws_ecr_repository.docker_repository_nginx.name
+resource "aws_ecr_repository_policy" "nginx" {
+  repository = aws_ecr_repository.nginx.name
 
   policy = <<EOF
 {
@@ -31,7 +31,7 @@ resource "aws_ecr_repository_policy" "docker_nginx_repository_policy" {
 EOF
 }
 
-resource "aws_ecr_repository" "docker_repository_nginx" {
+resource "aws_ecr_repository" "nginx" {
   name                 = "${var.prefix}-nginx"
   image_tag_mutability = "MUTABLE"
 
@@ -42,8 +42,8 @@ resource "aws_ecr_repository" "docker_repository_nginx" {
   tags = var.tags
 }
 
-resource "aws_ecr_lifecycle_policy" "radius_nginx_sidecar_container" {
-  repository = aws_ecr_repository.docker_repository_nginx.name
+resource "aws_ecr_lifecycle_policy" "nginx" {
+  repository = aws_ecr_repository.nginx.name
 
   policy = <<EOF
 {
