@@ -1,12 +1,12 @@
-resource "aws_cloudwatch_log_group" "admin_log_group" {
-  name = "${var.prefix}-log-group"
+resource "aws_cloudwatch_log_group" "admin" {
+  name = var.prefix
 
   retention_in_days = 7
 
   tags = var.tags
 }
 
-resource "aws_ecr_repository" "admin_ecr" {
+resource "aws_ecr_repository" "admin" {
   name = var.prefix
 
   image_scanning_configuration {
@@ -16,8 +16,8 @@ resource "aws_ecr_repository" "admin_ecr" {
   tags = var.tags
 }
 
-resource "aws_ecr_repository_policy" "admin_docker_nac_repository_policy" {
-  repository = aws_ecr_repository.admin_ecr.name
+resource "aws_ecr_repository_policy" "admin" {
+  repository = aws_ecr_repository.admin.name
 
   policy = <<EOF
 {
@@ -49,8 +49,8 @@ resource "aws_ecr_repository_policy" "admin_docker_nac_repository_policy" {
 EOF
 }
 
-resource "aws_ecr_lifecycle_policy" "admin_container" {
-  repository = aws_ecr_repository.admin_ecr.name
+resource "aws_ecr_lifecycle_policy" "admin" {
+  repository = aws_ecr_repository.admin.name
 
   policy = <<EOF
 {
@@ -73,7 +73,7 @@ resource "aws_ecr_lifecycle_policy" "admin_container" {
 EOF
 }
 
-resource "aws_ecs_task_definition" "admin_task" {
+resource "aws_ecs_task_definition" "admin" {
   family                   = "${var.prefix}-task"
   requires_compatibilities = ["FARGATE"]
   task_role_arn            = aws_iam_role.ecs_task_role.arn
@@ -170,11 +170,11 @@ resource "aws_ecs_task_definition" "admin_task" {
           "value": "${var.server_ips}"
         }
       ],
-      "image": "${aws_ecr_repository.admin_ecr.repository_url}",
+      "image": "${aws_ecr_repository.admin.repository_url}",
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
-          "awslogs-group": "${aws_cloudwatch_log_group.admin_log_group.name}",
+          "awslogs-group": "${aws_cloudwatch_log_group.admin.name}",
           "awslogs-region": "${var.region}",
           "awslogs-stream-prefix": "${var.prefix}-docker-logs"
         }
@@ -187,13 +187,14 @@ EOF
   tags = var.tags
 }
 
-resource "aws_ecs_task_definition" "admin_background_worker_task" {
+resource "aws_ecs_task_definition" "admin_background_worker" {
   family                   = "${var.prefix}-task"
   requires_compatibilities = ["FARGATE"]
   task_role_arn            = aws_iam_role.ecs_task_role.arn
   execution_role_arn       = aws_iam_role.ecs_execution_role.arn
   cpu                      = "512"
   memory                   = "2048"
+
   network_mode             = "awsvpc"
 
   container_definitions = <<EOF
@@ -274,11 +275,11 @@ resource "aws_ecs_task_definition" "admin_background_worker_task" {
           "value": "${var.cloudwatch_link}"
         }
       ],
-      "image": "${aws_ecr_repository.admin_ecr.repository_url}",
+      "image": "${aws_ecr_repository.admin.repository_url}",
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
-          "awslogs-group": "${aws_cloudwatch_log_group.admin_log_group.name}",
+          "awslogs-group": "${aws_cloudwatch_log_group.admin.name}",
           "awslogs-region": "${var.region}",
           "awslogs-stream-prefix": "${var.prefix}-docker-logs"
         }
@@ -291,10 +292,10 @@ EOF
   tags = var.tags
 }
 
-resource "aws_ecs_service" "admin_background_worker_service" {
+resource "aws_ecs_service" "admin_background_worker" {
   name            = "admin-background-workers"
   cluster         = var.radius_cluster_id
-  task_definition = aws_ecs_task_definition.admin_background_worker_task.arn
+  task_definition = aws_ecs_task_definition.admin_background_worker.arn
   desired_count   = 3
   launch_type     = "FARGATE"
 
@@ -317,16 +318,16 @@ resource "aws_ecs_service" "admin_background_worker_service" {
   tags = var.tags
 }
 
-resource "aws_ecs_service" "admin_service" {
+resource "aws_ecs_service" "admin" {
   depends_on      = [aws_alb_listener.alb_listener]
   name            = "admin"
   cluster         = var.radius_cluster_id
-  task_definition = aws_ecs_task_definition.admin_task.arn
+  task_definition = aws_ecs_task_definition.admin.arn
   desired_count   = 3
   launch_type     = "FARGATE"
 
   load_balancer {
-    target_group_arn = aws_alb_target_group.admin_tg.arn
+    target_group_arn = aws_alb_target_group.admin.arn
     container_name   = "admin"
     container_port   = "3000"
   }
@@ -350,9 +351,9 @@ resource "aws_ecs_service" "admin_service" {
   tags = var.tags
 }
 
-resource "aws_alb_target_group" "admin_tg" {
+resource "aws_alb_target_group" "admin" {
   depends_on           = [aws_lb.admin_alb]
-  name                 = "${var.short_prefix}-admin-nac-tg"
+  name                 = "${var.short_prefix}-admin"
   port                 = "3000"
   protocol             = "HTTP"
   vpc_id               = var.vpc.id

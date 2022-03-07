@@ -1,6 +1,6 @@
 resource "aws_appautoscaling_target" "admin" {
   service_namespace  = "ecs"
-  resource_id        = "service/${var.radius_cluster_name}/${aws_ecs_service.admin_service.name}"
+  resource_id        = "service/${var.radius_cluster_name}/${aws_ecs_service.admin.name}"
   max_capacity       = 21
   min_capacity       = 3
   scalable_dimension = "ecs:service:DesiredCount"
@@ -10,7 +10,7 @@ resource "aws_appautoscaling_policy" "ecs_policy_up" {
   name               = "${var.prefix} ECS Scale Up"
   service_namespace  = "ecs"
   policy_type        = "StepScaling"
-  resource_id        = "service/${var.radius_cluster_name}/${aws_ecs_service.admin_service.name}"
+  resource_id        = "service/${var.radius_cluster_name}/${aws_ecs_service.admin.name}"
   scalable_dimension = "ecs:service:DesiredCount"
 
   step_scaling_policy_configuration {
@@ -29,7 +29,7 @@ resource "aws_appautoscaling_policy" "ecs_policy_up" {
 resource "aws_appautoscaling_policy" "ecs_policy_down" {
   name               = "ECS Scale Down"
   service_namespace  = "ecs"
-  resource_id        = "service/${var.radius_cluster_name}/${aws_ecs_service.admin_service.name}"
+  resource_id        = "service/${var.radius_cluster_name}/${aws_ecs_service.admin.name}"
   policy_type        = "StepScaling"
   scalable_dimension = "ecs:service:DesiredCount"
 
@@ -58,7 +58,7 @@ resource "aws_cloudwatch_metric_alarm" "ecs_cpu_alarm_high" {
 
   dimensions = {
     ClusterName = var.radius_cluster_name
-    ServiceName = aws_ecs_service.admin_service.name
+    ServiceName = aws_ecs_service.admin.name
   }
 
   alarm_description = "This alarm tells ECS to scale out based on high CPU usage"
@@ -84,7 +84,7 @@ resource "aws_cloudwatch_metric_alarm" "ecs_cpu_alarm_low" {
 
   dimensions = {
     ClusterName = var.radius_cluster_name
-    ServiceName = aws_ecs_service.admin_service.name
+    ServiceName = aws_ecs_service.admin.name
   }
 
   alarm_description = "This alarm tells ECS to scale in based on low CPU usage"

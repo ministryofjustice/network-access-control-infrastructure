@@ -9,15 +9,15 @@ output "admin_url" {
 output "ecs" {
   value = {
     cluster_name                   = var.radius_cluster_name
-    service_name                   = aws_ecs_service.admin_service.name
-    background_worker_service_name = aws_ecs_service.admin_background_worker_service.name
-    task_definition_name           = aws_ecs_task_definition.admin_task.id
+    service_name                   = aws_ecs_service.admin.name
+    background_worker_service_name = aws_ecs_service.admin_background_worker.name
+    task_definition_name           = aws_ecs_task_definition.admin.id
   }
 }
 
 output "ecr" {
   value = {
-    repository_url = aws_ecr_repository.admin_ecr.repository_url
+    repository_url = aws_ecr_repository.admin.repository_url
   }
 }
 
