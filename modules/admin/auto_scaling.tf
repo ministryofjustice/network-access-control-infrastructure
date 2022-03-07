@@ -1,4 +1,4 @@
-resource "aws_appautoscaling_target" "auth_ecs_target" {
+resource "aws_appautoscaling_target" "admin" {
   service_namespace  = "ecs"
   resource_id        = "service/${var.radius_cluster_name}/${aws_ecs_service.admin_service.name}"
   max_capacity       = 21
@@ -23,7 +23,7 @@ resource "aws_appautoscaling_policy" "ecs_policy_up" {
     }
   }
 
-  depends_on = [aws_appautoscaling_target.auth_ecs_target]
+  depends_on = [aws_appautoscaling_target.admin]
 }
 
 resource "aws_appautoscaling_policy" "ecs_policy_down" {
@@ -43,7 +43,7 @@ resource "aws_appautoscaling_policy" "ecs_policy_down" {
     }
   }
 
-  depends_on = [aws_appautoscaling_target.auth_ecs_target]
+  depends_on = [aws_appautoscaling_target.admin]
 }
 
 resource "aws_cloudwatch_metric_alarm" "ecs_cpu_alarm_high" {
