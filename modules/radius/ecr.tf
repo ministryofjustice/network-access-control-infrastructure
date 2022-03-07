@@ -1,4 +1,4 @@
-resource "aws_ecr_repository" "docker_repository" {
+resource "aws_ecr_repository" "radius" {
   name                 = var.prefix
   image_tag_mutability = "MUTABLE"
 
@@ -9,8 +9,8 @@ resource "aws_ecr_repository" "docker_repository" {
   tags = var.tags
 }
 
-resource "aws_ecr_repository_policy" "docker_repository_policy" {
-  repository = aws_ecr_repository.docker_repository.name
+resource "aws_ecr_repository_policy" "radius" {
+  repository = aws_ecr_repository.radius.name
 
   policy = <<EOF
 {
@@ -42,8 +42,8 @@ resource "aws_ecr_repository_policy" "docker_repository_policy" {
 EOF
 }
 
-resource "aws_ecr_lifecycle_policy" "radius_container" {
-  repository = aws_ecr_repository.docker_repository.name
+resource "aws_ecr_lifecycle_policy" "radius" {
+  repository = aws_ecr_repository.radius.name
 
   policy = <<EOF
 {
