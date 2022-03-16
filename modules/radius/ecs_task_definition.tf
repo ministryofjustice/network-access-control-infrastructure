@@ -1,5 +1,6 @@
 locals {
-  radius_user = var.enable_packet_capture == "true" ? "root" : "freerad"
+  # radius_user = var.enable_packet_capture == "true" ? "root" : "freerad"
+  radius_user = terraform.workspace == "pre-production" ? "radius" : "root"
 }
 
 resource "aws_ecs_task_definition" "server_task" {
