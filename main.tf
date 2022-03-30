@@ -108,7 +108,8 @@ module "radius" {
     "Error:",
     "Shared secret is incorrect",
     "unknown CA",
-    "authorized_macs: users: Matched entry"
+    "authorized_macs: users: Matched entry",
+    "Health Check: OK"
   ]
 
   providers = {
