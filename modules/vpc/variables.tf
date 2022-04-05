@@ -1,18 +1,18 @@
-variable cidr_block {
-    type = string
+variable "cidr_block" {
+  type = string
 }
 
 variable "cidr_block_new_bits" {
-    type = number
-    default = 3
+  type    = number
+  default = 3
 }
 
 variable "enable_nac_transit_gateway_attachment" {
-    type = bool
+  type = bool
 }
 
 variable "prefix" {
-    type = string
+  type = string
 }
 
 variable "tags" {
@@ -20,11 +20,11 @@ variable "tags" {
 }
 
 variable "transit_gateway_id" {
-    type = string
+  type = string
 }
 
 variable "transit_gateway_route_table_id" {
-    type = string
+  type = string
 }
 
 variable "ocsp_endpoint_ip" {

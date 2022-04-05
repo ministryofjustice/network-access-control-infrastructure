@@ -1,6 +1,6 @@
 locals {
   private_table_id = join("_", toset(module.vpc.private_route_table_ids))
-  public_table_id = join("_", toset(module.vpc.public_route_table_ids))
+  public_table_id  = join("_", toset(module.vpc.public_route_table_ids))
 }
 resource "aws_route" "transit-gateway" {
   count = var.enable_nac_transit_gateway_attachment ? length(module.vpc.private_route_table_ids) : 0

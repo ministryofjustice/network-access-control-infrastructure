@@ -48,16 +48,16 @@ module "vpc" {
   enable_rds_endpoint              = true
   rds_endpoint_private_dns_enabled = true
   rds_endpoint_security_group_ids  = [aws_security_group.endpoints.id]
-  enable_dns_hostnames = true
-  enable_s3_endpoint = true
+  enable_dns_hostnames             = true
+  enable_s3_endpoint               = true
 
   enable_logs_endpoint              = true
   logs_endpoint_private_dns_enabled = true
   logs_endpoint_security_group_ids  = [aws_security_group.endpoints.id]
-  enable_dns_support   = true
-  manage_default_security_group  = true
-  default_security_group_ingress = []
-  default_security_group_egress  = []
+  enable_dns_support                = true
+  manage_default_security_group     = true
+  default_security_group_ingress    = []
+  default_security_group_egress     = []
   private_subnets = [
     cidrsubnet(var.cidr_block, var.cidr_block_new_bits, 0),
     cidrsubnet(var.cidr_block, var.cidr_block_new_bits, 2),
