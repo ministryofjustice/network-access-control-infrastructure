@@ -114,3 +114,11 @@ variable "radius_enable_packet_capture" {
 variable "packet_capture_duration_seconds" {
   type = string
 }
+
+variable "ocsp_atos_cidr_range_1" {
+  type = string
+}
+
+variable "ocsp_atos_cidr_range_2" {
+  type = string
+}
