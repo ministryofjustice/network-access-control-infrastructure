@@ -38,3 +38,11 @@ variable "mojo_dns_ip_1" {
 variable "mojo_dns_ip_2" {
   type = string
 }
+
+variable "ocsp_atos_cidr_range_1" {
+  type = string
+}
+
+variable "ocsp_atos_cidr_range_2" {
+  type = string
+}

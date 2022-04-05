@@ -150,8 +150,10 @@ module "radius_vpc" {
   transit_gateway_route_table_id        = var.transit_gateway_route_table_id
   mojo_dns_ip_1                         = var.mojo_dns_ip_1
   mojo_dns_ip_2                         = var.mojo_dns_ip_2
-  tags                                  = module.label.tags
   ocsp_endpoint_ip                      = var.ocsp_endpoint_ip
+  ocsp_atos_cidr_range_1                = var.ocsp_atos_cidr_range_1
+  ocsp_atos_cidr_range_2                = var.ocsp_atos_cidr_range_2
+  tags                                  = module.label.tags
 
   providers = {
     aws = aws.env
