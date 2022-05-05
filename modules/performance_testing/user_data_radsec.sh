@@ -127,7 +127,7 @@ tls defaultClient {
 
 server radius {
     type tls
-    host 18.168.94.133 
+    host ReplaceMe 
     secret radsec
     tls defaultClient
     CertificateNameCheck off
