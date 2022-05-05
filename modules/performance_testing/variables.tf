@@ -8,3 +8,7 @@ variable "vpc_id" {
 variable "prefix" {
   type = string
 }
+
+variable "load_balancer_ip_address" {
+  type = string
+}
