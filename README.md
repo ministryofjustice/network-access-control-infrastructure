@@ -6,7 +6,7 @@ This repository contains the Terraform code to build the AWS infrastructure for 
 
 The running applications are defined and run as docker containers using [AWS Fargate](https://aws.amazon.com/fargate/)
 
-![This is an image](./documentation/infrastructure.png)
+![NACS infrastructure](./documentation/infrastructure.png)
 
 ## Related Repositories
 
