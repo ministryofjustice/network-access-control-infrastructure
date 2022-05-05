@@ -9,7 +9,7 @@ install_packages() {
 apt update
 apt upgrade -y
 apt-get remove docker docker-engine docker.io containerd runc -y
-apt-get install ca-certificates curl gnupg lsb-release -y
+apt-get install ca-certificates curl gnupg lsb-release awscli -y
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --batch --yes --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 
 echo \
@@ -152,7 +152,7 @@ sed -i 's/ReplaceMe/${load_balancer_ip_address}/g' radsecproxy.conf
 }
 
 run_test() {
-  docker-compose up --build
+  docker-compose up --build --scale radsecproxy=50
 }
 
 main() {
