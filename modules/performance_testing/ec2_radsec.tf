@@ -24,6 +24,7 @@ data "template_file" "radsec_client" {
   template = file("./modules/performance_testing/user_data_radsec.sh")
   vars = {
     s3_bucket_name = aws_s3_bucket.config_bucket.id
+    load_balancer_ip_address = var.load_balancer_ip_address
   }
 }
 
