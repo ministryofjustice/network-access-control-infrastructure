@@ -1,6 +1,11 @@
 #!/bin/bash
 set -e -x
 
+create_test_dir() {
+  mkdir -p /home/ubuntu/radsectest
+  cd /home/ubuntu/radsectest
+}
+
 set_vars() {
   export RADSECPROXY_VERSION=1.9.0
 }
@@ -94,7 +99,6 @@ CMD openssl rehash /certs && /sbin/radsecproxy -c /etc/radsecproxy.conf -i /var/
 EOF
 }
 
-
 start_docker_service() {
   sudo systemctl start docker.service
 }
@@ -148,7 +152,6 @@ realm * {
 EOF
 
 sed -i 's/ReplaceMe/${load_balancer_ip_address}/g' radsecproxy.conf
-
 }
 
 run_test() {
@@ -156,6 +159,7 @@ run_test() {
 }
 
 main() {
+  create_test_dir
   set_vars
   install_packages
   disable_logging
@@ -168,4 +172,3 @@ main() {
 }
 
 main
-
