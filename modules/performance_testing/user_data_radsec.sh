@@ -6,6 +6,10 @@ create_test_dir() {
   cd /home/ubuntu/radsectest
 }
 
+install_latest_docker_compose() {
+  sudo curl -L "https://github.com/docker/compose/releases/download/v2.5.0/docker-compose-linux-aarch64" -o /usr/bin/docker-compose
+}
+
 set_vars() {
   export RADSECPROXY_VERSION=1.9.0
 }
@@ -162,6 +166,7 @@ main() {
   create_test_dir
   set_vars
   install_packages
+  install_latest_docker_compose
   disable_logging
   fetch_certs
   create_docker_compose
