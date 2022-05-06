@@ -159,7 +159,15 @@ sed -i 's/ReplaceMe/${load_balancer_ip_address}/g' radsecproxy.conf
 }
 
 run_test() {
-  docker-compose up --build --scale radsecproxy=100
+  max_loops=10
+  loop_counter=0
+  containers=50
+  while [ $loop_counter -lt $max_loops ]; do
+    loop_counter=$(( $loop_counter + 1 ))
+    running_containers=$(( $loop_counter * $containers ))
+    docker-compose up --build --scale --no-recreate radsecproxy=$running_containers
+    sleep 45
+  done
 }
 
 main() {
