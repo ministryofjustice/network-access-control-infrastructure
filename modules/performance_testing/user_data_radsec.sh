@@ -165,7 +165,7 @@ run_test() {
   while [ $loop_counter -lt $max_loops ]; do
     loop_counter=$(( $loop_counter + 1 ))
     running_containers=$(( $loop_counter * $containers ))
-    docker-compose up --build --no-recreate --scale radsecproxy=$running_containers
+    docker-compose up -d --build --no-recreate --scale radsecproxy=$running_containers
     sleep 45
   done
 }
