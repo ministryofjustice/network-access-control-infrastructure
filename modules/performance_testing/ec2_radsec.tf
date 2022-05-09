@@ -1,7 +1,7 @@
 resource "aws_instance" "performance_testing_instance_radsec" {
   ami           = "ami-07438ed9014cde68f"
   instance_type = "t4g.large"
-  count         = 0
+  count         = 10
 
   vpc_security_group_ids = [
     aws_security_group.performance_testing_instance.id
