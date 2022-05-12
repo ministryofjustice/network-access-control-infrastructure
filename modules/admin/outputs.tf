@@ -23,8 +23,8 @@ output "ecr" {
 
 output "rds" {
   value = {
-    admin_db_id         = aws_db_instance.admin_db.id
-    admin_db_arn        = aws_db_instance.admin_db.arn
+    admin_db_id         = var.run_restore_from_backup ? element(aws_db_instance.admin_db_restored.*.id, 0) : aws_db_instance.admin_db.id
+    admin_db_arn        = var.run_restore_from_backup ? element(aws_db_instance.admin_db_restored.*.arn, 0) : aws_db_instance.admin_db.arn
     rds_monitoring_role = aws_iam_role.rds_monitoring_role.arn
   }
 }

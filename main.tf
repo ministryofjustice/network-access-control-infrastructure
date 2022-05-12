@@ -51,6 +51,7 @@ locals {
   is_pre_production     = terraform.workspace == "pre-production" ? true : false
   is_development        = terraform.workspace == "development" ? true : false
   is_local_development  = !local.is_development && !local.is_pre_production && !local.is_production
+  run_restore_from_backup = local.is_development
 }
 
 module "radius" {
@@ -194,7 +195,7 @@ module "admin" {
   prefix                            = "${module.label.id}-admin"
   short_prefix                      = module.label.stage # avoid 32 char limit on certain resources
   tags                              = module.label.tags
-  run_restore_from_backup           = local.is_development
+  run_restore_from_backup           = local.run_restore_from_backup
   sentry_dsn                        = var.admin_sentry_dsn
   secret_key_base                   = "tbc"
   radius_certificate_bucket_arn     = module.radius.s3.radius_certificate_bucket_arn

@@ -73,6 +73,11 @@ resource "aws_ecr_lifecycle_policy" "admin" {
 EOF
 }
 
+locals {
+  db_address = var.run_restore_from_backup ? element(aws_db_instance.admin_db_restored.*.address, 0) : aws_db_instance.admin_db.address
+  db_name = var.run_restore_from_backup ? element(aws_db_instance.admin_db_restored.*.name, 0) : aws_db_instance.admin_db.name
+}
+
 resource "aws_ecs_task_definition" "admin" {
   family                   = "${var.prefix}-task"
   requires_compatibilities = ["FARGATE"]
@@ -103,10 +108,10 @@ resource "aws_ecs_task_definition" "admin" {
           "value": "${var.db.password}"
         },{
           "name": "DB_NAME",
-          "value": "${aws_db_instance.admin_db.name}"
+          "value": "${local.db_address}"
         },{
           "name": "DB_HOST",
-          "value": "${aws_db_instance.admin_db.address}"
+          "value": "${local.db_name}"
         },{
           "name": "RACK_ENV",
           "value": "production"
