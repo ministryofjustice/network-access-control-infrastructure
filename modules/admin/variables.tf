@@ -132,3 +132,7 @@ variable "is_publicly_accessible" {
 variable "local_development_domain_affix" {
   type = string
 }
+
+variable "run_restore_from_backup" {
+  type = bool
+}

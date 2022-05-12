@@ -194,6 +194,7 @@ module "admin" {
   prefix                            = "${module.label.id}-admin"
   short_prefix                      = module.label.stage # avoid 32 char limit on certain resources
   tags                              = module.label.tags
+  run_restore_from_backup           = local.is_development
   sentry_dsn                        = var.admin_sentry_dsn
   secret_key_base                   = "tbc"
   radius_certificate_bucket_arn     = module.radius.s3.radius_certificate_bucket_arn
