@@ -33,11 +33,15 @@ resource "aws_db_instance" "admin_db_restored" {
   deletion_protection         = var.db.deletion_protection
   publicly_accessible         = var.is_publicly_accessible
   option_group_name           = aws_db_option_group.mariadb_audit.name
-  snapshot_identifier         = data.aws_db_snapshot.latest
+  snapshot_identifier         = data.aws_db_snapshot.latest.id
 
   enabled_cloudwatch_logs_exports = ["audit", "error", "general", "slowquery"]
 
   parameter_group_name = aws_db_parameter_group.admin_db_parameter_group.name
 
   tags = var.tags
+
+  lifecycle {
+    ignore_changes = [snapshot_identifier]
+  }
 }
