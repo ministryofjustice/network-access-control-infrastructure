@@ -108,10 +108,10 @@ resource "aws_ecs_task_definition" "admin" {
           "value": "${var.db.password}"
         },{
           "name": "DB_NAME",
-          "value": "${local.db_address}"
+          "value": "${local.db_name}"
         },{
           "name": "DB_HOST",
-          "value": "${local.db_name}"
+          "value": "${local.db_address}"
         },{
           "name": "RACK_ENV",
           "value": "production"
