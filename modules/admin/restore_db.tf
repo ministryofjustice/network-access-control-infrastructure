@@ -3,10 +3,6 @@ data "aws_db_snapshot" "latest" {
   most_recent            = true
 }
 
-locals {
-  restored_db_name = replace(var.prefix, "-", "_")
-}
-
 resource "aws_db_instance" "admin_db_restored" {
   count                       = var.run_restore_from_backup ? 1 : 0
   allocated_storage           = 20
@@ -19,8 +15,8 @@ resource "aws_db_instance" "admin_db_restored" {
   delete_automated_backups    = true
   instance_class              = "db.t2.medium"
   identifier                  = "${var.prefix}-restored"
-  name                        = "${local.restored_db_name}-restored"
-  username                    = var.db.username
+  db_name                     = local.restored_db_name
+  username                    = replace(var.prefix, "-", "_")
   password                    = var.db.password
   backup_retention_period     = 1
   multi_az                    = true
