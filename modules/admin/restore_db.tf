@@ -15,8 +15,8 @@ resource "aws_db_instance" "admin_db_restored" {
   delete_automated_backups    = true
   instance_class              = "db.t2.medium"
   identifier                  = "${var.prefix}-restored"
-  name                        = local.restored_db_name
-  username                    = replace(var.prefix, "-", "_")
+  name                        = replace(var.prefix, "-", "_")
+  username                    = var.db.username
   password                    = var.db.password
   backup_retention_period     = 1
   multi_az                    = true
