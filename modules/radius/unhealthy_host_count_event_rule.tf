@@ -12,7 +12,7 @@ resource "aws_cloudwatch_event_rule" "unhealthy-host-count" {
     ],
     "detail": {
         "group": [
-            "service:${aws_ecs_service.service.id}"
+            "${aws_ecs_service.service.id}"
         ],
         "stoppedReason": [
             "Essential container in task exited"
