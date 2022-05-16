@@ -51,7 +51,7 @@ locals {
   is_pre_production     = terraform.workspace == "pre-production" ? true : false
   is_development        = terraform.workspace == "development" ? true : false
   is_local_development  = !local.is_development && !local.is_pre_production && !local.is_production
-  run_restore_from_backup = local.is_development
+  run_restore_from_backup = false
 }
 
 module "radius" {
