@@ -136,3 +136,11 @@ variable "local_development_domain_affix" {
 variable "run_restore_from_backup" {
   type = bool
 }
+
+variable "eap_private_key_password" {
+  type = string
+}
+
+variable "radsec_private_key_password" {
+  type = string
+}
