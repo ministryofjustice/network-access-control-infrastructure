@@ -221,6 +221,8 @@ module "admin" {
   is_publicly_accessible            = local.publicly_accessible
   local_development_domain_affix    = var.local_development_domain_affix
   cloudwatch_link                   = var.cloudwatch_link
+  eap_private_key_password        = var.eap_private_key_password
+  radsec_private_key_password     = var.radsec_private_key_password
   server_ips = join(", ", [
     module.radius.load_balancer.nac_eu_west_2a_ip_address,
     module.radius.load_balancer.nac_eu_west_2b_ip_address,

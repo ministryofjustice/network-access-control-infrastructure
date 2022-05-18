@@ -103,34 +103,44 @@ resource "aws_ecs_task_definition" "admin" {
         {
           "name": "DB_USER",
           "value": "${var.db.username}"
-        },{
+        },
+        {
           "name": "DB_PASS",
           "value": "${var.db.password}"
-        },{
+        },
+        {
           "name": "DB_NAME",
           "value": "${local.db_name}"
-        },{
+        },
+        {
           "name": "DB_HOST",
           "value": "${local.db_address}"
-        },{
+        },
+        {
           "name": "RACK_ENV",
           "value": "production"
-        },{
+        },
+        {
           "name": "RAILS_ENV",
           "value": "production"
-        },{
+        },
+        {
           "name": "SECRET_KEY_BASE",
           "value": "${var.secret_key_base}"
-        },{
+        },
+        {
           "name": "RAILS_LOG_TO_STDOUT",
           "value": "1"
-        },{
+        },
+        {
           "name": "RAILS_SERVE_STATIC_FILES",
           "value": "1"
-        },{
+        },
+        {
           "name": "SENTRY_DSN",
           "value": "${var.sentry_dsn}"
-        },{
+        },
+        {
           "name": "COGNITO_CLIENT_ID",
           "value": "${var.cognito_user_pool_client_id}"
         },
@@ -173,6 +183,14 @@ resource "aws_ecs_task_definition" "admin" {
         {
           "name": "SERVER_IPS",
           "value": "${var.server_ips}"
+        },
+        {
+          "name" "EAP_SERVER_PRIVATE_KEY_PASSPHRASE",
+          "value": "${var.eap_private_key_password}"
+        },
+        {
+          "name" "RADSEC_SERVER_PRIVATE_KEY_PASSPHRASE",
+          "value": "${var.radsec_private_key_password}"
         }
       ],
       "image": "${aws_ecr_repository.admin.repository_url}",
