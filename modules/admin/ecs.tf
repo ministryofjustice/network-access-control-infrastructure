@@ -185,11 +185,11 @@ resource "aws_ecs_task_definition" "admin" {
           "value": "${var.server_ips}"
         },
         {
-          "name" "EAP_SERVER_PRIVATE_KEY_PASSPHRASE",
+          "name": "EAP_SERVER_PRIVATE_KEY_PASSPHRASE",
           "value": "${var.eap_private_key_password}"
         },
         {
-          "name" "RADSEC_SERVER_PRIVATE_KEY_PASSPHRASE",
+          "name": "RADSEC_SERVER_PRIVATE_KEY_PASSPHRASE",
           "value": "${var.radsec_private_key_password}"
         }
       ],
