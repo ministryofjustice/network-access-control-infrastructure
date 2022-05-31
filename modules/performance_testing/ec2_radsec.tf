@@ -7,13 +7,13 @@ resource "aws_instance" "performance_testing_instance_radsec" {
     aws_security_group.performance_testing_instance.id
   ]
 
-  subnet_id                   = var.subnets[0]
-  key_name                    = aws_key_pair.performance_testing_public_key_pair.key_name
-  monitoring                  = true
-  associate_public_ip_address = true
-  iam_instance_profile = aws_iam_instance_profile.ec2_perf_test_profile.name
+  subnet_id                            = var.subnets[0]
+  key_name                             = aws_key_pair.performance_testing_public_key_pair.key_name
+  monitoring                           = true
+  associate_public_ip_address          = true
+  iam_instance_profile                 = aws_iam_instance_profile.ec2_perf_test_profile.name
   instance_initiated_shutdown_behavior = "terminate"
-  user_data = data.template_cloudinit_config.radsec_config.rendered
+  user_data                            = data.template_cloudinit_config.radsec_config.rendered
 
   tags = {
     Name = "MoJ Authentication Radsec Performance-${count.index}"
@@ -23,7 +23,7 @@ resource "aws_instance" "performance_testing_instance_radsec" {
 data "template_file" "radsec_client" {
   template = file("./modules/performance_testing/user_data_radsec.sh")
   vars = {
-    s3_bucket_name = aws_s3_bucket.config_bucket.id
+    s3_bucket_name           = aws_s3_bucket.config_bucket.id
     load_balancer_ip_address = var.load_balancer_ip_address
   }
 }

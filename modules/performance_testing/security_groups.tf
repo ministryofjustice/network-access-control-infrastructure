@@ -11,24 +11,24 @@ resource "aws_security_group" "performance_testing_instance" {
   }
 
   egress {
-      from_port = 1812
-      to_port   = 1812
-      protocol  = "udp"
-      cidr_blocks = ["0.0.0.0/0"]
+    from_port   = 1812
+    to_port     = 1812
+    protocol    = "udp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
-      from_port = 1814
-      to_port   = 1814
-      protocol  = "udp"
-      cidr_blocks = ["0.0.0.0/0"]
+    from_port   = 1814
+    to_port     = 1814
+    protocol    = "udp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
-      from_port = 2083
-      to_port   = 2083
-      protocol  = "tcp"
-      cidr_blocks = ["0.0.0.0/0"]
+    from_port   = 2083
+    to_port     = 2083
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
@@ -53,24 +53,24 @@ resource "aws_security_group" "performance_testing_instance" {
   }
 
   ingress {
-      from_port = 1812
-      to_port   = 1812
-      protocol  = "udp"
-      cidr_blocks = ["0.0.0.0/0"]
+    from_port   = 1812
+    to_port     = 1812
+    protocol    = "udp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
-      from_port = 1814
-      to_port   = 1814
-      protocol  = "udp"
-      cidr_blocks = ["0.0.0.0/0"]
+    from_port   = 1814
+    to_port     = 1814
+    protocol    = "udp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
-      from_port = 2083
-      to_port   = 2083
-      protocol  = "tcp"
-      cidr_blocks = ["0.0.0.0/0"]
+    from_port   = 2083
+    to_port     = 2083
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
 }

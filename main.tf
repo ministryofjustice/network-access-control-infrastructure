@@ -43,14 +43,14 @@ module "label" {
 
 
 locals {
-  private_ip_eu_west_2a = "10.180.108.10"
-  private_ip_eu_west_2b = "10.180.109.10"
-  private_ip_eu_west_2c = "10.180.110.10"
-  vpc_cidr              = "10.180.108.0/22"
-  is_production         = terraform.workspace == "production" ? true : false
-  is_pre_production     = terraform.workspace == "pre-production" ? true : false
-  is_development        = terraform.workspace == "development" ? true : false
-  is_local_development  = !local.is_development && !local.is_pre_production && !local.is_production
+  private_ip_eu_west_2a   = "10.180.108.10"
+  private_ip_eu_west_2b   = "10.180.109.10"
+  private_ip_eu_west_2c   = "10.180.110.10"
+  vpc_cidr                = "10.180.108.0/22"
+  is_production           = terraform.workspace == "production" ? true : false
+  is_pre_production       = terraform.workspace == "pre-production" ? true : false
+  is_development          = terraform.workspace == "development" ? true : false
+  is_local_development    = !local.is_development && !local.is_pre_production && !local.is_production
   run_restore_from_backup = false
 }
 
@@ -220,8 +220,8 @@ module "admin" {
   cognito_user_pool_client_secret   = module.authentication.cognito_user_pool_client_secret
   local_development_domain_affix    = var.local_development_domain_affix
   cloudwatch_link                   = var.cloudwatch_link
-  eap_private_key_password        = var.eap_private_key_password
-  radsec_private_key_password     = var.radsec_private_key_password
+  eap_private_key_password          = var.eap_private_key_password
+  radsec_private_key_password       = var.radsec_private_key_password
   server_ips = join(", ", [
     module.radius.load_balancer.nac_eu_west_2a_ip_address,
     module.radius.load_balancer.nac_eu_west_2b_ip_address,
@@ -295,11 +295,11 @@ module "admin_vpc_flow_logs" {
 }
 
 module "performance_testing" {
-  source  = "./modules/performance_testing"
-  count   = local.is_development ? 1 : 0
-  prefix  = "${module.label.id}-perf"
-  vpc_id  = module.radius_vpc.vpc_id
-  subnets = module.radius_vpc.public_subnets
+  source                   = "./modules/performance_testing"
+  count                    = local.is_development ? 1 : 0
+  prefix                   = "${module.label.id}-perf"
+  vpc_id                   = module.radius_vpc.vpc_id
+  subnets                  = module.radius_vpc.public_subnets
   load_balancer_ip_address = module.radius.load_balancer.nac_eu_west_2a_ip_address
 
   providers = {
