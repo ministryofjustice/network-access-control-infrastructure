@@ -21,10 +21,10 @@ module "label" {
   name      = "nac-infrastructure"
 
   tags = {
-    "business-unit" = "MoJO"
+    "business-unit"    = "MoJO"
     "environment-name" = "global"
-    "owner"         = var.owner_email
-    "is-production" = tostring(var.is_production)
+    "owner"            = var.owner_email
+    "is-production"    = tostring(var.is_production)
     "application"      = "network-access-control-infrastructure"
     "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
   }

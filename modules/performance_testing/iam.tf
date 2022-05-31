@@ -4,7 +4,7 @@ resource "aws_iam_instance_profile" "ec2_perf_test_profile" {
 }
 
 resource "aws_iam_role" "moj_auth_poc_role" {
-  name = "${var.prefix}-role"
+  name               = "${var.prefix}-role"
   assume_role_policy = data.aws_iam_policy_document.assume_role_policy.json
 }
 

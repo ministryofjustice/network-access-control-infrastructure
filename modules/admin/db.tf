@@ -21,7 +21,7 @@ resource "aws_db_instance" "admin_db" {
   monitoring_interval         = 60
   skip_final_snapshot         = var.db.skip_final_snapshot
   deletion_protection         = var.db.deletion_protection
-  publicly_accessible         = var.is_publicly_accessible
+  publicly_accessible         = false
   option_group_name           = aws_db_option_group.mariadb_audit.name
 
   enabled_cloudwatch_logs_exports = ["audit", "error", "general", "slowquery"]

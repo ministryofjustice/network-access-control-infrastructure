@@ -30,5 +30,5 @@ module "vpc" {
   default_security_group_ingress = []
   default_security_group_egress  = []
 
-  tags = merge(var.tags, {"Name"=var.prefix})
+  tags = merge(var.tags, { "Name" = var.prefix })
 }
