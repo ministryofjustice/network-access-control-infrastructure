@@ -125,10 +125,6 @@ variable "radius_internal_service_arn" {
   type = string
 }
 
-variable "is_publicly_accessible" {
-  type = bool
-}
-
 variable "local_development_domain_affix" {
   type = string
 }

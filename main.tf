@@ -218,7 +218,6 @@ module "admin" {
   cognito_user_pool_domain          = module.authentication.cognito_user_pool_domain
   cognito_user_pool_client_id       = module.authentication.cognito_user_pool_client_id
   cognito_user_pool_client_secret   = module.authentication.cognito_user_pool_client_secret
-  is_publicly_accessible            = local.publicly_accessible
   local_development_domain_affix    = var.local_development_domain_affix
   cloudwatch_link                   = var.cloudwatch_link
   eap_private_key_password        = var.eap_private_key_password
@@ -252,10 +251,6 @@ module "admin" {
   providers = {
     aws = aws.env
   }
-}
-
-locals {
-  publicly_accessible = local.is_production ? false : true
 }
 
 module "authentication" {
