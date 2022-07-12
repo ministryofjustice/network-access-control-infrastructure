@@ -181,6 +181,10 @@ resource "aws_ecs_task_definition" "admin" {
           "value": "${var.cloudwatch_link}"
         },
         {
+          "name": "GRAFANA_DASHBOARD_LINK",
+          "value": "${var.grafana_dashboard_link}"
+        },
+        {
           "name": "SERVER_IPS",
           "value": "${var.server_ips}"
         },

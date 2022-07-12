@@ -81,6 +81,10 @@ variable "cloudwatch_link" {
   type = string
 }
 
+variable "grafana_dashboard_link" {
+  type = string
+}
+
 variable "server_ips" {
   type = string
 }
