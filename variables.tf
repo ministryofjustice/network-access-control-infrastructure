@@ -42,6 +42,7 @@ variable "cloudwatch_link" {
 variable "grafana_dashboard_link" {
   type = string
 }
+
 variable "admin_db_backup_retention_period" {
   type    = string
   default = "30"
