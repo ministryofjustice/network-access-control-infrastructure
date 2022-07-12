@@ -220,6 +220,7 @@ module "admin" {
   cognito_user_pool_client_secret   = module.authentication.cognito_user_pool_client_secret
   local_development_domain_affix    = var.local_development_domain_affix
   cloudwatch_link                   = var.cloudwatch_link
+  grafana_dashboard_link            = var.grafana_dashboard_link
   eap_private_key_password          = var.eap_private_key_password
   radsec_private_key_password       = var.radsec_private_key_password
   server_ips = join(", ", [
