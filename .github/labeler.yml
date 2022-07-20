@@ -1,0 +1,7 @@
+network-access-control:
+  - '**'
+
+documentation:
+  - "diagrams/**"
+  - "documentation/**"
+  - "README.md"
