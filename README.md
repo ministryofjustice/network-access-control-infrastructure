@@ -27,6 +27,7 @@ This repository defines the **system infrastructure only**. Specific components 
 - [Deploying NACS](documentation/deploying-nacs.md)
 - [Debug Mode](documentation/debug-mode.md)
 - [Disaster Recovery](documentation/disaster-recovery.md)
+- [Failover](documentation/failover.md)
 - [Authentication with Azure AD](documentation/azure-ad.md)
 - [Vertically scaling the Read Replica](documentation/database-upgrade.md)
 - [Setup Performance Testing](documentation/performance_testing.md)
