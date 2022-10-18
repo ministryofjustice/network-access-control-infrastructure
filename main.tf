@@ -107,6 +107,8 @@ module "radius" {
     "Error: post_auth - Failed to find attribute",
     "Error: python",
     "Error:",
+    "ERROR",
+    "error",
     "Shared secret is incorrect",
     "unknown CA",
     "authorized_macs: users: Matched entry",
