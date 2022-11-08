@@ -106,14 +106,12 @@ module "radius" {
     "Ignoring request to auth address",
     "Error: post_auth - Failed to find attribute",
     "Error: python",
-    "Error:",
-    "ERROR",
-    "error",
     "Shared secret is incorrect",
     "unknown CA",
     "authorized_macs: users: Matched entry",
     "Health Check: OK",
-    "Failed to start task"
+    "Failed to start task",
+    "?'error' ?'Error' ?'ERROR' -'Error: python' -'post_auth - Failed to find attribute'"
   ]
 
   providers = {
