@@ -25,6 +25,6 @@ resource "aws_cloudwatch_log_metric_filter" "radius_request_filter_with_queries"
     namespace     = var.log_metrics_namespace
     value         = "1"
     default_value = "0"
-    unit          = "count"
+    unit          = "Count"
   }
 }
