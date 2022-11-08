@@ -111,7 +111,7 @@ module "radius" {
     "authorized_macs: users: Matched entry",
     "Health Check: OK",
     "Failed to start task",
-    "?'error' ?'Error' ?'ERROR' -'Error: python' -'post_auth - Failed to find attribute'"
+    "?'error' ?'Error' ?'ERROR'"
   ]
 
   providers = {
