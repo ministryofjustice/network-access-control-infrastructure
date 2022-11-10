@@ -1,5 +1,5 @@
 resource "aws_cloudwatch_log_metric_filter" "radius_request_filter" {
-  for_each = toset([for i in var.log_filters : replace(i, ":", "") if !(length(regexall("\\?", i)) > 0)])
+  for_each = toset([for i in var.log_filters : i if !(length(regexall("\\?", i)) > 0)])
 
   name           = replace(each.value, ":", "")
   pattern        = format("\"%s\"", each.value)
@@ -14,7 +14,7 @@ resource "aws_cloudwatch_log_metric_filter" "radius_request_filter" {
 }
 
 resource "aws_cloudwatch_log_metric_filter" "radius_request_filter_with_queries" {
-  for_each = toset([for i in var.log_filters : replace(i, ":", "") if length(regexall("\\?", i)) > 0])
+  for_each = toset([for i in var.log_filters : i if length(regexall("\\?", i)) > 0])
 
   name           = length(regexall("error", each.value)) > 0 ? "All errors" : regex("[[:alpha:]]+", each.value)
   pattern        = replace(each.value, "'", "\"")
