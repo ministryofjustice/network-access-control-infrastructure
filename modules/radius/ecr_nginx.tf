@@ -8,7 +8,7 @@ resource "aws_ecr_repository_policy" "nginx" {
         {
             "Sid": "1",
             "Effect": "Allow",
-            "Principal":
+            "Principal":{
                 "AWS": [
                         "683290208331",
                         "068084030754",
