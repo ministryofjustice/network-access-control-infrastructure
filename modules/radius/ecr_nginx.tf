@@ -10,12 +10,12 @@ resource "aws_ecr_repository_policy" "nginx" {
             "Effect": "Allow",
             "Principal":{
                 "AWS": [
-                        "683290208331",
-                        "068084030754",
-                        "473630360727",
-                        "037161842252"
-                        ]
-                    },
+                    "683290208331",
+                    "068084030754",
+                    "473630360727",
+                    "037161842252"
+                    ]
+                },
             "Action": [
                 "ecr:GetDownloadUrlForLayer",
                 "ecr:BatchGetImage",
