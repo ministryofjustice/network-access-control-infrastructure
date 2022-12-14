@@ -1,3 +1,5 @@
+data "aws_caller_identity" "current" {}
+
 resource "aws_cloudwatch_log_group" "admin" {
   name = var.prefix
 
@@ -26,7 +28,9 @@ resource "aws_ecr_repository_policy" "admin" {
         {
             "Sid": "1",
             "Effect": "Allow",
-            "Principal": "*",
+            "Principal":{ 
+              "AWS": "${data.aws_caller_identity.current.account_id}"
+            },
             "Action": [
                 "ecr:GetDownloadUrlForLayer",
                 "ecr:BatchGetImage",

@@ -8,14 +8,9 @@ resource "aws_ecr_repository_policy" "nginx" {
         {
             "Sid": "1",
             "Effect": "Allow",
-            "Principal":{
-                "AWS": [
-                    "683290208331",
-                    "068084030754",
-                    "473630360727",
-                    "037161842252"
-                    ]
-                },
+            "Principal":{ 
+              "AWS": "${data.aws_caller_identity.current.account_id}"
+            },
             "Action": [
                 "ecr:GetDownloadUrlForLayer",
                 "ecr:BatchGetImage",
