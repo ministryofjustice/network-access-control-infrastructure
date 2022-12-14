@@ -128,8 +128,6 @@ resource "aws_s3_bucket" "lb_log_bucket" {
   tags = var.tags
 }
 
-data "aws_caller_identity" "current" {}
-
 resource "aws_s3_bucket_policy" "lb_log_bucket_policy" {
   bucket = aws_s3_bucket.lb_log_bucket.id
 
