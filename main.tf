@@ -225,6 +225,7 @@ module "admin" {
   grafana_dashboard_link            = var.grafana_dashboard_link
   eap_private_key_password          = var.eap_private_key_password
   radsec_private_key_password       = var.radsec_private_key_password
+  shared_services_account_id        = var.shared_services_account_id
   server_ips = join(", ", [
     module.radius.load_balancer.nac_eu_west_2a_ip_address,
     module.radius.load_balancer.nac_eu_west_2b_ip_address,
