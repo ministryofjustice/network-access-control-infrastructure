@@ -123,3 +123,7 @@ variable "vpc_flow_logs_group_id" {
 variable "log_metrics_namespace" {
   type = string
 }
+
+variable "shared_services_account_id" {
+  type = string
+}

@@ -126,3 +126,7 @@ variable "ocsp_atos_cidr_range_1" {
 variable "ocsp_atos_cidr_range_2" {
   type = string
 }
+
+variable "shared_services_account_id" {
+  type = string
+}

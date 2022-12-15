@@ -144,3 +144,7 @@ variable "eap_private_key_password" {
 variable "radsec_private_key_password" {
   type = string
 }
+
+variable "shared_services_account_id" {
+  type = string
+}
