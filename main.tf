@@ -80,7 +80,7 @@ module "radius" {
   vpc_flow_logs_group_id          = module.radius_vpc_flow_logs.flow_log_group_id
   log_metrics_namespace           = local.is_local_development ? "${module.label.id}-mojo-nac-requests" : "mojo-nac-requests"
   shared_services_account_id      = var.shared_services_account_id
-  
+
   read_replica = {
     name = module.admin_read_replica.rds.name
     host = module.admin_read_replica.rds.host
