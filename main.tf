@@ -113,7 +113,8 @@ module "radius" {
     "authorized_macs: users: Matched entry",
     "Health Check: OK",
     "Failed to start task",
-    "?'error' ?'Error' ?'ERROR'"
+    "?'error' ?'Error' ?'ERROR'",
+    "Certifcate Expiry Warning:"
   ]
 
   providers = {
