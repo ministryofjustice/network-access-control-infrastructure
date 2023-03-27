@@ -114,7 +114,7 @@ module "radius" {
     "Health Check: OK",
     "Failed to start task",
     "?'error' ?'Error' ?'ERROR'",
-    "Certifcate Expiry Warning:"
+    "Certificate Expiry Warning:"
   ]
 
   providers = {
