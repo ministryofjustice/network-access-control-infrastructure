@@ -114,7 +114,9 @@ module "radius" {
     "Health Check: OK",
     "Failed to start task",
     "?'error' ?'Error' ?'ERROR'",
-    "Certificate Expiry Warning:"
+    "Certificate Expiry Warning:",
+    "reject Wireless-802.11",
+    "reject Ethernet"
   ]
 
   providers = {
