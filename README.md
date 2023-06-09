@@ -32,10 +32,9 @@ This repository defines the **system infrastructure only**. Specific components 
 - [Vertically scaling the Read Replica](documentation/database-upgrade.md)
 - [Setup Performance Testing](documentation/performance_testing.md)
 
-
 ## CI/CD
 
--   [CI Terraform code - network-access-control-infrastructure](https://github.com/ministryofjustice/network-access-control-infrastructure)
--   Terraform module - module "network-access-control-infrastructure"
--   AWS Account - MOJ Official (Shared Services)
--   [Pipeline "network-access-control-infrastructure"](https://eu-west-2.console.aws.amazon.com/codesuite/codepipeline/pipelines/network-access-control-infrastructure/view?region=eu-west-2)
+- [CI Terraform code - network-access-control-infrastructure](https://github.com/ministryofjustice/network-access-control-infrastructure)
+- Terraform module - module "network-access-control-infrastructure"
+- AWS Account - MOJ Official (Shared Services)
+- [Pipeline "network-access-control-infrastructure"](https://eu-west-2.console.aws.amazon.com/codesuite/codepipeline/pipelines/network-access-control-infrastructure/view?region=eu-west-2)
