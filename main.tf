@@ -4,14 +4,6 @@ terraform {
     dynamodb_table = "pttp-ci-infrastructure-nac-client-core-tf-lock-table"
     region         = "eu-west-2"
   }
-
-  required_providers {
-    aws = {
-      source                = "hashicorp/aws"
-      version               = "~> 3.0"
-      configuration_aliases = [aws.env]
-    }
-  }
 }
 
 provider "aws" {
