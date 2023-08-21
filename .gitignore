@@ -1,3 +1,9 @@
+# Local environments
+*.env
+*.env*
+*.env.*
+!.env.example
+
 # Local .terraform directories
 .terraform.lock.hcl
 **/.terraform/*
