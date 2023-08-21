@@ -44,3 +44,6 @@ VpnCerts
 *.DS_Store
 .terraform.back
 .infracost
+
+# ignore tfenv pinned version file
+.terraform-version
