@@ -28,11 +28,17 @@ plan:
 refresh:
 	aws-vault exec $$AWS_VAULT_PROFILE -- terraform refresh
 
+output:
+	aws-vault exec $$AWS_VAULT_PROFILE -- terraform output -json
+
 apply:
 	aws-vault exec $$AWS_VAULT_PROFILE -- terraform apply
 
 state-list:
 	aws-vault exec $$AWS_VAULT_PROFILE -- terraform state list
+
+show:
+	aws-vault exec $$AWS_VAULT_PROFILE -- terraform show -no-color
 
 destroy:
 	aws-vault exec $$AWS_VAULT_PROFILE -- terraform destroy
@@ -45,4 +51,4 @@ authorise-performance-test-clients:
 
 .PHONY:
 	fmt init workspace-list workspace-select validate plan-out plan \
-	refresh apply destroy clean authorise-performance-test-clients
+	refresh output apply state-list show destroy clean authorise-performance-test-clients
