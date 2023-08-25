@@ -134,41 +134,59 @@ export AWS_PROFILE=mojo-shared-services-cli
 export AWS_VAULT_PROFILE=mojo-shared-services-cli
 
 ### ${ENV} ###
-export ENV="${ENV}"
-
-export TF_VAR_assume_role="${assume_role}"
-export TF_VAR_azure_federation_metadata_url="${azure_federation_metadata_url}"
+export ENV=${ENV}
 
 
-export TF_VAR_hosted_zone_domain="${hosted_zone_domain}"
-export TF_VAR_hosted_zone_id="${hosted_zone_id}"
-export TF_VAR_admin_db_username="${admin_db_username}"
-export TF_VAR_admin_db_password="${admin_db_password}"
-export TF_VAR_admin_sentry_dsn="${admin_sentry_dsn}"
-export TF_VAR_transit_gateway_id="${transit_gateway_id}"
-export TF_VAR_transit_gateway_route_table_id="${transit_gateway_route_table_id}"
-export TF_VAR_mojo_dns_ip_1="${mojo_dns_ip_1}"
-export TF_VAR_mojo_dns_ip_2="${mojo_dns_ip_2}"
-export TF_VAR_ocsp_endpoint_ip="${ocsp_endpoint_ip}"
-export TF_VAR_ocsp_endpoint_port="${ocsp_endpoint_port}"
-export TF_VAR_ocsp_atos_domain="${ocsp_atos_domain}"
-export TF_VAR_ocsp_atos_cidr_range_1="${ocsp_atos_cidr_range_1}"
-export TF_VAR_ocsp_atos_cidr_range_2="${ocsp_atos_cidr_range_2}"
-export TF_VAR_enable_ocsp="${enable_ocsp}"
-export TF_VAR_ocsp_override_cert_url="${ocsp_override_cert_url}"
-export TF_VAR_byoip_pool_id="${byoip_pool_id}"
-export TF_VAR_eap_private_key_password="${eap_private_key_password}"
-export TF_VAR_radsec_private_key_password="${radsec_private_key_password}"
-export TF_VAR_radius_enable_packet_capture="${radius_enable_packet_capture}"
-export TF_VAR_packet_capture_duration_seconds="${packet_capture_duration_seconds}"
-export TF_VAR_cloudwatch_link="${cloudwatch_link}"
-export TF_VAR_grafana_dashboard_link="${grafana_dashboard_link}"
-export DEVELOPMENT_ROUTE53_NS_UPSERT="${DEVELOPMENT_ROUTE53_NS_UPSERT}"
-export PRE_PRODUCTION_ROUTE53_NS_UPSERT="${PRE_PRODUCTION_ROUTE53_NS_UPSERT}"
-export HOSTED_ZONE_ID="${HOSTED_ZONE_ID}"
-export ROLE_ARN="${ROLE_ARN}"
-export TF_VAR_shared_services_account_id="${shared_services_account_id}"
+## buildspec defaults
 
+## We do not want to disable prompt for local builds.
+## https://developer.hashicorp.com/terraform/cli/config/environment-variables#tf_input
+##TF_INPUT: 0 ## We wnat this locally to ensure we have provided all
+
+## This value has been applied to the envs via AWS CodePipeline CI.
+## We don't want to use the default variable's value here.
+export TF_VAR_owner_email=nac@justice.gov.uk
+
+## This value has been applied to the envs via AWS CodePipeline CI.
+## There is no default value set in the variables.tf.
+export TF_VAR_enable_authentication=true
+
+## This value has been applied to the envs via AWS CodePipeline CI.
+export TF_VAR_enable_hosted_zone=true
+
+## This value has been applied to the envs via AWS CodePipeline CI.
+export TF_VAR_enable_nac_transit_gateway_attachment=true
+
+export TF_VAR_assume_role=${assume_role}
+export TF_VAR_azure_federation_metadata_url=${azure_federation_metadata_url}
+export TF_VAR_hosted_zone_domain=${hosted_zone_domain}
+export TF_VAR_hosted_zone_id=${hosted_zone_id}
+export TF_VAR_admin_db_username=${admin_db_username}
+export TF_VAR_admin_db_password=${admin_db_password}
+export TF_VAR_admin_sentry_dsn=${admin_sentry_dsn}
+export TF_VAR_transit_gateway_id=${transit_gateway_id}
+export TF_VAR_transit_gateway_route_table_id=${transit_gateway_route_table_id}
+export TF_VAR_mojo_dns_ip_1=${mojo_dns_ip_1}
+export TF_VAR_mojo_dns_ip_2=${mojo_dns_ip_2}
+export TF_VAR_ocsp_endpoint_ip=${ocsp_endpoint_ip}
+export TF_VAR_ocsp_endpoint_port=${ocsp_endpoint_port}
+export TF_VAR_ocsp_atos_domain=${ocsp_atos_domain}
+export TF_VAR_ocsp_atos_cidr_range_1=${ocsp_atos_cidr_range_1}
+export TF_VAR_ocsp_atos_cidr_range_2=${ocsp_atos_cidr_range_2}
+export TF_VAR_enable_ocsp=${enable_ocsp}
+export TF_VAR_ocsp_override_cert_url=${ocsp_override_cert_url}
+export TF_VAR_byoip_pool_id=${byoip_pool_id}
+export TF_VAR_eap_private_key_password=${eap_private_key_password}
+export TF_VAR_radsec_private_key_password=${radsec_private_key_password}
+export TF_VAR_radius_enable_packet_capture=${radius_enable_packet_capture}
+export TF_VAR_packet_capture_duration_seconds=${packet_capture_duration_seconds}
+export TF_VAR_cloudwatch_link=${cloudwatch_link}
+export TF_VAR_grafana_dashboard_link=${grafana_dashboard_link}
+export DEVELOPMENT_ROUTE53_NS_UPSERT=${DEVELOPMENT_ROUTE53_NS_UPSERT}
+export PRE_PRODUCTION_ROUTE53_NS_UPSERT=${PRE_PRODUCTION_ROUTE53_NS_UPSERT}
+export HOSTED_ZONE_ID=${HOSTED_ZONE_ID}
+export ROLE_ARN=${ROLE_ARN}
+export TF_VAR_shared_services_account_id=${shared_services_account_id}
 EOF
 chmod u+x ./.env
 
