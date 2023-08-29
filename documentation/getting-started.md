@@ -40,7 +40,7 @@ Assuming you have been given access to the Shared Services account,
  you can add it to [AWS Vault](https://github.com/99designs/aws-vault#quick-start):
 
 ```shell
- aws-vault add moj-nac-shared-services
+ aws-vault add mojo-shared-services-cli
 ```
 
 ## Set up MFA on AWS accounts
@@ -55,15 +55,24 @@ The steps to set this up are as follows:
 
 ## terraform.tfvars
 
-This file is used to set default local development variables, which Terraform depends on.
+This file is no longer necessary. The necessary TF_VARS that are required from the SSM Parameter Store and used by Terraform are for local development and testing written to the `.env` file that the Makefile sources. The values are exported in the shell's environment as `TF_VAR_{variable_name}`.
+
+Provided the following have been set in your shell's environment
+
+```shell
+export AWS_PROFILE=mojo-shared-services-cli
+export AWS_VAULT_PROFILE=mojo-shared-services-cli
+```
+
+You can run from the root of this project the following script.
+
+```shell
+./scripts/generate-env-file.sh [environment_name: development|pre-production|production]
+```
+
+A `.env` file will be produced for the environment, if you need to test or check a plan against another environment rerun the script.
 
 When creating infrastructure through the build pipeline, these variables are retrieved from SSM Parameter Store and used by Terraform.
-
-You can find an example of the variables file in SSM Parameter store in the Shared Services AWS account.
-
-The name of the parameter is: `/moj-network-access-control/terraform.tfvars`
-
-Please ensure to replace '[your-tf-workspace]' with your own workspace name in the example `tfvars` file.
 
 ### Initialize local Terraform state
 
@@ -74,13 +83,13 @@ Please ensure to replace '[your-tf-workspace]' with your own workspace name in t
 ### Create Terraform workspace
 
 ```shell
-  aws-vault exec moj-nac-shared-services -- terraform workspace new "YOUR_UNIQUE_WORKSPACE_NAME"
+  aws-vault exec mojo-shared-services-cli -- terraform workspace new "YOUR_UNIQUE_WORKSPACE_NAME"
 ```
 
 ### Switch to isolated workspace
 
 ```shell
-  aws-vault exec moj-nac-shared-services -- terraform workspace select "YOUR_UNIQUE_WORKSPACE_NAME"
+  aws-vault exec mojo-shared-services-cli -- terraform workspace select "YOUR_UNIQUE_WORKSPACE_NAME"
 ```
 
 ### Apply infrastructure
