@@ -44,7 +44,7 @@ jobs:
         role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
         role-session-name: GitHubWorkflow
 
-    - name: Run script
+    - name: Get TF_VARS for environment
       run: |
         ./scripts/generate-github-env.sh
       shell: bash
@@ -119,7 +119,17 @@ jobs:
         role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
         role-session-name: GitHubWorkflow
 
-    # Install the specified version of Terraform CLI
+    - name: Get TF_VARS for environment
+      run: |
+        ./scripts/generate-github-env.sh
+      shell: bash
+
+    - name: Check env
+      run: |
+        env | sort
+      shell: bash
+
+        # Install the specified version of Terraform CLI
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
       with:
@@ -183,7 +193,17 @@ jobs:
         role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
         role-session-name: GitHubWorkflow
 
-    # Install the specified version of Terraform CLI
+    - name: Get TF_VARS for environment
+      run: |
+        ./scripts/generate-github-env.sh
+      shell: bash
+
+    - name: Check env
+      run: |
+        env | sort
+      shell: bash
+
+        # Install the specified version of Terraform CLI
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
       with:
