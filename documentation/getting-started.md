@@ -3,8 +3,8 @@
 The Terraform that makes up this service is designed to be comprehensive and fully automated.
 
 The development flow is to run the Terraform from your own machine locally.
- Once the changes have been tested, you can merge changes to the `main` branch,
- where they will be automatically deployed through each of the various environments.
+Once the changes have been tested, you can merge changes to the `main` branch,
+where they will be automatically deployed through each of the various environments.
 
 Each environment is implemented using a separate AWS account, these are:
 
@@ -13,11 +13,11 @@ Each environment is implemented using a separate AWS account, these are:
 - Production
 
 When running Terraform locally, infrastructure will be created in the AWS Development environment.
- Terraform is able to namespace your infrastructure by using
- [workspaces](https://www.terraform.io/docs/state/workspaces.html).
- Naming is managed through the label module in Terraform.
- The combination of these two tools will prevent name clashes with other developers,
- infrastructure and environments, allowing development in isolation.
+Terraform is able to namespace your infrastructure by using
+[workspaces](https://www.terraform.io/docs/state/workspaces.html).
+Naming is managed through the label module in Terraform.
+The combination of these two tools will prevent name clashes with other developers,
+infrastructure and environments, allowing development in isolation.
 
 To start developing on this service, follow the guidance below:
 
@@ -32,12 +32,12 @@ To start developing on this service, follow the guidance below:
 Terraform is run locally in a similar way to how it is run on the build pipelines.
 
 It assumes an IAM role defined in the Shared Services, and targets the AWS account to gain access to the Development environment.
- This is done in the Terraform AWS provider with the `assume_role` configuration.
+This is done in the Terraform AWS provider with the `assume_role` configuration.
 
 Authentication is made with the Shared Services AWS account, which then assumes the role into the target environment.
 
 Assuming you have been given access to the Shared Services account,
- you can add it to [AWS Vault](https://github.com/99designs/aws-vault#quick-start):
+you can add it to [AWS Vault](https://github.com/99designs/aws-vault#quick-start):
 
 ```shell
  aws-vault add mojo-shared-services-cli
@@ -55,7 +55,7 @@ The steps to set this up are as follows:
 
 ## terraform.tfvars
 
-This file is no longer necessary. The necessary TF_VARS that are required from the SSM Parameter Store and used by Terraform are for local development and testing written to the `.env` file that the Makefile sources. The values are exported in the shell's environment as `TF_VAR_{variable_name}`.
+This file is no longer necessary. The necessary TF*VARS that are required from the SSM Parameter Store and used by Terraform are for local development and testing written to the `.env` file that the Makefile sources. The values are exported in the shell's environment as `TF_VAR*{variable_name}`.
 
 Provided the following have been set in your shell's environment
 
