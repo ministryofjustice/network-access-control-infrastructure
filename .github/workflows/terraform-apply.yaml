@@ -82,156 +82,160 @@ jobs:
     - name: Terraform Plan
       run: terraform plan
 
-      # On push to main, build or change infrastructure according to Terraform configuration files
-      # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
-    - name: Terraform Apply
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      run: terraform apply -auto-approve
+  ################################################################
+  ### TODO Changes to some TF_VARs required before we can use  ###
+  ################################################################
 
-  # Terraform apply in pre-production
-  terraform-apply-prep:
-    name: 'Pre-Production'
-    needs: terraform-apply-dev
-    runs-on: ubuntu-latest
-    environment: pre-production
-    defaults:
-      run:
-        shell: bash
-    env:
-        ENV: "pre-production"
-        TF_VAR_assume_role: ${{ secrets.ASSUME_ROLE }}
+  #     # On push to main, build or change infrastructure according to Terraform configuration files
+  #     # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
+  #   - name: Terraform Apply
+  #     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+  #     run: terraform apply -auto-approve
 
-    steps:
-    # Checkout the repository to the GitHub Actions runner
-    - name: Checkout
-      uses: actions/checkout@v3
+  # # Terraform apply in pre-production
+  # terraform-apply-prep:
+  #   name: 'Pre-Production'
+  #   needs: terraform-apply-dev
+  #   runs-on: ubuntu-latest
+  #   environment: pre-production
+  #   defaults:
+  #     run:
+  #       shell: bash
+  #   env:
+  #       ENV: "pre-production"
+  #       TF_VAR_assume_role: ${{ secrets.ASSUME_ROLE }}
 
-    - name: Set specified Terraform Version
-      run: |
-        tf_version=$(cat versions.tf 2> /dev/null | grep required_version | cut -d "\"" -f 2)
-        echo "Terraform version specified is: $tf_version"
-        echo "TFVERSION=${tf_version}" >> $GITHUB_ENV
+  #   steps:
+  #   # Checkout the repository to the GitHub Actions runner
+  #   - name: Checkout
+  #     uses: actions/checkout@v3
 
-    # Configure AWS credentials
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v2
-      with:
-        aws-region: eu-west-2
-        role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
-        role-session-name: GitHubWorkflow
+  #   - name: Set specified Terraform Version
+  #     run: |
+  #       tf_version=$(cat versions.tf 2> /dev/null | grep required_version | cut -d "\"" -f 2)
+  #       echo "Terraform version specified is: $tf_version"
+  #       echo "TFVERSION=${tf_version}" >> $GITHUB_ENV
 
-    - name: Get TF_VARS for environment
-      run: |
-        ./scripts/generate-github-env.sh
-      shell: bash
+  #   # Configure AWS credentials
+  #   - name: Configure AWS Credentials
+  #     uses: aws-actions/configure-aws-credentials@v2
+  #     with:
+  #       aws-region: eu-west-2
+  #       role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+  #       role-session-name: GitHubWorkflow
 
-    - name: Check env
-      run: |
-        env | sort
-      shell: bash
+  #   - name: Get TF_VARS for environment
+  #     run: |
+  #       ./scripts/generate-github-env.sh
+  #     shell: bash
 
-        # Install the specified version of Terraform CLI
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
-      with:
-        terraform_version: ${{ env.TFVERSION }}
+  #   - name: Check env
+  #     run: |
+  #       env | sort
+  #     shell: bash
 
-    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
-    - name: Terraform Init
-      run: terraform init -reconfigure --backend-config="key=terraform.$ENV.state"
+  #       # Install the specified version of Terraform CLI
+  #   - name: Setup Terraform
+  #     uses: hashicorp/setup-terraform@v2
+  #     with:
+  #       terraform_version: ${{ env.TFVERSION }}
 
-    # Select or create and then select a Terraform workspace
-    - name: Terraform Workspace
-      run: terraform workspace select $ENV || terraform workspace new $ENV
+  #   # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+  #   - name: Terraform Init
+  #     run: terraform init -reconfigure --backend-config="key=terraform.$ENV.state"
 
-    # Checks that all Terraform configuration files adhere to a canonical format
-    - name: Terraform Format
-      run: terraform fmt --recursive -check
+  #   # Select or create and then select a Terraform workspace
+  #   - name: Terraform Workspace
+  #     run: terraform workspace select $ENV || terraform workspace new $ENV
 
-    # Validates Terraform configuration
-    - name: Terraform Validate
-      run: terraform validate
+  #   # Checks that all Terraform configuration files adhere to a canonical format
+  #   - name: Terraform Format
+  #     run: terraform fmt --recursive -check
 
-    # Generates an execution plan for Terraform
-    - name: Terraform Plan
-      run: terraform plan
+  #   # Validates Terraform configuration
+  #   - name: Terraform Validate
+  #     run: terraform validate
 
-      # On push to main, build or change infrastructure according to Terraform configuration files
-      # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
-    # - name: Terraform Apply
-    #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    #   run: terraform apply -auto-approve
+  #   # Generates an execution plan for Terraform
+  #   - name: Terraform Plan
+  #     run: terraform plan
 
-  # Terraform apply in production
-  terraform-apply-prod:
-    name: 'Production'
-    needs: terraform-apply-prep
-    runs-on: ubuntu-latest
-    environment: production
-    defaults:
-      run:
-        shell: bash
-    env:
-        ENV: "production"
-        TF_VAR_assume_role: ${{ secrets.ASSUME_ROLE }}
+  #     # On push to main, build or change infrastructure according to Terraform configuration files
+  #     # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
+  #   # - name: Terraform Apply
+  #   #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+  #   #   run: terraform apply -auto-approve
 
-    steps:
-    # Checkout the repository to the GitHub Actions runner
-    - name: Checkout
-      uses: actions/checkout@v3
+  # # Terraform apply in production
+  # terraform-apply-prod:
+  #   name: 'Production'
+  #   needs: terraform-apply-prep
+  #   runs-on: ubuntu-latest
+  #   environment: production
+  #   defaults:
+  #     run:
+  #       shell: bash
+  #   env:
+  #       ENV: "production"
+  #       TF_VAR_assume_role: ${{ secrets.ASSUME_ROLE }}
 
-    - name: Set specified Terraform Version
-      run: |
-        tf_version=$(cat versions.tf 2> /dev/null | grep required_version | cut -d "\"" -f 2)
-        echo "Terraform version specified is: $tf_version"
-        echo "TFVERSION=${tf_version}" >> $GITHUB_ENV
+  #   steps:
+  #   # Checkout the repository to the GitHub Actions runner
+  #   - name: Checkout
+  #     uses: actions/checkout@v3
 
-    # Configure AWS credentials
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v2
-      with:
-        aws-region: eu-west-2
-        role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
-        role-session-name: GitHubWorkflow
+  #   - name: Set specified Terraform Version
+  #     run: |
+  #       tf_version=$(cat versions.tf 2> /dev/null | grep required_version | cut -d "\"" -f 2)
+  #       echo "Terraform version specified is: $tf_version"
+  #       echo "TFVERSION=${tf_version}" >> $GITHUB_ENV
 
-    - name: Get TF_VARS for environment
-      run: |
-        ./scripts/generate-github-env.sh
-      shell: bash
+  #   # Configure AWS credentials
+  #   - name: Configure AWS Credentials
+  #     uses: aws-actions/configure-aws-credentials@v2
+  #     with:
+  #       aws-region: eu-west-2
+  #       role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+  #       role-session-name: GitHubWorkflow
 
-    - name: Check env
-      run: |
-        env | sort
-      shell: bash
+  #   - name: Get TF_VARS for environment
+  #     run: |
+  #       ./scripts/generate-github-env.sh
+  #     shell: bash
 
-        # Install the specified version of Terraform CLI
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
-      with:
-        terraform_version: ${{ env.TFVERSION }}
+  #   - name: Check env
+  #     run: |
+  #       env | sort
+  #     shell: bash
 
-    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
-    - name: Terraform Init
-      run: terraform init -reconfigure --backend-config="key=terraform.$ENV.state"
+  #       # Install the specified version of Terraform CLI
+  #   - name: Setup Terraform
+  #     uses: hashicorp/setup-terraform@v2
+  #     with:
+  #       terraform_version: ${{ env.TFVERSION }}
 
-    # Select or create and then select a Terraform workspace
-    - name: Terraform Workspace
-      run: terraform workspace select $ENV || terraform workspace new $ENV
+  #   # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+  #   - name: Terraform Init
+  #     run: terraform init -reconfigure --backend-config="key=terraform.$ENV.state"
 
-    # Checks that all Terraform configuration files adhere to a canonical format
-    - name: Terraform Format
-      run: terraform fmt --recursive -check
+  #   # Select or create and then select a Terraform workspace
+  #   - name: Terraform Workspace
+  #     run: terraform workspace select $ENV || terraform workspace new $ENV
 
-    # Validates Terraform configuration
-    - name: Terraform Validate
-      run: terraform validate
+  #   # Checks that all Terraform configuration files adhere to a canonical format
+  #   - name: Terraform Format
+  #     run: terraform fmt --recursive -check
 
-    # Generates an execution plan for Terraform
-    - name: Terraform Plan
-      run: terraform plan
+  #   # Validates Terraform configuration
+  #   - name: Terraform Validate
+  #     run: terraform validate
 
-      # On push to main, build or change infrastructure according to Terraform configuration files
-      # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
-    # - name: Terraform Apply
-    #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    #   run: terraform apply -auto-approve
+  #   # Generates an execution plan for Terraform
+  #   - name: Terraform Plan
+  #     run: terraform plan
+
+  #     # On push to main, build or change infrastructure according to Terraform configuration files
+  #     # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
+  #   # - name: Terraform Apply
+  #   #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+  #   #   run: terraform apply -auto-approve
