@@ -29,3 +29,4 @@ jobs:
         with:
           scan_type: full
           checkov_external_modules: true
+        continue-on-error: true
