@@ -8,7 +8,7 @@ TERRAFORM_VERSION := `cat versions.tf 2> /dev/null | grep required_version | cut
 LOCAL_IMAGE := ministryofjustice/nvvs/terraforms:latest
 DOCKER_IMAGE := ghcr.io/ministryofjustice/nvvs/terraforms:v0.2.0
 
-DOCKER_RUN_GEN_ENV := @docker run --rm -it \
+DOCKER_RUN_GEN_ENV := @docker run --rm \
 				--env-file <(aws-vault exec $$AWS_PROFILE -- env | grep ^AWS_) \
 				-v `pwd`:/data \
 				--workdir /data \
@@ -20,6 +20,7 @@ DOCKER_RUN := @docker run --rm -it \
 				--env-file ./.env \
 				-e TFENV_TERRAFORM_VERSION=$(TERRAFORM_VERSION) \
 				-v `pwd`:/data \
+				-v ${HOME}/.aws:/root/.aws \
 				--workdir /data \
 				--platform linux/amd64 \
 				$(DOCKER_IMAGE)
