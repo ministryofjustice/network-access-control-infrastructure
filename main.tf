@@ -44,6 +44,8 @@ locals {
   is_development          = terraform.workspace == "development" ? true : false
   is_local_development    = !local.is_development && !local.is_pre_production && !local.is_production
   run_restore_from_backup = false
+
+  s3-mojo_file_transfer_assume_role_arn = data.terraform_remote_state.staff-device-shared-services-infrastructure.outputs.s3-mojo_file_transfer_assume_role_arn
 }
 
 module "radius" {
