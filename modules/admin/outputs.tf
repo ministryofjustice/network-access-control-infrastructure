@@ -28,3 +28,9 @@ output "rds" {
     rds_monitoring_role = aws_iam_role.rds_monitoring_role.arn
   }
 }
+
+output "security_group_ids" {
+  value = {
+    admin_ecs = aws_security_group.admin_ecs.id
+  }
+}
