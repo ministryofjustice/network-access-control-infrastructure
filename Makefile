@@ -50,6 +50,7 @@ init: ## terraform init (make init ENV_ARGUMENT=pre-production) NOTE: Will also 
 ## INFO: Do not indent the conditional below, make stops with an error.
 ifneq ("$(wildcard .env)","")
 $(info Using config file ".env")
+include .env
 init: -init
 else
 $(info Config file ".env" does not exist.)
