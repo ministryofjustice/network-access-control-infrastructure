@@ -145,6 +145,7 @@ module "ecs_auto_scaling_radius_internal" {
 module "radius_vpc" {
   source                                = "./modules/vpc"
   prefix                                = module.label.id
+  region                                = data.aws_region.current_region.id
   cidr_block                            = local.vpc_cidr
   enable_nac_transit_gateway_attachment = var.enable_nac_transit_gateway_attachment
   transit_gateway_id                    = var.transit_gateway_id
@@ -272,11 +273,12 @@ data "aws_region" "current_region" {}
 data "aws_caller_identity" "shared_services_account" {}
 
 module "admin_vpc" {
-  source     = "./modules/admin_vpc"
-  prefix     = "${module.label.id}-admin"
-  region     = data.aws_region.current_region.id
-  cidr_block = "10.0.0.0/16"
-  tags       = module.label.tags
+  source                        = "./modules/admin_vpc"
+  prefix                        = "${module.label.id}-admin"
+  region                        = data.aws_region.current_region.id
+  cidr_block                    = "10.0.0.0/16"
+  tags                          = module.label.tags
+  ssm_session_manager_endpoints = var.enable_rds_admin_bastion
 
   providers = {
     aws = aws.env

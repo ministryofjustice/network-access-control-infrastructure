@@ -46,3 +46,12 @@ variable "ocsp_atos_cidr_range_1" {
 variable "ocsp_atos_cidr_range_2" {
   type = string
 }
+
+variable "region" {
+  type = string
+}
+
+variable "ssm_session_manager_endpoints" {
+  type    = bool
+  default = false
+}
