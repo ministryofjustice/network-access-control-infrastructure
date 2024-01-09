@@ -5,7 +5,7 @@
 aws_describe_instances() {
 	aws \
 	ec2 describe-instances \
-	--query 'Reservations[].Instances[].[InstanceId,InstanceType,PublicIpAddress,Tags[?Key==`Name`]| [0].Value]' \
+	--query 'Reservations[].Instances[].[InstanceId,InstanceType,PublicIpAddress,State.Name,Tags[?Key==`Name`]| [0].Value]' \
 	--output table
 }
 
