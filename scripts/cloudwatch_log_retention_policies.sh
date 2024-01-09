@@ -11,7 +11,7 @@ fi
 # Filter for log groups containing "aws/rds/instance/" in the name
 log_group_names=$(aws logs describe-log-groups | jq -r '.logGroups | .[] | select(.logGroupName | contains("aws/rds/instance/")) | .logGroupName')
 
-retention_period=7
+retention_period=90
 
 for log_group_name in $log_group_names
 do
