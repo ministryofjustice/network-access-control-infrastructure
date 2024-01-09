@@ -156,6 +156,7 @@ module "radius_vpc" {
   ocsp_atos_cidr_range_1                = var.ocsp_atos_cidr_range_1
   ocsp_atos_cidr_range_2                = var.ocsp_atos_cidr_range_2
   tags                                  = module.label.tags
+  ssm_session_manager_endpoints         = var.enable_rds_servers_bastion
 
   providers = {
     aws = aws.env
