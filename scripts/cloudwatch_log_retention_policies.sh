@@ -28,6 +28,6 @@ main() {
   update_log_retention
 
 }
-if [ "$ENV" == "production" ]; then # Check if the environment is "production"
+if [ "$ENV" == "development" ]; then # Check if the environment is "production"
   main
 fi
