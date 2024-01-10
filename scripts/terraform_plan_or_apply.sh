@@ -7,4 +7,3 @@ if [[ "${PLAN}" == "true" ]]; then
 else
   terraform apply --auto-approve -no-color
 fi
-
