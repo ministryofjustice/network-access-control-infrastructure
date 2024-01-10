@@ -21,6 +21,7 @@ do
   echo "setting log retention policy for $log_group_name to $retention_period"
   aws logs put-retention-policy --log-group-name $log_group_name --retention-in-days $retention_period
 done
+
 }
 
 main() {
@@ -31,3 +32,4 @@ main() {
 if [ "$ENV" == "production" ]; then # Check if the environment is "production"
   main
 fi
+
