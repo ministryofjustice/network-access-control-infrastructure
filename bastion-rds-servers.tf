@@ -10,7 +10,7 @@ module "rds_servers_bastion" {
   vpc_id                      = module.radius_vpc.vpc.vpc_id
   vpc_cidr_block              = module.radius_vpc.vpc.vpc_cidr_block
   private_subnets             = module.radius_vpc.private_subnets
-  security_group_ids          = [module.radius.security_group_ids.radius_server]
+  security_group_ids          = [module.radius.security_group_ids.radius_server, module.radius_vpc.endpoints_sg.id]
   ami_name                    = "diso-devops/bastion/rds-admin/ubuntu-jammy-22.04-amd64-server-1.0.1"
   number_of_bastions          = 1
   assume_role                 = local.s3-mojo_file_transfer_assume_role_arn
