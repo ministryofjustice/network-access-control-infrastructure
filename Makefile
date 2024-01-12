@@ -67,6 +67,10 @@ endif
 	$(DOCKER_RUN) /bin/bash -c "terraform init --backend-config=\"key=terraform.${ENV}.state\""
 	$(MAKE) workspace-select
 
+.PHONY: init--reconfigure
+init-reconfigure: ## terraform init --reconfigure
+	$(DOCKER_RUN) /bin/bash -c "terraform init -reconfigure --backend-config=\"key=terraform.${ENV}.state\""
+
 .PHONY: init-upgrade
 init-upgrade: ## terraform init -upgrade
 	$(DOCKER_RUN) /bin/bash -c "terraform init -upgrade --backend-config=\"key=terraform.${ENV}.state\""
