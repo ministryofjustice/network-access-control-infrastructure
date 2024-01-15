@@ -112,6 +112,7 @@ output: ## terraform output (make output OUTPUT_ARGUMENT='--raw dns_dhcp_vpc_id'
 apply: ## terraform apply
 	$(DOCKER_RUN) /bin/bash -c "terraform apply"
 	$(DOCKER_RUN) /bin/bash -c "./scripts/publish_terraform_outputs.sh"
+	$(DOCKER_RUN) /bin/bash -c "./scripts/cloudwatch_log_retention_policies.sh"
 
 .PHONY: state-list
 state-list: ## terraform state list
