@@ -31,6 +31,7 @@ This repository defines the **system infrastructure only**. Specific components 
 - [Authentication with Azure AD](documentation/azure-ad.md)
 - [Vertically scaling the Read Replica](documentation/database-upgrade.md)
 - [Setup Performance Testing](documentation/performance_testing.md)
+- [Database Access - dump with bastion](documentation/rds-bastion.md)
 
 ## CI/CD
 
