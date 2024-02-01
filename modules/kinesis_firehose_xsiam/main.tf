@@ -10,6 +10,12 @@ resource "aws_kinesis_firehose_delivery_stream" "xsiam_delivery_stream" {
     buffering_interval = 300
     role_arn           = aws_iam_role.xsiam_kinesis_firehose_role.arn
     s3_backup_mode     = "FailedDataOnly"
+
+    cloudwatch_logging_options {
+      enabled = true
+      log_group_name = "xsiam-delivery-stream-${var.prefix}"
+      log_stream_name = "errors"
+    }
   }
 
     s3_configuration {
