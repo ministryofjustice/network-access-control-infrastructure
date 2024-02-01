@@ -91,10 +91,10 @@ resource "aws_iam_policy" "xsiam_kinesis_firehose_error_log_policy" {
         Action = [
           "logs:PutLogEvents",
         ]
-        Effect   = "Allow"
+        Effect = "Allow"
         Resource = [
           "${aws_cloudwatch_log_group.xsiam_delivery_group.arn}/*"
-          ]
+        ]
       }
     ]
   })
