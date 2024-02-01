@@ -17,8 +17,8 @@ resource "aws_kinesis_firehose_delivery_stream" "xsiam_delivery_stream" {
 
     cloudwatch_logging_options {
       enabled         = true
-      log_group_name  = "xsiam-delivery-stream-${var.prefix}"
-      log_stream_name = "errors"
+      log_group_name  = aws_cloudwatch_log_group.xsiam_delivery_group.name
+      log_stream_name = aws_cloudwatch_log_stream.xsiam_delivery_stream.name
     }
   }
 
@@ -29,6 +29,17 @@ resource "aws_kinesis_firehose_delivery_stream" "xsiam_delivery_stream" {
     buffer_interval    = 400
     compression_format = "GZIP"
   }
+}
+
+resource "aws_cloudwatch_log_group" "xsiam_delivery_group" {
+  name = "xsiam-delivery-stream-${var.prefix}"
+
+  retention_in_days = 90
+}
+
+resource "aws_cloudwatch_log_stream" "xsiam_delivery_stream" {
+  name           = "errors"
+  log_group_name = aws_cloudwatch_log_group.xsiam_delivery_group.name
 }
 
 resource "aws_iam_role" "xsiam_kinesis_firehose_role" {
@@ -63,6 +74,29 @@ resource "aws_iam_role_policy" "xsiam_kinesis_firehose_role_policy" {
         ]
         Effect   = "Allow"
         Resource = "*"
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "kinesis_firehose_error_log_role_attachment" {
+  policy_arn = aws_iam_policy.xsiam_kinesis_firehose_error_log_policy.arn
+  role       = aws_iam_role.xsiam_kinesis_firehose_role.name
+
+}
+
+resource "aws_iam_policy" "xsiam_kinesis_firehose_error_log_policy" {
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "logs:PutLogEvents",
+        ]
+        Effect   = "Allow"
+        Resource = [
+          "${aws_cloudwatch_log_group.xsiam_delivery_group.arn}/*"
+          ]
       }
     ]
   })
