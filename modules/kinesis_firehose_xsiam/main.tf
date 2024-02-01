@@ -44,8 +44,6 @@ resource "aws_cloudwatch_log_stream" "xsiam_delivery_stream" {
 
 resource "aws_iam_role" "xsiam_kinesis_firehose_role" {
 
-  //name = "kinesis-firehose-role-xsiam"
-
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [

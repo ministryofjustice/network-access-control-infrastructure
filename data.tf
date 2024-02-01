@@ -1,5 +1,5 @@
 locals {
-  xaiam_secrets_version_development    = "2f39a1d3-b363-4d24-8749-f0ae737c2824"
+  xaiam_secrets_version_development    = "74b8d013-7096-415b-a8f4-20adc4624667"
   xaiam_secrets_version_pre_production = ""
   xaiam_secrets_version_production     = ""
 }

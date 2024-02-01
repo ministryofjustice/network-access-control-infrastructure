@@ -10,3 +10,6 @@ variable "access_key" {
 variable "tags" {
   type = map(string)
 }
+variable "cloudwatch_log_group_for_subscription" {
+  type = string
+}
