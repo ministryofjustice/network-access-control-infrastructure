@@ -2,6 +2,10 @@ resource "aws_kinesis_firehose_delivery_stream" "xsiam_delivery_stream" {
   name        = "xsiam-delivery-stream-${var.prefix}"
   destination = "http_endpoint"
 
+  server_side_encryption {
+    enabled = true
+  }
+
   http_endpoint_configuration {
     url                = var.http_endpoint
     name               = var.prefix
@@ -25,20 +29,6 @@ resource "aws_kinesis_firehose_delivery_stream" "xsiam_delivery_stream" {
     buffer_interval    = 400
     compression_format = "GZIP"
   }
-
-  #    request_configuration {
-  #      content_encoding = "GZIP"
-  #
-  #            common_attributes {
-  #              name  = "testname"
-  #              value = "testvalue"
-  #            }
-  #
-  #            common_attributes {
-  #              name  = "testname2"
-  #              value = "testvalue2"
-  #            }
-  #    }
 }
 
 resource "aws_iam_role" "xsiam_kinesis_firehose_role" {
