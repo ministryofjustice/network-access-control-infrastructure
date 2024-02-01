@@ -1,4 +1,4 @@
-resource "aws_cloudwatch_log_subscription_filter" "test_lambdafunction_logfilter" {
+resource "aws_cloudwatch_log_subscription_filter" "nacs_server_xsiam_subscription" {
   name            = "xsiam-delivery-stream-${var.prefix}"
   role_arn        = aws_iam_role.this.arn
   log_group_name  = var.cloudwatch_log_group_for_subscription
