@@ -312,11 +312,11 @@ module "performance_testing" {
 }
 
 module "kinesis_firehose_xsiam" {
-  source                   = "./modules/kinesis_firehose_xsiam"
-  access_key               = "bar"
-  http_endpoint            = "https://moj.gov.uk"
-  prefix                   = "${module.label.id}-xsiam"
-  tags                     = module.label.tags
+  source        = "./modules/kinesis_firehose_xsiam"
+  http_endpoint = jsondecode(data.aws_secretsmanager_secret_version.xaiam_secrets_version.secret_string)["http_endpoint"]
+  access_key    = jsondecode(data.aws_secretsmanager_secret_version.xaiam_secrets_version.secret_string)["access_key"]
+  prefix        = "${module.label.id}-xsiam"
+  tags          = module.label.tags
 
   providers = {
     aws = aws.env

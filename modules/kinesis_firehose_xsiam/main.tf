@@ -12,34 +12,34 @@ resource "aws_kinesis_firehose_delivery_stream" "xsiam_delivery_stream" {
     s3_backup_mode     = "FailedDataOnly"
 
     cloudwatch_logging_options {
-      enabled = true
-      log_group_name = "xsiam-delivery-stream-${var.prefix}"
+      enabled         = true
+      log_group_name  = "xsiam-delivery-stream-${var.prefix}"
       log_stream_name = "errors"
     }
   }
 
-    s3_configuration {
-      role_arn           = aws_iam_role.xsiam_kinesis_firehose_role.arn
-      bucket_arn         = aws_s3_bucket.xsiam_firehose_bucket.arn
-      buffer_size     = 10
-      buffer_interval = 400
-      compression_format = "GZIP"
-    }
-
-#    request_configuration {
-#      content_encoding = "GZIP"
-#
-#            common_attributes {
-#              name  = "testname"
-#              value = "testvalue"
-#            }
-#
-#            common_attributes {
-#              name  = "testname2"
-#              value = "testvalue2"
-#            }
-#    }
+  s3_configuration {
+    role_arn           = aws_iam_role.xsiam_kinesis_firehose_role.arn
+    bucket_arn         = aws_s3_bucket.xsiam_firehose_bucket.arn
+    buffer_size        = 10
+    buffer_interval    = 400
+    compression_format = "GZIP"
   }
+
+  #    request_configuration {
+  #      content_encoding = "GZIP"
+  #
+  #            common_attributes {
+  #              name  = "testname"
+  #              value = "testvalue"
+  #            }
+  #
+  #            common_attributes {
+  #              name  = "testname2"
+  #              value = "testvalue2"
+  #            }
+  #    }
+}
 
 resource "aws_iam_role" "xsiam_kinesis_firehose_role" {
 
