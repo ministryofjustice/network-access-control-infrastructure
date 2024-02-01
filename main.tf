@@ -310,3 +310,15 @@ module "performance_testing" {
     aws = aws.env
   }
 }
+
+module "kinesis_firehose_xsiam" {
+  source                   = "./modules/kinesis_firehose_xsiam"
+  access_key               = "bar"
+  http_endpoint            = "https://moj.gov.uk"
+  prefix                   = "${module.label.id}-xsiam"
+  tags                     = module.label.tags
+
+  providers = {
+    aws = aws.env
+  }
+}
