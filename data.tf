@@ -1,7 +1,7 @@
 locals {
-  xaiam_secrets_version_development    = "74b8d013-7096-415b-a8f4-20adc4624667"
-  xaiam_secrets_version_pre_production = "f0bd19d9-9e31-478f-a483-6cb010ca58a0"
-  xaiam_secrets_version_production     = "ee71326d-aa17-4035-98cb-19ac8bee3b47"
+  xaiam_secrets_version_development    = "2e73a1de-af34-4c1d-a8ce-759df5b7bf75"
+  xaiam_secrets_version_pre_production = "9a071db2-4ed2-4c3f-9568-5ef2d5299dc4"
+  xaiam_secrets_version_production     = "a275ae6e-fc4c-4341-bb63-064f4e2fe209"
 }
 
 #-----------------------------------------------------------------
