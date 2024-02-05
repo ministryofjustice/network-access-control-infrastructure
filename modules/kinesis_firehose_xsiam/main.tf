@@ -34,6 +34,7 @@ resource "aws_kinesis_firehose_delivery_stream" "xsiam_delivery_stream" {
 resource "aws_cloudwatch_log_group" "xsiam_delivery_group" {
   name              = "xsiam-delivery-stream-${var.prefix}"
   tags              = var.tags
+  name = "xsiam-delivery-stream-${var.prefix}"
   retention_in_days = 90
 }
 
@@ -117,6 +118,12 @@ resource "aws_iam_policy" "s3_kinesis_xsiam_policy" {
       {
         Action = [
           "s3:*"
+          "s3:AbortMultipartUpload",
+          "s3:GetBucketLocation",
+          "s3:GetObject",
+          "s3:ListBucket",
+          "s3:ListBucketMultipartUploads",
+          "s3:PutObject"
         ]
         Effect = "Allow"
         Resource = [
