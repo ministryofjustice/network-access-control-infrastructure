@@ -2,6 +2,8 @@ resource "aws_kinesis_firehose_delivery_stream" "xsiam_delivery_stream" {
   name        = "xsiam-delivery-stream-${var.prefix}"
   destination = "http_endpoint"
 
+  tags = var.tags
+
   server_side_encryption {
     enabled = true
   }
@@ -34,7 +36,6 @@ resource "aws_kinesis_firehose_delivery_stream" "xsiam_delivery_stream" {
 resource "aws_cloudwatch_log_group" "xsiam_delivery_group" {
   name              = "xsiam-delivery-stream-${var.prefix}"
   tags              = var.tags
-  name = "xsiam-delivery-stream-${var.prefix}"
   retention_in_days = 90
 }
 
@@ -57,6 +58,8 @@ resource "aws_iam_role" "xsiam_kinesis_firehose_role" {
       }
     ]
   })
+
+  tags = var.tags
 }
 
 resource "aws_iam_role_policy" "xsiam_kinesis_firehose_role_policy" {
@@ -99,6 +102,8 @@ resource "aws_iam_policy" "xsiam_kinesis_firehose_error_log_policy" {
       }
     ]
   })
+
+  tags = var.tags
 }
 
 
@@ -132,4 +137,6 @@ resource "aws_iam_policy" "s3_kinesis_xsiam_policy" {
       }
     ]
   })
+
+  tags = var.tags
 }
