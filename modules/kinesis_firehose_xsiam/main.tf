@@ -2,6 +2,8 @@ resource "aws_kinesis_firehose_delivery_stream" "xsiam_delivery_stream" {
   name        = "xsiam-delivery-stream-${var.prefix}"
   destination = "http_endpoint"
 
+  tags = var.tags
+
   server_side_encryption {
     enabled = true
   }
@@ -56,6 +58,8 @@ resource "aws_iam_role" "xsiam_kinesis_firehose_role" {
       }
     ]
   })
+
+  tags = var.tags
 }
 
 resource "aws_iam_role_policy" "xsiam_kinesis_firehose_role_policy" {
@@ -98,6 +102,8 @@ resource "aws_iam_policy" "xsiam_kinesis_firehose_error_log_policy" {
       }
     ]
   })
+
+  tags = var.tags
 }
 
 
@@ -131,4 +137,6 @@ resource "aws_iam_policy" "s3_kinesis_xsiam_policy" {
       }
     ]
   })
+
+  tags = var.tags
 }

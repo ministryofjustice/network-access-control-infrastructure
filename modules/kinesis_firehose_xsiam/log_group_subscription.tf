@@ -8,6 +8,7 @@ resource "aws_cloudwatch_log_subscription_filter" "nacs_server_xsiam_subscriptio
 
 resource "aws_iam_role" "this" {
   name_prefix        = var.prefix
+  tags               = var.tags
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
