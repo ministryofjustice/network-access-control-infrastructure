@@ -117,7 +117,6 @@ resource "aws_iam_policy" "s3_kinesis_xsiam_policy" {
     Statement = [
       {
         Action = [
-          "s3:*"
           "s3:AbortMultipartUpload",
           "s3:GetBucketLocation",
           "s3:GetObject",
