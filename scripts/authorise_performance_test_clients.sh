@@ -1,4 +1,4 @@
-env=development
+env="${ENV}"
 
 aws s3 cp s3://mojo-$env-nac-config-bucket/clients.conf ./scripts/
 

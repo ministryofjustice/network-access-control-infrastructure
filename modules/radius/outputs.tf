@@ -58,3 +58,9 @@ output "s3" {
     radius_certificate_bucket_key_arn = aws_kms_key.certificate_bucket_key.arn
   }
 }
+
+output "security_group_ids" {
+  value = {
+    radius_server = aws_security_group.radius_server.id
+  }
+}

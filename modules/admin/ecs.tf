@@ -3,7 +3,7 @@ data "aws_caller_identity" "current" {}
 resource "aws_cloudwatch_log_group" "admin" {
   name = var.prefix
 
-  retention_in_days = 7
+  retention_in_days = 90
 
   tags = var.tags
 }
