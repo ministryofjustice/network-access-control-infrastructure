@@ -3,6 +3,7 @@ resource "aws_lb" "load_balancer" {
   load_balancer_type               = "network"
   internal                         = false
   enable_cross_zone_load_balancing = true
+  security_groups    = [aws_security_group.nlb_public.id]
   access_logs {
     bucket  = aws_s3_bucket.lb_log_bucket.bucket
     enabled = true
@@ -174,3 +175,85 @@ resource "aws_kms_key" "lb_log_bucket_key" {
   enable_key_rotation     = true
 }
 
+//Security group for PUBLIC NLB
+
+variable "ingress_rules" {
+  type = list(object({
+    from_port   = number
+    to_port     = number
+    protocol    = string
+    cidr_blocks = list(string)
+    description = string
+  }))
+  default = [
+    {
+      from_port   = 8000
+      to_port     = 8000
+      protocol    = "tcp"
+      cidr_blocks = ["10.180.108.0/22"]
+      description = "Allow load balancer health checks"
+    },
+    {
+      from_port   = 2083
+      to_port     = 2083
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+      description = " Allow inbound RADSEC traffic to the Radius server"
+    },
+    {
+      from_port   = 1812
+      to_port     = 1812
+      protocol    = "udp"
+      cidr_blocks = ["0.0.0.0/0"]
+      description = "Allow inbound EAP traffic to the Radius server"
+    }
+  ]
+}
+
+variable "egress_rules" {
+  type = list(object({
+    from_port   = number
+    to_port     = number
+    protocol    = string
+    cidr_blocks = list(string)
+    description = string
+  }))
+  default = [
+    {
+      from_port   = 0
+      to_port     = 0
+      protocol    = "-1"
+      cidr_blocks = ["0.0.0.0/0"]
+      description = "Allow all outbound traffic"
+    }
+  ]
+}
+
+resource "aws_security_group" "nlb_public" {
+  name   = "${var.prefix}-nlb-public"
+  vpc_id = var.vpc.id
+
+  dynamic "ingress" {
+    for_each = var.ingress_rules
+
+    content {
+      from_port       = ingress.value.from_port
+      to_port         = ingress.value.to_port
+      protocol        = ingress.value.protocol
+      cidr_blocks     = ingress.value.cidr_blocks
+      description     = ingress.value.description
+    }
+  }
+
+  dynamic "egress" {
+    for_each = var.egress_rules
+
+    content {
+      from_port       = egress.value.from_port
+      to_port         = egress.value.to_port
+      protocol        = egress.value.protocol
+      cidr_blocks     = egress.value.cidr_blocks
+      description     = egress.value.description
+    }
+  }
+}
