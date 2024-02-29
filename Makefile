@@ -155,10 +155,12 @@ aws_ssm_start_session: ## Use AWS CLI to start SSM session on an EC2 instance (m
 tfenv: ## tfenv pin - terraform version from versions.tf
 	tfenv use $(cat versions.tf 2> /dev/null | grep required_version | cut -d "\"" -f 2 | cut -d " " -f 2) && tfenv pin
 
+.PHONY: taint
+taint: ## terraform taint (make taint TAINT_ARGUMENT=module.radius.aws_lb.load_balancer)
+	$(DOCKER_RUN) /bin/bash -c "terraform taint -no-color ${TAINT_ARGUMENT}"
+
 help:
 	@grep -h -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
-
-
 
 ############ Repository unique targets ############
 .PHONY: authorise-performance-test-clients
