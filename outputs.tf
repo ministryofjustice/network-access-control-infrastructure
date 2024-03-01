@@ -3,6 +3,7 @@ output "terraform_outputs" {
     radius = {
       ecs = module.radius.ecs
       ecr = module.radius.ecr
+      lb  = module.radius.load_balancer
       s3  = module.radius.s3
       vpc = module.radius_vpc.vpc_brief
     }
