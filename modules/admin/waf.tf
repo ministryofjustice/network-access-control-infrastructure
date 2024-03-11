@@ -242,5 +242,5 @@ resource "aws_wafv2_web_acl_logging_configuration" "api_server_waf_log" {
 resource "aws_cloudwatch_log_group" "aws_waf_admin_alb_acl" {
   name              = "aws-waf-logs-waf-${aws_wafv2_web_acl.admin_alb_acl.name}"
   retention_in_days = 90
-  tags = var.tags
+  tags              = var.tags
 }
