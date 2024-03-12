@@ -44,6 +44,10 @@ shell: ## Run Docker container with interactive terminal
 fmt: ## terraform fmt
 	$(DOCKER_RUN) /bin/bash -c "terraform fmt --recursive"
 
+.PHONY: taint
+taint: ## terraform import e.g. (make import TAINT_ARGUMENT=module.foo.bar some_resource)
+	$(DOCKER_RUN) /bin/bash -c "terraform taint ${TAINT_ARGUMENT}"
+
 .PHONY: init
 init: ## terraform init (make init ENV_ARGUMENT=pre-production) NOTE: Will also select the env's workspace.
 
