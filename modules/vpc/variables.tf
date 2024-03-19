@@ -55,3 +55,7 @@ variable "ssm_session_manager_endpoints" {
   type    = bool
   default = false
 }
+
+variable "ocsp_dep_ip" {
+  type = string
+}

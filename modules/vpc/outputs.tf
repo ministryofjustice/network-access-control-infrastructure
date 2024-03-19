@@ -41,3 +41,8 @@ output "endpoints_sg" {
     id = aws_security_group.endpoints.id
   }
 }
+output "nat_gateway_eip" {
+  value = {
+    id = aws_nat_gateway.eu_west_2a.public_ip
+  }
+}

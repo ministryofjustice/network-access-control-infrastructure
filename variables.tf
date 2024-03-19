@@ -146,3 +146,7 @@ variable "enable_rds_servers_bastion" {
   type    = bool
   default = false
 }
+
+variable "ocsp_dep_ip" {
+  type = string
+}

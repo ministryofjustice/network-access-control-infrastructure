@@ -31,7 +31,6 @@ module "vpc" {
     "eu-west-2b",
     "eu-west-2c"
   ]
-
   enable_ecr_dkr_endpoint              = true
   enable_ecr_api_endpoint              = true
   ecr_api_endpoint_security_group_ids  = [aws_security_group.endpoints.id]

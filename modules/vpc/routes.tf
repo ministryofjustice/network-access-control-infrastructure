@@ -61,3 +61,33 @@ resource "aws_route" "transit-gateway-public-dns-server-2" {
     module.vpc
   ]
 }
+
+resource "aws_route" "nat-gateway-public-ocsp-endpoint-1" {
+  count = length(module.vpc.public_route_table_ids)
+
+  route_table_id         = split("_", local.public_table_id)[count.index]
+  destination_cidr_block = "${var.ocsp_dep_ip}/32"
+  nat_gateway_id         = aws_nat_gateway.eu_west_2a.id
+
+  depends_on = [
+    module.vpc
+  ]
+}
+
+resource "aws_nat_gateway" "eu_west_2a" {
+  allocation_id = aws_eip.nat_eu_west_2a.id
+  subnet_id     = module.vpc.public_subnets[0]
+
+  tags = var.tags
+
+  depends_on = [
+    module.vpc
+  ]
+}
+resource "aws_eip" "nat_eu_west_2a" {
+  vpc  = true
+  tags = var.tags
+  depends_on = [
+    module.vpc
+  ]
+}
