@@ -4,7 +4,7 @@ locals {
   nat_gateway_table_id = join("_", toset([module.vpc.private_route_table_ids[2]]))
 }
 resource "aws_route" "transit-gateway" {
-  count = var.enable_nac_transit_gateway_attachment ? 2 : 0
+  count                  = var.enable_nac_transit_gateway_attachment ? 2 : 0
   route_table_id         = element(module.vpc.private_route_table_ids, count.index)
   destination_cidr_block = "0.0.0.0/0"
   transit_gateway_id     = var.transit_gateway_id

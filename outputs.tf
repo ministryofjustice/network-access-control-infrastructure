@@ -13,9 +13,9 @@ output "terraform_outputs" {
       rds = module.admin.rds
       vpc = module.admin_vpc.vpc_brief
     }
-        nat_gateway_public_ip = {
-          value = module.radius_vpc.nat_gateway_eip
-        }
+    nat_gateway_public_ip = {
+      value = module.radius_vpc.nat_gateway_eip
+    }
     nat_gateway_subnet = {
       value = module.radius_vpc.nat_gateway_subnet_id
     }
