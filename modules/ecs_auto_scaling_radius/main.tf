@@ -194,5 +194,5 @@ resource "aws_cloudwatch_metric_alarm" "ecs_memory_average_alarm" {
   ]
 
   treat_missing_data = "breaching"
-  tags = var.tags
+  tags               = var.tags
 }
