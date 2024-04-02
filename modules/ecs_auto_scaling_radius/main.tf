@@ -25,6 +25,26 @@ resource "aws_appautoscaling_policy" "ecs_policy_up" {
 
   depends_on = [aws_appautoscaling_target.radius]
 }
+// Scaling out using memory utilisation
+resource "aws_appautoscaling_policy" "ecs_policy_up_memory_average" {
+  name               = "${var.prefix} ECS Scale Up Memory Average"
+  service_namespace  = "ecs"
+  policy_type        = "StepScaling"
+  resource_id        = "service/${var.cluster_name}/${var.service_name}"
+  scalable_dimension = "ecs:service:DesiredCount"
+
+  step_scaling_policy_configuration {
+    adjustment_type         = "ChangeInCapacity"
+    metric_aggregation_type = "Average"
+
+    step_adjustment {
+      metric_interval_lower_bound = 0
+      scaling_adjustment          = 1
+    }
+  }
+
+  depends_on = [aws_appautoscaling_target.radius]
+}
 
 resource "aws_appautoscaling_policy" "ecs_policy_down" {
   name               = "${var.prefix} ECS Scale Down"
@@ -149,5 +169,30 @@ resource "aws_cloudwatch_metric_alarm" "packets_low" {
     aws_appautoscaling_policy.ecs_policy_down.arn
   ]
 
+  tags = var.tags
+}
+
+resource "aws_cloudwatch_metric_alarm" "ecs_memory_average_alarm" {
+  alarm_name          = "${var.prefix}-ecs-memory-average-alarm"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = "1"
+  metric_name         = "MemoryUtilization"
+  namespace           = "AWS/ECS"
+  period              = "60"
+  statistic           = "Average"
+  threshold           = "70"
+
+  dimensions = {
+    ClusterName = var.cluster_name
+    ServiceName = var.service_name
+  }
+
+  alarm_description = "This alarm tells ECS to scale up based on average high usage of Memory in the cluster "
+
+  alarm_actions = [
+    aws_appautoscaling_policy.ecs_policy_up_memory_average.arn
+  ]
+
+  treat_missing_data = "breaching"
   tags = var.tags
 }
