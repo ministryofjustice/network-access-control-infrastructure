@@ -186,6 +186,7 @@ resource "aws_wafv2_web_acl" "admin_alb_acl" {
   }
 
   rule {
+    // This rule should always be the last rule in the list
     name     = "only-authorised-ips"
     priority = 16
     action {
