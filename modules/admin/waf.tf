@@ -25,8 +25,7 @@ resource "aws_wafv2_ip_set" "authorised_ips" {
   name               = "authorised-ips"
   scope              = "REGIONAL"
   ip_address_version = "IPV4"
-  #addresses          = local.authorised_ips
-  addresses          = ["0.0.0.0/1"] #ND-105 temp change to capture all IP addresses, hitting the service.
+  addresses          = local.authorised_ips
 }
 
 resource "aws_wafv2_web_acl" "admin_alb_acl" {
@@ -187,9 +186,9 @@ resource "aws_wafv2_web_acl" "admin_alb_acl" {
 
   rule {
     name     = "only-authorised-ips"
-    priority = 8
+    priority = 16
     action {
-      count {}
+      allow {}
     }
 
     statement {
@@ -201,27 +200,6 @@ resource "aws_wafv2_web_acl" "admin_alb_acl" {
     visibility_config {
       cloudwatch_metrics_enabled = true
       metric_name                = "${var.prefix}-only-authorised-ips"
-      sampled_requests_enabled   = true
-    }
-  }
-
-  rule {
-    // This rule should always be the last rule in the list
-    name     = "only-gb"
-    priority = 15
-    action {
-      allow {}
-    }
-
-    statement {
-      geo_match_statement {
-        country_codes = ["GB"]
-      }
-    }
-
-    visibility_config {
-      cloudwatch_metrics_enabled = true
-      metric_name                = "${var.prefix}-only-gb"
       sampled_requests_enabled   = true
     }
   }
