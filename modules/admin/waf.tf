@@ -26,7 +26,7 @@ resource "aws_wafv2_ip_set" "authorised_ips" {
   scope              = "REGIONAL"
   ip_address_version = "IPV4"
   #addresses          = local.authorised_ips
-  addresses          = ["0.0.0.0/1"] #ND-105 temp change to capture all IP addresses, hitting the service.
+  addresses = ["0.0.0.0/1"] #ND-105 temp change to capture all IP addresses, hitting the service.
 }
 
 resource "aws_wafv2_web_acl" "admin_alb_acl" {
