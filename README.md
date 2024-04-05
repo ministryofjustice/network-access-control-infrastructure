@@ -32,6 +32,7 @@ This repository defines the **system infrastructure only**. Specific components 
 - [Vertically scaling the Read Replica](documentation/database-upgrade.md)
 - [Setup Performance Testing](documentation/performance_testing.md)
 - [Database Access - dump with bastion](documentation/rds-bastion.md)
+- [DEP OCSP Service Overview](documentation/ocsp-over-internet.md)
 
 ## CI/CD
 
