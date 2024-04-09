@@ -1,6 +1,6 @@
 - ### OCSP
 
-  NAC currently required to work with OCSP endpoint within internal subnet issued by internal CA and no requirement to send traffic over the internet, however, as a part of DEP(Digital Education Project) this service needed to onboard external CA which required NAC to send OCSP traffic over the internet.
+NAC currently operates within an internal subnet and communicates with an OCSP endpoint issued by an internal CA, with no requirement for internet-bound traffic. However, as part of the Digital Education Project (DEP), integration with an external CA necessitates the transmission of OCSP traffic over the internet
 
 - As a part of this we needed to provide a static set of IPS in order for the supplier to ALLOW-LIST NAC on their service.
 
