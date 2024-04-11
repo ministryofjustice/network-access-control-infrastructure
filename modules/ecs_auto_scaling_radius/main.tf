@@ -66,6 +66,7 @@ resource "aws_appautoscaling_policy" "ecs_policy_up_memory_max" {
 
   depends_on = [aws_appautoscaling_target.radius]
 }
+
 resource "aws_appautoscaling_policy" "ecs_policy_down" {
   name               = "${var.prefix} ECS Scale Down"
   service_namespace  = "ecs"
