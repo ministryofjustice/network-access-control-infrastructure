@@ -25,7 +25,7 @@ resource "aws_appautoscaling_policy" "ecs_policy_up" {
 
   depends_on = [aws_appautoscaling_target.radius]
 }
-// Scaling out using memory utilisation
+// Scaling out using memory_average utilisation
 resource "aws_appautoscaling_policy" "ecs_policy_up_memory_average" {
   name               = "${var.prefix} ECS Scale Up Memory Average"
   service_namespace  = "ecs"
@@ -46,6 +46,26 @@ resource "aws_appautoscaling_policy" "ecs_policy_up_memory_average" {
   depends_on = [aws_appautoscaling_target.radius]
 }
 
+resource "aws_appautoscaling_policy" "ecs_policy_up_memory_max" {
+  name               = "${var.prefix} ECS Scale Up Memory Maximum"
+  service_namespace  = "ecs"
+  policy_type        = "StepScaling"
+  resource_id        = "service/${var.cluster_name}/${var.service_name}"
+  scalable_dimension = "ecs:service:DesiredCount"
+
+  step_scaling_policy_configuration {
+    adjustment_type         = "ChangeInCapacity"
+    metric_aggregation_type = "Maximum"
+    cooldown                = 300
+
+    step_adjustment {
+      metric_interval_lower_bound = 0
+      scaling_adjustment          = 1
+    }
+  }
+
+  depends_on = [aws_appautoscaling_target.radius]
+}
 resource "aws_appautoscaling_policy" "ecs_policy_down" {
   name               = "${var.prefix} ECS Scale Down"
   service_namespace  = "ecs"
@@ -187,10 +207,35 @@ resource "aws_cloudwatch_metric_alarm" "ecs_memory_average_alarm" {
     ServiceName = var.service_name
   }
 
-  alarm_description = "This alarm tells ECS to scale up based on average high usage of Memory in the cluster "
+  alarm_description = "This alarm tells ECS to scale up based on memory utilisation with AVERAGE statistics"
 
   alarm_actions = [
     aws_appautoscaling_policy.ecs_policy_up_memory_average.arn
+  ]
+
+  treat_missing_data = "breaching"
+  tags               = var.tags
+}
+
+resource "aws_cloudwatch_metric_alarm" "ecs_memory_maximum_alarm_high" {
+  alarm_name          = "${var.prefix}-ecs-memory-maximum-alarm"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = "1"
+  metric_name         = "MemoryUtilization"
+  namespace           = "AWS/ECS"
+  period              = "60"
+  statistic           = "Maximum"
+  threshold           = "80"
+
+  dimensions = {
+    ClusterName = var.cluster_name
+    ServiceName = var.service_name
+  }
+
+  alarm_description = "This alarm tells ECS to scale up based on memory utilisation with MAXIMUM statistics"
+
+  alarm_actions = [
+    aws_appautoscaling_policy.ecs_policy_up_memory_max.arn
   ]
 
   treat_missing_data = "breaching"
