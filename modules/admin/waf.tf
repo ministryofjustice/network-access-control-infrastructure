@@ -1,21 +1,3 @@
-locals {
-
-  authorised_ips = [
-    "35.176.93.186/32",
-    "194.33.193.0/25",
-    "194.33.196.0/25",
-    "51.149.251.0/24",
-    "194.33.192.0/25",
-    "51.149.249.0/29",
-    "51.149.250.0/24",
-    "194.33.197.0/25",
-    "195.59.75.0/24",
-    "51.149.249.32/29",
-    "194.33.248.0/29",
-    "194.33.249.0/29"
-  ]
-}
-
 resource "aws_wafv2_web_acl_association" "admin_alb_waf_association" {
   resource_arn = aws_lb.admin_alb.arn
   web_acl_arn  = aws_wafv2_web_acl.admin_alb_acl.arn
