@@ -150,3 +150,9 @@ variable "enable_rds_servers_bastion" {
 variable "ocsp_dep_ip" {
   type = string
 }
+
+variable "allowed_ips" {
+  type        = list(string)
+  description = "List of allowed IP addresses"
+  default     = []
+}

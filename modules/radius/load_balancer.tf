@@ -3,7 +3,7 @@ resource "aws_lb" "load_balancer" {
   load_balancer_type               = "network"
   internal                         = false
   enable_cross_zone_load_balancing = true
-  security_groups                  = terraform.workspace == "development" ? [aws_security_group.nlb_public_development.id, aws_security_group.nlb_public.id] : [aws_security_group.nlb_public.id]
+  security_groups                  = terraform.workspace == "production" ? [aws_security_group.nlb_public_production.id, aws_security_group.nlb_public.id] : [aws_security_group.nlb_public.id]
   access_logs {
     bucket  = aws_s3_bucket.lb_log_bucket.bucket
     enabled = true
@@ -105,7 +105,7 @@ resource "aws_lb_target_group" "target_group_radsec" {
     protocol = "TCP"
   }
   depends_on = [aws_lb.load_balancer]
-  tags = var.tags
+  tags       = var.tags
 }
 
 resource "aws_s3_bucket" "lb_log_bucket" {
@@ -258,12 +258,11 @@ resource "aws_security_group" "nlb_public" {
     }
   }
 }
-variable "ingress_rules_development" {
+variable "ingress_rules_production" {
   type = list(object({
     from_port   = number
     to_port     = number
     protocol    = string
-   // cidr_blocks = list(string)
     description = string
   }))
   default = [
@@ -271,61 +270,27 @@ variable "ingress_rules_development" {
       from_port   = 2083
       to_port     = 2083
       protocol    = "tcp"
-      //cidr_blocks = ["0.0.0.0/0"]
       description = " Allow inbound RADSEC traffic to the Radius server"
     },
     {
       from_port   = 1812
       to_port     = 1812
       protocol    = "udp"
-     // cidr_blocks = ["0.0.0.0/0"]
       description = "Allow inbound EAP traffic to the Radius server"
     }
   ]
 }
 
-variable "allowed_ips" {
-  type        = list(string)
-  description = "List of allowed IP addresses"
-  default     = ["192.0.2.1/32",
-    "192.0.2.2/32",
-    "192.0.2.3/32"]
-}
-
-#variable "custom_ingress_rules" {
-#  type = list(object({
-#    from_port   = number
-#    to_port     = number
-#    protocol    = string
-#    //cidr_blocks = list(string)
-#    description = string
-#  }))
-#  default = [
-#    {
-#      from_port   = 1812
-#      to_port     = 1812
-#      protocol    = "udp"
-#      description = "Allow inbound EAP traffic to the Radius server"
-#    },
-#    {
-#      from_port   = 2083
-#      to_port     = 2083
-#      protocol    = "tcp"
-#      description = "Allow inbound RADSEC traffic to the Radius server"
-#    }
-#  ]
-#}
-
-resource "aws_security_group" "nlb_public_development" {
-  name   = "${var.prefix}-nlb-public_dev"
+resource "aws_security_group" "nlb_public_production" {
+  name   = "${var.prefix}-nlb-public_production"
   vpc_id = var.vpc.id
 
   tags = merge(var.tags, {
-    Name = "${var.prefix}-nlb-public_dev"
+    Name = "${var.prefix}-nlb-public_production"
   })
 
   dynamic "ingress" {
-    for_each = var.ingress_rules_development
+    for_each = var.ingress_rules_production
 
     content {
       from_port   = ingress.value.from_port

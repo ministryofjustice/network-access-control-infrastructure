@@ -127,3 +127,8 @@ variable "log_metrics_namespace" {
 variable "shared_services_account_id" {
   type = string
 }
+variable "allowed_ips" {
+  type        = list(string)
+  description = "List of allowed IP addresses"
+  default     = []
+}

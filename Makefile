@@ -76,7 +76,7 @@ init-upgrade: ## terraform init -upgrade
 	$(DOCKER_RUN) /bin/bash -c "terraform init -upgrade --backend-config=\"key=terraform.${ENV}.state\""
 
 .PHONY: unlock
-unlock: ## Terraform unblock (make force-unlock ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)
+unlock: ## Terraform unblock (make unlock ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)
 	$(DOCKER_RUN) /bin/bash -c "terraform force-unlock ${ID}"
 
 .PHONY: import
