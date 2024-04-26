@@ -25,3 +25,11 @@ data "aws_secretsmanager_secret_version" "xaiam_secrets_version" {
   secret_id  = data.aws_secretsmanager_secret.xsiam_endpoint_secrets.id
   version_id = terraform.workspace == "pre-production" ? local.xaiam_secrets_version_pre_production : terraform.workspace == "production" ? local.xaiam_secrets_version_production : local.xaiam_secrets_version_development
 }
+
+data "aws_secretsmanager_secret" "allowed_ips" {
+  name = "/moj-network-access-control/production/allowed_ips"
+}
+
+data "aws_secretsmanager_secret_version" "allowed_ips" {
+  secret_id = data.aws_secretsmanager_secret.allowed_ips.id
+}
