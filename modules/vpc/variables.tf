@@ -59,3 +59,7 @@ variable "ssm_session_manager_endpoints" {
 variable "ocsp_dep_ip" {
   type = string
 }
+
+variable "ocsp_prs_ip" {
+  type = string
+}
