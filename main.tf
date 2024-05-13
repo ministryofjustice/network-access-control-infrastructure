@@ -160,6 +160,7 @@ module "radius_vpc" {
   tags                                  = module.label.tags
   ssm_session_manager_endpoints         = var.enable_rds_servers_bastion
   ocsp_dep_ip                           = var.ocsp_dep_ip
+  ocsp_prs_ip                           = var.ocsp_prs_ip
 
   providers = {
     aws = aws.env

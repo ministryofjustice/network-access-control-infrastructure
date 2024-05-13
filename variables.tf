@@ -156,3 +156,7 @@ variable "allowed_ips" {
   description = "List of allowed IP addresses"
   default     = []
 }
+
+variable "ocsp_prs_ip" {
+  type = string
+}
