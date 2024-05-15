@@ -118,6 +118,12 @@ apply: ## terraform apply
 	$(DOCKER_RUN) /bin/bash -c "./scripts/publish_terraform_outputs.sh"
 	$(DOCKER_RUN) /bin/bash -c "./scripts/cloudwatch_log_retention_policies.sh"
 
+.PHONY: target-apply
+target-apply: ## terraform apply
+	$(DOCKER_RUN) /bin/bash -c "terraform apply -target=module.kinesis_firehose_xsiam.aws_s3_bucket_public_access_block.xsiam_firehose_bucket_block_public_access"
+	$(DOCKER_RUN) /bin/bash -c "./scripts/publish_terraform_outputs.sh"
+	$(DOCKER_RUN) /bin/bash -c "./scripts/cloudwatch_log_retention_policies.sh"
+
 .PHONY: state-list
 state-list: ## terraform state list
 	$(DOCKER_RUN) /bin/bash -c "terraform state list"
