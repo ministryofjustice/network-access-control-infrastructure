@@ -236,7 +236,7 @@ module "admin" {
   ])
 
   db = {
-    apply_updates_immediately = local.is_production ? false : true
+    apply_updates_immediately = local.is_production ? true : true
     backup_retention_period   = var.admin_db_backup_retention_period
     delete_automated_backups  = local.is_production ? false : true
     deletion_protection       = local.is_production ? true : false
