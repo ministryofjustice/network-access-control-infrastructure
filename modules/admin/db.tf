@@ -4,7 +4,7 @@ resource "aws_db_instance" "admin_db" {
   engine                      = "mysql"
   engine_version              = "8.0"
   auto_minor_version_upgrade  = true
-  allow_major_version_upgrade = true
+  allow_major_version_upgrade = false
   apply_immediately           = var.db.apply_updates_immediately
   delete_automated_backups    = var.db.delete_automated_backups
   instance_class              = "db.t2.medium"
@@ -22,7 +22,7 @@ resource "aws_db_instance" "admin_db" {
   skip_final_snapshot         = var.db.skip_final_snapshot
   deletion_protection         = var.db.deletion_protection
   publicly_accessible         = false
-  option_group_name           = aws_db_option_group.mariadb_audit_v8.name
+  option_group_name           = aws_db_option_group.mariadb_audit_mysql_v8.name
 
   enabled_cloudwatch_logs_exports = ["audit", "error", "general", "slowquery"]
 
@@ -198,3 +198,17 @@ resource "aws_db_option_group" "mariadb_audit_v8" {
 
 }
 
+resource "aws_db_option_group" "mariadb_audit_mysql_v8" {
+  name = "${var.prefix}-db-audit-mysql-v8"
+
+  option_group_description = "Mariadb audit configuration"
+  engine_name              = "mysql"
+  major_engine_version     = "8.0"
+
+  option {
+    option_name = "MARIADB_AUDIT_PLUGIN"
+  }
+
+  tags = var.tags
+
+}
