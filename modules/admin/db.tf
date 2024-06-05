@@ -2,9 +2,9 @@ resource "aws_db_instance" "admin_db" {
   allocated_storage           = 20
   storage_type                = "gp2"
   engine                      = "mysql"
-  engine_version              = "5.7"
+  engine_version              = "8.0"
   auto_minor_version_upgrade  = true
-  allow_major_version_upgrade = false
+  allow_major_version_upgrade = true
   apply_immediately           = var.db.apply_updates_immediately
   delete_automated_backups    = var.db.delete_automated_backups
   instance_class              = "db.t2.medium"
@@ -22,11 +22,11 @@ resource "aws_db_instance" "admin_db" {
   skip_final_snapshot         = var.db.skip_final_snapshot
   deletion_protection         = var.db.deletion_protection
   publicly_accessible         = false
-  option_group_name           = aws_db_option_group.mariadb_audit.name
+  option_group_name           = aws_db_option_group.mariadb_audit_v8.name
 
   enabled_cloudwatch_logs_exports = ["audit", "error", "general", "slowquery"]
 
-  parameter_group_name = aws_db_parameter_group.admin_db_parameter_group.name
+  parameter_group_name = aws_db_parameter_group.admin_db_parameter_group_v8.name
 
   tags = var.tags
 }
@@ -97,7 +97,77 @@ resource "aws_db_parameter_group" "admin_db_parameter_group" {
   }
 
   tags = var.tags
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
+
+resource "aws_db_parameter_group" "admin_db_parameter_group_v8" {
+  name        = "${var.prefix}-parameter-group-v8"
+  family      = "mysql8.0"
+  description = "Admin DB parameter group"
+
+  parameter {
+    name         = "sql_mode"
+    value        = "STRICT_ALL_TABLES"
+    apply_method = "pending-reboot"
+  }
+  parameter {
+    name         = "max_connect_errors"
+    value        = "10000"
+    apply_method = "pending-reboot"
+  }
+
+  parameter {
+    name         = "log_error_verbosity"
+    value        = "2"
+    apply_method = "pending-reboot"
+  }
+
+  parameter {
+    name         = "validate-password"
+    value        = "FORCE_PLUS_PERMANENT"
+    apply_method = "pending-reboot"
+  }
+
+  parameter {
+    name         = "validate_password_length"
+    value        = "14"
+    apply_method = "pending-reboot"
+  }
+
+  parameter {
+    name         = "validate_password_mixed_case_count"
+    value        = "1"
+    apply_method = "pending-reboot"
+  }
+
+  parameter {
+    name         = "validate_password_number_count"
+    value        = "1"
+    apply_method = "pending-reboot"
+  }
+
+  parameter {
+    name         = "validate_password_policy"
+    value        = "MEDIUM"
+    apply_method = "pending-reboot"
+  }
+
+  parameter {
+    name         = "validate_password_special_char_count"
+    value        = "1"
+    apply_method = "pending-reboot"
+  }
+
+  tags = var.tags
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
 
 resource "aws_db_option_group" "mariadb_audit" {
   name = "${var.prefix}-db-audit"
@@ -112,3 +182,19 @@ resource "aws_db_option_group" "mariadb_audit" {
 
   tags = var.tags
 }
+
+resource "aws_db_option_group" "mariadb_audit_v8" {
+  name = "${var.prefix}-db-audit-v8"
+
+  option_group_description = "Mariadb audit configuration"
+  engine_name              = "mysql"
+  major_engine_version     = "8.0"
+
+  option {
+    option_name = "MARIADB_AUDIT_PLUGIN"
+  }
+
+  tags = var.tags
+
+}
+
