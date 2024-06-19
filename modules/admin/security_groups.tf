@@ -11,13 +11,13 @@ resource "aws_security_group" "admin_alb" {
 }
 
 resource "aws_security_group_rule" "admin_alb_in_from_web" {
-  description       = "Allow HTTPS traffic to the admin load balancer from the web"
+  description       = "Allow HTTPS traffic from known MOJ IPS"
   type              = "ingress"
   from_port         = 443
   to_port           = 443
   protocol          = "tcp"
   security_group_id = aws_security_group.admin_alb.id
-  cidr_blocks       = ["0.0.0.0/0"]
+  cidr_blocks       = local.authorised_ips
 }
 
 resource "aws_security_group_rule" "admin_alb_out" {

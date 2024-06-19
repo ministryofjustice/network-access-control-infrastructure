@@ -37,6 +37,13 @@ export PARAM3=$(aws ssm get-parameters --region eu-west-2 --with-decryption --na
     "/codebuild/staff_device_shared_services_account_id" \
     --query Parameters)
 
+export PARAM4=$(aws ssm get-parameters --region eu-west-2 --with-decryption --names \
+    "/moj-network-access-control/$ENV/enable_rds_admin_bastion" \
+    "/moj-network-access-control/$ENV/enable_rds_servers_bastion" \
+    "/moj-network-access-control/$ENV/ocsp_dep_ip" \
+    "/moj-network-access-control/$ENV/ocsp_prs_ip" \
+    --query Parameters)
+
 declare -A parameters
 
 
@@ -72,3 +79,8 @@ parameters["PRE_PRODUCTION_ROUTE53_NS_UPSERT"]="$(echo $PARAM3 | jq '.[] | selec
 parameters["HOSTED_ZONE_ID"]="$(echo $PARAM3 | jq '.[] | select(.Name | test("hosted_zone_id")) | .Value' --raw-output)"
 parameters["ROLE_ARN"]="$(echo $PARAM3 | jq '.[] | select(.Name | test("assume_role")) | .Value' --raw-output)"
 parameters["shared_services_account_id"]="$(echo $PARAM3 | jq '.[] | select(.Name | test("staff_device_shared_services_account_id")) | .Value' --raw-output)"
+
+parameters["enable_rds_servers_bastion"]="$(echo $PARAM4 | jq '.[] | select(.Name | test("enable_rds_servers_bastion")) | .Value' --raw-output)"
+parameters["enable_rds_admin_bastion"]="$(echo $PARAM4 | jq '.[] | select(.Name | test("enable_rds_admin_bastion")) | .Value' --raw-output)"
+parameters["ocsp_dep_ip"]="$(echo $PARAM4 | jq '.[] | select(.Name | test("ocsp_dep_ip")) | .Value' --raw-output)"
+parameters["ocsp_prs_ip"]="$(echo $PARAM4 | jq '.[] | select(.Name | test("ocsp_prs_ip")) | .Value' --raw-output)"

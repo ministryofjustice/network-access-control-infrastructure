@@ -60,11 +60,11 @@ cat << EOF > ./.env
 # then run "make init"
 
 
-export AWS_PROFILE=mojo-shared-services-cli
-export AWS_VAULT_PROFILE=mojo-shared-services-cli
+AWS_PROFILE=mojo-shared-services-cli
+AWS_VAULT_PROFILE=mojo-shared-services-cli
 
 ### ${ENV} ###
-export ENV=${ENV}
+ENV=${ENV}
 
 
 ## buildspec defaults
@@ -75,17 +75,17 @@ export ENV=${ENV}
 
 ## This value has been applied to the envs via AWS CodePipeline CI.
 ## We don't want to use the default variable's value here.
-export TF_VAR_owner_email=nac@justice.gov.uk
+TF_VAR_owner_email=nac@justice.gov.uk
 
 ## This value has been applied to the envs via AWS CodePipeline CI.
 ## There is no default value set in the variables.tf.
-export TF_VAR_enable_authentication=true
+TF_VAR_enable_authentication=true
 
 ## This value has been applied to the envs via AWS CodePipeline CI.
-export TF_VAR_enable_hosted_zone=true
+TF_VAR_enable_hosted_zone=true
 
 ## This value has been applied to the envs via AWS CodePipeline CI.
-export TF_VAR_enable_nac_transit_gateway_attachment=true
+TF_VAR_enable_nac_transit_gateway_attachment=true
 
 EOF
 
@@ -93,9 +93,9 @@ for key in "${!parameters[@]}"
 do
     ## uppercase key do not prefix with TF_VAR
     if [[ "${key}" =~ [A-Z] ]]; then
-        echo "export ${key}=${parameters[${key}]}"  >> ./.env
+        echo "${key}=${parameters[${key}]}"  >> ./.env
     else
-        echo "export TF_VAR_${key}=${parameters[${key}]}"  >> ./.env
+        echo "TF_VAR_${key}=${parameters[${key}]}"  >> ./.env
     fi
 done
 

@@ -44,6 +44,8 @@ locals {
   is_development          = terraform.workspace == "development" ? true : false
   is_local_development    = !local.is_development && !local.is_pre_production && !local.is_production
   run_restore_from_backup = false
+
+  s3-mojo_file_transfer_assume_role_arn = data.terraform_remote_state.staff-device-shared-services-infrastructure.outputs.s3-mojo_file_transfer_assume_role_arn
 }
 
 module "radius" {
@@ -72,6 +74,8 @@ module "radius" {
   vpc_flow_logs_group_id          = module.radius_vpc_flow_logs.flow_log_group_id
   log_metrics_namespace           = local.is_local_development ? "${module.label.id}-mojo-nac-requests" : "mojo-nac-requests"
   shared_services_account_id      = var.shared_services_account_id
+  allowed_ips                     = jsondecode(data.aws_secretsmanager_secret_version.allowed_ips.secret_string)["allowed_ips"]
+
 
   read_replica = {
     name = module.admin_read_replica.rds.name
@@ -143,6 +147,7 @@ module "ecs_auto_scaling_radius_internal" {
 module "radius_vpc" {
   source                                = "./modules/vpc"
   prefix                                = module.label.id
+  region                                = data.aws_region.current_region.id
   cidr_block                            = local.vpc_cidr
   enable_nac_transit_gateway_attachment = var.enable_nac_transit_gateway_attachment
   transit_gateway_id                    = var.transit_gateway_id
@@ -153,6 +158,9 @@ module "radius_vpc" {
   ocsp_atos_cidr_range_1                = var.ocsp_atos_cidr_range_1
   ocsp_atos_cidr_range_2                = var.ocsp_atos_cidr_range_2
   tags                                  = module.label.tags
+  ssm_session_manager_endpoints         = var.enable_rds_servers_bastion
+  ocsp_dep_ip                           = var.ocsp_dep_ip
+  ocsp_prs_ip                           = var.ocsp_prs_ip
 
   providers = {
     aws = aws.env
@@ -270,11 +278,12 @@ data "aws_region" "current_region" {}
 data "aws_caller_identity" "shared_services_account" {}
 
 module "admin_vpc" {
-  source     = "./modules/admin_vpc"
-  prefix     = "${module.label.id}-admin"
-  region     = data.aws_region.current_region.id
-  cidr_block = "10.0.0.0/16"
-  tags       = module.label.tags
+  source                        = "./modules/admin_vpc"
+  prefix                        = "${module.label.id}-admin"
+  region                        = data.aws_region.current_region.id
+  cidr_block                    = "10.0.0.0/16"
+  tags                          = module.label.tags
+  ssm_session_manager_endpoints = var.enable_rds_admin_bastion
 
   providers = {
     aws = aws.env
@@ -300,6 +309,19 @@ module "performance_testing" {
   vpc_id                   = module.radius_vpc.vpc_id
   subnets                  = module.radius_vpc.public_subnets
   load_balancer_ip_address = module.radius.load_balancer.nac_eu_west_2a_ip_address
+
+  providers = {
+    aws = aws.env
+  }
+}
+
+module "kinesis_firehose_xsiam" {
+  source                                = "./modules/kinesis_firehose_xsiam"
+  http_endpoint                         = jsondecode(data.aws_secretsmanager_secret_version.xaiam_secrets_version.secret_string)["http_endpoint"]
+  access_key                            = jsondecode(data.aws_secretsmanager_secret_version.xaiam_secrets_version.secret_string)["access_key"]
+  prefix                                = "${module.label.id}-xsiam"
+  tags                                  = module.label.tags
+  cloudwatch_log_group_for_subscription = module.radius.cloudwatch.server_log_group_name
 
   providers = {
     aws = aws.env

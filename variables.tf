@@ -130,3 +130,33 @@ variable "ocsp_atos_cidr_range_2" {
 variable "shared_services_account_id" {
   type = string
 }
+
+#TODO check the correct value for this email
+variable "owner_email" {
+  type    = string
+  default = "nac@digital.justice.gov.uk"
+}
+
+variable "enable_rds_admin_bastion" {
+  type    = bool
+  default = false
+}
+
+variable "enable_rds_servers_bastion" {
+  type    = bool
+  default = false
+}
+
+variable "ocsp_dep_ip" {
+  type = string
+}
+
+variable "allowed_ips" {
+  type        = list(string)
+  description = "List of allowed IP addresses"
+  default     = []
+}
+
+variable "ocsp_prs_ip" {
+  type = string
+}

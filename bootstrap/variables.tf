@@ -5,6 +5,6 @@ variable "is_production" {
 
 variable "owner_email" {
   type    = string
-  default = "emile.swarts@digital.justice.gov.uk"
+  default = "lanwifi-devops@digital.justice.gov.uk"
 }
 
