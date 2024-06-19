@@ -20,6 +20,8 @@ resource "aws_db_instance" "admin_read_replica" {
   deletion_protection             = false
   option_group_name               = aws_db_option_group.mariadb_audit_v8.name
   enabled_cloudwatch_logs_exports = ["audit", "error", "general", "slowquery"]
+  performance_insights_enabled = true
+  ca_cert_identifier           = "rds-ca-rsa2048-g1"
 
   lifecycle {
     ignore_changes = [

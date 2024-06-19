@@ -13,7 +13,7 @@ resource "aws_db_instance" "admin_db_restored" {
   allow_major_version_upgrade = false
   apply_immediately           = var.db.apply_updates_immediately
   delete_automated_backups    = true
-  instance_class              = "db.t2.medium"
+  instance_class              = "db.t3.medium"
   identifier                  = "${var.prefix}-restored"
   name                        = replace(var.prefix, "-", "_")
   username                    = var.db.username
