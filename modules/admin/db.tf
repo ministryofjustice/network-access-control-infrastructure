@@ -7,7 +7,7 @@ resource "aws_db_instance" "admin_db" {
   allow_major_version_upgrade = false
   apply_immediately           = var.db.apply_updates_immediately
   delete_automated_backups    = var.db.delete_automated_backups
-  instance_class              = "db.t2.medium"
+  instance_class              = "db.t3.medium"
   identifier                  = var.prefix
   name                        = replace(var.prefix, "-", "_")
   username                    = var.db.username
@@ -26,7 +26,9 @@ resource "aws_db_instance" "admin_db" {
 
   enabled_cloudwatch_logs_exports = ["audit", "error", "general", "slowquery"]
 
-  parameter_group_name = aws_db_parameter_group.admin_db_parameter_group_v8.name
+  parameter_group_name         = aws_db_parameter_group.admin_db_parameter_group_v8.name
+  performance_insights_enabled = true
+  ca_cert_identifier           = "rds-ca-rsa2048-g1"
 
   tags = var.tags
 }
