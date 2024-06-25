@@ -9,7 +9,7 @@ resource "aws_db_instance" "admin_db" {
   delete_automated_backups    = var.db.delete_automated_backups
   instance_class              = "db.t3.medium"
   identifier                  = var.prefix
-  name                        = replace(var.prefix, "-", "_")
+  db_name                     = replace(var.prefix, "-", "_")
   username                    = var.db.username
   password                    = var.db.password
   backup_retention_period     = var.db.backup_retention_period
