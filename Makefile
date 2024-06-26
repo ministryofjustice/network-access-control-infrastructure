@@ -166,11 +166,3 @@ help:
 .PHONY: authorise-performance-test-clients
 authorise-performance-test-clients: ## Update a config file with IPs for test clients
 	$(DOCKER_RUN) /bin/bash -c "./scripts/authorise_performance_test_clients.sh"
-
-.PHONY: import
-import: ## terraform import
-	$(DOCKER_RUN) /bin/bash -c "terraform import module.performance_testing[0].aws_s3_bucket_server_side_encryption_configuration.perf_config_bucket_encryption mojo-development-nac-perf-config-bucket"
-
-.PHONY: remove
-remove: ## terraform remove
-	$(DOCKER_RUN) /bin/bash -c "terraform state rm module.performance_testing.aws_s3_bucket_server_side_encryption_configuration.perf_config_bucket_encryption"
