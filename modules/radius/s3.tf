@@ -64,7 +64,7 @@ resource "aws_kms_key" "config_bucket_key" {
 }
 
 resource "aws_s3_bucket" "config_bucket_logs" {
-  bucket = "${var.prefix}-config-bucket-logs" 
+  bucket = "${var.prefix}-config-bucket-logs"
 
   tags = var.tags
 }
