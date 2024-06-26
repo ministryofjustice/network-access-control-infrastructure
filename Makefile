@@ -157,7 +157,7 @@ tfenv: ## tfenv pin - terraform version from versions.tf
 
 .PHONY: taint
 taint: ## terraform taint (make taint TAINT_ARGUMENT=module.radius.aws_lb.load_balancer)
-	 taint -no-color ${TAINT_ARGUMENT}"
+	$(DOCKER_RUN) /bin/bash -c "terraform taint -no-color ${TAINT_ARGUMENT}"
 
 help:
 	@grep -h -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
