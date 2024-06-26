@@ -1,22 +1,34 @@
 resource "aws_s3_bucket" "certificate_bucket" {
   bucket = "${var.prefix}-certificate-bucket"
-  acl    = "private"
-  versioning {
-    enabled = true
-  }
-  logging {
-    target_bucket = aws_s3_bucket.certificate_bucket_logs.id
-  }
-  server_side_encryption_configuration {
-    rule {
-      apply_server_side_encryption_by_default {
-        kms_master_key_id = aws_kms_key.certificate_bucket_key.arn
-        sse_algorithm     = "aws:kms"
-      }
-    }
-  }
+
+  # server_side_encryption_configuration {
+  #   rule {
+  #     apply_server_side_encryption_by_default {
+  #       kms_master_key_id = aws_kms_key.certificate_bucket_key.arn
+  #       sse_algorithm     = "aws:kms"
+  #     }
+  #   }
+  # }
 
   tags = var.tags
+}
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "cert_bucket_encryption" {
+  bucket = aws_s3_bucket.certificate_bucket.id
+
+  rule {
+    apply_server_side_encryption_by_default {
+      kms_master_key_id = aws_kms_key.certificate_bucket_key.arn
+      sse_algorithm     = "aws:kms"
+    }
+  }
+}
+
+resource "aws_s3_bucket_logging" "certificate_bucket_logging" {
+  bucket = aws_s3_bucket.certificate_bucket.id
+
+  target_bucket = aws_s3_bucket.certificate_bucket_logs.id
+  target_prefix = "log/"
 }
 
 data "template_file" "certificate_bucket_policy" {
@@ -51,16 +63,20 @@ resource "aws_kms_key" "certificate_bucket_key" {
 
 resource "aws_s3_bucket" "certificate_bucket_logs" {
   bucket = "${var.prefix}-certificate-bucket-logs"
-  acl    = "private"
-  lifecycle_rule {
-    id      = "30_day_retention_certificate_bucket_logs"
-    enabled = true
+
+  tags = var.tags
+}
+
+resource "aws_s3_bucket_lifecycle_configuration" "cert_log_bucket_lifecycle_policy" {
+  bucket = aws_s3_bucket.certificate_bucket_logs.id
+
+  rule {
+    id = "30_day_retention_certificate_bucket_logs-1"
     expiration {
       days = 30
     }
+    status = "Enabled"
   }
-
-  tags = var.tags
 }
 
 resource "aws_s3_bucket_public_access_block" "certificate_log_bucket_public_block" {

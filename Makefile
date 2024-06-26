@@ -79,9 +79,9 @@ init-upgrade: ## terraform init -upgrade
 unlock: ## Terraform unblock (make unlock ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)
 	$(DOCKER_RUN) /bin/bash -c "terraform force-unlock ${ID}"
 
-.PHONY: import
-import: ## terraform import e.g. (make import IMPORT_ARGUMENT=module.foo.bar some_resource)
-	$(DOCKER_RUN) /bin/bash -c "terraform import ${IMPORT_ARGUMENT}"
+# .PHONY: import
+# import: ## terraform import e.g. (make import IMPORT_ARGUMENT=module.foo.bar some_resource)
+# 	$(DOCKER_RUN) /bin/bash -c "terraform import ${IMPORT_ARGUMENT}"
 
 .PHONY: workspace-list
 workspace-list: ## terraform workspace list
@@ -94,7 +94,7 @@ workspace-select: ## terraform workspace select
 
 .PHONY: validate
 validate: ## terraform validate
-	$(DOCKER_RUN) /bin/bash -c "terraform validate"
+	$(DOCKER_RUN) /bin/bash -c "terraform validate -json"
 
 .PHONY: plan-out
 plan-out: ## terraform plan - output to timestamped file
@@ -157,7 +157,7 @@ tfenv: ## tfenv pin - terraform version from versions.tf
 
 .PHONY: taint
 taint: ## terraform taint (make taint TAINT_ARGUMENT=module.radius.aws_lb.load_balancer)
-	$(DOCKER_RUN) /bin/bash -c "terraform taint -no-color ${TAINT_ARGUMENT}"
+	 taint -no-color ${TAINT_ARGUMENT}"
 
 help:
 	@grep -h -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
@@ -166,3 +166,11 @@ help:
 .PHONY: authorise-performance-test-clients
 authorise-performance-test-clients: ## Update a config file with IPs for test clients
 	$(DOCKER_RUN) /bin/bash -c "./scripts/authorise_performance_test_clients.sh"
+
+.PHONY: import
+import: ## terraform import
+	$(DOCKER_RUN) /bin/bash -c "terraform import module.performance_testing[0].aws_s3_bucket_server_side_encryption_configuration.perf_config_bucket_encryption mojo-development-nac-perf-config-bucket"
+
+.PHONY: remove
+remove: ## terraform remove
+	$(DOCKER_RUN) /bin/bash -c "terraform state rm module.performance_testing.aws_s3_bucket_server_side_encryption_configuration.perf_config_bucket_encryption"

@@ -110,20 +110,20 @@ resource "aws_lb_target_group" "target_group_radsec" {
 
 resource "aws_s3_bucket" "lb_log_bucket" {
   bucket = "${var.prefix}-lb-log-bucket"
-  acl    = "private"
-  versioning {
-    enabled = true
-  }
 
-  lifecycle_rule {
-    id      = "30_day_retention_lb_bucket_logs"
-    enabled = true
+  tags = var.tags
+}
+
+resource "aws_s3_bucket_lifecycle_configuration" "lb_log_bucket_lifecycle_policy" {
+  bucket = aws_s3_bucket.lb_log_bucket.id
+
+  rule {
+    id = "30_day_retention_lb_log_bucket-1"
     expiration {
       days = 30
     }
+    status = "Enabled"
   }
-
-  tags = var.tags
 }
 
 resource "aws_s3_bucket_policy" "lb_log_bucket_policy" {

@@ -1,15 +1,15 @@
 resource "aws_s3_bucket" "config_bucket" {
   bucket = "${var.prefix}-config-bucket"
-  acl    = "private"
-  versioning {
-    enabled = true
-  }
-  server_side_encryption_configuration {
-    rule {
-      apply_server_side_encryption_by_default {
-        kms_master_key_id = aws_kms_key.config_bucket_key.arn
-        sse_algorithm     = "aws:kms"
-      }
+
+}
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "perf_config_bucket_encryption" {
+  bucket = aws_s3_bucket.config_bucket.id
+
+  rule {
+    apply_server_side_encryption_by_default {
+      kms_master_key_id = aws_kms_key.config_bucket_key.arn
+      sse_algorithm     = "aws:kms"
     }
   }
 }
