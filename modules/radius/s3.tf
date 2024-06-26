@@ -1,24 +1,34 @@
 resource "aws_s3_bucket" "config_bucket" {
   bucket = "${var.prefix}-config-bucket"
-  acl    = "private"
-  versioning {
-    enabled = true
-  }
 
-  logging {
-    target_bucket = aws_s3_bucket.config_bucket_logs.id
-  }
-
-  server_side_encryption_configuration {
-    rule {
-      apply_server_side_encryption_by_default {
-        kms_master_key_id = aws_kms_key.config_bucket_key.arn
-        sse_algorithm     = "aws:kms"
-      }
-    }
-  }
+  # server_side_encryption_configuration {
+  #   rule {
+  #     apply_server_side_encryption_by_default {
+  #       kms_master_key_id = aws_kms_key.config_bucket_key.arn
+  #       sse_algorithm     = "aws:kms"
+  #     }
+  #   }
+  # }
 
   tags = var.tags
+}
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "config_bucket_encryption" {
+  bucket = aws_s3_bucket.config_bucket.id
+
+  rule {
+    apply_server_side_encryption_by_default {
+      kms_master_key_id = aws_kms_key.config_bucket_key.arn
+      sse_algorithm     = "aws:kms"
+    }
+  }
+}
+
+resource "aws_s3_bucket_logging" "config_bucket_logging" {
+  bucket = aws_s3_bucket.config_bucket.id
+
+  target_bucket = aws_s3_bucket.config_bucket_logs.id
+  target_prefix = "log/"
 }
 
 data "template_file" "config_bucket_policy" {
@@ -54,17 +64,21 @@ resource "aws_kms_key" "config_bucket_key" {
 }
 
 resource "aws_s3_bucket" "config_bucket_logs" {
-  bucket = "${var.prefix}-config-bucket-logs"
-  acl    = "private"
-  lifecycle_rule {
-    id      = "30_day_retention_config_bucket_logs"
-    enabled = true
+  bucket = "${var.prefix}-config-bucket-logs" 
+
+  tags = var.tags
+}
+
+resource "aws_s3_bucket_lifecycle_configuration" "conf_log_bucket_lifecycle_policy" {
+  bucket = aws_s3_bucket.config_bucket_logs.id
+
+  rule {
+    id = "30_day_retention_config_bucket_logs-1"
     expiration {
       days = 30
     }
+    status = "Enabled"
   }
-
-  tags = var.tags
 }
 
 resource "aws_s3_bucket_public_access_block" "config_log_bucket_public_block" {
