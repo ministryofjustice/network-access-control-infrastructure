@@ -79,9 +79,9 @@ init-upgrade: ## terraform init -upgrade
 unlock: ## Terraform unblock (make unlock ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)
 	$(DOCKER_RUN) /bin/bash -c "terraform force-unlock ${ID}"
 
-# .PHONY: import
-# import: ## terraform import e.g. (make import IMPORT_ARGUMENT=module.foo.bar some_resource)
-# 	$(DOCKER_RUN) /bin/bash -c "terraform import ${IMPORT_ARGUMENT}"
+.PHONY: import
+import: ## terraform import e.g. (make import IMPORT_ARGUMENT=module.foo.bar some_resource)
+	$(DOCKER_RUN) /bin/bash -c "terraform import ${IMPORT_ARGUMENT}"
 
 .PHONY: workspace-list
 workspace-list: ## terraform workspace list
@@ -166,7 +166,3 @@ help:
 .PHONY: authorise-performance-test-clients
 authorise-performance-test-clients: ## Update a config file with IPs for test clients
 	$(DOCKER_RUN) /bin/bash -c "./scripts/authorise_performance_test_clients.sh"
-
-.PHONY: import
-import: ## terraform import
-	$(DOCKER_RUN) /bin/bash -c "terraform import module.radius.aws_s3_bucket_acl.certificate_bucket_logs_acl mojo-development-nac-certificate-bucket-logs"
