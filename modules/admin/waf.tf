@@ -1,21 +1,3 @@
-locals {
-
-  authorised_ips = [
-    "35.176.93.186/32",
-    "194.33.193.0/25",
-    "194.33.196.0/25",
-    "51.149.251.0/24",
-    "194.33.192.0/25",
-    "51.149.249.0/29",
-    "51.149.250.0/24",
-    "194.33.197.0/25",
-    "195.59.75.0/24",
-    "51.149.249.32/29",
-    "194.33.248.0/29",
-    "194.33.249.0/29"
-  ]
-}
-
 resource "aws_wafv2_web_acl_association" "admin_alb_waf_association" {
   resource_arn = aws_lb.admin_alb.arn
   web_acl_arn  = aws_wafv2_web_acl.admin_alb_acl.arn
@@ -25,8 +7,7 @@ resource "aws_wafv2_ip_set" "authorised_ips" {
   name               = "authorised-ips"
   scope              = "REGIONAL"
   ip_address_version = "IPV4"
-  #addresses          = local.authorised_ips
-  addresses          = ["0.0.0.0/1"] #ND-105 temp change to capture all IP addresses, hitting the service.
+  addresses          = local.authorised_ips
 }
 
 resource "aws_wafv2_web_acl" "admin_alb_acl" {
@@ -186,10 +167,11 @@ resource "aws_wafv2_web_acl" "admin_alb_acl" {
   }
 
   rule {
+    // This rule should always be the last rule in the list
     name     = "only-authorised-ips"
-    priority = 8
+    priority = 16
     action {
-      count {}
+      allow {}
     }
 
     statement {
@@ -201,27 +183,6 @@ resource "aws_wafv2_web_acl" "admin_alb_acl" {
     visibility_config {
       cloudwatch_metrics_enabled = true
       metric_name                = "${var.prefix}-only-authorised-ips"
-      sampled_requests_enabled   = true
-    }
-  }
-
-  rule {
-    // This rule should always be the last rule in the list
-    name     = "only-gb"
-    priority = 15
-    action {
-      allow {}
-    }
-
-    statement {
-      geo_match_statement {
-        country_codes = ["GB"]
-      }
-    }
-
-    visibility_config {
-      cloudwatch_metrics_enabled = true
-      metric_name                = "${var.prefix}-only-gb"
       sampled_requests_enabled   = true
     }
   }

@@ -16,7 +16,7 @@ provider "aws" {
 
 module "label" {
   source  = "cloudposse/label/null"
-  version = "0.24.1"
+  version = "0.25.0"
 
   delimiter = "-"
   namespace = "mojo"
@@ -74,6 +74,8 @@ module "radius" {
   vpc_flow_logs_group_id          = module.radius_vpc_flow_logs.flow_log_group_id
   log_metrics_namespace           = local.is_local_development ? "${module.label.id}-mojo-nac-requests" : "mojo-nac-requests"
   shared_services_account_id      = var.shared_services_account_id
+  allowed_ips                     = jsondecode(data.aws_secretsmanager_secret_version.allowed_ips.secret_string)["allowed_ips"]
+
 
   read_replica = {
     name = module.admin_read_replica.rds.name
@@ -158,6 +160,7 @@ module "radius_vpc" {
   tags                                  = module.label.tags
   ssm_session_manager_endpoints         = var.enable_rds_servers_bastion
   ocsp_dep_ip                           = var.ocsp_dep_ip
+  ocsp_prs_ip                           = var.ocsp_prs_ip
 
   providers = {
     aws = aws.env

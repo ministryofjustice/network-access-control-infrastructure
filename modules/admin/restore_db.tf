@@ -8,12 +8,12 @@ resource "aws_db_instance" "admin_db_restored" {
   allocated_storage           = 20
   storage_type                = "gp2"
   engine                      = "mysql"
-  engine_version              = "5.7"
+  engine_version              = "8.0"
   auto_minor_version_upgrade  = true
   allow_major_version_upgrade = false
   apply_immediately           = var.db.apply_updates_immediately
   delete_automated_backups    = true
-  instance_class              = "db.t2.medium"
+  instance_class              = "db.t3.medium"
   identifier                  = "${var.prefix}-restored"
   name                        = replace(var.prefix, "-", "_")
   username                    = var.db.username
@@ -28,12 +28,12 @@ resource "aws_db_instance" "admin_db_restored" {
   skip_final_snapshot         = var.db.skip_final_snapshot
   deletion_protection         = var.db.deletion_protection
   publicly_accessible         = false
-  option_group_name           = aws_db_option_group.mariadb_audit.name
+  option_group_name           = aws_db_option_group.mariadb_audit_v8.name
   snapshot_identifier         = data.aws_db_snapshot.latest.id
 
   enabled_cloudwatch_logs_exports = ["audit", "error", "general", "slowquery"]
 
-  parameter_group_name = aws_db_parameter_group.admin_db_parameter_group.name
+  parameter_group_name = aws_db_parameter_group.admin_db_parameter_group_v8.name
 
   tags = var.tags
 
