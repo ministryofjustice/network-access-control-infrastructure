@@ -114,6 +114,18 @@ resource "aws_s3_bucket" "lb_log_bucket" {
   tags = var.tags
 }
 
+resource "aws_s3_bucket_acl" "lb_log_bucket_acl" {
+  bucket = aws_s3_bucket.lb_log_bucket.id
+  acl    = "private"
+}
+
+resource "aws_s3_bucket_versioning" "lb_log_bucket_versioning" {
+  bucket = aws_s3_bucket.lb_log_bucket.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
 resource "aws_s3_bucket_lifecycle_configuration" "lb_log_bucket_lifecycle_policy" {
   bucket = aws_s3_bucket.lb_log_bucket.id
 
