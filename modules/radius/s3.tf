@@ -4,6 +4,26 @@ resource "aws_s3_bucket" "config_bucket" {
   tags = var.tags
 }
 
+resource "aws_s3_bucket_ownership_controls" "config_bucket_ownership" {
+  bucket = aws_s3_bucket.config_bucket.id
+  rule {
+    object_ownership = "BucketOwnerPreferred"
+  }
+}
+
+resource "aws_s3_bucket_acl" "config_bucket_acl" {
+  depends_on = [aws_s3_bucket_ownership_controls.config_bucket_ownership]
+  bucket     = aws_s3_bucket.config_bucket.id
+  acl        = "private"
+}
+
+resource "aws_s3_bucket_versioning" "config_bucket_versioning" {
+  bucket = aws_s3_bucket.config_bucket.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
 resource "aws_s3_bucket_server_side_encryption_configuration" "config_bucket_encryption" {
   bucket = aws_s3_bucket.config_bucket.id
 
@@ -58,6 +78,18 @@ resource "aws_s3_bucket" "config_bucket_logs" {
   bucket = "${var.prefix}-config-bucket-logs"
 
   tags = var.tags
+}
+
+resource "aws_s3_bucket_ownership_controls" "config_bucket_logs_ownership" {
+  bucket = aws_s3_bucket.config_bucket_logs.id
+  rule {
+    object_ownership = "BucketOwnerPreferred"
+  }
+}
+
+resource "aws_s3_bucket_acl" "config_bucket_logs_acl" {
+  bucket = aws_s3_bucket.config_bucket_logs.id
+  acl    = "private"
 }
 
 resource "aws_s3_bucket_lifecycle_configuration" "conf_log_bucket_lifecycle_policy" {
