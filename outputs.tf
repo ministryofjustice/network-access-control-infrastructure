@@ -23,7 +23,7 @@ output "terraform_outputs" {
       value = module.radius_vpc.nat_gateway_route_table_id
     }
     rds_bastion = {
-      admin = module.rds_admin_bastion[*].bastion
+      admin  = module.rds_admin_bastion[*].bastion
       server = module.rds_servers_bastion[*].bastion
     }
   }
