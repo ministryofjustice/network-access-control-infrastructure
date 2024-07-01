@@ -24,3 +24,10 @@ output "terraform_outputs" {
     }
   }
 }
+
+output "rds_bastion" {
+  value = {
+    admin  = module.rds_admin_bastion[*].bastion
+    server = module.rds_servers_bastion[*].bastion
+  }
+}
