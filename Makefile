@@ -112,6 +112,14 @@ refresh: ## terraform refresh
 output: ## terraform output (make output OUTPUT_ARGUMENT='--raw dns_dhcp_vpc_id')
 	$(DOCKER_RUN) /bin/bash -c "terraform output -no-color ${OUTPUT_ARGUMENT}"
 
+.PHONY: output-bastion-rds-admin
+output-bastion-rds-admin: ## terraform output (make output-bastion-rds-admin)
+	$(DOCKER_RUN) /bin/bash -c "terraform output -no-color -json rds_bastion | jq -r .admin[][]"
+
+.PHONY: output-bastion-rds-server
+output-bastion-rds-server: ## terraform output (make output-bastion-rds-server)
+	$(DOCKER_RUN) /bin/bash -c "terraform output -no-color -json rds_bastion | jq -r .server[][]"
+
 .PHONY: apply
 apply: ## terraform apply
 	$(DOCKER_RUN) /bin/bash -c "terraform apply"
