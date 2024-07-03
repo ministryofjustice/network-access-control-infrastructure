@@ -6,7 +6,7 @@ data "aws_db_snapshot" "latest" {
 resource "aws_db_instance" "admin_db_restored" {
   count                       = var.run_restore_from_backup ? 1 : 0
   allocated_storage           = 20
-  storage_type                = "gp2"
+  storage_type                = "gp3"
   engine                      = "mysql"
   engine_version              = "8.0"
   auto_minor_version_upgrade  = true
