@@ -1,5 +1,5 @@
 resource "aws_db_instance" "admin_read_replica" {
-  storage_type                    = "gp2"
+  storage_type                    = "gp3"
   engine                          = "mysql"
   engine_version                  = "8.0"
   auto_minor_version_upgrade      = true
