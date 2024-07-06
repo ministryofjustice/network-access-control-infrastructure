@@ -21,7 +21,7 @@ resource "aws_security_group" "endpoints" {
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "2.78.0"
+  version = "5.9.0"
   name    = "${var.prefix}-vpc"
 
   cidr = var.cidr_block
