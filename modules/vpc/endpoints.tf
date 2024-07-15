@@ -47,3 +47,69 @@ resource "aws_vpc_endpoint" "kms" {
   tags                = var.tags
   depends_on          = [aws_security_group.endpoints]
 }
+
+############## VPC Endpoints ##############
+
+resource "aws_vpc_endpoint" "s3" {
+  vpc_id              = module.vpc.vpc_id
+  service_name        = "com.amazonaws.${var.region}.s3"
+  vpc_endpoint_type   = "Gateway"
+  tags                = var.tags
+
+}
+
+resource "aws_vpc_endpoint" "rds" {
+  vpc_id               = module.vpc.vpc_id
+  subnet_ids           = module.vpc.private_subnets
+  service_name         = "com.amazonaws.${var.region}.rds"
+  security_group_ids   = [aws_security_group.endpoints.id]
+  private_dns_enabled  = true
+  vpc_endpoint_type    = "Interface"
+  # enable_dns_hostnames = true
+  tags                 = var.tags
+  depends_on           = [aws_security_group.endpoints]
+}
+
+resource "aws_vpc_endpoint" "ecr_api" {
+  vpc_id              = module.vpc.vpc_id
+  subnet_ids          = module.vpc.private_subnets
+  service_name        = "com.amazonaws.${var.region}.ecr.api"
+  security_group_ids  = [aws_security_group.endpoints.id]
+  vpc_endpoint_type   = "Interface"
+  private_dns_enabled = true
+  tags                = var.tags
+  depends_on          = [aws_security_group.endpoints]
+}
+
+resource "aws_vpc_endpoint" "ecr_dkr" {
+  vpc_id              = module.vpc.vpc_id
+  subnet_ids          = module.vpc.private_subnets
+  service_name        = "com.amazonaws.${var.region}.ecr.dkr"
+  security_group_ids  = [aws_security_group.endpoints.id]
+  vpc_endpoint_type   = "Interface"
+  private_dns_enabled = true
+  tags                = var.tags
+  depends_on          = [aws_security_group.endpoints]
+}
+
+resource "aws_vpc_endpoint" "logs" {
+  vpc_id              = module.vpc.vpc_id
+  subnet_ids          = module.vpc.private_subnets
+  service_name        = "com.amazonaws.${var.region}.logs"
+  security_group_ids  = [aws_security_group.endpoints.id]
+  vpc_endpoint_type   = "Interface"
+  private_dns_enabled = true
+  tags                = var.tags
+  depends_on          = [aws_security_group.endpoints]
+}
+
+resource "aws_vpc_endpoint" "monitoring" {
+  vpc_id              = module.vpc.vpc_id
+  subnet_ids          = module.vpc.private_subnets
+  service_name        = "com.amazonaws.${var.region}.monitoring"
+  vpc_endpoint_type   = "Interface"
+  security_group_ids  = [aws_security_group.endpoints.id]
+  private_dns_enabled = true
+  tags                = var.tags
+  depends_on          = [aws_security_group.endpoints]
+}

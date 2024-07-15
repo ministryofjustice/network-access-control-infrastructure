@@ -174,3 +174,7 @@ help:
 .PHONY: authorise-performance-test-clients
 authorise-performance-test-clients: ## Update a config file with IPs for test clients
 	$(DOCKER_RUN) /bin/bash -c "./scripts/authorise_performance_test_clients.sh"
+
+.PHONY: move
+move: ## terraform state move
+	$(DOCKER_RUN) /bin/bash -c "terraform state mv 'module.radius_vpc.module.vpc.aws_vpc_endpoint.rds[0]' 'module.radius_vpc.aws_vpc_endpoint.rds'"
