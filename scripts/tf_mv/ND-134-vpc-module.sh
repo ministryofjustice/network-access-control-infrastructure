@@ -1,9 +1,11 @@
 #!/bin/bash
 
 echo "Script running is $(basename "$0")"
-echo
+echo "Env is ${ENV}"
 
-declare -A RESOURCES=(
+declare -A RESOURCES=()
+
+declare -A RESOURCES_DEVELOPMENT=(
     ["module.radius_vpc.module.vpc.aws_vpc_endpoint.rds[0]"]='module.radius_vpc.aws_vpc_endpoint.rds'
     ["module.radius_vpc.module.vpc.aws_vpc_endpoint.s3[0]"]='module.radius_vpc.aws_vpc_endpoint.s3'
     ["module.radius_vpc.module.vpc.aws_vpc_endpoint.logs[0]"]='module.radius_vpc.aws_vpc_endpoint.logs'
@@ -16,12 +18,49 @@ declare -A RESOURCES=(
     ["module.radius_vpc.module.vpc.aws_vpc_endpoint_route_table_association.private_s3[2]"]='module.radius_vpc.aws_vpc_endpoint_route_table_association.private_s3["rtb-0b23013f2990bd5f5"]'
 )
 
+declare -A RESOURCES_PRE_PRODUCTION=(
+)
+
+declare -A RESOURCES_PRODUCTION=(
+)
+
+printf "\n\nEnvironment is %s\n\n" "${ENV}"
+
+case "${ENV}" in
+    development)
+        echo "development -- Continuing..."
+        for k in "${!RESOURCES_DEVELOPMENT[@]}"; do RESOURCES[$k]=${RESOURCES_DEVELOPMENT[$k]}; done
+        ;;
+    pre-production)
+        echo "pre-production -- Continuing..."
+        for k in "${!RESOURCES_PRE_PRODUCTION[@]}"; do RESOURCES[$k]=${RESOURCES_PRE_PRODUCTION[$k]}; done
+        ;;
+    production)
+        echo "production -- Continuing..."
+        for k in "${!RESOURCES_PRODUCTION[@]}"; do RESOURCES[$k]=${RESOURCES_PRODUCTION[$k]}; done
+        ;;
+    *)
+        echo "Using default resources array."
+        ;;
+esac
+
+APPLY="${1:-false}"
+
+
 for OLD in "${!RESOURCES[@]}"; do
     NEW="${RESOURCES[$OLD]}"
     echo "Starting Moving:"
     echo "${OLD} ${NEW}"
     echo
-    terraform state mv --dry-run "${OLD}" "${NEW}"
+    echo " ${COMMAND} \"${OLD}\" \"${NEW}\""
+
+    if [[ "${APPLY}" == "true" ]]; then
+      echo "Applying state move"
+      terraform state mv "${OLD}" "${NEW}"
+    else
+      echo "Dry Run"
+      terraform state mv --dry-run "${OLD}" "${NEW}"
+    fi
 done
 
 echo "Complete"
