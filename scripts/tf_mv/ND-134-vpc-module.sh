@@ -20,15 +20,15 @@ declare -A RESOURCES_DEVELOPMENT=(
 )
 
 declare -A RESOURCES_PRE_PRODUCTION=(
-    ["module.radius_vpc.module.vpc.aws_vpc_endpoint_route_table_association.private_s3[0]"]='module.radius_vpc.aws_vpc_endpoint_route_table_association.private_s3["rtb-XXX"]'
-    ["module.radius_vpc.module.vpc.aws_vpc_endpoint_route_table_association.private_s3[1]"]='module.radius_vpc.aws_vpc_endpoint_route_table_association.private_s3["rtb-YYY"]'
-    ["module.radius_vpc.module.vpc.aws_vpc_endpoint_route_table_association.private_s3[2]"]='module.radius_vpc.aws_vpc_endpoint_route_table_association.private_s3["rtb-ZZZ"]'
+    ["module.radius_vpc.module.vpc.aws_vpc_endpoint_route_table_association.private_s3[0]"]='module.radius_vpc.aws_vpc_endpoint_route_table_association.private_s3["rtb-0e443b73fe4278ba6"]'
+    ["module.radius_vpc.module.vpc.aws_vpc_endpoint_route_table_association.private_s3[1]"]='module.radius_vpc.aws_vpc_endpoint_route_table_association.private_s3["rtb-08c7ff431e8143dab"]'
+    ["module.radius_vpc.module.vpc.aws_vpc_endpoint_route_table_association.private_s3[2]"]='module.radius_vpc.aws_vpc_endpoint_route_table_association.private_s3["rtb-083c893b7acb2dd7d"]'
 )
 
 declare -A RESOURCES_PRODUCTION=(
-    ["module.radius_vpc.module.vpc.aws_vpc_endpoint_route_table_association.private_s3[0]"]='module.radius_vpc.aws_vpc_endpoint_route_table_association.private_s3["rtb-AAA"]'
-    ["module.radius_vpc.module.vpc.aws_vpc_endpoint_route_table_association.private_s3[1]"]='module.radius_vpc.aws_vpc_endpoint_route_table_association.private_s3["rtb-BBB"]'
-    ["module.radius_vpc.module.vpc.aws_vpc_endpoint_route_table_association.private_s3[2]"]='module.radius_vpc.aws_vpc_endpoint_route_table_association.private_s3["rtb-CCC"]'
+    ["module.radius_vpc.module.vpc.aws_vpc_endpoint_route_table_association.private_s3[0]"]='module.radius_vpc.aws_vpc_endpoint_route_table_association.private_s3["rtb-0f686694cafea0ed1"]'
+    ["module.radius_vpc.module.vpc.aws_vpc_endpoint_route_table_association.private_s3[1]"]='module.radius_vpc.aws_vpc_endpoint_route_table_association.private_s3["rtb-0db99e8726966deba"]'
+    ["module.radius_vpc.module.vpc.aws_vpc_endpoint_route_table_association.private_s3[2]"]='module.radius_vpc.aws_vpc_endpoint_route_table_association.private_s3["rtb-07da15d6495d7289e"]'
 )
 
 printf "\n\nEnvironment is %s\n\n" "${ENV}"
