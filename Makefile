@@ -175,6 +175,14 @@ help:
 authorise-performance-test-clients: ## Update a config file with IPs for test clients
 	$(DOCKER_RUN) /bin/bash -c "./scripts/authorise_performance_test_clients.sh"
 
+# .PHONY: move
+# move: ## terraform state move
+# 	$(DOCKER_RUN) /bin/bash -c "terraform state mv 'module.radius_vpc.module.vpc.aws_vpc_endpoint.rds[0]' 'module.radius_vpc.aws_vpc_endpoint.rds'"
+
+# .PHONY: move
+# move: ## terraform state move
+# 	$(DOCKER_RUN) /bin/bash -c "terraform state mv 'module.radius_vpc.module.vpc.aws_vpc_endpoint_route_table_association.public_s3[0]' 'module.radius_vpc.aws_vpc_endpoint_route_table_association.public_s3'"
+
 .PHONY: move
 move: ## terraform state move
-	$(DOCKER_RUN) /bin/bash -c "terraform state mv 'module.radius_vpc.module.vpc.aws_vpc_endpoint.rds[0]' 'module.radius_vpc.aws_vpc_endpoint.rds'"
+	$(DOCKER_RUN) /bin/bash -c "terraform state mv 'module.radius_vpc.module.vpc.aws_vpc_endpoint_route_table_association.private_s3[0]' 'module.radius_vpc.aws_vpc_endpoint_route_table_association.private_s3[\"rtb-0d8fb314c5602256b\"]'"
