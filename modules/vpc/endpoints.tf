@@ -54,8 +54,18 @@ resource "aws_vpc_endpoint" "s3" {
   vpc_id              = module.vpc.vpc_id
   service_name        = "com.amazonaws.${var.region}.s3"
   vpc_endpoint_type   = "Gateway"
-  tags                = var.tags
+  tags                = merge(var.tags, {"Name" : "${var.prefix}-s3"})
+}
 
+resource "aws_vpc_endpoint_route_table_association" "private_s3" {
+  for_each        = toset(module.vpc.private_route_table_ids)
+  route_table_id  = each.key
+  vpc_endpoint_id = aws_vpc_endpoint.s3.id
+}
+
+resource "aws_vpc_endpoint_route_table_association" "public_s3" { 
+  route_table_id  = local.public_table_id
+  vpc_endpoint_id = aws_vpc_endpoint.s3.id
 }
 
 resource "aws_vpc_endpoint" "rds" {
@@ -65,8 +75,7 @@ resource "aws_vpc_endpoint" "rds" {
   security_group_ids   = [aws_security_group.endpoints.id]
   private_dns_enabled  = true
   vpc_endpoint_type    = "Interface"
-  # enable_dns_hostnames = true
-  tags                 = var.tags
+  tags                  = merge(var.tags, {"Name" : "${var.prefix}-rds"})
   depends_on           = [aws_security_group.endpoints]
 }
 
@@ -77,7 +86,7 @@ resource "aws_vpc_endpoint" "ecr_api" {
   security_group_ids  = [aws_security_group.endpoints.id]
   vpc_endpoint_type   = "Interface"
   private_dns_enabled = true
-  tags                = var.tags
+  tags                  = merge(var.tags, {"Name" : "${var.prefix}-ecr-api"})
   depends_on          = [aws_security_group.endpoints]
 }
 
@@ -88,7 +97,7 @@ resource "aws_vpc_endpoint" "ecr_dkr" {
   security_group_ids  = [aws_security_group.endpoints.id]
   vpc_endpoint_type   = "Interface"
   private_dns_enabled = true
-  tags                = var.tags
+  tags                = merge(var.tags, {"Name" : "${var.prefix}-ecr-dkr"})
   depends_on          = [aws_security_group.endpoints]
 }
 
@@ -99,7 +108,7 @@ resource "aws_vpc_endpoint" "logs" {
   security_group_ids  = [aws_security_group.endpoints.id]
   vpc_endpoint_type   = "Interface"
   private_dns_enabled = true
-  tags                = var.tags
+  tags                = merge(var.tags, {"Name" : "${var.prefix}-logs"})
   depends_on          = [aws_security_group.endpoints]
 }
 
@@ -110,6 +119,6 @@ resource "aws_vpc_endpoint" "monitoring" {
   vpc_endpoint_type   = "Interface"
   security_group_ids  = [aws_security_group.endpoints.id]
   private_dns_enabled = true
-  tags                = var.tags
+  tags                = merge(var.tags, {"Name" : "${var.prefix}-monitoring"})
   depends_on          = [aws_security_group.endpoints]
 }
