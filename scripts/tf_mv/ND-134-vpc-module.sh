@@ -10,7 +10,7 @@ declare -A RESOURCES_DEVELOPMENT=(
     ["module.radius_vpc.module.vpc.aws_vpc_endpoint.s3[0]"]='module.radius_vpc.aws_vpc_endpoint.s3'
     ["module.radius_vpc.module.vpc.aws_vpc_endpoint.logs[0]"]='module.radius_vpc.aws_vpc_endpoint.logs'
     ["module.radius_vpc.module.vpc.aws_vpc_endpoint.monitoring[0]"]='module.radius_vpc.aws_vpc_endpoint.monitoring'
-    ["module.radius_vpc.module.vpc.aws_vpc_endpoint.ecr_dkr[0"]='module.radius_vpc.aws_vpc_endpoint.ecr_dkr'
+    ["module.radius_vpc.module.vpc.aws_vpc_endpoint.ecr_dkr[0]"]='module.radius_vpc.aws_vpc_endpoint.ecr_dkr'
     ["module.radius_vpc.module.vpc.aws_vpc_endpoint.ecr_api[0]"]='module.radius_vpc.aws_vpc_endpoint.ecr_api'
     ["module.radius_vpc.module.vpc.aws_vpc_endpoint_route_table_association.public_s3[0]"]='module.radius_vpc.aws_vpc_endpoint_route_table_association.public_s3'
     ["module.radius_vpc.module.vpc.aws_vpc_endpoint_route_table_association.private_s3[0]"]='module.radius_vpc.aws_vpc_endpoint_route_table_association.private_s3["rtb-0f4597542e6aa0556"]'
@@ -52,7 +52,6 @@ for OLD in "${!RESOURCES[@]}"; do
     echo "Starting Moving:"
     echo "${OLD} ${NEW}"
     echo
-    echo " ${COMMAND} \"${OLD}\" \"${NEW}\""
 
     if [[ "${APPLY}" == "true" ]]; then
       echo "Applying state move"
