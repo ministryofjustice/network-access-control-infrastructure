@@ -172,8 +172,8 @@ authorise_performance_test_clients: ## Update a config file with IPs for test cl
 	$(DOCKER_RUN) /bin/bash -c "./scripts/authorise_performance_test_clients.sh"
 
 .PHONY: move_script
-move_script: ## terraform state move operations from within a script e.g. make move_script SCRIPT="ND-134-vpc-module"
-	$(DOCKER_RUN) /bin/bash -c "./scripts/tf_mv/$$SCRIPT.sh"
+move_script: ## terraform state move operations from within a script e.g. make move_script SCRIPT="ND-134-vpc-module" APPLY=[true|false]
+	$(DOCKER_RUN) /bin/bash -c "./scripts/tf_mv/$$SCRIPT.sh $$APPLY"
 
 help:
 	@grep -h -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
