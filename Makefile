@@ -167,22 +167,13 @@ tfenv: ## tfenv pin - terraform version from versions.tf
 taint: ## terraform taint (make taint TAINT_ARGUMENT=module.radius.aws_lb.load_balancer)
 	$(DOCKER_RUN) /bin/bash -c "terraform taint -no-color ${TAINT_ARGUMENT}"
 
-help:
-	@grep -h -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
-
-############ Repository unique targets ############
-.PHONY: authorise-performance-test-clients
-authorise-performance-test-clients: ## Update a config file with IPs for test clients
+.PHONY: authorise_performance_test_clients
+authorise_performance_test_clients: ## Update a config file with IPs for test clients
 	$(DOCKER_RUN) /bin/bash -c "./scripts/authorise_performance_test_clients.sh"
 
-# .PHONY: move
-# move: ## terraform state move
-# 	$(DOCKER_RUN) /bin/bash -c "terraform state mv 'module.radius_vpc.module.vpc.aws_vpc_endpoint.rds[0]' 'module.radius_vpc.aws_vpc_endpoint.rds'"
+.PHONY: move_script
+move_script: ## terraform state move operations from within a script e.g. make move_script SCRIPT="ND-134-vpc-module"
+	$(DOCKER_RUN) /bin/bash -c "./scripts/tf_mv/$$SCRIPT.sh"
 
-# .PHONY: move
-# move: ## terraform state move
-# 	$(DOCKER_RUN) /bin/bash -c "terraform state mv 'module.radius_vpc.module.vpc.aws_vpc_endpoint_route_table_association.public_s3[0]' 'module.radius_vpc.aws_vpc_endpoint_route_table_association.public_s3'"
-
-.PHONY: move
-move: ## terraform state move
-	$(DOCKER_RUN) /bin/bash -c "terraform state mv 'module.radius_vpc.module.vpc.aws_vpc_endpoint_route_table_association.private_s3[0]' 'module.radius_vpc.aws_vpc_endpoint_route_table_association.private_s3[\"rtb-0d8fb314c5602256b\"]'"
+help:
+	@grep -h -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
