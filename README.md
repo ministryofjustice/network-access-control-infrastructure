@@ -33,6 +33,7 @@ This repository defines the **system infrastructure only**. Specific components 
 - [Setup Performance Testing](documentation/performance_testing.md)
 - [Database Access - dump with bastion](documentation/rds-bastion.md)
 - [DEP OCSP Service Overview](documentation/ocsp-over-internet.md)
+- [Terraform state move scripts](documentation/terraform-state-move-scripts.md)
 
 ## CI/CD
 
