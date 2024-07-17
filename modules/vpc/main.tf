@@ -31,16 +31,16 @@ module "vpc" {
     "eu-west-2b",
     "eu-west-2c"
   ]
-  
-  enable_dhcp_options                     = true
-  dhcp_options_domain_name_servers        = ["AmazonProvidedDNS"]
-  enable_dns_hostnames             = true
-  enable_dns_support                = true
 
-  manage_default_security_group     = true
-  default_security_group_ingress    = []
-  default_security_group_egress     = []
-  
+  enable_dhcp_options              = true
+  dhcp_options_domain_name_servers = ["AmazonProvidedDNS"]
+  enable_dns_hostnames             = true
+  enable_dns_support               = true
+
+  manage_default_security_group  = true
+  default_security_group_ingress = []
+  default_security_group_egress  = []
+
   private_subnets = [
     cidrsubnet(var.cidr_block, var.cidr_block_new_bits, 0),
     cidrsubnet(var.cidr_block, var.cidr_block_new_bits, 2),
