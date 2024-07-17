@@ -1,7 +1,7 @@
 # Terraform State Move Scripts
 
 During the update, upgrade and maintenance of this and other Terraform projects there will be occasions where a different Terraform code will manage existing resources.
-The [terraform state mv](https://developer.hashicorp.com/terraform/cli/v1.1.x/commands/state/mv) command is very useful for this 
+The [terraform state mv](https://developer.hashicorp.com/terraform/cli/v1.1.x/commands/state/mv) command is very useful for this
 
 ```terraform
 terraform state mv [options] SOURCE DESTINATION
@@ -16,7 +16,7 @@ This enables consistency and ability to have different commands for each environ
 
 1. Copy template script and give same name as branch including the Jira reference.
 1. Prepare script with the changes.
-2. Test script against a workspace or development environment.
+1. Test script against a workspace or development environment.
    1. Run plan (see changes)
    2. Run script (move resources within state file)
    3. Run plan (see no changes should be required)
@@ -92,9 +92,6 @@ As above but add an additional argument `APPLY=true`
 ```shell
 make move_script SCRIPT="ND-134-vpc-module" APPLY=true
 ```
-
-
-
 
 ## External URLS
 
