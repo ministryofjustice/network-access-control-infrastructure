@@ -75,6 +75,7 @@ module "radius" {
   log_metrics_namespace           = local.is_local_development ? "${module.label.id}-mojo-nac-requests" : "mojo-nac-requests"
   shared_services_account_id      = var.shared_services_account_id
   allowed_ips                     = jsondecode(data.aws_secretsmanager_secret_version.allowed_ips.secret_string)["allowed_ips"]
+  secret_arns                     = local.secret_manager_arns
 
 
   read_replica = {
@@ -229,6 +230,7 @@ module "admin" {
   eap_private_key_password          = var.eap_private_key_password
   radsec_private_key_password       = var.radsec_private_key_password
   shared_services_account_id        = var.shared_services_account_id
+  secret_arns                       = local.secret_manager_arns
   server_ips = join(", ", [
     module.radius.load_balancer.nac_eu_west_2a_ip_address,
     module.radius.load_balancer.nac_eu_west_2b_ip_address,
