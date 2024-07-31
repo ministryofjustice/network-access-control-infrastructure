@@ -83,6 +83,10 @@ unlock: ## Terraform unblock (make unlock ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx
 import: ## terraform import e.g. (make import IMPORT_ARGUMENT="module.foo.bar some_resource")
 	$(DOCKER_RUN) /bin/bash -c "terraform import ${IMPORT_ARGUMENT}"
 
+.PHONY: rm
+rm: ## terraform import e.g. (make rm RM_ARGUMENT="module.foo.bar")
+	$(DOCKER_RUN) terraform state rm $$RM_ARGUMENT
+
 .PHONY: workspace-list
 workspace-list: ## terraform workspace list
 	$(DOCKER_RUN) /bin/bash -c "terraform workspace list"
