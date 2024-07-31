@@ -81,8 +81,8 @@ module "radius" {
   read_replica = {
     name = module.admin_read_replica.rds.name
     host = module.admin_read_replica.rds.host
-    user = var.admin_db_username
-    pass = var.admin_db_password
+    user = jsondecode(data.aws_secretsmanager_secret_version.moj_network_access_control_env_admin_db.secret_string)["username"]
+    pass = jsondecode(data.aws_secretsmanager_secret_version.moj_network_access_control_env_admin_db.secret_string)["password"]
   }
 
   vpc = {
@@ -242,9 +242,9 @@ module "admin" {
     backup_retention_period   = var.admin_db_backup_retention_period
     delete_automated_backups  = local.is_production ? false : true
     deletion_protection       = local.is_production ? true : false
-    password                  = var.admin_db_password
+    password                  = jsondecode(data.aws_secretsmanager_secret_version.moj_network_access_control_env_admin_db.secret_string)["password"]
     skip_final_snapshot       = true
-    username                  = var.admin_db_username
+    username                  = jsondecode(data.aws_secretsmanager_secret_version.moj_network_access_control_env_admin_db.secret_string)["username"]
   }
 
   vpc = {

@@ -60,8 +60,6 @@ resource "aws_secretsmanager_secret_version" "moj_network_access_control_env_adm
   secret_string = "REPLACE_ME"
 }
 
-
-
 resource "aws_secretsmanager_secret" "moj_network_access_control_env_eap_private_key_password" {
   name     = "/moj-network-access-control/${terraform.workspace}/eap/private_key_password"
   provider = aws.env
@@ -77,7 +75,6 @@ resource "aws_secretsmanager_secret_version" "moj_network_access_control_env_eap
   secret_id     = aws_secretsmanager_secret.moj_network_access_control_env_eap_private_key_password.id
   secret_string = "REPLACE_ME"
 }
-
 
 resource "aws_secretsmanager_secret" "moj_network_access_control_env_radsec_private_key_password" {
   name     = "/moj-network-access-control/${terraform.workspace}/radsec/private_key_password"
