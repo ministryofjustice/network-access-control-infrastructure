@@ -86,20 +86,12 @@ resource "aws_ecs_task_definition" "server_task" {
         "value": "no"
       },
       {
-        "name": "EAP_PRIVATE_KEY_PASSWORD",
-        "value": "${var.eap_private_key_password}"
-      },
-      {
         "name": "MOJO_DNS_IP_1",
         "value": "${var.mojo_dns_ip_1}"
       },
       {
         "name": "MOJO_DNS_IP_2",
         "value": "${var.mojo_dns_ip_2}"
-      },
-      {
-        "name": "RADSEC_PRIVATE_KEY_PASSWORD",
-        "value": "${var.radsec_private_key_password}"
       },
       {
         "name": "ENABLE_PACKET_CAPTURE",
@@ -109,6 +101,24 @@ resource "aws_ecs_task_definition" "server_task" {
         "name": "PACKET_CAPTURE_DURATION",
         "value": "${var.packet_capture_duration_seconds}"
       }
+    ],
+      "secrets": [
+        {
+          "name": "DB_USER",
+          "valueFrom": "${var.secret_arns["moj_network_access_control_env_admin_db"]}:username::"
+        },
+        {
+          "name": "DB_PASS",
+          "valueFrom": "${var.secret_arns["moj_network_access_control_env_admin_db"]}:password::"
+        },
+        {
+          "name": "EAP_SERVER_PRIVATE_KEY_PASSPHRASE",
+          "valueFrom": "${var.secret_arns["moj_network_access_control_env_eap_private_key_password"]}"
+        },
+        {
+          "name": "RADSEC_SERVER_PRIVATE_KEY_PASSPHRASE",
+          "valueFrom": "${var.secret_arns["moj_network_access_control_env_radsec_private_key_password"]}"
+        }
     ],
     "image": "${aws_ecr_repository.radius.repository_url}",
     "logConfiguration": {
