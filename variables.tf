@@ -15,17 +15,17 @@ variable "enable_authentication" {
   type = bool
 }
 
-variable "admin_db_password" {
-  type = string
-}
+#variable "admin_db_password" {
+#  type = string
+#}
 
-variable "admin_db_username" {
-  type = string
-}
+#variable "admin_db_username" {
+#  type = string
+#}
 
-variable "admin_sentry_dsn" {
-  type = string
-}
+#variable "admin_sentry_dsn" {
+#  type = string
+#}
 
 variable "hosted_zone_id" {
   type = string
@@ -91,13 +91,13 @@ variable "enable_ocsp" {
   type = string
 }
 
-variable "eap_private_key_password" {
-  type = string
-}
+#variable "eap_private_key_password" {
+#  type = string
+#}
 
-variable "radsec_private_key_password" {
-  type = string
-}
+#variable "radsec_private_key_password" {
+#  type = string
+#}
 
 variable "mojo_dns_ip_1" {
   type = string
