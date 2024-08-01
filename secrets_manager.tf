@@ -9,7 +9,7 @@ locals {
 
 resource "aws_secretsmanager_secret" "moj_network_access_control_env_admin_db" {
   name     = "/moj-network-access-control/${terraform.workspace}/admin/db"
-  provider = aws.envs
+  provider = aws.env
 }
 
 data "aws_secretsmanager_secret_version" "moj_network_access_control_env_admin_db" {
