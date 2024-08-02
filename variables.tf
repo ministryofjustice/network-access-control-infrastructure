@@ -15,13 +15,13 @@ variable "enable_authentication" {
   type = bool
 }
 
-#variable "admin_db_password" {
-#  type = string
-#}
+variable "admin_db_password" {
+  type = string
+}
 
-#variable "admin_db_username" {
-#  type = string
-#}
+variable "admin_db_username" {
+  type = string
+}
 
 #variable "admin_sentry_dsn" {
 #  type = string

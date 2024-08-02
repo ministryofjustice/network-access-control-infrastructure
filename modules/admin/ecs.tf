@@ -28,7 +28,7 @@ resource "aws_ecr_repository_policy" "admin" {
         {
             "Sid": "1",
             "Effect": "Allow",
-            "Principal":{ 
+            "Principal":{
               "AWS": ["${data.aws_caller_identity.current.account_id}","${var.shared_services_account_id}"]
             },
             "Action": [
@@ -258,9 +258,6 @@ resource "aws_ecs_task_definition" "admin_background_worker" {
         },{
           "name": "RAILS_SERVE_STATIC_FILES",
           "value": "1"
-        },{
-          "name": "SENTRY_DSN",
-          "value": "${var.sentry_dsn}"
         },{
           "name": "COGNITO_CLIENT_ID",
           "value": "${var.cognito_user_pool_client_id}"
