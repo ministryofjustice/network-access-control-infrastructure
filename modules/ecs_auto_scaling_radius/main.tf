@@ -242,3 +242,28 @@ resource "aws_cloudwatch_metric_alarm" "ecs_memory_maximum_alarm_high" {
   treat_missing_data = "breaching"
   tags               = var.tags
 }
+
+resource "aws_cloudwatch_metric_alarm" "cpu_utilization_alarm" {
+  alarm_name          = "${var.prefix}-cpu-utilization-alarm"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = "1"
+  metric_name         = "CPUUtilization"
+  namespace           = "AWS/ECS"
+  period              = "60"
+  statistic           = "Average"
+  threshold           = "80"
+
+  dimensions = {
+    ClusterName = var.cluster_name
+    ServiceName = var.service_name
+  }
+
+  alarm_description = "This alarm tells ECS to scale up based on CPU utilisation with Average statistics"
+
+  alarm_actions = [
+    aws_appautoscaling_policy.ecs_policy_up_cpu_util.arn
+  ]
+
+  treat_missing_data = "breaching"
+  tags               = var.tags
+}
