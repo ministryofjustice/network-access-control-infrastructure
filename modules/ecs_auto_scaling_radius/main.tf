@@ -16,6 +16,7 @@ resource "aws_appautoscaling_policy" "ecs_policy_up" {
   step_scaling_policy_configuration {
     adjustment_type         = "ChangeInCapacity"
     metric_aggregation_type = "Average"
+    cooldown                = 300
 
     step_adjustment {
       metric_interval_lower_bound = 0
@@ -254,15 +255,15 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilization_alarm" {
   metric_name         = "CPUUtilization"
   namespace           = "AWS/ECS"
   period              = "60"
-  statistic           = "Average"
-  threshold           = "80"
+  statistic           = "Maximum"
+  threshold           = "90"
 
   dimensions = {
     ClusterName = var.cluster_name
     ServiceName = var.service_name
   }
 
-  alarm_description = "This alarm tells ECS to scale up based on CPU utilisation with Average statistics"
+  alarm_description = "This alarm tells ECS to scale up based on CPU utilisation with Maximum statistics"
 
   alarm_actions = [
     aws_appautoscaling_policy.ecs_policy_up.arn
