@@ -249,7 +249,7 @@ resource "aws_cloudwatch_metric_alarm" "ecs_memory_maximum_alarm_high" {
 ###########################################################################
 
 resource "aws_cloudwatch_metric_alarm" "cpu_utilization_alarm" {
-  alarm_name          = "${var.prefix}-ecs-cpu-utilization-alarm"
+  alarm_name          = "${var.prefix}-ecs-cpu-utilization-maximum-alarm"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = "1"
   metric_name         = "CPUUtilization"
