@@ -270,5 +270,9 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilization_alarm" {
   ]
 
   treat_missing_data = "breaching"
-  tags               = var.tags
+
+  tags = merge(
+    { "Name" = "${var.prefix}-ecs-cpu-utilization-maximum-alarm" },
+    var.tags
+  )
 }
