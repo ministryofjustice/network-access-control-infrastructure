@@ -61,12 +61,11 @@ resource "aws_ecr_lifecycle_policy" "admin" {
     "rules": [
         {
             "rulePriority": 1,
-            "description": "Expire images older than 14 days",
+            "description": "Expire older versions of untagged images, keeping the latest 15",
             "selection": {
                 "tagStatus": "untagged",
-                "countType": "sinceImagePushed",
-                "countUnit": "days",
-                "countNumber": 14
+                "countType": "imageCountMoreThan",
+                "countNumber": 15
             },
             "action": {
                 "type": "expire"
