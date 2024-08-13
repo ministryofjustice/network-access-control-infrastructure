@@ -21,7 +21,7 @@ resource "aws_ecr_repository_policy" "radius" {
         {
             "Sid": "1",
             "Effect": "Allow",
-            "Principal":{ 
+            "Principal":{
               "AWS": ["${data.aws_caller_identity.current.account_id}","${var.shared_services_account_id}"]
             },
             "Action": [
@@ -54,12 +54,11 @@ resource "aws_ecr_lifecycle_policy" "radius" {
     "rules": [
         {
             "rulePriority": 1,
-            "description": "Expire images older than 14 days",
+            "description": "Expire older versions of untagged images, keeping the latest 15",
             "selection": {
                 "tagStatus": "untagged",
-                "countType": "sinceImagePushed",
-                "countUnit": "days",
-                "countNumber": 14
+                "countType": "imageCountMoreThan",
+                "countNumber": 15
             },
             "action": {
                 "type": "expire"
