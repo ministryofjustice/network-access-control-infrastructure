@@ -38,14 +38,6 @@ resource "aws_ecs_task_definition" "server_task" {
         "value": "${var.read_replica.name}"
       },
       {
-        "name": "DB_USER",
-        "value": "${var.read_replica.user}"
-      },
-      {
-        "name": "DB_PASS",
-        "value": "${var.read_replica.pass}"
-      },
-      {
         "name": "DB_HOST",
         "value": "${var.read_replica.host}"
       },
