@@ -160,3 +160,7 @@ variable "allowed_ips" {
 variable "ocsp_prs_ip" {
   type = string
 }
+
+variable "ocsp_dhl_ip" {
+  type = string
+}
