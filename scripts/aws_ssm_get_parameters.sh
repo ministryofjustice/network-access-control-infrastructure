@@ -42,6 +42,7 @@ export PARAM4=$(aws ssm get-parameters --region eu-west-2 --with-decryption --na
     "/moj-network-access-control/$ENV/enable_rds_servers_bastion" \
     "/moj-network-access-control/$ENV/ocsp_dep_ip" \
     "/moj-network-access-control/$ENV/ocsp_prs_ip" \
+    "/moj-network-access-control/$ENV/ocsp_dhl_ip" \
     --query Parameters)
 
 declare -A parameters
@@ -84,3 +85,4 @@ parameters["enable_rds_servers_bastion"]="$(echo $PARAM4 | jq '.[] | select(.Nam
 parameters["enable_rds_admin_bastion"]="$(echo $PARAM4 | jq '.[] | select(.Name | test("enable_rds_admin_bastion")) | .Value' --raw-output)"
 parameters["ocsp_dep_ip"]="$(echo $PARAM4 | jq '.[] | select(.Name | test("ocsp_dep_ip")) | .Value' --raw-output)"
 parameters["ocsp_prs_ip"]="$(echo $PARAM4 | jq '.[] | select(.Name | test("ocsp_prs_ip")) | .Value' --raw-output)"
+parameters["ocsp_dhl_ip"]="$(echo $PARAM4 | jq '.[] | select(.Name | test("ocsp_dhl_ip")) | .Value' --raw-output)"

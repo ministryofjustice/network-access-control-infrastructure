@@ -63,3 +63,7 @@ variable "ocsp_dep_ip" {
 variable "ocsp_prs_ip" {
   type = string
 }
+
+variable "ocsp_dhl_ip" {
+  type = string
+}
