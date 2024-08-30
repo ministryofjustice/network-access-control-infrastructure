@@ -8,8 +8,9 @@ locals {
 }
 
 resource "aws_secretsmanager_secret" "moj_network_access_control_env_admin_db" {
-  name     = "/moj-network-access-control/${terraform.workspace}/admin/db"
-  provider = aws.env
+  name        = "/moj-network-access-control/${terraform.workspace}/admin/db"
+  description = "Admin RDS Database password."
+  provider    = aws.env
   tags = merge(local.tags_minus_name,
     { "Name" : "/moj-network-access-control/${terraform.workspace}/admin/db" }
   )
@@ -47,8 +48,9 @@ resource "random_password" "moj_network_access_control_env_admin_db" {
 }
 
 resource "aws_secretsmanager_secret" "moj_network_access_control_env_admin_sentry_dsn" {
-  name     = "/moj-network-access-control/${terraform.workspace}/admin/sentry_dsn"
-  provider = aws.env
+  name        = "/moj-network-access-control/${terraform.workspace}/admin/sentry_dsn"
+  description = "Sentry - Application monitoring and debugging software - Data Source Name (DSN)."
+  provider    = aws.env
   tags = merge(local.tags_minus_name,
     { "Name" : "/moj-network-access-control/${terraform.workspace}/admin/sentry_dsn" }
   )
@@ -66,8 +68,9 @@ resource "aws_secretsmanager_secret_version" "moj_network_access_control_env_adm
 }
 
 resource "aws_secretsmanager_secret" "moj_network_access_control_env_eap_private_key_password" {
-  name     = "/moj-network-access-control/${terraform.workspace}/eap/private_key_password"
-  provider = aws.env
+  name        = "/moj-network-access-control/${terraform.workspace}/eap/private_key_password"
+  description = "Radius Extended Access Protocol (EAP) - private key password"
+  provider    = aws.env
   tags = merge(local.tags_minus_name,
     { "Name" : "/moj-network-access-control/${terraform.workspace}/eap/private_key_password" }
   )
@@ -85,8 +88,9 @@ resource "aws_secretsmanager_secret_version" "moj_network_access_control_env_eap
 }
 
 resource "aws_secretsmanager_secret" "moj_network_access_control_env_radsec_private_key_password" {
-  name     = "/moj-network-access-control/${terraform.workspace}/radsec/private_key_password"
-  provider = aws.env
+  name        = "/moj-network-access-control/${terraform.workspace}/radsec/private_key_password"
+  description = "Radius RadSec TLS - private key password."
+  provider    = aws.env
   tags = merge(local.tags_minus_name,
     { "Name" : "/moj-network-access-control/${terraform.workspace}/radsec/private_key_password" }
   )
