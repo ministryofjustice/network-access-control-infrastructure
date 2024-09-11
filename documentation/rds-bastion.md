@@ -30,8 +30,21 @@ run the pipeline
 
 ### Get environment details for the target env
 
+We will need to query the Terraform state for the environment we need to run the init command, which will get then necessary env vars and terraform providers and modules.
+For development we do need to add an ENV_ARGUMENT
+
 ```
-make gen-env ENV_ARGUMENT=production
+make clean
+make init
+make init
+```
+
+For pre-production and production we do add the ENV_ARGUMENT as shown below.
+
+```
+make clean
+make init ENV_ARGUMENT=production
+make init ENV_ARGUMENT=production
 ```
 
 ### run the script to identify the bastion instance id
@@ -44,6 +57,12 @@ Then identify the running bastion host
 
 ```
 i-019174128cf7b4563|  t3a.small  |  None           |  running |  mojo-production-rds-admin-bastion
+```
+
+Alternatively there is another make target that will return the bastion's instance_id if it exists.
+
+```shell
+make instanceid-bastion-rds-admin
 ```
 
 ### Start session on bastion
@@ -94,18 +113,6 @@ make shell
 
 the issue a terraform command to get the database details
 
-Admin (dhcp & dns)
-
-```shell
-terraform output -json terraform_outputs | jq '.admin.db'
-```
-
-DHCP
-
-```shell
-terraform output -json terraform_outputs | jq '.dhcp.db'
-```
-
 Admin (NAC)\* note: NAC code used `rds` as module name.
 
 ```shell
@@ -115,7 +122,7 @@ terraform output -json terraform_outputs | jq '.admin.rds'
 To get the password run
 
 ```shell
-./scripts/get_db_parameters.sh
+make rds-admin-password
 ```
 
 ## DHCP Database Backup and Restore
@@ -125,6 +132,12 @@ In order to connect to the database the following items will be needed.
 - fqdn e.g. `"fqdn": "dhcp-dns-admin-dhcp-db.dev.staff.service.justice.gov.uk",`
 - username e.g. `"username": "adminuser"`
 - password
+
+Connection strings for testing connectivity and accessing the DBs are described below, however you can obtain ready baked dynamically created versions by running:
+
+```shell
+make rds-admin
+```
 
 ### Test connection
 

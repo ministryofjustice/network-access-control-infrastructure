@@ -120,8 +120,20 @@ output: ## terraform output (make output OUTPUT_ARGUMENT='--raw dns_dhcp_vpc_id'
 output-bastion-rds-admin: ## terraform output (make output-bastion-rds-admin)
 	$(DOCKER_RUN) /bin/bash -c "terraform output -no-color -json rds_bastion | jq -r .admin[][]"
 
-.PHONY: output-bastion-rds-server
-output-bastion-rds-server: ## terraform output (make output-bastion-rds-server)
+.PHONY: rds-admin
+rds-admin: ## Get RDS admin connection details (make rds-admin)
+	$(DOCKER_RUN) /bin/bash -c "./scripts/create_db_connection_details.sh admin"
+
+.PHONY: rds-admin-password
+rds-admin-password: ## Get RDS admin password (make rds-admin-password)
+	$(DOCKER_RUN) /bin/bash -c "./scripts/get_db_credentials.sh admin"
+
+.PHONY: instanceid-bastion-rds-admin
+instanceid-bastion-rds-admin: ## Get RDS Admin bastion Instance ID (make instanceid-bastion-rds-admin)
+	$(DOCKER_RUN) /bin/bash -c "terraform output -no-color -json rds_bastion | jq -r .admin[][]"
+
+.PHONY: instanceid-bastion-rds-server
+instanceid-bastion-rds-server: ## Get RDS server bastion Instance ID (make instanceid-bastion-rds-server)
 	$(DOCKER_RUN) /bin/bash -c "terraform output -no-color -json rds_bastion | jq -r .server[][]"
 
 .PHONY: apply
