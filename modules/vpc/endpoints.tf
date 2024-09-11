@@ -61,6 +61,18 @@ resource "aws_vpc_endpoint" "kms" {
   depends_on          = [aws_security_group.endpoints]
 }
 
+resource "aws_vpc_endpoint" "sts" {
+  count               = var.ssm_session_manager_endpoints ? 1 : 0
+  vpc_id              = module.vpc.vpc_id
+  subnet_ids          = module.vpc.public_subnets
+  service_name        = "com.amazonaws.${var.region}.sts"
+  vpc_endpoint_type   = "Interface"
+  security_group_ids  = [aws_security_group.endpoints.id]
+  private_dns_enabled = true
+  tags                = var.tags
+  depends_on          = [aws_security_group.endpoints]
+}
+
 ############## VPC Endpoints ##############
 
 resource "aws_vpc_endpoint" "s3" {

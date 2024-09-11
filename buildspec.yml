@@ -40,6 +40,7 @@ env:
     TF_VAR_enable_rds_servers_bastion: "/moj-network-access-control/$ENV/enable_rds_servers_bastion"
     TF_VAR_ocsp_dep_ip: "/moj-network-access-control/$ENV/ocsp_dep_ip"
     TF_VAR_ocsp_prs_ip: "/moj-network-access-control/$ENV/ocsp_prs_ip"
+    TF_VAR_ocsp_dhl_ip: "/moj-network-access-control/$ENV/ocsp_dhl_ip"
 
 phases:
   install:
