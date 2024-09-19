@@ -14,18 +14,17 @@ The routine is
     - Enable the bastion via an "enable" flag set in AWS SSM Parameter Store to `true`.
     - Deploy by running the CI pipeline.
 
-
 - Configure
+
   - Prepare Terraform locally for the environment.
 
-
 - Action
+
   - Create an SSM Session.
   - Retrieve connection details.
   - Carry out required procedure.
     - Get DB Dump.
     - Query DB.
-
 
 - Removal
   - Disallow the bastion via an "enable" flag set in AWS SSM Parameter Store to `false`.
@@ -38,6 +37,7 @@ The routine is
 Navigate to the ssm parameter store in the Shared Services AWS account.
 Set the boolean value for
 Set the boolean value for
+
 - NAC Admin DB: `/moj-network-access-control/{environment}/enable_rds_admin_bastion` in [AWS SSM Parameter Store](https://eu-west-2.console.aws.amazon.com/systems-manager/parameters/?region=eu-west-2&tab=Table) to `true`
 - Run the `network-access-control-infrastructure` [pipeline](https://eu-west-2.console.aws.amazon.com/codesuite/codepipeline/pipelines/network-access-control-infrastructure/view?region=eu-west-2) to create the bastion instance.
 
@@ -61,7 +61,6 @@ make clean
 make init ENV_ARGUMENT=production
 make init ENV_ARGUMENT=production
 ```
-
 
 ## Action
 
@@ -118,8 +117,6 @@ then access to the s3 bucket
 ```
 aws s3 ls s3://mojo-file-transfer/ --profile s3-role
 ```
-
-
 
 from another terminal window in the root of the project run
 
@@ -210,6 +207,7 @@ show tables;
 Create a timestamped database dump and upload it to S3 transfer bucket (copy and paste from your local `.db_connection.{env}.admin` file).
 
 Example below for illustration only.
+
 ```shell
 env="DEVELOPMENT"; \
 db_name="staffdevicedevelopmentdhcpadmin"; \
