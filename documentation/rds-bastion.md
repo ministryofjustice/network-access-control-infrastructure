@@ -1,5 +1,7 @@
 # RDS Bastion
 
+# RDS Bastion
+
 In order to carry out various maintenance tasks such as obtaining a database dump for loading into a local development DB; or obtain data that currently isn't available via an export mechanism; a bastion is created.
 
 The bastion doesn't have any service exposed to the public like a "jump box" bastion e.g. SSH on port 22 as it is only accessible via the AWS Session Manager.
@@ -8,14 +10,22 @@ The routine is
 
 - Enable
 
-  - Enable the bastion via an "enable" flag set in AWS SSM Parameter Store to `true`.
-  - Deploy by running the CI pipeline.
-  - Create an SSM Session.
-  - Carry out required procedure
+  - Spin up a bastion
+    - Enable the bastion via an "enable" flag set in AWS SSM Parameter Store to `true`.
+    - Deploy by running the CI pipeline.
+
 
 - Configure
+  - Prepare Terraform locally for the environment.
 
-  - Simple set up to enable assuming a role
+
+- Action
+  - Create an SSM Session.
+  - Retrieve connection details.
+  - Carry out required procedure.
+    - Get DB Dump.
+    - Query DB.
+
 
 - Removal
   - Disallow the bastion via an "enable" flag set in AWS SSM Parameter Store to `false`.
@@ -25,13 +35,18 @@ The routine is
 
 ### Spin up a bastion
 
-Set the boolean value in parameter store to `true`
-run the pipeline
+Navigate to the ssm parameter store in the Shared Services AWS account.
+Set the boolean value for
+Set the boolean value for
+- NAC Admin DB: `/moj-network-access-control/{environment}/enable_rds_admin_bastion` in [AWS SSM Parameter Store](https://eu-west-2.console.aws.amazon.com/systems-manager/parameters/?region=eu-west-2&tab=Table) to `true`
+- Run the `network-access-control-infrastructure` [pipeline](https://eu-west-2.console.aws.amazon.com/codesuite/codepipeline/pipelines/network-access-control-infrastructure/view?region=eu-west-2) to create the bastion instance.
 
-### Get environment details for the target env
+## Configure
+
+### Prepare Terraform locally for the environment.
 
 We will need to query the Terraform state for the environment we need to run the init command, which will get then necessary env vars and terraform providers and modules.
-For development we do need to add an ENV_ARGUMENT
+For the `development` environment we do not need to add an ENV_ARGUMENT
 
 ```
 make clean
@@ -47,6 +62,9 @@ make init ENV_ARGUMENT=production
 make init ENV_ARGUMENT=production
 ```
 
+
+## Action
+
 ### run the script to identify the bastion instance id
 
 ```
@@ -59,12 +77,6 @@ Then identify the running bastion host
 i-019174128cf7b4563|  t3a.small  |  None           |  running |  mojo-production-rds-admin-bastion
 ```
 
-Alternatively there is another make target that will return the bastion's instance_id if it exists.
-
-```shell
-make instanceid-bastion-rds-admin
-```
-
 ### Start session on bastion
 
 Run make command with instance id
@@ -73,9 +85,13 @@ Run make command with instance id
 make aws_ssm_start_session INSTANCE_ID=i-019174128cf7b4563
 ```
 
-## Configure
+When the SSM session starts issue `sudo su -` command.
 
-First we need to enable an AWS role to transfer files to (or from) an S3 transfer bucket.
+### Configure
+
+The bastions are now configured at deployment time with the following AWS role to transfer files to (or from) an S3 transfer bucket.
+
+Should this not be the case for any reason here is how
 
 ```
 #######################
@@ -100,23 +116,27 @@ aws sts get-caller-identity
 then access to the s3 bucket
 
 ```
-aws s3 ls s3://mojo-file-transfer/ --profile s3-role;
+aws s3 ls s3://mojo-file-transfer/ --profile s3-role
 ```
 
-## Get a DB dump
+
 
 from another terminal window in the root of the project run
 
+## Get a DB dump
+
+In order to connect to the database the following items will be needed.
+
+- fqdn e.g. `"fqdn": "dhcp-dns-admin-dhcp-db.dev.staff.service.justice.gov.uk",`
+- username e.g. `"username": "adminuser"`
+- password
+
+### Retrieve connection details
+
+Connection strings for testing connectivity and accessing the DBs are described below, however you can obtain ready baked dynamically created versions by running:
+
 ```shell
-make shell
-```
-
-the issue a terraform command to get the database details
-
-Admin (NAC)\* note: NAC code used `rds` as module name.
-
-```shell
-terraform output -json terraform_outputs | jq '.admin.rds'
+make rds-admin
 ```
 
 To get the password run
@@ -125,19 +145,13 @@ To get the password run
 make rds-admin-password
 ```
 
-## DHCP Database Backup and Restore
-
-In order to connect to the database the following items will be needed.
-
-- fqdn e.g. `"fqdn": "dhcp-dns-admin-dhcp-db.dev.staff.service.justice.gov.uk",`
-- username e.g. `"username": "adminuser"`
-- password
-
-Connection strings for testing connectivity and accessing the DBs are described below, however you can obtain ready baked dynamically created versions by running:
+A file will be created and shown on the terminal with all the correct details retrieved from Terraform outputs for the environment. You can view that file at any time it will be named `.db_connection.{ENV}.admin`.
 
 ```shell
-make rds-admin
+cat .db_connection.{ENV}.admin
 ```
+
+> Do Not Copy Paste examples below. Use the generated file.
 
 ### Test connection
 
@@ -193,8 +207,9 @@ show tables;
 
 ### Get a DB dump
 
-Create a timestamped database dump and upload it to S3 transfer bucket (copy and paste as below, update variable values as required.)
+Create a timestamped database dump and upload it to S3 transfer bucket (copy and paste from your local `.db_connection.{env}.admin` file).
 
+Example below for illustration only.
 ```shell
 env="DEVELOPMENT"; \
 db_name="staffdevicedevelopmentdhcpadmin"; \
