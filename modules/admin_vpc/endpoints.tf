@@ -1,4 +1,5 @@
 resource "aws_vpc_endpoint" "s3" {
+  count  = var.ssm_session_manager_endpoints ? 1 : 0
   vpc_id = module.vpc.vpc_id
   route_table_ids = concat(
     module.vpc.private_route_table_ids,
