@@ -54,3 +54,5 @@ VpnCerts
 
 # ignore tfenv pinned version file
 .terraform-version
+
+/.db_connection*

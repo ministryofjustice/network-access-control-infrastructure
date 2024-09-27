@@ -1,3 +1,14 @@
+resource "aws_vpc_endpoint" "s3" {
+  count  = var.ssm_session_manager_endpoints ? 1 : 0
+  vpc_id = module.vpc.vpc_id
+  route_table_ids = concat(
+    module.vpc.private_route_table_ids,
+    module.vpc.public_route_table_ids
+  )
+  service_name = "com.amazonaws.${var.region}.s3"
+  tags         = var.tags
+}
+
 // endpoints required for session manager
 
 // endpoint required for bastions and ecs task get ssm parameters & secrets manager secrets
