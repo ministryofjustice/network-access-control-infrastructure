@@ -4,7 +4,7 @@ module "admin" {
   short_prefix                      = module.label.stage # avoid 32 char limit on certain resources
   tags                              = module.label.tags
   run_restore_from_backup           = local.run_restore_from_backup
-  sentry_dsn                        = var.admin_sentry_dsn
+  sentry_dsn                        = data.aws_secretsmanager_secret_version.moj_network_access_control_env_admin_sentry_dsn.secret_string
   secret_key_base                   = "tbc"
   radius_certificate_bucket_arn     = module.radius.s3.radius_certificate_bucket_arn
   radius_certificate_bucket_name    = module.radius.s3.radius_certificate_bucket_name
