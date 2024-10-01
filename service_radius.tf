@@ -15,8 +15,8 @@ module "radius" {
   packet_capture_duration_seconds = var.packet_capture_duration_seconds
   enable_packet_capture           = var.radius_enable_packet_capture
   tags                            = module.label.tags
-  eap_private_key_password        = var.eap_private_key_password
-  radsec_private_key_password     = var.radsec_private_key_password
+  eap_private_key_password        = data.aws_secretsmanager_secret_version.moj_network_access_control_env_eap_private_key_password.secret_string
+  radsec_private_key_password     = data.aws_secretsmanager_secret_version.moj_network_access_control_env_radsec_private_key_password.secret_string
   mojo_dns_ip_1                   = var.mojo_dns_ip_1
   mojo_dns_ip_2                   = var.mojo_dns_ip_2
   ocsp_atos_domain                = var.ocsp_atos_domain
@@ -25,13 +25,16 @@ module "radius" {
   log_metrics_namespace           = local.is_local_development ? "${module.label.id}-mojo-nac-requests" : "mojo-nac-requests"
   shared_services_account_id      = var.shared_services_account_id
   allowed_ips                     = jsondecode(data.aws_secretsmanager_secret_version.allowed_ips.secret_string)["allowed_ips"]
+  secret_arns                     = local.secret_manager_arns
 
 
   read_replica = {
     name = module.admin_read_replica.rds.name
     host = module.admin_read_replica.rds.host
-    user = var.admin_db_username
-    pass = var.admin_db_password
+    #user = var.admin_db_username
+    #pass = var.admin_db_password
+    user = jsondecode(data.aws_secretsmanager_secret_version.moj_network_access_control_env_admin_db.secret_string)["username"]
+    pass = jsondecode(data.aws_secretsmanager_secret_version.moj_network_access_control_env_admin_db.secret_string)["password"]
   }
 
   vpc = {
