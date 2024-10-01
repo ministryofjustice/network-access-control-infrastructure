@@ -14,6 +14,10 @@ provider "aws" {
   }
 }
 
+data "aws_region" "current_region" {}
+data "aws_caller_identity" "shared_services_account" {}
+
+
 module "label" {
   source  = "cloudposse/label/null"
   version = "0.25.0"
@@ -32,7 +36,3 @@ module "label" {
     "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
   }
 }
-
-
-data "aws_region" "current_region" {}
-data "aws_caller_identity" "shared_services_account" {}
