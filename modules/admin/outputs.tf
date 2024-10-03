@@ -30,7 +30,7 @@ output "rds" {
     endpoint            = aws_db_instance.admin_db.endpoint
     name                = aws_db_instance.admin_db.name
     port                = aws_db_instance.admin_db.port
-    username            = aws_db_instance.admin_db.username
+    #username            = aws_db_instance.admin_db.username
   }
 }
 
