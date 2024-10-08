@@ -5,15 +5,16 @@ module "rds_servers_bastion_label" {
 }
 
 module "rds_servers_bastion" {
-  source                      = "./modules/bastion"
+  source                      = "github.com/ministryofjustice/diso-devops-module-ssm-bastion.git?depth=1&ref=aws_provider_v4_for_nac"
   prefix                      = module.rds_servers_bastion_label.id
-  vpc_id                      = module.radius_vpc.vpc.vpc_id
-  vpc_cidr_block              = module.radius_vpc.vpc.vpc_cidr_block
-  private_subnets             = module.radius_vpc.private_subnets
-  security_group_ids          = [module.radius.security_group_ids.radius_server]
-  number_of_bastions          = 1
-  assume_role                 = local.s3-mojo_file_transfer_assume_role_arn
+  ami_owners                  = ["${var.shared_services_account_id}"]
   associate_public_ip_address = false
+  assume_role                 = local.s3-mojo_file_transfer_assume_role_arn
+  number_of_bastions          = 1
+  security_group_ids          = [module.radius.security_group_ids.radius_server]
+  subnets                     = module.radius_vpc.private_subnets
+  vpc_cidr_block              = module.radius_vpc.vpc.vpc_cidr_block
+  vpc_id                      = module.radius_vpc.vpc.vpc_id
   tags                        = module.rds_servers_bastion_label.tags
 
   providers = {
