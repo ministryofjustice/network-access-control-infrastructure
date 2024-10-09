@@ -16,7 +16,7 @@ resource "aws_vpc_endpoint" "secrets" {
 resource "aws_vpc_endpoint" "ssm" {
   count               = 1 #var.ssm_session_manager_endpoints ? 1 : 0
   vpc_id              = module.vpc.vpc_id
-  subnet_ids          = module.vpc.private_subnets
+  subnet_ids          = module.vpc.public_subnets
   service_name        = "com.amazonaws.${var.region}.ssm"
   vpc_endpoint_type   = "Interface"
   security_group_ids  = [aws_security_group.endpoints.id]
@@ -28,7 +28,7 @@ resource "aws_vpc_endpoint" "ssm" {
 resource "aws_vpc_endpoint" "ssmmessages" {
   count               = 1 #var.ssm_session_manager_endpoints ? 1 : 0
   vpc_id              = module.vpc.vpc_id
-  subnet_ids          = module.vpc.private_subnets
+  subnet_ids          = module.vpc.public_subnets
   service_name        = "com.amazonaws.${var.region}.ssmmessages"
   vpc_endpoint_type   = "Interface"
   security_group_ids  = [aws_security_group.endpoints.id]
@@ -40,7 +40,7 @@ resource "aws_vpc_endpoint" "ssmmessages" {
 resource "aws_vpc_endpoint" "ec2messages" {
   count               = 1 #var.ssm_session_manager_endpoints ? 1 : 0
   vpc_id              = module.vpc.vpc_id
-  subnet_ids          = module.vpc.private_subnets
+  subnet_ids          = module.vpc.public_subnets
   service_name        = "com.amazonaws.${var.region}.ec2messages"
   vpc_endpoint_type   = "Interface"
   security_group_ids  = [aws_security_group.endpoints.id]
@@ -52,7 +52,7 @@ resource "aws_vpc_endpoint" "ec2messages" {
 resource "aws_vpc_endpoint" "kms" {
   count               = 1 #var.ssm_session_manager_endpoints ? 1 : 0
   vpc_id              = module.vpc.vpc_id
-  subnet_ids          = module.vpc.private_subnets
+  subnet_ids          = module.vpc.public_subnets
   service_name        = "com.amazonaws.${var.region}.kms"
   vpc_endpoint_type   = "Interface"
   security_group_ids  = [aws_security_group.endpoints.id]
