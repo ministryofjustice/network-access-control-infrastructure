@@ -14,9 +14,9 @@ resource "aws_vpc_endpoint" "secrets" {
 }
 
 resource "aws_vpc_endpoint" "ssm" {
-  #count               = var.ssm_session_manager_endpoints ? 1 : 0
+  count               = 1 #var.ssm_session_manager_endpoints ? 1 : 0
   vpc_id              = module.vpc.vpc_id
-  subnet_ids          = module.vpc.public_subnets
+  subnet_ids          = module.vpc.private_subnets
   service_name        = "com.amazonaws.${var.region}.ssm"
   vpc_endpoint_type   = "Interface"
   security_group_ids  = [aws_security_group.endpoints.id]
@@ -26,7 +26,7 @@ resource "aws_vpc_endpoint" "ssm" {
 }
 
 resource "aws_vpc_endpoint" "ssmmessages" {
-  #count               = var.ssm_session_manager_endpoints ? 1 : 0
+  count               = 1 #var.ssm_session_manager_endpoints ? 1 : 0
   vpc_id              = module.vpc.vpc_id
   subnet_ids          = module.vpc.private_subnets
   service_name        = "com.amazonaws.${var.region}.ssmmessages"
@@ -38,7 +38,7 @@ resource "aws_vpc_endpoint" "ssmmessages" {
 }
 
 resource "aws_vpc_endpoint" "ec2messages" {
-  count               = var.ssm_session_manager_endpoints ? 1 : 0
+  count               = 1 #var.ssm_session_manager_endpoints ? 1 : 0
   vpc_id              = module.vpc.vpc_id
   subnet_ids          = module.vpc.private_subnets
   service_name        = "com.amazonaws.${var.region}.ec2messages"
@@ -50,7 +50,7 @@ resource "aws_vpc_endpoint" "ec2messages" {
 }
 
 resource "aws_vpc_endpoint" "kms" {
-  count               = var.ssm_session_manager_endpoints ? 1 : 0
+  count               = 1 #var.ssm_session_manager_endpoints ? 1 : 0
   vpc_id              = module.vpc.vpc_id
   subnet_ids          = module.vpc.private_subnets
   service_name        = "com.amazonaws.${var.region}.kms"
@@ -62,7 +62,7 @@ resource "aws_vpc_endpoint" "kms" {
 }
 
 resource "aws_vpc_endpoint" "sts" {
-  #count               = var.ssm_session_manager_endpoints ? 1 : 0
+  count               = 1 #var.ssm_session_manager_endpoints ? 1 : 0
   vpc_id              = module.vpc.vpc_id
   subnet_ids          = module.vpc.public_subnets
   service_name        = "com.amazonaws.${var.region}.sts"
