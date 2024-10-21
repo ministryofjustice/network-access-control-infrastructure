@@ -3,35 +3,35 @@ module "radius" {
   prefix                          = module.label.id
   short_prefix                    = module.label.stage
   env                             = module.label.stage
-  byoip_pool_id                   = var.byoip_pool_id
-  ocsp_endpoint_ip                = var.ocsp_endpoint_ip
-  ocsp_endpoint_port              = var.ocsp_endpoint_port
-  ocsp_override_cert_url          = var.ocsp_override_cert_url
-  enable_ocsp                     = var.enable_ocsp
+  byoip_pool_id                   = local.byoip_pool_id
+  ocsp_endpoint_ip                = local.ocsp_endpoint_ip
+  ocsp_endpoint_port              = local.ocsp_endpoint_port
+  ocsp_override_cert_url          = local.ocsp_override_cert_url
+  enable_ocsp                     = local.enable_ocsp
   enable_nlb_deletion_protection  = local.is_production ? true : false
   enable_hosted_zone              = var.enable_hosted_zone
-  hosted_zone_domain              = var.hosted_zone_domain
-  hosted_zone_id                  = var.hosted_zone_id
-  packet_capture_duration_seconds = var.packet_capture_duration_seconds
-  enable_packet_capture           = var.radius_enable_packet_capture
+  hosted_zone_domain              = local.hosted_zone_domain
+  hosted_zone_id                  = local.hosted_zone_id
+  packet_capture_duration_seconds = local.packet_capture_duration_seconds
+  enable_packet_capture           = local.radius_enable_packet_capture
   tags                            = module.label.tags
-  eap_private_key_password        = var.eap_private_key_password
-  radsec_private_key_password     = var.radsec_private_key_password
-  mojo_dns_ip_1                   = var.mojo_dns_ip_1
-  mojo_dns_ip_2                   = var.mojo_dns_ip_2
-  ocsp_atos_domain                = var.ocsp_atos_domain
+  eap_private_key_password        = local.eap_private_key_password
+  radsec_private_key_password     = local.radsec_private_key_password
+  mojo_dns_ip_1                   = local.mojo_dns_ip_1
+  mojo_dns_ip_2                   = local.mojo_dns_ip_2
+  ocsp_atos_domain                = local.ocsp_atos_domain
   enable_ocsp_dns_resolver        = local.is_production
   vpc_flow_logs_group_id          = module.radius_vpc_flow_logs.flow_log_group_id
   log_metrics_namespace           = local.is_local_development ? "${module.label.id}-mojo-nac-requests" : "mojo-nac-requests"
-  shared_services_account_id      = var.shared_services_account_id
+  shared_services_account_id      = local.shared_services_account_id
   allowed_ips                     = jsondecode(data.aws_secretsmanager_secret_version.allowed_ips.secret_string)["allowed_ips"]
 
 
   read_replica = {
     name = module.admin_read_replica.rds.name
     host = module.admin_read_replica.rds.host
-    user = var.admin_db_username
-    pass = var.admin_db_password
+    user = local.admin_db_username
+    pass = local.admin_db_password
   }
 
   vpc = {

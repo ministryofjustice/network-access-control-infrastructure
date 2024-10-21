@@ -3,7 +3,7 @@ export PARAM=$(aws ssm get-parameters --region eu-west-2 --with-decryption --nam
     "/moj-network-access-control/$ENV/azure_federation_metadata_url" \
     "/moj-network-access-control/$ENV/hosted_zone_domain" \
     "/moj-network-access-control/$ENV/hosted_zone_id" \
-    "/moj-network-access-control/$ENV/admin_db_username" \
+    "/moj-network-access-control/$ENV/ " \
     "/moj-network-access-control/$ENV/admin_db_password" \
     "/moj-network-access-control/$ENV/admin_sentry_dsn" \
     "/moj-network-access-control/$ENV/transit_gateway_id" \

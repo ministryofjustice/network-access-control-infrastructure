@@ -1,0 +1,2753 @@
+module.performance_testing[0].tls_private_key.ec2: Refreshing state... [id=f0f5054baac0efe61a8bd32c80364131d5a1a2f8]
+random_password.moj_network_access_control_env_admin_db: Refreshing state... [id=none]
+module.performance_testing[0].local_file.ec2_private_key: Refreshing state... [id=5fbc4ef8aa21f19e62918e53fe8dc3d1510c8147]
+module.radius.aws_iam_role_policy_attachment.ecs_task_execution_policy_attachment_sm: Refreshing state... [id=mojo-development-nac-ecs-execution-role-2024100912152192290000000a]
+module.radius.aws_iam_policy.secrets_manager_read_only: Refreshing state... [id=arn:aws:iam::068084030754:policy/SecretsManagerReadOnly-mojo-development-nac]
+module.radius.aws_eip.nac_eu_west_2a: Refreshing state... [id=eipalloc-04d11b0fed654dce0]
+module.admin_vpc.aws_vpc_endpoint.secrets: Refreshing state... [id=vpce-01c97fa562aef2f8e]
+module.radius_vpc.aws_vpc_endpoint.secrets: Refreshing state... [id=vpce-02bf15abfe3733619]
+module.radius.aws_s3_bucket.certificate_bucket: Refreshing state... [id=mojo-development-nac-certificate-bucket]
+module.admin_read_replica.aws_db_option_group.mariadb_audit: Refreshing state... [id=mojo-development-nac-admin-read-replica-rr-audit]
+module.kinesis_firehose_xsiam.aws_s3_bucket.xsiam_firehose_bucket: Refreshing state... [id=xsiam-firehose-mojo-development-nac-xsiam]
+module.radius.aws_s3_bucket.config_bucket_logs: Refreshing state... [id=mojo-development-nac-config-bucket-logs]
+module.admin_vpc.module.vpc.aws_eip.nat[0]: Refreshing state... [id=eipalloc-06c5cf0ce0204e6a6]
+module.radius.aws_eip.nac_eu_west_2c: Refreshing state... [id=eipalloc-09dd1004300fe075a]
+module.admin_vpc.module.vpc.aws_eip.nat[1]: Refreshing state... [id=eipalloc-0ae2bdb1970705213]
+module.admin_vpc.module.vpc.aws_eip.nat[2]: Refreshing state... [id=eipalloc-0d1b0a9dd33449ed7]
+aws_secretsmanager_secret.moj_network_access_control_env_eap_private_key_password: Refreshing state... [id=arn:aws:secretsmanager:eu-west-2:068084030754:secret:/moj-network-access-control/development/eap/private_key_password-Epc8R1]
+module.radius.aws_s3_bucket.config_bucket: Refreshing state... [id=mojo-development-nac-config-bucket]
+module.radius.aws_s3_bucket.lb_log_bucket: Refreshing state... [id=mojo-development-nac-lb-log-bucket]
+aws_secretsmanager_secret.moj_network_access_control_env_admin_db: Refreshing state... [id=arn:aws:secretsmanager:eu-west-2:068084030754:secret:/moj-network-access-control/development/admin/db-yBu4O7]
+module.radius_vpc_flow_logs.aws_iam_role.flow_logs_role: Refreshing state... [id=mojo-development-nac-vpc-flow-logs-role]
+module.performance_testing[0].aws_kms_key.config_bucket_key: Refreshing state... [id=a30fc2e5-0db8-4458-8df9-32f34b70b888]
+module.admin_vpc.module.vpc.aws_vpc.this[0]: Refreshing state... [id=vpc-0ddfc0814ed938a5e]
+module.performance_testing[0].aws_ssm_parameter.instance_private_key: Refreshing state... [id=/network-access-control/mojo-development-nac-perf/ec2/key]
+module.performance_testing[0].aws_key_pair.performance_testing_public_key_pair: Refreshing state... [id=mojo-development-nac-perf-performance-testing]
+module.radius_vpc.module.vpc.aws_vpc_dhcp_options.this[0]: Refreshing state... [id=dopt-012b4ce3f38f1b012]
+module.radius.aws_eip.nac_eu_west_2b: Refreshing state... [id=eipalloc-0c82f3087b28f68b6]
+module.kinesis_firehose_xsiam.aws_iam_role.xsiam_kinesis_firehose_role: Refreshing state... [id=terraform-20240201095144680200000001]
+module.radius_vpc.module.vpc.aws_vpc.this[0]: Refreshing state... [id=vpc-0af599e8e8a43da03]
+aws_secretsmanager_secret.moj_network_access_control_env_admin_sentry_dsn: Refreshing state... [id=arn:aws:secretsmanager:eu-west-2:068084030754:secret:/moj-network-access-control/development/admin/sentry_dsn-mBzQf6]
+module.radius.aws_kms_key.certificate_bucket_key: Refreshing state... [id=0859928d-6cd5-4fb2-aaf0-f9571cfc1add]
+module.authentication.aws_cognito_user_pool.pool[0]: Refreshing state... [id=eu-west-2_hTm1ywWuO]
+module.radius.aws_route53_zone.radius_service[0]: Refreshing state... [id=Z04500451C7MJ805CDAQZ]
+module.kinesis_firehose_xsiam.aws_cloudwatch_log_group.xsiam_delivery_group: Refreshing state... [id=xsiam-delivery-stream-mojo-development-nac-xsiam]
+module.admin_read_replica.aws_db_option_group.mariadb_audit_v8: Refreshing state... [id=mojo-development-nac-admin-read-replica-rr-audit-v8]
+module.kinesis_firehose_xsiam.aws_iam_role.this: Refreshing state... [id=mojo-development-nac-xsiam20240201170404201600000001]
+module.radius.aws_ecs_cluster.server_cluster: Refreshing state... [id=arn:aws:ecs:eu-west-2:068084030754:cluster/mojo-development-nac-cluster]
+module.radius.aws_kms_key.lb_log_bucket_key: Refreshing state... [id=9aa8e6f6-c680-4a10-a0f8-26824e0e77e5]
+module.performance_testing[0].aws_s3_bucket.config_bucket: Refreshing state... [id=mojo-development-nac-perf-config-bucket]
+module.admin_read_replica.aws_db_parameter_group.admin_read_replica_parameter_group: Refreshing state... [id=mojo-development-nac-admin-read-replica-parameter-group]
+module.radius.aws_ecr_repository.nginx: Refreshing state... [id=mojo-development-nac-nginx]
+module.radius.aws_cloudwatch_log_group.server_log_group: Refreshing state... [id=mojo-development-nac-server-log-group]
+module.radius.aws_kms_key.config_bucket_key: Refreshing state... [id=ce0eac8c-766b-43c4-bca8-69d1f096ac9b]
+module.radius.aws_cloudwatch_log_group.server_nginx_log_group: Refreshing state... [id=mojo-development-nac-server-nginx-log-group]
+module.radius.aws_s3_bucket.certificate_bucket_logs: Refreshing state... [id=mojo-development-nac-certificate-bucket-logs]
+module.radius.aws_ecr_repository.radius: Refreshing state... [id=mojo-development-nac]
+aws_secretsmanager_secret.moj_network_access_control_env_radsec_private_key_password: Refreshing state... [id=arn:aws:secretsmanager:eu-west-2:068084030754:secret:/moj-network-access-control/development/radsec/private_key_password-mBzQf6]
+module.admin_read_replica.aws_db_parameter_group.admin_read_replica_parameter_group_v8: Refreshing state... [id=mojo-development-nac-admin-read-replica-parameter-group-rr-v8]
+module.admin_vpc_flow_logs.aws_iam_role.flow_logs_role: Refreshing state... [id=mojo-development-nac-admin-vpc-flow-logs-vpc-flow-logs-role]
+module.performance_testing[0].aws_iam_role.moj_auth_poc_role: Refreshing state... [id=mojo-development-nac-perf-role]
+aws_secretsmanager_secret_version.moj_network_access_control_env_eap_private_key_password: Refreshing state... [id=arn:aws:secretsmanager:eu-west-2:068084030754:secret:/moj-network-access-control/development/eap/private_key_password-Epc8R1|83474A7C-3C76-4CC3-917B-FAD9F55862F8]
+module.radius.aws_iam_role.ecs_execution_role: Refreshing state... [id=mojo-development-nac-ecs-execution-role]
+module.radius.aws_iam_role.ecs_task_role: Refreshing state... [id=mojo-development-nac-ecs-task-role]
+aws_secretsmanager_secret_version.moj_network_access_control_env_admin_db: Refreshing state... [id=arn:aws:secretsmanager:eu-west-2:068084030754:secret:/moj-network-access-control/development/admin/db-yBu4O7|83C271DB-0239-43F2-A303-E111969C0CDD]
+module.radius.aws_s3_bucket_ownership_controls.config_bucket_logs_ownership: Refreshing state... [id=mojo-development-nac-config-bucket-logs]
+module.radius.aws_s3_bucket_public_access_block.config_log_bucket_public_block: Refreshing state... [id=mojo-development-nac-config-bucket-logs]
+module.radius.aws_s3_bucket_acl.config_bucket_logs_acl: Refreshing state... [id=mojo-development-nac-config-bucket-logs,private]
+module.radius.aws_s3_bucket_lifecycle_configuration.conf_log_bucket_lifecycle_policy: Refreshing state... [id=mojo-development-nac-config-bucket-logs]
+module.kinesis_firehose_xsiam.aws_iam_policy.s3_kinesis_xsiam_policy: Refreshing state... [id=arn:aws:iam::068084030754:policy/terraform-20240625143749123500000002]
+module.radius.aws_s3_bucket_acl.certificate_bucket_acl: Refreshing state... [id=mojo-development-nac-certificate-bucket,private]
+module.radius.aws_s3_bucket_public_access_block.certificate_bucket_public_block: Refreshing state... [id=mojo-development-nac-certificate-bucket]
+module.radius.aws_s3_bucket_versioning.certificate_bucket_versioning: Refreshing state... [id=mojo-development-nac-certificate-bucket]
+aws_secretsmanager_secret_version.moj_network_access_control_env_admin_sentry_dsn: Refreshing state... [id=arn:aws:secretsmanager:eu-west-2:068084030754:secret:/moj-network-access-control/development/admin/sentry_dsn-mBzQf6|F590DCA2-7669-4799-865B-AFDC15417076]
+module.radius.aws_s3_bucket_versioning.lb_log_bucket_versioning: Refreshing state... [id=mojo-development-nac-lb-log-bucket]
+module.radius.aws_s3_bucket_public_access_block.lb_log_bucket_public_block: Refreshing state... [id=mojo-development-nac-lb-log-bucket]
+module.radius.aws_s3_bucket_lifecycle_configuration.lb_log_bucket_lifecycle_policy: Refreshing state... [id=mojo-development-nac-lb-log-bucket]
+module.radius.aws_s3_bucket_acl.lb_log_bucket_acl: Refreshing state... [id=mojo-development-nac-lb-log-bucket,private]
+module.radius.aws_s3_bucket_ownership_controls.config_bucket_ownership: Refreshing state... [id=mojo-development-nac-config-bucket]
+module.radius.aws_s3_bucket_versioning.config_bucket_versioning: Refreshing state... [id=mojo-development-nac-config-bucket]
+module.radius.aws_s3_bucket_logging.config_bucket_logging: Refreshing state... [id=mojo-development-nac-config-bucket]
+module.radius.aws_s3_bucket_public_access_block.config_bucket_public_block: Refreshing state... [id=mojo-development-nac-config-bucket]
+module.radius.aws_s3_bucket_server_side_encryption_configuration.cert_bucket_encryption: Refreshing state... [id=mojo-development-nac-certificate-bucket]
+module.radius_vpc_flow_logs.aws_iam_role_policy.flow_logs_role_policy: Refreshing state... [id=mojo-development-nac-vpc-flow-logs-role:mojo-development-nac-vpc-flow-logs-role-policy]
+module.kinesis_firehose_xsiam.aws_iam_policy.xsiam_kinesis_firehose_error_log_policy: Refreshing state... [id=arn:aws:iam::068084030754:policy/terraform-20240625143747868400000001]
+module.kinesis_firehose_xsiam.aws_cloudwatch_log_stream.xsiam_delivery_stream: Refreshing state... [id=errors]
+module.admin_vpc.module.vpc.aws_default_security_group.this[0]: Refreshing state... [id=sg-0f7344388f8900da5]
+module.authentication.aws_cognito_identity_provider.cognito_identity_provider[0]: Refreshing state... [id=eu-west-2_hTm1ywWuO:Azure]
+module.authentication.aws_cognito_user_pool_domain.main[0]: Refreshing state... [id=dev-network-access-control-service-justice-gov-uk-nac-auth]
+module.radius.aws_s3_bucket_policy.lb_log_bucket_policy: Refreshing state... [id=mojo-development-nac-lb-log-bucket]
+module.kinesis_firehose_xsiam.aws_iam_role_policy.xsiam_kinesis_firehose_role_policy: Refreshing state... [id=terraform-20240201095144680200000001:terraform-20240201095146675500000003]
+module.radius.aws_cloudwatch_log_metric_filter.radius_request_filter_with_queries["?'error' ?'Error' ?'ERROR'"]: Refreshing state... [id=All errors]
+module.radius.aws_cloudwatch_log_metric_filter.radius_request_filter["unknown CA"]: Refreshing state... [id=unknown CA]
+module.radius.aws_cloudwatch_log_metric_filter.radius_request_filter["Sent Access-Accept"]: Refreshing state... [id=Sent Access-Accept]
+module.radius.aws_cloudwatch_log_metric_filter.radius_request_filter["Ignoring request to auth address"]: Refreshing state... [id=Ignoring request to auth address]
+module.radius.aws_cloudwatch_log_metric_filter.radius_request_filter["Failed to start task"]: Refreshing state... [id=Failed to start task]
+module.radius.aws_cloudwatch_log_metric_filter.radius_request_filter["Health Check: OK"]: Refreshing state... [id=Health Check OK]
+module.radius.aws_cloudwatch_log_metric_filter.radius_request_filter["Sent Access-Reject"]: Refreshing state... [id=Sent Access-Reject]
+module.radius.aws_cloudwatch_log_metric_filter.radius_request_filter["Certificate Expiry Warning:"]: Refreshing state... [id=Certificate Expiry Warning]
+module.radius.aws_cloudwatch_log_metric_filter.radius_request_filter["authorized_macs: users: Matched entry"]: Refreshing state... [id=authorized_macs users Matched entry]
+module.radius.aws_cloudwatch_log_metric_filter.radius_request_filter["Error: post_auth - Failed to find attribute"]: Refreshing state... [id=Error post_auth - Failed to find attribute]
+module.radius.aws_cloudwatch_log_metric_filter.radius_request_filter["Ignoring request to auth proto tcp address"]: Refreshing state... [id=Ignoring request to auth proto tcp address]
+module.radius.aws_cloudwatch_log_metric_filter.radius_request_filter["reject Wireless-802.11"]: Refreshing state... [id=reject Wireless-802.11]
+module.radius.aws_cloudwatch_log_metric_filter.radius_request_filter["Shared secret is incorrect"]: Refreshing state... [id=Shared secret is incorrect]
+module.radius.aws_cloudwatch_log_metric_filter.radius_request_filter["reject Ethernet"]: Refreshing state... [id=reject Ethernet]
+module.radius.aws_cloudwatch_log_metric_filter.radius_request_filter["Error: python"]: Refreshing state... [id=Error python]
+module.radius_vpc.module.vpc.aws_default_security_group.this[0]: Refreshing state... [id=sg-0619b5ea34456fd65]
+module.radius.aws_s3_bucket_server_side_encryption_configuration.config_bucket_encryption: Refreshing state... [id=mojo-development-nac-config-bucket]
+aws_secretsmanager_secret_version.moj_network_access_control_env_radsec_private_key_password: Refreshing state... [id=arn:aws:secretsmanager:eu-west-2:068084030754:secret:/moj-network-access-control/development/radsec/private_key_password-mBzQf6|8F1B1A54-182A-4788-A5E0-1DEF47E3D6B7]
+module.radius.aws_ecr_repository_policy.nginx: Refreshing state... [id=mojo-development-nac-nginx]
+module.radius.aws_ecr_lifecycle_policy.nginx: Refreshing state... [id=mojo-development-nac-nginx]
+module.admin_vpc.aws_security_group.endpoints: Refreshing state... [id=sg-05974246b6ec50bdb]
+module.radius_vpc.aws_vpc_endpoint.s3: Refreshing state... [id=vpce-09bf813ee764f49b6]
+module.radius_vpc.aws_security_group.endpoints: Refreshing state... [id=sg-018b364167e6d4c0b]
+module.radius.aws_ecr_lifecycle_policy.radius: Refreshing state... [id=mojo-development-nac]
+module.radius.aws_ecr_repository_policy.radius: Refreshing state... [id=mojo-development-nac]
+module.performance_testing[0].aws_s3_bucket_versioning.config_bucket_versioning: Refreshing state... [id=mojo-development-nac-perf-config-bucket]
+module.performance_testing[0].aws_s3_bucket_acl.perf_config_bucket_acl: Refreshing state... [id=mojo-development-nac-perf-config-bucket,private]
+module.performance_testing[0].aws_s3_bucket_public_access_block.config_bucket_public_block: Refreshing state... [id=mojo-development-nac-perf-config-bucket]
+module.performance_testing[0].aws_s3_bucket_server_side_encryption_configuration.perf_config_bucket_encryption: Refreshing state... [id=mojo-development-nac-perf-config-bucket]
+module.radius.aws_s3_bucket_lifecycle_configuration.cert_log_bucket_lifecycle_policy: Refreshing state... [id=mojo-development-nac-certificate-bucket-logs]
+module.radius.aws_s3_bucket_public_access_block.certificate_log_bucket_public_block: Refreshing state... [id=mojo-development-nac-certificate-bucket-logs]
+module.radius.aws_s3_bucket_acl.certificate_bucket_logs_acl: Refreshing state... [id=mojo-development-nac-certificate-bucket-logs,private]
+module.radius.aws_s3_bucket_logging.certificate_bucket_logging: Refreshing state... [id=mojo-development-nac-certificate-bucket]
+module.radius.aws_s3_bucket_acl.config_bucket_acl: Refreshing state... [id=mojo-development-nac-config-bucket,private]
+module.radius.aws_iam_role_policy_attachment.ecs_task_execution_policy_attachment["arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"]: Refreshing state... [id=mojo-development-nac-ecs-execution-role-20241009122032213700000001]
+module.kinesis_firehose_xsiam.aws_iam_role_policy_attachment.kinesis_role_attachment: Refreshing state... [id=terraform-20240201095144680200000001-20240625143751350500000004]
+module.radius.aws_iam_role_policy_attachment.ecs_task_execution_policy_attachment["arn:aws:iam::aws:policy/AmazonSSMReadOnlyAccess"]: Refreshing state... [id=mojo-development-nac-ecs-execution-role-20241009121521211300000008]
+module.admin_vpc_flow_logs.aws_iam_role_policy.flow_logs_role_policy: Refreshing state... [id=mojo-development-nac-admin-vpc-flow-logs-vpc-flow-logs-role:mojo-development-nac-admin-vpc-flow-logs-vpc-flow-logs-role-policy]
+module.performance_testing[0].aws_iam_instance_profile.ec2_perf_test_profile: Refreshing state... [id=mojo-development-nac-perf-profile]
+module.performance_testing[0].aws_iam_role_policy.ec2_task_policy: Refreshing state... [id=mojo-development-nac-perf-role:mojo-development-nac-perf-ec2-task-policy]
+module.admin_vpc_flow_logs.aws_kms_key.vpc_flow_logs_kms_key: Refreshing state... [id=5b85c670-cd2a-47a2-aa9d-1452f6dd6769]
+module.admin_vpc.module.vpc.aws_route_table.public[0]: Refreshing state... [id=rtb-07a8ca89a272849ad]
+module.admin_vpc.module.vpc.aws_route_table.private[0]: Refreshing state... [id=rtb-0622ac5f25c536cea]
+module.admin_vpc.module.vpc.aws_route_table.private[1]: Refreshing state... [id=rtb-0d1e83c92609373fa]
+module.admin_vpc.module.vpc.aws_route_table.private[2]: Refreshing state... [id=rtb-013b7cc4beaff0dcf]
+module.admin_vpc.module.vpc.aws_subnet.private[0]: Refreshing state... [id=subnet-09ff5087934bfa9e2]
+module.admin_vpc.module.vpc.aws_subnet.private[1]: Refreshing state... [id=subnet-015bc71377d535c89]
+module.admin_vpc.module.vpc.aws_subnet.private[2]: Refreshing state... [id=subnet-0cc7db348f03a49ce]
+module.admin_vpc.module.vpc.aws_internet_gateway.this[0]: Refreshing state... [id=igw-00d3f07b057a628ad]
+module.admin_vpc.module.vpc.aws_subnet.public[2]: Refreshing state... [id=subnet-030e573f3e273d289]
+module.kinesis_firehose_xsiam.aws_kinesis_firehose_delivery_stream.xsiam_delivery_stream: Refreshing state... [id=arn:aws:firehose:eu-west-2:068084030754:deliverystream/xsiam-delivery-stream-mojo-development-nac-xsiam]
+module.admin_vpc.module.vpc.aws_subnet.public[0]: Refreshing state... [id=subnet-089da07f152cd0b9b]
+module.admin_vpc.module.vpc.aws_subnet.public[1]: Refreshing state... [id=subnet-038f8270bc02ba7f2]
+module.radius_vpc_flow_logs.aws_kms_key.vpc_flow_logs_kms_key: Refreshing state... [id=3d846a7a-f046-4cfc-af14-7ef0f507dd1b]
+module.radius.aws_iam_role_policy.ecs_task_policy: Refreshing state... [id=mojo-development-nac-ecs-task-role:mojo-development-nac-ecs-task-policy]
+module.kinesis_firehose_xsiam.aws_iam_role_policy_attachment.kinesis_firehose_error_log_role_attachment: Refreshing state... [id=terraform-20240201095144680200000001-20240625143750249900000003]
+module.radius_vpc.module.vpc.aws_route_table.public[0]: Refreshing state... [id=rtb-01e55622941f4176a]
+module.radius_vpc.module.vpc.aws_subnet.public[0]: Refreshing state... [id=subnet-04b742aa236944140]
+module.radius_vpc.module.vpc.aws_subnet.public[1]: Refreshing state... [id=subnet-054215d0cffe1734e]
+module.radius_vpc.module.vpc.aws_subnet.public[2]: Refreshing state... [id=subnet-0e2360c3090bd5928]
+module.radius_vpc.module.vpc.aws_subnet.private[1]: Refreshing state... [id=subnet-003506ea6cfb382f8]
+module.radius_vpc.module.vpc.aws_subnet.private[2]: Refreshing state... [id=subnet-0e55e894af06b3395]
+module.radius_vpc.module.vpc.aws_subnet.private[0]: Refreshing state... [id=subnet-055db5ad7c5d92a4b]
+module.radius_vpc.module.vpc.aws_route_table.private[0]: Refreshing state... [id=rtb-0f4597542e6aa0556]
+module.radius_vpc.module.vpc.aws_route_table.private[1]: Refreshing state... [id=rtb-031a61b9efe154408]
+module.radius_vpc.module.vpc.aws_route_table.private[2]: Refreshing state... [id=rtb-0b23013f2990bd5f5]
+module.radius_vpc.module.vpc.aws_internet_gateway.this[0]: Refreshing state... [id=igw-077ea3117b011cf76]
+module.radius_vpc.module.vpc.aws_vpc_dhcp_options_association.this[0]: Refreshing state... [id=dopt-012b4ce3f38f1b012-vpc-0af599e8e8a43da03]
+module.admin_read_replica.aws_security_group.admin_read_replica: Refreshing state... [id=sg-048ac5666796b1fb1]
+module.performance_testing[0].aws_security_group.performance_testing_instance: Refreshing state... [id=sg-07afdfdab80f12431]
+module.performance_testing[0].aws_s3_bucket_policy.config_bucket_policy: Refreshing state... [id=mojo-development-nac-perf-config-bucket]
+module.admin_vpc_flow_logs.aws_cloudwatch_log_group.vpc_flow_logs_log_group: Refreshing state... [id=mojo-development-nac-admin-vpc-flow-logs-vpc-flow-logs-log-group]
+module.admin_vpc_flow_logs.aws_kms_alias.vpc_flow_logs_kms_key_alias: Refreshing state... [id=alias/mojo-development-nac-admin-vpc-flow-logs-vpc-flow-logs-kms-key-alias]
+module.admin_vpc.module.vpc.aws_route_table_association.private[0]: Refreshing state... [id=rtbassoc-07be9e76dc7102b01]
+module.admin_vpc.module.vpc.aws_route_table_association.private[2]: Refreshing state... [id=rtbassoc-07c10c3743e779bbc]
+module.admin_vpc.module.vpc.aws_route_table_association.private[1]: Refreshing state... [id=rtbassoc-034b657ad36950e92]
+module.admin_vpc.module.vpc.aws_route.public_internet_gateway[0]: Refreshing state... [id=r-rtb-07a8ca89a272849ad1080289494]
+module.radius.aws_s3_bucket_policy.config_bucket_policy: Refreshing state... [id=mojo-development-nac-config-bucket]
+module.radius.aws_s3_bucket_policy.certificate_bucket_policy: Refreshing state... [id=mojo-development-nac-certificate-bucket]
+module.admin_vpc.module.vpc.aws_nat_gateway.this[1]: Refreshing state... [id=nat-07c82174bbc10b540]
+module.admin_vpc.module.vpc.aws_nat_gateway.this[0]: Refreshing state... [id=nat-0080a168edc6b164b]
+module.admin_vpc.module.vpc.aws_nat_gateway.this[2]: Refreshing state... [id=nat-0a43edea5786a797e]
+module.admin_vpc.module.vpc.aws_route_table_association.public[0]: Refreshing state... [id=rtbassoc-0ba49a9fbaa73acf1]
+module.admin_vpc.module.vpc.aws_route_table_association.public[1]: Refreshing state... [id=rtbassoc-0f47eb5d4339f31a6]
+module.admin_vpc.module.vpc.aws_route_table_association.public[2]: Refreshing state... [id=rtbassoc-02b5cdadd8e11e063]
+module.radius_vpc_flow_logs.aws_cloudwatch_log_group.vpc_flow_logs_log_group: Refreshing state... [id=mojo-development-nac-vpc-flow-logs-log-group]
+module.radius_vpc_flow_logs.aws_kms_alias.vpc_flow_logs_kms_key_alias: Refreshing state... [id=alias/mojo-development-nac-vpc-flow-logs-kms-key-alias]
+module.kinesis_firehose_xsiam.aws_cloudwatch_log_subscription_filter.nacs_server_xsiam_subscription: Refreshing state... [id=cwlsf-4148462594]
+module.kinesis_firehose_xsiam.aws_iam_policy.put_record: Refreshing state... [id=arn:aws:iam::068084030754:policy/mojo-development-nac-xsiam20240201170404238800000002]
+module.radius_vpc.module.vpc.aws_route_table_association.public[1]: Refreshing state... [id=rtbassoc-0d57ee031d0c4d333]
+module.radius_vpc.module.vpc.aws_route_table_association.public[2]: Refreshing state... [id=rtbassoc-058f944a89c37978f]
+module.radius_vpc.module.vpc.aws_route_table_association.public[0]: Refreshing state... [id=rtbassoc-052f59d46f565eca2]
+module.admin_vpc.aws_vpc_endpoint.s3[0]: Refreshing state... [id=vpce-0da451aa01bcdd47f]
+module.admin_vpc.aws_vpc_endpoint.ssmmessages[0]: Refreshing state... [id=vpce-067994ac5e02d645a]
+module.admin_vpc.aws_vpc_endpoint.ssm[0]: Refreshing state... [id=vpce-075d811084c7ebd9e]
+module.admin_vpc.aws_vpc_endpoint.kms[0]: Refreshing state... [id=vpce-0561c20f9922f525f]
+module.admin_vpc.aws_vpc_endpoint.ec2messages[0]: Refreshing state... [id=vpce-0f7b910d6942b6994]
+module.radius_vpc.aws_vpc_endpoint.sts[0]: Refreshing state... [id=vpce-0e312769b81dca2f8]
+module.radius_vpc.module.vpc.aws_route_table_association.private[1]: Refreshing state... [id=rtbassoc-0dc255beaa7c04cb3]
+module.radius_vpc.module.vpc.aws_route_table_association.private[2]: Refreshing state... [id=rtbassoc-002223e00a9ddc7d2]
+module.radius_vpc.module.vpc.aws_route_table_association.private[0]: Refreshing state... [id=rtbassoc-009cc3e8c85bcbb09]
+module.radius_vpc.aws_vpc_endpoint.ec2messages[0]: Refreshing state... [id=vpce-02539c96f45e6cd9b]
+module.radius_vpc.aws_vpc_endpoint.ecr_api: Refreshing state... [id=vpce-02e73798567f58215]
+module.radius_vpc.aws_vpc_endpoint.ecr_dkr: Refreshing state... [id=vpce-0cab472e3588dd32d]
+module.radius_vpc.aws_vpc_endpoint.ssm[0]: Refreshing state... [id=vpce-04a9906ace2c3db9f]
+module.radius_vpc.aws_vpc_endpoint.logs: Refreshing state... [id=vpce-0a724c0af9979c339]
+module.radius_vpc.aws_vpc_endpoint.kms[0]: Refreshing state... [id=vpce-0ee9412208c883fe7]
+module.radius_vpc.aws_vpc_endpoint.monitoring: Refreshing state... [id=vpce-086bc0f4351313cf7]
+module.radius_vpc.aws_vpc_endpoint.ssmmessages[0]: Refreshing state... [id=vpce-02f365fdabd67b882]
+module.radius_vpc.aws_vpc_endpoint.rds: Refreshing state... [id=vpce-0f2190be72171e5e5]
+module.radius_vpc.module.vpc.aws_route.public_internet_gateway[0]: Refreshing state... [id=r-rtb-01e55622941f4176a1080289494]
+module.admin_vpc.module.vpc.aws_route.private_nat_gateway[0]: Refreshing state... [id=r-rtb-0622ac5f25c536cea1080289494]
+module.admin_vpc_flow_logs.aws_flow_log.vpc: Refreshing state... [id=fl-0d91622d68b3bf71e]
+module.admin_vpc.module.vpc.aws_route.private_nat_gateway[1]: Refreshing state... [id=r-rtb-0d1e83c92609373fa1080289494]
+module.admin_vpc.module.vpc.aws_route.private_nat_gateway[2]: Refreshing state... [id=r-rtb-013b7cc4beaff0dcf1080289494]
+module.radius_vpc.aws_vpc_endpoint_route_table_association.public_s3: Refreshing state... [id=a-vpce-09bf813ee764f49b62783772035]
+module.radius_vpc_flow_logs.aws_flow_log.vpc: Refreshing state... [id=fl-07ad374bbc6d8d014]
+module.radius_vpc.aws_vpc_endpoint_route_table_association.private_s3["rtb-0b23013f2990bd5f5"]: Refreshing state... [id=a-vpce-09bf813ee764f49b63744494920]
+module.radius_vpc.aws_vpc_endpoint_route_table_association.private_s3["rtb-0f4597542e6aa0556"]: Refreshing state... [id=a-vpce-09bf813ee764f49b63565577615]
+module.radius_vpc.aws_vpc_endpoint_route_table_association.private_s3["rtb-031a61b9efe154408"]: Refreshing state... [id=a-vpce-09bf813ee764f49b61482892442]
+module.kinesis_firehose_xsiam.aws_iam_role_policy_attachment.this: Refreshing state... [id=mojo-development-nac-xsiam20240201170404201600000001-20240201170406796100000003]
+module.radius.aws_security_group.nlb_public_production: Refreshing state... [id=sg-09d6c8c8414f504ce]
+module.admin_read_replica.aws_db_subnet_group.admin_read_relica: Refreshing state... [id=mojo-development-nac-admin-read-replica-group]
+module.radius.aws_lb.internal_load_balancer: Refreshing state... [id=arn:aws:elasticloadbalancing:eu-west-2:068084030754:loadbalancer/net/nac-int-mojo-development-nac/04692008b68b0248]
+module.radius.aws_security_group.nlb_public: Refreshing state... [id=sg-057ea924507c50533]
+module.radius.aws_route53_resolver_query_log_config.nac_resolver_query_log: Refreshing state... [id=rqlc-fcc3b3c4712543b6]
+module.radius.aws_security_group.radius_server: Refreshing state... [id=sg-06520ba16e3feeb43]
+module.radius_vpc.aws_eip.nat_eu_west_2c: Refreshing state... [id=eipalloc-0e7dca49b25c7c48c]
+module.radius_vpc.aws_route.transit-gateway[0]: Refreshing state... [id=r-rtb-0f4597542e6aa05561080289494]
+module.radius_vpc.aws_route.transit-gateway[1]: Refreshing state... [id=r-rtb-031a61b9efe1544081080289494]
+module.radius_vpc.aws_route.transit-gateway-public-dns-server-1[0]: Refreshing state... [id=r-rtb-01e55622941f4176a2736082124]
+module.radius_vpc.aws_ec2_transit_gateway_vpc_attachment.nac_transit_gateway_attachment[0]: Refreshing state... [id=tgw-attach-0855bc4eaa2de274e]
+module.radius_vpc.aws_route.transit-gateway-public-2[0]: Refreshing state... [id=r-rtb-01e55622941f4176a805654462]
+module.radius_vpc.aws_route.nat_gateway_subnet_internet_access: Refreshing state... [id=r-rtb-0b23013f2990bd5f51080289494]
+module.radius_vpc.aws_route.transit-gateway-public[0]: Refreshing state... [id=r-rtb-01e55622941f4176a3196733533]
+module.radius_vpc.aws_route.transit-gateway-public-dns-server-2[0]: Refreshing state... [id=r-rtb-01e55622941f4176a1749655401]
+module.radius.aws_lb.load_balancer: Refreshing state... [id=arn:aws:elasticloadbalancing:eu-west-2:068084030754:loadbalancer/net/nac-radius-lb-development/05fad1268baca6ba]
+module.radius.aws_security_group_rule.radius_container_radsec_in: Refreshing state... [id=sgrule-3466189440]
+module.radius.aws_security_group_rule.dns_2_out: Refreshing state... [id=sgrule-1184152063]
+module.radius.aws_security_group_rule.dns_1_out: Refreshing state... [id=sgrule-3773018699]
+module.radius.aws_security_group_rule.radius_container_web_out: Refreshing state... [id=sgrule-3376856613]
+module.radius.aws_security_group_rule.radius_container_ocsp_out: Refreshing state... [id=sgrule-1773891016]
+module.radius.aws_security_group_rule.radius_container_healthcheck: Refreshing state... [id=sgrule-3374110836]
+module.radius.aws_security_group_rule.radius_container_udp_in: Refreshing state... [id=sgrule-2273260771]
+module.radius_vpc.aws_nat_gateway.eu_west_2c: Refreshing state... [id=nat-09a84d096f30ccb91]
+module.admin.aws_iam_role_policy_attachment.ecs_task_execution_policy_attachment_sm: Refreshing state... [id=mojo-development-nac-admin-ecs-execution-role-2024100912165943400000000e]
+module.admin.aws_iam_policy.secrets_manager_read_only: Refreshing state... [id=arn:aws:iam::068084030754:policy/SecretsManagerReadOnly-mojo-development-nac-admin]
+module.rds_admin_bastion[0].random_string.this: Refreshing state... [id=Tj6g6]
+module.radius_vpc.aws_ec2_transit_gateway_route_table_association.this[0]: Refreshing state... [id=tgw-rtb-0845ec3feccec9735_tgw-attach-0855bc4eaa2de274e]
+module.radius_vpc.aws_ec2_transit_gateway_route_table_propagation.this[0]: Refreshing state... [id=tgw-rtb-0845ec3feccec9735_tgw-attach-0855bc4eaa2de274e]
+module.radius.aws_lb_target_group.internal_target_group: Refreshing state... [id=arn:aws:elasticloadbalancing:eu-west-2:068084030754:targetgroup/mojo-development-nac-private/fb82f1dc5a43799a]
+module.radius.aws_lb_target_group.internal_target_group_radsec: Refreshing state... [id=arn:aws:elasticloadbalancing:eu-west-2:068084030754:targetgroup/nac-radsec-int-development/fd8d9acfb3243647]
+module.radius.aws_route53_resolver_query_log_config_association.nac_resolver_query_log_association: Refreshing state... [id=rqlca-b0d3872375214e5e]
+module.rds_admin_bastion[0].aws_security_group.bastion: Refreshing state... [id=sg-09e38f573fde7842d]
+module.radius.aws_lb_target_group.target_group: Refreshing state... [id=arn:aws:elasticloadbalancing:eu-west-2:068084030754:targetgroup/mojo-development-nac/783ec7888e2d656e]
+module.radius.aws_route53_record.radsec: Refreshing state... [id=Z04500451C7MJ805CDAQZ_radsec_CNAME]
+module.radius.aws_lb_target_group.target_group_radsec: Refreshing state... [id=arn:aws:elasticloadbalancing:eu-west-2:068084030754:targetgroup/mojo-development-nac-radsec/2a80b05cc8a17f0f]
+module.admin.aws_cloudwatch_log_group.admin: Refreshing state... [id=mojo-development-nac-admin]
+module.admin.aws_db_subnet_group.admin_db_group: Refreshing state... [id=mojo-development-nac-admin-group]
+module.admin.aws_wafv2_ip_set.authorised_ips: Refreshing state... [id=e12b8879-9b30-4009-a1de-0032b94068ae]
+module.admin.aws_db_option_group.mariadb_audit_v8: Refreshing state... [id=mojo-development-nac-admin-db-audit-v8]
+module.admin.aws_security_group.admin_db: Refreshing state... [id=sg-084701ba60b54309f]
+module.admin.aws_db_option_group.mariadb_audit: Refreshing state... [id=mojo-development-nac-admin-db-audit]
+module.admin.aws_db_parameter_group.admin_db_parameter_group: Refreshing state... [id=mojo-development-nac-admin-parameter-group]
+module.admin.aws_acm_certificate.admin_alb: Refreshing state... [id=arn:aws:acm:eu-west-2:068084030754:certificate/cf23ecd0-5286-4501-bdc9-4e3004d6666c]
+module.admin.aws_db_option_group.mariadb_audit_mysql_v8: Refreshing state... [id=mojo-development-nac-admin-db-audit-mysql-v8]
+module.admin.aws_ecr_repository.admin: Refreshing state... [id=mojo-development-nac-admin]
+module.admin.aws_iam_role.rds_monitoring_role: Refreshing state... [id=mojo-development-nac-admin-rds-monitoring-role]
+module.admin.aws_db_parameter_group.admin_db_parameter_group_v8: Refreshing state... [id=mojo-development-nac-admin-parameter-group-v8]
+module.admin.aws_security_group.admin_alb: Refreshing state... [id=sg-041d9b9da1fafc8d9]
+module.admin.aws_security_group.admin_ecs: Refreshing state... [id=sg-059a3aa7a7152d9a6]
+module.admin.aws_iam_role.ecs_execution_role: Refreshing state... [id=mojo-development-nac-admin-ecs-execution-role]
+module.admin.aws_iam_role.ecs_task_role: Refreshing state... [id=mojo-development-nac-admin-ecs-task-role]
+module.radius_vpc.aws_route.nat-gateway-public-ocsp-endpoint-1[0]: Refreshing state... [id=r-rtb-01e55622941f4176a2775840593]
+module.radius_vpc.aws_route.nat-gateway-public-ocsp-endpoint-3[0]: Refreshing state... [id=r-rtb-01e55622941f4176a783798092]
+module.radius_vpc.aws_route.nat-gateway-public-ocsp-endpoint-2[0]: Refreshing state... [id=r-rtb-01e55622941f4176a4087056850]
+module.rds_admin_bastion[0].aws_iam_policy.s3_bucket_access: Refreshing state... [id=arn:aws:iam::068084030754:policy/bastion-ssm-iam-Tj6g6s3-bucket-access]
+module.rds_admin_bastion[0].aws_iam_role.iam_instance_role: Refreshing state... [id=bastion-ssm-iam-Tj6g6]
+module.admin_read_replica.aws_security_group_rule.radius_db_in: Refreshing state... [id=sgrule-435305069]
+module.radius.aws_lb_listener.internal_udp: Refreshing state... [id=arn:aws:elasticloadbalancing:eu-west-2:068084030754:listener/net/nac-int-mojo-development-nac/04692008b68b0248/b75a5652766ea48b]
+module.radius.aws_lb_listener.internal_tcp: Refreshing state... [id=arn:aws:elasticloadbalancing:eu-west-2:068084030754:listener/net/nac-int-mojo-development-nac/04692008b68b0248/51af73b5b717cb55]
+module.radius.aws_lb_listener.udp: Refreshing state... [id=arn:aws:elasticloadbalancing:eu-west-2:068084030754:listener/net/nac-radius-lb-development/05fad1268baca6ba/ffc27c781ee78815]
+module.radius.aws_lb_listener.tcp: Refreshing state... [id=arn:aws:elasticloadbalancing:eu-west-2:068084030754:listener/net/nac-radius-lb-development/05fad1268baca6ba/ecdab0fd15f28d9e]
+module.admin.aws_ecr_repository_policy.admin: Refreshing state... [id=mojo-development-nac-admin]
+module.admin.aws_ecr_lifecycle_policy.admin: Refreshing state... [id=mojo-development-nac-admin]
+module.rds_admin_bastion[0].aws_kms_key.this: Refreshing state... [id=a6343365-dc99-405d-ae00-caa4a8934fad]
+module.admin.aws_lb.admin_alb: Refreshing state... [id=arn:aws:elasticloadbalancing:eu-west-2:068084030754:loadbalancer/app/nac-admin-lb-development/c080309ee98562ea]
+module.admin.aws_security_group_rule.admin_alb_in_from_web: Refreshing state... [id=sgrule-1156715888]
+module.admin.aws_security_group_rule.admin_ecs_in: Refreshing state... [id=sgrule-4171189335]
+module.admin.aws_security_group_rule.admin_db_in_from_ecs: Refreshing state... [id=sgrule-475310341]
+module.admin.aws_security_group_rule.admin_ecs_out_to_web: Refreshing state... [id=sgrule-708470726]
+module.admin.aws_security_group_rule.admin_alb_out: Refreshing state... [id=sgrule-975535041]
+module.admin.aws_security_group_rule.admin_ecs_out_to_db: Refreshing state... [id=sgrule-3667599330]
+module.admin.aws_route53_record.admin_alb["admin.dev.network-access-control.service.justice.gov.uk"]: Refreshing state... [id=Z04500451C7MJ805CDAQZ__7945417edcc13d1d14f5984c69a10380.admin.dev.network-access-control.service.justice.gov.uk_CNAME]
+module.admin.aws_iam_role_policy_attachment.ecs_task_execution_policy_attachment["arn:aws:iam::aws:policy/AmazonSSMReadOnlyAccess"]: Refreshing state... [id=mojo-development-nac-admin-ecs-execution-role-2024100912165905530000000d]
+module.admin.aws_iam_role_policy_attachment.ecs_task_execution_policy_attachment["arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"]: Refreshing state... [id=mojo-development-nac-admin-ecs-execution-role-2024100912165888240000000c]
+module.admin.aws_iam_role_policy.rds_monitoring_policy: Refreshing state... [id=mojo-development-nac-admin-rds-monitoring-role:mojo-development-nac-admin-rds-monitoring-policy]
+module.admin.aws_db_instance.admin_db: Refreshing state... [id=mojo-development-nac-admin]
+module.rds_admin_bastion[0].aws_cloudwatch_log_group.ssm_log: Refreshing state... [id=/aws/ec2/bastion-ssm-iam-Tj6g6]
+module.admin.aws_route53_record.admin_app: Refreshing state... [id=Z04500451C7MJ805CDAQZ_admin_CNAME_geolocation]
+module.admin.aws_alb_target_group.admin: Refreshing state... [id=arn:aws:elasticloadbalancing:eu-west-2:068084030754:targetgroup/development-admin/a7205210151162a9]
+module.rds_servers_bastion[0].random_string.this: Refreshing state... [id=dduIX]
+module.rds_admin_bastion[0].aws_iam_role_policy_attachment.s3_bucket_access: Refreshing state... [id=bastion-ssm-iam-Tj6g6-20240911141856000700000006]
+module.rds_admin_bastion[0].aws_iam_role_policy_attachment.this["arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"]: Refreshing state... [id=bastion-ssm-iam-Tj6g6-20240911141855948200000005]
+module.rds_admin_bastion[0].aws_iam_role_policy_attachment.this["arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"]: Refreshing state... [id=bastion-ssm-iam-Tj6g6-20240911141856182700000007]
+module.rds_admin_bastion[0].aws_iam_instance_profile.this: Refreshing state... [id=bastion-ssm-iam-Tj6g6]
+module.rds_admin_bastion[0].aws_iam_role_policy.kms: Refreshing state... [id=bastion-ssm-iam-Tj6g6:inline-policy-kms-access]
+module.rds_servers_bastion[0].aws_security_group.bastion: Refreshing state... [id=sg-0cfb5df17169bc22d]
+module.admin.aws_acm_certificate_validation.admin_alb: Refreshing state... [id=2023-08-05 00:35:34.763 +0000 UTC]
+module.admin.aws_route53_record.admin_db: Refreshing state... [id=Z04500451C7MJ805CDAQZ_admin-db_CNAME]
+module.admin.aws_wafv2_web_acl.admin_alb_acl: Refreshing state... [id=d71e257f-8e45-49e2-81f3-1af160d5cc04]
+module.rds_servers_bastion[0].aws_iam_role.iam_instance_role: Refreshing state... [id=bastion-ssm-iam-dduIX]
+module.rds_servers_bastion[0].aws_iam_policy.s3_bucket_access: Refreshing state... [id=arn:aws:iam::068084030754:policy/bastion-ssm-iam-dduIXs3-bucket-access]
+module.admin.aws_alb_listener.alb_listener: Refreshing state... [id=arn:aws:elasticloadbalancing:eu-west-2:068084030754:listener/app/nac-admin-lb-development/c080309ee98562ea/bdf0ae62375474c1]
+module.rds_servers_bastion[0].aws_kms_key.this: Refreshing state... [id=2a2e8e92-ec25-43c6-99eb-5cbe86bfde56]
+module.rds_admin_bastion[0].aws_instance.bastion[0]: Refreshing state... [id=i-0110ccc45e315262c]
+module.authentication.aws_cognito_user_pool_client.client[0]: Refreshing state... [id=6kf31okju5mdvfshqsvv1bsmst]
+module.rds_servers_bastion[0].aws_cloudwatch_log_group.ssm_log: Refreshing state... [id=/aws/ec2/bastion-ssm-iam-dduIX]
+module.admin_read_replica.aws_db_instance.admin_read_replica: Refreshing state... [id=mojo-development-nac-admin-read-replica]
+module.radius.aws_security_group_rule.radius_container_db_out: Refreshing state... [id=sgrule-1580343306]
+module.radius.aws_ecs_task_definition.server_task: Refreshing state... [id=mojo-development-nac-server-task]
+module.radius.aws_ecs_service.service: Refreshing state... [id=arn:aws:ecs:eu-west-2:068084030754:service/mojo-development-nac-cluster/public]
+module.radius.aws_ecs_service.internal_service: Refreshing state... [id=arn:aws:ecs:eu-west-2:068084030754:service/mojo-development-nac-cluster/internal]
+module.rds_servers_bastion[0].aws_iam_role_policy_attachment.this["arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"]: Refreshing state... [id=bastion-ssm-iam-dduIX-20241009154640239000000002]
+module.rds_servers_bastion[0].aws_iam_instance_profile.this: Refreshing state... [id=bastion-ssm-iam-dduIX]
+module.rds_servers_bastion[0].aws_iam_role_policy.kms: Refreshing state... [id=bastion-ssm-iam-dduIX:inline-policy-kms-access]
+module.rds_servers_bastion[0].aws_iam_role_policy_attachment.this["arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"]: Refreshing state... [id=bastion-ssm-iam-dduIX-20241009154640218700000001]
+module.rds_servers_bastion[0].aws_iam_role_policy_attachment.s3_bucket_access: Refreshing state... [id=bastion-ssm-iam-dduIX-20241009154640382300000003]
+module.radius.aws_cloudwatch_event_rule.unhealthy-host-count: Refreshing state... [id=mojo-development-nac-unhealthy-host-count]
+module.ecs_auto_scaling_radius_internal.aws_appautoscaling_target.radius: Refreshing state... [id=service/mojo-development-nac-cluster/internal]
+module.admin.aws_ecs_task_definition.admin_background_worker: Refreshing state... [id=mojo-development-nac-admin-task]
+module.admin.aws_ecs_task_definition.admin: Refreshing state... [id=mojo-development-nac-admin-task]
+module.ecs_auto_scaling_radius_public.aws_appautoscaling_target.radius: Refreshing state... [id=service/mojo-development-nac-cluster/public]
+module.admin.aws_iam_role_policy.ecs_task_policy: Refreshing state... [id=mojo-development-nac-admin-ecs-task-role:mojo-development-nac-admin-ecs-task-policy]
+module.rds_servers_bastion[0].aws_instance.bastion[0]: Refreshing state... [id=i-039b6a53db44326b6]
+module.admin.aws_ecs_service.admin_background_worker: Refreshing state... [id=arn:aws:ecs:eu-west-2:068084030754:service/mojo-development-nac-cluster/admin-background-workers]
+module.admin.aws_ecs_service.admin: Refreshing state... [id=arn:aws:ecs:eu-west-2:068084030754:service/mojo-development-nac-cluster/admin]
+module.ecs_auto_scaling_radius_internal.aws_appautoscaling_policy.ecs_policy_down: Refreshing state... [id=mojo-development-nac-internal ECS Scale Down]
+module.ecs_auto_scaling_radius_internal.aws_appautoscaling_policy.ecs_policy_up_memory_max: Refreshing state... [id=mojo-development-nac-internal ECS Scale Up Memory Maximum]
+module.ecs_auto_scaling_radius_internal.aws_appautoscaling_policy.ecs_policy_up: Refreshing state... [id=mojo-development-nac-internal ECS Scale Up]
+module.ecs_auto_scaling_radius_internal.aws_appautoscaling_policy.ecs_policy_up_memory_average: Refreshing state... [id=mojo-development-nac-internal ECS Scale Up Memory Average]
+module.ecs_auto_scaling_radius_public.aws_appautoscaling_policy.ecs_policy_up_memory_average: Refreshing state... [id=mojo-development-nac ECS Scale Up Memory Average]
+module.ecs_auto_scaling_radius_public.aws_appautoscaling_policy.ecs_policy_up: Refreshing state... [id=mojo-development-nac ECS Scale Up]
+module.ecs_auto_scaling_radius_public.aws_appautoscaling_policy.ecs_policy_up_memory_max: Refreshing state... [id=mojo-development-nac ECS Scale Up Memory Maximum]
+module.ecs_auto_scaling_radius_public.aws_appautoscaling_policy.ecs_policy_down: Refreshing state... [id=mojo-development-nac ECS Scale Down]
+module.admin.aws_appautoscaling_target.admin: Refreshing state... [id=service/mojo-development-nac-cluster/admin]
+module.ecs_auto_scaling_radius_internal.aws_cloudwatch_metric_alarm.packets_low: Refreshing state... [id=mojo-development-nac-internal-packets-per-container-low]
+module.ecs_auto_scaling_radius_internal.aws_cloudwatch_metric_alarm.ecs_memory_maximum_alarm_high: Refreshing state... [id=mojo-development-nac-internal-ecs-memory-maximum-alarm]
+module.ecs_auto_scaling_radius_internal.aws_cloudwatch_metric_alarm.cpu_utilization_alarm: Refreshing state... [id=mojo-development-nac-internal-ecs-cpu-utilization-maximum-alarm]
+module.ecs_auto_scaling_radius_internal.aws_cloudwatch_metric_alarm.packets_high: Refreshing state... [id=mojo-development-nac-internal-packets-per-container-high]
+module.ecs_auto_scaling_radius_public.aws_cloudwatch_metric_alarm.ecs_memory_average_alarm: Refreshing state... [id=mojo-development-nac-ecs-memory-average-alarm]
+module.ecs_auto_scaling_radius_internal.aws_cloudwatch_metric_alarm.ecs_memory_average_alarm: Refreshing state... [id=mojo-development-nac-internal-ecs-memory-average-alarm]
+module.ecs_auto_scaling_radius_public.aws_cloudwatch_metric_alarm.cpu_utilization_alarm: Refreshing state... [id=mojo-development-nac-ecs-cpu-utilization-maximum-alarm]
+module.ecs_auto_scaling_radius_public.aws_cloudwatch_metric_alarm.packets_high: Refreshing state... [id=mojo-development-nac-packets-per-container-high]
+module.ecs_auto_scaling_radius_public.aws_cloudwatch_metric_alarm.ecs_memory_maximum_alarm_high: Refreshing state... [id=mojo-development-nac-ecs-memory-maximum-alarm]
+module.admin.aws_appautoscaling_policy.ecs_policy_up: Refreshing state... [id=mojo-development-nac-admin ECS Scale Up]
+module.admin.aws_appautoscaling_policy.ecs_policy_down: Refreshing state... [id=ECS Scale Down]
+module.ecs_auto_scaling_radius_public.aws_cloudwatch_metric_alarm.packets_low: Refreshing state... [id=mojo-development-nac-packets-per-container-low]
+module.admin.aws_cloudwatch_metric_alarm.ecs_cpu_alarm_low: Refreshing state... [id=mojo-development-nac-admin-ecs-cpu-alarm-low]
+module.admin.aws_cloudwatch_metric_alarm.ecs_cpu_alarm_high: Refreshing state... [id=mojo-development-nac-admin-ecs-cpu-alarm-high]
+module.admin.aws_wafv2_web_acl_association.admin_alb_waf_association: Refreshing state... [id=arn:aws:wafv2:eu-west-2:068084030754:regional/webacl/mojo-development-nac-admin-admin-acl/d71e257f-8e45-49e2-81f3-1af160d5cc04,arn:aws:elasticloadbalancing:eu-west-2:068084030754:loadbalancer/app/nac-admin-lb-development/c080309ee98562ea]
+module.admin.aws_cloudwatch_log_group.aws_waf_admin_alb_acl: Refreshing state... [id=aws-waf-logs-waf-mojo-development-nac-admin-admin-acl]
+module.admin.aws_wafv2_web_acl_logging_configuration.api_server_waf_log: Refreshing state... [id=arn:aws:wafv2:eu-west-2:068084030754:regional/webacl/mojo-development-nac-admin-admin-acl/d71e257f-8e45-49e2-81f3-1af160d5cc04]
+
+Note: Objects have changed outside of Terraform
+
+Terraform detected the following changes made outside of Terraform since the
+last "terraform apply":
+
+  # module.admin.aws_db_instance.admin_db has changed
+  ~ resource "aws_db_instance" "admin_db" {
+        id                                    = "mojo-development-nac-admin"
+      ~ latest_restorable_time                = "2024-10-11T16:40:00Z" -> "2024-10-16T12:10:00Z"
+        name                                  = "mojo_development_nac_admin"
+        tags                                  = {
+            "Name"             = "mojo-development-nac"
+            "Namespace"        = "mojo"
+            "Stage"            = "development"
+            "application"      = "network-access-control"
+            "business-unit"    = "HQ"
+            "environment-name" = "global"
+            "is-production"    = "false"
+            "owner"            = "nac@digital.justice.gov.uk"
+            "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+        }
+        # (64 unchanged attributes hidden)
+    }
+
+  # module.admin.aws_db_parameter_group.admin_db_parameter_group has changed
+  ~ resource "aws_db_parameter_group" "admin_db_parameter_group" {
+        id          = "mojo-development-nac-admin-parameter-group"
+        name        = "mojo-development-nac-admin-parameter-group"
+        tags        = {
+            "Name"             = "mojo-development-nac"
+            "Namespace"        = "mojo"
+            "Stage"            = "development"
+            "application"      = "network-access-control"
+            "business-unit"    = "HQ"
+            "environment-name" = "global"
+            "is-production"    = "false"
+            "owner"            = "nac@digital.justice.gov.uk"
+            "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+        }
+        # (4 unchanged attributes hidden)
+
+      + parameter {
+          + apply_method = "immediate"
+          + name         = "max_connect_errors"
+          + value        = "10000"
+        }
+      - parameter {
+          - apply_method = "pending-reboot" -> null
+          - name         = "max_connect_errors" -> null
+          - value        = "10000" -> null
+        }
+      - parameter {
+          - apply_method = "pending-reboot" -> null
+          - name         = "sql_mode" -> null
+          - value        = "STRICT_ALL_TABLES, NO_AUTO_CREATE_USER" -> null
+        }
+      + parameter {
+          + apply_method = "pending-reboot"
+          + name         = "sql_mode"
+          + value        = "STRICT_ALL_TABLES,NO_AUTO_CREATE_USER"
+        }
+        # (7 unchanged blocks hidden)
+    }
+
+  # module.admin.aws_iam_role.ecs_execution_role has changed
+  ~ resource "aws_iam_role" "ecs_execution_role" {
+        id                    = "mojo-development-nac-admin-ecs-execution-role"
+        name                  = "mojo-development-nac-admin-ecs-execution-role"
+      ~ role_last_used        = [
+          ~ {
+              ~ last_used_date = "2024-10-11T16:30:03Z" -> "2024-10-16T11:44:29Z"
+                # (1 unchanged element hidden)
+            },
+        ]
+        tags                  = {
+            "Name"             = "mojo-development-nac"
+            "Namespace"        = "mojo"
+            "Stage"            = "development"
+            "application"      = "network-access-control"
+            "business-unit"    = "HQ"
+            "environment-name" = "global"
+            "is-production"    = "false"
+            "owner"            = "nac@digital.justice.gov.uk"
+            "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+        }
+        # (9 unchanged attributes hidden)
+
+        # (1 unchanged block hidden)
+    }
+
+  # module.admin.aws_iam_role.rds_monitoring_role has changed
+  ~ resource "aws_iam_role" "rds_monitoring_role" {
+        id                    = "mojo-development-nac-admin-rds-monitoring-role"
+        name                  = "mojo-development-nac-admin-rds-monitoring-role"
+      ~ role_last_used        = [
+          ~ {
+              ~ last_used_date = "2024-10-11T16:23:15Z" -> "2024-10-16T11:45:24Z"
+                # (1 unchanged element hidden)
+            },
+        ]
+        tags                  = {
+            "Name"             = "mojo-development-nac"
+            "Namespace"        = "mojo"
+            "Stage"            = "development"
+            "application"      = "network-access-control"
+            "business-unit"    = "HQ"
+            "environment-name" = "global"
+            "is-production"    = "false"
+            "owner"            = "nac@digital.justice.gov.uk"
+            "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+        }
+        # (9 unchanged attributes hidden)
+
+        # (1 unchanged block hidden)
+    }
+
+  # module.admin.aws_wafv2_web_acl.admin_alb_acl has changed
+  ~ resource "aws_wafv2_web_acl" "admin_alb_acl" {
+        id            = "d71e257f-8e45-49e2-81f3-1af160d5cc04"
+        name          = "mojo-development-nac-admin-admin-acl"
+        tags          = {
+            "Name"             = "mojo-development-nac"
+            "Namespace"        = "mojo"
+            "Stage"            = "development"
+            "application"      = "network-access-control"
+            "business-unit"    = "HQ"
+            "environment-name" = "global"
+            "is-production"    = "false"
+            "owner"            = "nac@digital.justice.gov.uk"
+            "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+        }
+        # (7 unchanged attributes hidden)
+
+
+
+        # (10 unchanged blocks hidden)
+    }
+
+  # module.admin_vpc_flow_logs.aws_iam_role.flow_logs_role has changed
+  ~ resource "aws_iam_role" "flow_logs_role" {
+        id                    = "mojo-development-nac-admin-vpc-flow-logs-vpc-flow-logs-role"
+        name                  = "mojo-development-nac-admin-vpc-flow-logs-vpc-flow-logs-role"
+      ~ role_last_used        = [
+          ~ {
+              ~ last_used_date = "2024-10-11T16:35:36Z" -> "2024-10-16T11:50:27Z"
+                # (1 unchanged element hidden)
+            },
+        ]
+        tags                  = {
+            "Name"             = "mojo-development-nac"
+            "Namespace"        = "mojo"
+            "Stage"            = "development"
+            "application"      = "network-access-control"
+            "business-unit"    = "HQ"
+            "environment-name" = "global"
+            "is-production"    = "false"
+            "owner"            = "nac@digital.justice.gov.uk"
+            "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+        }
+        # (9 unchanged attributes hidden)
+
+        # (1 unchanged block hidden)
+    }
+
+  # module.kinesis_firehose_xsiam.aws_iam_role.this has changed
+  ~ resource "aws_iam_role" "this" {
+        id                    = "mojo-development-nac-xsiam20240201170404201600000001"
+        name                  = "mojo-development-nac-xsiam20240201170404201600000001"
+      ~ role_last_used        = [
+          ~ {
+              ~ last_used_date = "2024-10-11T16:30:59Z" -> "2024-10-16T11:49:29Z"
+                # (1 unchanged element hidden)
+            },
+        ]
+        tags                  = {
+            "Name"             = "mojo-development-nac"
+            "Namespace"        = "mojo"
+            "Stage"            = "development"
+            "application"      = "network-access-control"
+            "business-unit"    = "HQ"
+            "environment-name" = "global"
+            "is-production"    = "false"
+            "owner"            = "nac@digital.justice.gov.uk"
+            "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+        }
+        # (10 unchanged attributes hidden)
+
+        # (1 unchanged block hidden)
+    }
+
+  # module.kinesis_firehose_xsiam.aws_iam_role.xsiam_kinesis_firehose_role has changed
+  ~ resource "aws_iam_role" "xsiam_kinesis_firehose_role" {
+        id                    = "terraform-20240201095144680200000001"
+        name                  = "terraform-20240201095144680200000001"
+      ~ role_last_used        = [
+          ~ {
+              ~ last_used_date = "2024-07-21T13:03:31Z" -> "2024-10-13T12:22:52Z"
+                # (1 unchanged element hidden)
+            },
+        ]
+        tags                  = {
+            "Name"             = "mojo-development-nac"
+            "Namespace"        = "mojo"
+            "Stage"            = "development"
+            "application"      = "network-access-control"
+            "business-unit"    = "HQ"
+            "environment-name" = "global"
+            "is-production"    = "false"
+            "owner"            = "nac@digital.justice.gov.uk"
+            "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+        }
+        # (10 unchanged attributes hidden)
+
+        # (1 unchanged block hidden)
+    }
+
+  # module.performance_testing[0].local_file.ec2_private_key has been deleted
+  - resource "local_file" "ec2_private_key" {
+      - content_base64sha256 = "U3RXqdqSkPLL5qy3ts/+OTqzfxmHnaPd0tVZDEqcibs=" -> null
+      - content_base64sha512 = "NB7iH6TAptzsPFLbs3q9Bl6aL1upqYeNBAqeQKcMCCi08mCtQC0zVffwjxHfYey6fu6yqa24+xby6ZOGO/4iZw==" -> null
+      - content_md5          = "b66c12fa9be0f6c7f4227220a7c914ec" -> null
+      - content_sha1         = "5fbc4ef8aa21f19e62918e53fe8dc3d1510c8147" -> null
+      - content_sha256       = "537457a9da9290f2cbe6acb7b6cffe393ab37f19879da3ddd2d5590c4a9c89bb" -> null
+      - content_sha512       = "341ee21fa4c0a6dcec3c52dbb37abd065e9a2f5ba9a9878d040a9e40a70c0828b4f260ad402d3355f7f08f11df61ecba7eeeb2a9adb8fb16f2e993863bfe2267" -> null
+      - directory_permission = "0777" -> null
+      - file_permission      = "0600" -> null
+      - filename             = "ec2.pem" -> null
+      - id                   = "5fbc4ef8aa21f19e62918e53fe8dc3d1510c8147" -> null
+      - sensitive_content    = (sensitive value)
+    }
+
+  # module.radius.aws_ecs_service.service has changed
+  ~ resource "aws_ecs_service" "service" {
+        id                                 = "arn:aws:ecs:eu-west-2:068084030754:service/mojo-development-nac-cluster/public"
+        name                               = "public"
+        tags                               = {
+            "Name"             = "mojo-development-nac"
+            "Namespace"        = "mojo"
+            "Stage"            = "development"
+            "application"      = "network-access-control"
+            "business-unit"    = "HQ"
+            "environment-name" = "global"
+            "is-production"    = "false"
+            "owner"            = "nac@digital.justice.gov.uk"
+            "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+        }
+      ~ task_definition                    = "arn:aws:ecs:eu-west-2:068084030754:task-definition/mojo-development-nac-server-task:72" -> "arn:aws:ecs:eu-west-2:068084030754:task-definition/mojo-development-nac-server-task:73"
+        # (15 unchanged attributes hidden)
+
+
+
+
+        # (5 unchanged blocks hidden)
+    }
+
+  # module.radius.aws_iam_role.ecs_execution_role has changed
+  ~ resource "aws_iam_role" "ecs_execution_role" {
+        id                    = "mojo-development-nac-ecs-execution-role"
+        name                  = "mojo-development-nac-ecs-execution-role"
+      ~ role_last_used        = [
+          ~ {
+              ~ last_used_date = "2024-10-11T16:33:46Z" -> "2024-10-16T11:49:33Z"
+                # (1 unchanged element hidden)
+            },
+        ]
+        tags                  = {
+            "Name"             = "mojo-development-nac"
+            "Namespace"        = "mojo"
+            "Stage"            = "development"
+            "application"      = "network-access-control"
+            "business-unit"    = "HQ"
+            "environment-name" = "global"
+            "is-production"    = "false"
+            "owner"            = "nac@digital.justice.gov.uk"
+            "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+        }
+        # (9 unchanged attributes hidden)
+
+        # (1 unchanged block hidden)
+    }
+
+  # module.radius.aws_iam_role.ecs_task_role has changed
+  ~ resource "aws_iam_role" "ecs_task_role" {
+        id                    = "mojo-development-nac-ecs-task-role"
+        name                  = "mojo-development-nac-ecs-task-role"
+      ~ role_last_used        = [
+          ~ {
+              ~ last_used_date = "2024-10-11T16:32:22Z" -> "2024-10-16T11:49:22Z"
+                # (1 unchanged element hidden)
+            },
+        ]
+        tags                  = {
+            "Name"             = "mojo-development-nac"
+            "Namespace"        = "mojo"
+            "Stage"            = "development"
+            "application"      = "network-access-control"
+            "business-unit"    = "HQ"
+            "environment-name" = "global"
+            "is-production"    = "false"
+            "owner"            = "nac@digital.justice.gov.uk"
+            "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+        }
+        # (9 unchanged attributes hidden)
+
+        # (1 unchanged block hidden)
+    }
+
+  # module.radius_vpc_flow_logs.aws_iam_role.flow_logs_role has changed
+  ~ resource "aws_iam_role" "flow_logs_role" {
+        id                    = "mojo-development-nac-vpc-flow-logs-role"
+        name                  = "mojo-development-nac-vpc-flow-logs-role"
+      ~ role_last_used        = [
+          ~ {
+              ~ last_used_date = "2024-10-11T16:34:57Z" -> "2024-10-16T11:51:49Z"
+                # (1 unchanged element hidden)
+            },
+        ]
+        tags                  = {
+            "Name"             = "mojo-development-nac"
+            "Namespace"        = "mojo"
+            "Stage"            = "development"
+            "application"      = "network-access-control"
+            "business-unit"    = "HQ"
+            "environment-name" = "global"
+            "is-production"    = "false"
+            "owner"            = "nac@digital.justice.gov.uk"
+            "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+        }
+        # (9 unchanged attributes hidden)
+
+        # (1 unchanged block hidden)
+    }
+
+  # module.rds_admin_bastion[0].aws_iam_role.iam_instance_role has changed
+  ~ resource "aws_iam_role" "iam_instance_role" {
+        id                    = "bastion-ssm-iam-Tj6g6"
+        name                  = "bastion-ssm-iam-Tj6g6"
+      ~ role_last_used        = [
+          ~ {
+              ~ last_used_date = "2024-10-11T16:13:30Z" -> "2024-10-16T11:37:46Z"
+                # (1 unchanged element hidden)
+            },
+        ]
+        tags                  = {}
+        # (9 unchanged attributes hidden)
+
+        # (1 unchanged block hidden)
+    }
+
+  # module.rds_servers_bastion[0].aws_iam_role.iam_instance_role has changed
+  ~ resource "aws_iam_role" "iam_instance_role" {
+        id                    = "bastion-ssm-iam-dduIX"
+        name                  = "bastion-ssm-iam-dduIX"
+      ~ role_last_used        = [
+          ~ {
+              ~ last_used_date = "2024-10-11T16:24:55Z" -> "2024-10-16T11:37:54Z"
+                # (1 unchanged element hidden)
+            },
+        ]
+        tags                  = {}
+        # (9 unchanged attributes hidden)
+
+        # (1 unchanged block hidden)
+    }
+
+
+Unless you have made equivalent changes to your configuration, or ignored the
+relevant attributes using ignore_changes, the following plan may include
+actions to undo or respond to these changes.
+
+─────────────────────────────────────────────────────────────────────────────
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+  ~ update in-place
+  - destroy
+-/+ destroy and then create replacement
++/- create replacement and then destroy
+ <= read (data resources)
+
+Terraform will perform the following actions:
+
+  # module.admin.data.aws_caller_identity.current will be read during apply
+  # (config refers to values not yet known)
+ <= data "aws_caller_identity" "current"  {
+      ~ account_id = "068084030754" -> (known after apply)
+      ~ arn        = "arn:aws:sts::068084030754:assumed-role/SharedServicesCodeBuild/aws-go-sdk-1728664918552521238" -> (known after apply)
+      ~ id         = "068084030754" -> (known after apply)
+      ~ user_id    = "AROAQ7WQ73URA373G56PR:aws-go-sdk-1728664918552521238" -> (known after apply)
+    }
+
+  # module.admin.data.aws_db_snapshot.latest will be read during apply
+  # (config refers to values not yet known)
+ <= data "aws_db_snapshot" "latest"  {
+      ~ allocated_storage             = 20 -> (known after apply)
+      ~ availability_zone             = "eu-west-2b" -> (known after apply)
+      ~ db_snapshot_arn               = "arn:aws:rds:eu-west-2:068084030754:snapshot:rds:mojo-development-nac-admin-2024-10-11-04-33" -> (known after apply)
+      - db_snapshot_identifier        = "rds:mojo-development-nac-admin-2024-10-11-04-33" -> null
+      ~ encrypted                     = true -> (known after apply)
+      ~ engine                        = "mysql" -> (known after apply)
+      ~ engine_version                = "8.0.39" -> (known after apply)
+      ~ id                            = "rds:mojo-development-nac-admin-2024-10-11-04-33" -> (known after apply)
+      - include_public                = false -> null
+      - include_shared                = false -> null
+      ~ iops                          = 3000 -> (known after apply)
+      ~ kms_key_id                    = "arn:aws:kms:eu-west-2:068084030754:key/d47acce2-86cd-40f7-9c2e-f69220247d5e" -> (known after apply)
+      ~ license_model                 = "general-public-license" -> (known after apply)
+      ~ option_group_name             = "mojo-development-nac-admin-db-audit-mysql-v8" -> (known after apply)
+      ~ port                          = 3306 -> (known after apply)
+      ~ snapshot_create_time          = "2024-10-11T04:33:35Z" -> (known after apply)
+      - snapshot_type                 = "automated" -> null
+      + source_db_snapshot_identifier = (known after apply)
+      + source_region                 = (known after apply)
+      ~ status                        = "available" -> (known after apply)
+      ~ storage_type                  = "gp3" -> (known after apply)
+      ~ vpc_id                        = "vpc-0ddfc0814ed938a5e" -> (known after apply)
+        # (2 unchanged attributes hidden)
+    }
+
+  # module.admin.data.aws_iam_policy_document.assume_role_policy will be read during apply
+  # (config refers to values not yet known)
+ <= data "aws_iam_policy_document" "assume_role_policy"  {
+      ~ id      = "320642683" -> (known after apply)
+      ~ json    = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = "sts:AssumeRole"
+                      - Effect    = "Allow"
+                      - Principal = {
+                          - Service = "ecs-tasks.amazonaws.com"
+                        }
+                      - Sid       = ""
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> (known after apply)
+      - version = "2012-10-17" -> null
+
+      ~ statement {
+          - effect        = "Allow" -> null
+          - not_actions   = [] -> null
+          - not_resources = [] -> null
+          - resources     = [] -> null
+            # (1 unchanged attribute hidden)
+
+            # (1 unchanged block hidden)
+        }
+    }
+
+  # module.admin.aws_db_instance.admin_db will be updated in-place
+  ~ resource "aws_db_instance" "admin_db" {
+      - character_set_name                    = "" -> null
+      - custom_iam_instance_profile           = "" -> null
+      - domain                                = "" -> null
+      - domain_iam_role_name                  = "" -> null
+        id                                    = "mojo-development-nac-admin"
+      - identifier_prefix                     = "" -> null
+        name                                  = "mojo_development_nac_admin"
+      - nchar_character_set_name              = "" -> null
+      # Warning: this attribute value will no longer be marked as sensitive
+      # after applying this change. The value is unchanged.
+      ~ password                              = (sensitive value)
+      - replica_mode                          = "" -> null
+      - replicate_source_db                   = "" -> null
+        tags                                  = {
+            "Name"             = "mojo-development-nac"
+            "Namespace"        = "mojo"
+            "Stage"            = "development"
+            "application"      = "network-access-control"
+            "business-unit"    = "HQ"
+            "environment-name" = "global"
+            "is-production"    = "false"
+            "owner"            = "nac@digital.justice.gov.uk"
+            "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+        }
+      - timezone                              = "" -> null
+      # Warning: this attribute value will no longer be marked as sensitive
+      # after applying this change. The value is unchanged.
+      ~ username                              = (sensitive)
+        # (54 unchanged attributes hidden)
+    }
+
+  # module.admin.aws_db_parameter_group.admin_db_parameter_group will be updated in-place
+  ~ resource "aws_db_parameter_group" "admin_db_parameter_group" {
+        id          = "mojo-development-nac-admin-parameter-group"
+        name        = "mojo-development-nac-admin-parameter-group"
+        tags        = {
+            "Name"             = "mojo-development-nac"
+            "Namespace"        = "mojo"
+            "Stage"            = "development"
+            "application"      = "network-access-control"
+            "business-unit"    = "HQ"
+            "environment-name" = "global"
+            "is-production"    = "false"
+            "owner"            = "nac@digital.justice.gov.uk"
+            "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+        }
+        # (4 unchanged attributes hidden)
+
+      - parameter {
+          - apply_method = "immediate" -> null
+          - name         = "max_connect_errors" -> null
+          - value        = "10000" -> null
+        }
+      + parameter {
+          + apply_method = "pending-reboot"
+          + name         = "max_connect_errors"
+          + value        = "10000"
+        }
+      + parameter {
+          + apply_method = "pending-reboot"
+          + name         = "sql_mode"
+          + value        = "STRICT_ALL_TABLES, NO_AUTO_CREATE_USER"
+        }
+      - parameter {
+          - apply_method = "pending-reboot" -> null
+          - name         = "sql_mode" -> null
+          - value        = "STRICT_ALL_TABLES,NO_AUTO_CREATE_USER" -> null
+        }
+        # (7 unchanged blocks hidden)
+    }
+
+  # module.admin.aws_ecr_repository_policy.admin will be updated in-place
+  ~ resource "aws_ecr_repository_policy" "admin" {
+        id          = "mojo-development-nac-admin"
+      ~ policy      = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = [
+                          - "ecr:GetDownloadUrlForLayer",
+                          - "ecr:BatchGetImage",
+                          - "ecr:BatchCheckLayerAvailability",
+                          - "ecr:PutImage",
+                          - "ecr:InitiateLayerUpload",
+                          - "ecr:UploadLayerPart",
+                          - "ecr:CompleteLayerUpload",
+                          - "ecr:DescribeRepositories",
+                          - "ecr:GetRepositoryPolicy",
+                          - "ecr:ListImages",
+                          - "ecr:DeleteRepository",
+                          - "ecr:BatchDeleteImage",
+                          - "ecr:SetRepositoryPolicy",
+                          - "ecr:DeleteRepositoryPolicy",
+                        ]
+                      - Effect    = "Allow"
+                      - Principal = {
+                          - AWS = [
+                              - "068084030754",
+                              - "683290208331",
+                            ]
+                        }
+                      - Sid       = "1"
+                    },
+                ]
+              - Version   = "2008-10-17"
+            }
+        ) -> (known after apply)
+        # (2 unchanged attributes hidden)
+    }
+
+  # module.admin.aws_ecs_service.admin will be updated in-place
+  ~ resource "aws_ecs_service" "admin" {
+        id                                 = "arn:aws:ecs:eu-west-2:068084030754:service/mojo-development-nac-cluster/admin"
+        name                               = "admin"
+        tags                               = {
+            "Name"             = "mojo-development-nac"
+            "Namespace"        = "mojo"
+            "Stage"            = "development"
+            "application"      = "network-access-control"
+            "business-unit"    = "HQ"
+            "environment-name" = "global"
+            "is-production"    = "false"
+            "owner"            = "nac@digital.justice.gov.uk"
+            "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+        }
+      ~ task_definition                    = "arn:aws:ecs:eu-west-2:068084030754:task-definition/mojo-development-nac-admin-task:69" -> (known after apply)
+        # (15 unchanged attributes hidden)
+
+
+
+
+        # (4 unchanged blocks hidden)
+    }
+
+  # module.admin.aws_ecs_service.admin_background_worker will be updated in-place
+  ~ resource "aws_ecs_service" "admin_background_worker" {
+        id                                 = "arn:aws:ecs:eu-west-2:068084030754:service/mojo-development-nac-cluster/admin-background-workers"
+        name                               = "admin-background-workers"
+        tags                               = {
+            "Name"             = "mojo-development-nac"
+            "Namespace"        = "mojo"
+            "Stage"            = "development"
+            "application"      = "network-access-control"
+            "business-unit"    = "HQ"
+            "environment-name" = "global"
+            "is-production"    = "false"
+            "owner"            = "nac@digital.justice.gov.uk"
+            "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+        }
+      ~ task_definition                    = "arn:aws:ecs:eu-west-2:068084030754:task-definition/mojo-development-nac-admin-task:68" -> (known after apply)
+        # (15 unchanged attributes hidden)
+
+
+
+        # (3 unchanged blocks hidden)
+    }
+
+  # module.admin.aws_ecs_task_definition.admin must be replaced
+-/+ resource "aws_ecs_task_definition" "admin" {
+      ~ arn                      = "arn:aws:ecs:eu-west-2:068084030754:task-definition/mojo-development-nac-admin-task:69" -> (known after apply)
+      ~ arn_without_revision     = "arn:aws:ecs:eu-west-2:068084030754:task-definition/mojo-development-nac-admin-task" -> (known after apply)
+      ~ container_definitions    = (sensitive) # forces replacement
+      ~ id                       = "mojo-development-nac-admin-task" -> (known after apply)
+      - ipc_mode                 = "" -> null
+      - pid_mode                 = "" -> null
+      ~ revision                 = 69 -> (known after apply)
+        tags                     = {
+            "Name"             = "mojo-development-nac"
+            "Namespace"        = "mojo"
+            "Stage"            = "development"
+            "application"      = "network-access-control"
+            "business-unit"    = "HQ"
+            "environment-name" = "global"
+            "is-production"    = "false"
+            "owner"            = "nac@digital.justice.gov.uk"
+            "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+        }
+        # (9 unchanged attributes hidden)
+    }
+
+  # module.admin.aws_ecs_task_definition.admin_background_worker must be replaced
+-/+ resource "aws_ecs_task_definition" "admin_background_worker" {
+      ~ arn                      = "arn:aws:ecs:eu-west-2:068084030754:task-definition/mojo-development-nac-admin-task:68" -> (known after apply)
+      ~ arn_without_revision     = "arn:aws:ecs:eu-west-2:068084030754:task-definition/mojo-development-nac-admin-task" -> (known after apply)
+      ~ container_definitions    = (sensitive) # forces replacement
+      ~ id                       = "mojo-development-nac-admin-task" -> (known after apply)
+      - ipc_mode                 = "" -> null
+      - pid_mode                 = "" -> null
+      ~ revision                 = 68 -> (known after apply)
+        tags                     = {
+            "Name"             = "mojo-development-nac"
+            "Namespace"        = "mojo"
+            "Stage"            = "development"
+            "application"      = "network-access-control"
+            "business-unit"    = "HQ"
+            "environment-name" = "global"
+            "is-production"    = "false"
+            "owner"            = "nac@digital.justice.gov.uk"
+            "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+        }
+        # (9 unchanged attributes hidden)
+    }
+
+  # module.admin.aws_iam_policy.secrets_manager_read_only will be destroyed
+  # (because aws_iam_policy.secrets_manager_read_only is not in configuration)
+  - resource "aws_iam_policy" "secrets_manager_read_only" {
+      - arn         = "arn:aws:iam::068084030754:policy/SecretsManagerReadOnly-mojo-development-nac-admin" -> null
+      - description = "allow all secrets to be read in secrets manager by ecs" -> null
+      - id          = "arn:aws:iam::068084030754:policy/SecretsManagerReadOnly-mojo-development-nac-admin" -> null
+      - name        = "SecretsManagerReadOnly-mojo-development-nac-admin" -> null
+      - path        = "/" -> null
+      - policy      = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action   = [
+                          - "secretsmanager:GetResourcePolicy",
+                          - "secretsmanager:GetSecretValue",
+                          - "secretsmanager:DescribeSecret",
+                          - "secretsmanager:ListSecretVersionIds",
+                          - "secretsmanager:ListSecrets",
+                        ]
+                      - Effect   = "Allow"
+                      - Resource = [
+                          - "arn:aws:secretsmanager:eu-west-2:068084030754:secret:/moj-network-access-control/development/admin/db-yBu4O7",
+                          - "arn:aws:secretsmanager:eu-west-2:068084030754:secret:/moj-network-access-control/development/admin/sentry_dsn-mBzQf6",
+                          - "arn:aws:secretsmanager:eu-west-2:068084030754:secret:/moj-network-access-control/development/eap/private_key_password-Epc8R1",
+                          - "arn:aws:secretsmanager:eu-west-2:068084030754:secret:/moj-network-access-control/development/radsec/private_key_password-mBzQf6",
+                        ]
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> null
+      - policy_id   = "ANPAQ7WQ73URBLC2T5VCE" -> null
+      - tags        = {} -> null
+      - tags_all    = {} -> null
+    }
+
+  # module.admin.aws_iam_role.ecs_execution_role will be updated in-place
+  ~ resource "aws_iam_role" "ecs_execution_role" {
+      ~ assume_role_policy    = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = "sts:AssumeRole"
+                      - Effect    = "Allow"
+                      - Principal = {
+                          - Service = "ecs-tasks.amazonaws.com"
+                        }
+                      - Sid       = ""
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> (known after apply)
+        id                    = "mojo-development-nac-admin-ecs-execution-role"
+        name                  = "mojo-development-nac-admin-ecs-execution-role"
+        tags                  = {
+            "Name"             = "mojo-development-nac"
+            "Namespace"        = "mojo"
+            "Stage"            = "development"
+            "application"      = "network-access-control"
+            "business-unit"    = "HQ"
+            "environment-name" = "global"
+            "is-production"    = "false"
+            "owner"            = "nac@digital.justice.gov.uk"
+            "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+        }
+        # (9 unchanged attributes hidden)
+
+        # (1 unchanged block hidden)
+    }
+
+  # module.admin.aws_iam_role.ecs_task_role will be updated in-place
+  ~ resource "aws_iam_role" "ecs_task_role" {
+      ~ assume_role_policy    = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = "sts:AssumeRole"
+                      - Effect    = "Allow"
+                      - Principal = {
+                          - Service = "ecs-tasks.amazonaws.com"
+                        }
+                      - Sid       = ""
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> (known after apply)
+        id                    = "mojo-development-nac-admin-ecs-task-role"
+        name                  = "mojo-development-nac-admin-ecs-task-role"
+        tags                  = {
+            "Name"             = "mojo-development-nac"
+            "Namespace"        = "mojo"
+            "Stage"            = "development"
+            "application"      = "network-access-control"
+            "business-unit"    = "HQ"
+            "environment-name" = "global"
+            "is-production"    = "false"
+            "owner"            = "nac@digital.justice.gov.uk"
+            "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+        }
+        # (9 unchanged attributes hidden)
+
+        # (1 unchanged block hidden)
+    }
+
+  # module.admin.aws_iam_role_policy_attachment.ecs_task_execution_policy_attachment will be created
+  + resource "aws_iam_role_policy_attachment" "ecs_task_execution_policy_attachment" {
+      + id         = (known after apply)
+      + policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+      + role       = "mojo-development-nac-admin-ecs-execution-role"
+    }
+
+  # module.admin.aws_iam_role_policy_attachment.ecs_task_execution_policy_attachment["arn:aws:iam::aws:policy/AmazonSSMReadOnlyAccess"] will be destroyed
+  # (because resource does not use for_each)
+  - resource "aws_iam_role_policy_attachment" "ecs_task_execution_policy_attachment" {
+      - id         = "mojo-development-nac-admin-ecs-execution-role-2024100912165905530000000d" -> null
+      - policy_arn = "arn:aws:iam::aws:policy/AmazonSSMReadOnlyAccess" -> null
+      - role       = "mojo-development-nac-admin-ecs-execution-role" -> null
+    }
+
+  # module.admin.aws_iam_role_policy_attachment.ecs_task_execution_policy_attachment["arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"] will be destroyed
+  # (because resource does not use for_each)
+  - resource "aws_iam_role_policy_attachment" "ecs_task_execution_policy_attachment" {
+      - id         = "mojo-development-nac-admin-ecs-execution-role-2024100912165888240000000c" -> null
+      - policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy" -> null
+      - role       = "mojo-development-nac-admin-ecs-execution-role" -> null
+    }
+
+  # module.admin.aws_iam_role_policy_attachment.ecs_task_execution_policy_attachment_sm will be destroyed
+  # (because aws_iam_role_policy_attachment.ecs_task_execution_policy_attachment_sm is not in configuration)
+  - resource "aws_iam_role_policy_attachment" "ecs_task_execution_policy_attachment_sm" {
+      - id         = "mojo-development-nac-admin-ecs-execution-role-2024100912165943400000000e" -> null
+      - policy_arn = "arn:aws:iam::068084030754:policy/SecretsManagerReadOnly-mojo-development-nac-admin" -> null
+      - role       = "mojo-development-nac-admin-ecs-execution-role" -> null
+    }
+
+  # module.admin_read_replica.aws_db_instance.admin_read_replica will be updated in-place
+  ~ resource "aws_db_instance" "admin_read_replica" {
+      - character_set_name                    = "" -> null
+      - custom_iam_instance_profile           = "" -> null
+      - domain                                = "" -> null
+      - domain_iam_role_name                  = "" -> null
+        id                                    = "mojo-development-nac-admin-read-replica"
+      - identifier_prefix                     = "" -> null
+      - latest_restorable_time                = "" -> null
+        name                                  = "mojo_development_nac_admin"
+      - nchar_character_set_name              = "" -> null
+      # Warning: this attribute value will no longer be marked as sensitive
+      # after applying this change. The value is unchanged.
+      ~ password                              = (sensitive value)
+      - replica_mode                          = "" -> null
+        tags                                  = {
+            "Name"             = "mojo-development-nac"
+            "Namespace"        = "mojo"
+            "Stage"            = "development"
+            "application"      = "network-access-control"
+            "business-unit"    = "HQ"
+            "environment-name" = "global"
+            "is-production"    = "false"
+            "owner"            = "nac@digital.justice.gov.uk"
+            "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+        }
+      - timezone                              = "" -> null
+        # (55 unchanged attributes hidden)
+    }
+
+  # module.admin_vpc.aws_vpc_endpoint.secrets will be destroyed
+  # (because aws_vpc_endpoint.secrets is not in configuration)
+  - resource "aws_vpc_endpoint" "secrets" {
+      - arn                   = "arn:aws:ec2:eu-west-2:068084030754:vpc-endpoint/vpce-01c97fa562aef2f8e" -> null
+      - cidr_blocks           = [] -> null
+      - dns_entry             = [
+          - {
+              - dns_name       = "vpce-01c97fa562aef2f8e-wxohc1dg.secretsmanager.eu-west-2.vpce.amazonaws.com"
+              - hosted_zone_id = "Z7K1066E3PUKB"
+            },
+          - {
+              - dns_name       = "vpce-01c97fa562aef2f8e-wxohc1dg-eu-west-2c.secretsmanager.eu-west-2.vpce.amazonaws.com"
+              - hosted_zone_id = "Z7K1066E3PUKB"
+            },
+          - {
+              - dns_name       = "vpce-01c97fa562aef2f8e-wxohc1dg-eu-west-2b.secretsmanager.eu-west-2.vpce.amazonaws.com"
+              - hosted_zone_id = "Z7K1066E3PUKB"
+            },
+          - {
+              - dns_name       = "vpce-01c97fa562aef2f8e-wxohc1dg-eu-west-2a.secretsmanager.eu-west-2.vpce.amazonaws.com"
+              - hosted_zone_id = "Z7K1066E3PUKB"
+            },
+          - {
+              - dns_name       = "secretsmanager.eu-west-2.amazonaws.com"
+              - hosted_zone_id = "Z02493233AJFLE6BVJBSS"
+            },
+        ] -> null
+      - id                    = "vpce-01c97fa562aef2f8e" -> null
+      - ip_address_type       = "ipv4" -> null
+      - network_interface_ids = [
+          - "eni-081eff8ae015a0ec3",
+          - "eni-0a4e0ec70b9a63e89",
+          - "eni-0e59d03097ace7c64",
+        ] -> null
+      - owner_id              = "068084030754" -> null
+      - policy                = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = "*"
+                      - Effect    = "Allow"
+                      - Principal = "*"
+                      - Resource  = "*"
+                    },
+                ]
+            }
+        ) -> null
+      - private_dns_enabled   = true -> null
+      - requester_managed     = false -> null
+      - route_table_ids       = [] -> null
+      - security_group_ids    = [
+          - "sg-05974246b6ec50bdb",
+        ] -> null
+      - service_name          = "com.amazonaws.eu-west-2.secretsmanager" -> null
+      - state                 = "available" -> null
+      - subnet_ids            = [
+          - "subnet-015bc71377d535c89",
+          - "subnet-09ff5087934bfa9e2",
+          - "subnet-0cc7db348f03a49ce",
+        ] -> null
+      - tags                  = {
+          - "Name"             = "mojo-development-nac"
+          - "Namespace"        = "mojo"
+          - "Stage"            = "development"
+          - "application"      = "network-access-control"
+          - "business-unit"    = "HQ"
+          - "environment-name" = "global"
+          - "is-production"    = "false"
+          - "owner"            = "nac@digital.justice.gov.uk"
+          - "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+        } -> null
+      - tags_all              = {
+          - "Name"             = "mojo-development-nac"
+          - "Namespace"        = "mojo"
+          - "Stage"            = "development"
+          - "application"      = "network-access-control"
+          - "business-unit"    = "HQ"
+          - "environment-name" = "global"
+          - "is-production"    = "false"
+          - "owner"            = "nac@digital.justice.gov.uk"
+          - "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+        } -> null
+      - vpc_endpoint_type     = "Interface" -> null
+      - vpc_id                = "vpc-0ddfc0814ed938a5e" -> null
+
+      - dns_options {
+          - dns_record_ip_type = "ipv4" -> null
+        }
+    }
+
+  # module.authentication.aws_cognito_identity_provider.cognito_identity_provider[0] will be updated in-place
+  ~ resource "aws_cognito_identity_provider" "cognito_identity_provider" {
+        id                = "eu-west-2_hTm1ywWuO:Azure"
+      ~ provider_details  = {
+          - "ActiveEncryptionCertificate" = "MIICvTCCAaWgAwIBAgIJAMbXn5KBH0OOMA0GCSqGSIb3DQEBCwUAMB4xHDAaBgNVBAMME2V1LXdlc3QtMl9oVG0xeXdXdU8wHhcNMjMxMjEyMTYwNzIwWhcNMzMxMjEyMDIxOTIwWjAeMRwwGgYDVQQDDBNldS13ZXN0LTJfaFRtMXl3V3VPMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA32K06chBKkcbvq7i86wd6t044rI/DDMUn1ZkxOh/IsqjX+Zg/tyaPFTNZQyqTWnbO5dtyAn2T1GFmvLM/afaGQkWRxQwSgLJW9palVo8zp0uxMBlzwHOY1TnNGCCVV48YQX6Nwgm5IGEt/c6bIKHDwM1wLBg2zWvyS2lAL6qKib2Em8e1AuVbUdxQSIy6PJ8bsGkqpYD9o6jC8+hvQDwBxXbEd6weuH3EfQfoiD+Q0UIq+2azOTyIIeAPFsCJ4DeE4m7pPX/vU2hpQkL5R5aRea38xh5zaB8IaBywdOxIdkm5A2HXy1lBYMsWGEGxhRbwpI0tI5mm7G3KTMhEZUb/wIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQBytzjrdpbaEfa7a5RflFLLrTvnL3wn2SMQaC478rOUK5/T/zCAMYmC5reGXjdk5ysfqP04faQOLOO7nLQ820b01NLoJE7i5OcsqHJLnHIDNU7/CzzBRytVYhvAth7tyfOiMLlPLwslBU6qrJWO81i0RvJbyASE8HwDh/EsjLdxRmJMYvrN8O+nDrOmR+oSMoAbyFOqK5b92GHfaJXLF5klB7Cbs0is/5ekcSvbYVaXPyxg8XmpAFX5wV7Q/YE4GffQwzPSt9nOWDYUvGB8vzFhi0Q6kL+u/YWiZLq5z3/qS1InIVc1z8iWyqHq/zCWrqfl4w8AzRfQFWU2Nbx63fgY" -> null
+          # Warning: this attribute value will be marked as sensitive and will not
+          # display in UI output after applying this change. The value is unchanged.
+          ~ "MetadataURL"                 = (sensitive)
+          # Warning: this attribute value will be marked as sensitive and will not
+          # display in UI output after applying this change. The value is unchanged.
+          ~ "SLORedirectBindingURI"       = (sensitive)
+          # Warning: this attribute value will be marked as sensitive and will not
+          # display in UI output after applying this change. The value is unchanged.
+          ~ "SSORedirectBindingURI"       = (sensitive)
+        }
+        # (5 unchanged attributes hidden)
+    }
+
+  # module.performance_testing[0].local_file.ec2_private_key will be created
+  + resource "local_file" "ec2_private_key" {
+      + content_base64sha256 = (known after apply)
+      + content_base64sha512 = (known after apply)
+      + content_md5          = (known after apply)
+      + content_sha1         = (known after apply)
+      + content_sha256       = (known after apply)
+      + content_sha512       = (known after apply)
+      + directory_permission = "0777"
+      + file_permission      = "0600"
+      + filename             = "ec2.pem"
+      + id                   = (known after apply)
+      + sensitive_content    = (sensitive value)
+    }
+
+  # module.radius.aws_ecs_service.internal_service will be updated in-place
+  ~ resource "aws_ecs_service" "internal_service" {
+        id                                 = "arn:aws:ecs:eu-west-2:068084030754:service/mojo-development-nac-cluster/internal"
+        name                               = "internal"
+        tags                               = {
+            "Name"             = "mojo-development-nac"
+            "Namespace"        = "mojo"
+            "Stage"            = "development"
+            "application"      = "network-access-control"
+            "business-unit"    = "HQ"
+            "environment-name" = "global"
+            "is-production"    = "false"
+            "owner"            = "nac@digital.justice.gov.uk"
+            "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+        }
+      ~ task_definition                    = "arn:aws:ecs:eu-west-2:068084030754:task-definition/mojo-development-nac-server-task:72" -> (known after apply)
+        # (15 unchanged attributes hidden)
+
+
+
+
+        # (5 unchanged blocks hidden)
+    }
+
+  # module.radius.aws_ecs_service.service will be updated in-place
+  ~ resource "aws_ecs_service" "service" {
+        id                                 = "arn:aws:ecs:eu-west-2:068084030754:service/mojo-development-nac-cluster/public"
+        name                               = "public"
+        tags                               = {
+            "Name"             = "mojo-development-nac"
+            "Namespace"        = "mojo"
+            "Stage"            = "development"
+            "application"      = "network-access-control"
+            "business-unit"    = "HQ"
+            "environment-name" = "global"
+            "is-production"    = "false"
+            "owner"            = "nac@digital.justice.gov.uk"
+            "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+        }
+      ~ task_definition                    = "arn:aws:ecs:eu-west-2:068084030754:task-definition/mojo-development-nac-server-task:73" -> (known after apply)
+        # (15 unchanged attributes hidden)
+
+
+
+
+        # (5 unchanged blocks hidden)
+    }
+
+  # module.radius.aws_ecs_task_definition.server_task must be replaced
+-/+ resource "aws_ecs_task_definition" "server_task" {
+      ~ arn                      = "arn:aws:ecs:eu-west-2:068084030754:task-definition/mojo-development-nac-server-task:72" -> (known after apply)
+      ~ arn_without_revision     = "arn:aws:ecs:eu-west-2:068084030754:task-definition/mojo-development-nac-server-task" -> (known after apply)
+      ~ container_definitions    = jsonencode(
+          ~ [ # forces replacement
+              ~ {
+                  - cpu              = 0 -> null
+                  ~ environment      = [
+                        # (1 unchanged element hidden)
+                        {
+                            name  = "DB_NAME"
+                            value = "mojo_development_nac_admin"
+                        },
+                      + {
+                          + name  = "DB_PASS"
+                          + value = "I31r7G5ThYuMf4fsyXOsdEwW0"
+                        },
+                        {
+                            name  = "DB_PORT"
+                            value = "3306"
+                        },
+                      + {
+                          + name  = "DB_USER"
+                          + value = "admin"
+                        },
+                      + {
+                          + name  = "EAP_PRIVATE_KEY_PASSWORD"
+                          + value = "Remark Airplane Operation 5"
+                        },
+                        {
+                            name  = "ECS_ENABLE_CONTAINER_METADATA"
+                            value = "true"
+                        },
+                        # (10 unchanged elements hidden)
+                        {
+                            name  = "RADIUS_CONFIG_BUCKET_NAME"
+                            value = "mojo-development-nac-config-bucket"
+                        },
+                      + {
+                          + name  = "RADSEC_PRIVATE_KEY_PASSWORD"
+                          + value = "aqbEf3MDh4FTFV"
+                        },
+                    ]
+                  - mountPoints      = [] -> null
+                  - secrets          = [
+                      - {
+                          - name      = "DB_USER"
+                          - valueFrom = "arn:aws:secretsmanager:eu-west-2:068084030754:secret:/moj-network-access-control/development/admin/db-yBu4O7:username::"
+                        },
+                      - {
+                          - name      = "DB_PASS"
+                          - valueFrom = "arn:aws:secretsmanager:eu-west-2:068084030754:secret:/moj-network-access-control/development/admin/db-yBu4O7:password::"
+                        },
+                      - {
+                          - name      = "EAP_SERVER_PRIVATE_KEY_PASSPHRASE"
+                          - valueFrom = "arn:aws:secretsmanager:eu-west-2:068084030754:secret:/moj-network-access-control/development/eap/private_key_password-Epc8R1"
+                        },
+                      - {
+                          - name      = "RADSEC_SERVER_PRIVATE_KEY_PASSPHRASE"
+                          - valueFrom = "arn:aws:secretsmanager:eu-west-2:068084030754:secret:/moj-network-access-control/development/radsec/private_key_password-mBzQf6"
+                        },
+                    ] -> null
+                  - systemControls   = [] -> null
+                  - volumesFrom      = [] -> null
+                    # (6 unchanged elements hidden)
+                } # forces replacement,
+              ~ {
+                  - cpu              = 0 -> null
+                  - environment      = [] -> null
+                  - essential        = true -> null
+                  - mountPoints      = [] -> null
+                  - systemControls   = [] -> null
+                  - volumesFrom      = [] -> null
+                    # (4 unchanged elements hidden)
+                } # forces replacement,
+            ]
+        )
+      ~ id                       = "mojo-development-nac-server-task" -> (known after apply)
+      ~ revision                 = 72 -> (known after apply)
+        tags                     = {
+            "Name"             = "mojo-development-nac"
+            "Namespace"        = "mojo"
+            "Stage"            = "development"
+            "application"      = "network-access-control"
+            "business-unit"    = "HQ"
+            "environment-name" = "global"
+            "is-production"    = "false"
+            "owner"            = "nac@digital.justice.gov.uk"
+            "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+        }
+        # (9 unchanged attributes hidden)
+    }
+
+  # module.radius.aws_iam_policy.secrets_manager_read_only will be destroyed
+  # (because aws_iam_policy.secrets_manager_read_only is not in configuration)
+  - resource "aws_iam_policy" "secrets_manager_read_only" {
+      - arn         = "arn:aws:iam::068084030754:policy/SecretsManagerReadOnly-mojo-development-nac" -> null
+      - description = "allow all secrets to be read in secrets manager by ecs" -> null
+      - id          = "arn:aws:iam::068084030754:policy/SecretsManagerReadOnly-mojo-development-nac" -> null
+      - name        = "SecretsManagerReadOnly-mojo-development-nac" -> null
+      - path        = "/" -> null
+      - policy      = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action   = [
+                          - "secretsmanager:GetResourcePolicy",
+                          - "secretsmanager:GetSecretValue",
+                          - "secretsmanager:DescribeSecret",
+                          - "secretsmanager:ListSecretVersionIds",
+                          - "secretsmanager:ListSecrets",
+                        ]
+                      - Effect   = "Allow"
+                      - Resource = [
+                          - "arn:aws:secretsmanager:eu-west-2:068084030754:secret:/moj-network-access-control/development/admin/db-yBu4O7",
+                          - "arn:aws:secretsmanager:eu-west-2:068084030754:secret:/moj-network-access-control/development/admin/sentry_dsn-mBzQf6",
+                          - "arn:aws:secretsmanager:eu-west-2:068084030754:secret:/moj-network-access-control/development/eap/private_key_password-Epc8R1",
+                          - "arn:aws:secretsmanager:eu-west-2:068084030754:secret:/moj-network-access-control/development/radsec/private_key_password-mBzQf6",
+                        ]
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> null
+      - policy_id   = "ANPAQ7WQ73URGUM3CRU6D" -> null
+      - tags        = {} -> null
+      - tags_all    = {} -> null
+    }
+
+  # module.radius.aws_iam_role_policy_attachment.ecs_task_execution_policy_attachment will be created
+  + resource "aws_iam_role_policy_attachment" "ecs_task_execution_policy_attachment" {
+      + id         = (known after apply)
+      + policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+      + role       = "mojo-development-nac-ecs-execution-role"
+    }
+
+  # module.radius.aws_iam_role_policy_attachment.ecs_task_execution_policy_attachment["arn:aws:iam::aws:policy/AmazonSSMReadOnlyAccess"] will be destroyed
+  # (because resource does not use for_each)
+  - resource "aws_iam_role_policy_attachment" "ecs_task_execution_policy_attachment" {
+      - id         = "mojo-development-nac-ecs-execution-role-20241009121521211300000008" -> null
+      - policy_arn = "arn:aws:iam::aws:policy/AmazonSSMReadOnlyAccess" -> null
+      - role       = "mojo-development-nac-ecs-execution-role" -> null
+    }
+
+  # module.radius.aws_iam_role_policy_attachment.ecs_task_execution_policy_attachment["arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"] will be destroyed
+  # (because resource does not use for_each)
+  - resource "aws_iam_role_policy_attachment" "ecs_task_execution_policy_attachment" {
+      - id         = "mojo-development-nac-ecs-execution-role-20241009122032213700000001" -> null
+      - policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy" -> null
+      - role       = "mojo-development-nac-ecs-execution-role" -> null
+    }
+
+  # module.radius.aws_iam_role_policy_attachment.ecs_task_execution_policy_attachment_sm will be destroyed
+  # (because aws_iam_role_policy_attachment.ecs_task_execution_policy_attachment_sm is not in configuration)
+  - resource "aws_iam_role_policy_attachment" "ecs_task_execution_policy_attachment_sm" {
+      - id         = "mojo-development-nac-ecs-execution-role-2024100912152192290000000a" -> null
+      - policy_arn = "arn:aws:iam::068084030754:policy/SecretsManagerReadOnly-mojo-development-nac" -> null
+      - role       = "mojo-development-nac-ecs-execution-role" -> null
+    }
+
+  # module.radius_vpc.aws_vpc_endpoint.ec2messages[0] will be updated in-place
+  ~ resource "aws_vpc_endpoint" "ec2messages" {
+        id                    = "vpce-02539c96f45e6cd9b"
+      ~ subnet_ids            = [
+          + "subnet-003506ea6cfb382f8",
+          - "subnet-04b742aa236944140",
+          - "subnet-054215d0cffe1734e",
+          + "subnet-055db5ad7c5d92a4b",
+          - "subnet-0e2360c3090bd5928",
+          + "subnet-0e55e894af06b3395",
+        ]
+        tags                  = {
+            "Name"             = "mojo-development-nac"
+            "Namespace"        = "mojo"
+            "Stage"            = "development"
+            "application"      = "network-access-control"
+            "business-unit"    = "HQ"
+            "environment-name" = "global"
+            "is-production"    = "false"
+            "owner"            = "nac@digital.justice.gov.uk"
+            "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+        }
+        # (16 unchanged attributes hidden)
+
+        # (1 unchanged block hidden)
+    }
+
+  # module.radius_vpc.aws_vpc_endpoint.kms[0] will be updated in-place
+  ~ resource "aws_vpc_endpoint" "kms" {
+        id                    = "vpce-0ee9412208c883fe7"
+      ~ subnet_ids            = [
+          + "subnet-003506ea6cfb382f8",
+          - "subnet-04b742aa236944140",
+          - "subnet-054215d0cffe1734e",
+          + "subnet-055db5ad7c5d92a4b",
+          - "subnet-0e2360c3090bd5928",
+          + "subnet-0e55e894af06b3395",
+        ]
+        tags                  = {
+            "Name"             = "mojo-development-nac"
+            "Namespace"        = "mojo"
+            "Stage"            = "development"
+            "application"      = "network-access-control"
+            "business-unit"    = "HQ"
+            "environment-name" = "global"
+            "is-production"    = "false"
+            "owner"            = "nac@digital.justice.gov.uk"
+            "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+        }
+        # (16 unchanged attributes hidden)
+
+        # (1 unchanged block hidden)
+    }
+
+  # module.radius_vpc.aws_vpc_endpoint.secrets will be destroyed
+  # (because aws_vpc_endpoint.secrets is not in configuration)
+  - resource "aws_vpc_endpoint" "secrets" {
+      - arn                   = "arn:aws:ec2:eu-west-2:068084030754:vpc-endpoint/vpce-02bf15abfe3733619" -> null
+      - cidr_blocks           = [] -> null
+      - dns_entry             = [
+          - {
+              - dns_name       = "vpce-02bf15abfe3733619-8429kadw.secretsmanager.eu-west-2.vpce.amazonaws.com"
+              - hosted_zone_id = "Z7K1066E3PUKB"
+            },
+          - {
+              - dns_name       = "vpce-02bf15abfe3733619-8429kadw-eu-west-2b.secretsmanager.eu-west-2.vpce.amazonaws.com"
+              - hosted_zone_id = "Z7K1066E3PUKB"
+            },
+          - {
+              - dns_name       = "vpce-02bf15abfe3733619-8429kadw-eu-west-2c.secretsmanager.eu-west-2.vpce.amazonaws.com"
+              - hosted_zone_id = "Z7K1066E3PUKB"
+            },
+          - {
+              - dns_name       = "vpce-02bf15abfe3733619-8429kadw-eu-west-2a.secretsmanager.eu-west-2.vpce.amazonaws.com"
+              - hosted_zone_id = "Z7K1066E3PUKB"
+            },
+          - {
+              - dns_name       = "secretsmanager.eu-west-2.amazonaws.com"
+              - hosted_zone_id = "Z0217735MRFPSLHVZCLA"
+            },
+        ] -> null
+      - id                    = "vpce-02bf15abfe3733619" -> null
+      - ip_address_type       = "ipv4" -> null
+      - network_interface_ids = [
+          - "eni-03156ad92b441083d",
+          - "eni-0d94a112f61ba0c85",
+          - "eni-0e5db87296fedba80",
+        ] -> null
+      - owner_id              = "068084030754" -> null
+      - policy                = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = "*"
+                      - Effect    = "Allow"
+                      - Principal = "*"
+                      - Resource  = "*"
+                    },
+                ]
+            }
+        ) -> null
+      - private_dns_enabled   = true -> null
+      - requester_managed     = false -> null
+      - route_table_ids       = [] -> null
+      - security_group_ids    = [
+          - "sg-018b364167e6d4c0b",
+        ] -> null
+      - service_name          = "com.amazonaws.eu-west-2.secretsmanager" -> null
+      - state                 = "available" -> null
+      - subnet_ids            = [
+          - "subnet-04b742aa236944140",
+          - "subnet-054215d0cffe1734e",
+          - "subnet-0e2360c3090bd5928",
+        ] -> null
+      - tags                  = {
+          - "Name"             = "mojo-development-nac"
+          - "Namespace"        = "mojo"
+          - "Stage"            = "development"
+          - "application"      = "network-access-control"
+          - "business-unit"    = "HQ"
+          - "environment-name" = "global"
+          - "is-production"    = "false"
+          - "owner"            = "nac@digital.justice.gov.uk"
+          - "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+        } -> null
+      - tags_all              = {
+          - "Name"             = "mojo-development-nac"
+          - "Namespace"        = "mojo"
+          - "Stage"            = "development"
+          - "application"      = "network-access-control"
+          - "business-unit"    = "HQ"
+          - "environment-name" = "global"
+          - "is-production"    = "false"
+          - "owner"            = "nac@digital.justice.gov.uk"
+          - "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+        } -> null
+      - vpc_endpoint_type     = "Interface" -> null
+      - vpc_id                = "vpc-0af599e8e8a43da03" -> null
+
+      - dns_options {
+          - dns_record_ip_type = "ipv4" -> null
+        }
+    }
+
+  # module.radius_vpc.aws_vpc_endpoint.ssm[0] will be updated in-place
+  ~ resource "aws_vpc_endpoint" "ssm" {
+        id                    = "vpce-04a9906ace2c3db9f"
+      ~ subnet_ids            = [
+          + "subnet-003506ea6cfb382f8",
+          - "subnet-04b742aa236944140",
+          - "subnet-054215d0cffe1734e",
+          + "subnet-055db5ad7c5d92a4b",
+          - "subnet-0e2360c3090bd5928",
+          + "subnet-0e55e894af06b3395",
+        ]
+        tags                  = {
+            "Name"             = "mojo-development-nac"
+            "Namespace"        = "mojo"
+            "Stage"            = "development"
+            "application"      = "network-access-control"
+            "business-unit"    = "HQ"
+            "environment-name" = "global"
+            "is-production"    = "false"
+            "owner"            = "nac@digital.justice.gov.uk"
+            "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+        }
+        # (16 unchanged attributes hidden)
+
+        # (1 unchanged block hidden)
+    }
+
+  # module.radius_vpc.aws_vpc_endpoint.ssmmessages[0] will be updated in-place
+  ~ resource "aws_vpc_endpoint" "ssmmessages" {
+        id                    = "vpce-02f365fdabd67b882"
+      ~ subnet_ids            = [
+          + "subnet-003506ea6cfb382f8",
+          - "subnet-04b742aa236944140",
+          - "subnet-054215d0cffe1734e",
+          + "subnet-055db5ad7c5d92a4b",
+          - "subnet-0e2360c3090bd5928",
+          + "subnet-0e55e894af06b3395",
+        ]
+        tags                  = {
+            "Name"             = "mojo-development-nac"
+            "Namespace"        = "mojo"
+            "Stage"            = "development"
+            "application"      = "network-access-control"
+            "business-unit"    = "HQ"
+            "environment-name" = "global"
+            "is-production"    = "false"
+            "owner"            = "nac@digital.justice.gov.uk"
+            "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+        }
+        # (16 unchanged attributes hidden)
+
+        # (1 unchanged block hidden)
+    }
+
+  # module.rds_admin_bastion[0].data.aws_ami.ubuntu will be read during apply
+  # (config refers to values not yet known)
+ <= data "aws_ami" "ubuntu"  {
+      ~ architecture          = "x86_64" -> (known after apply)
+      ~ arn                   = "arn:aws:ec2:eu-west-2::image/ami-07d410e5ae52cbd63" -> (known after apply)
+      ~ block_device_mappings = [
+          - {
+              - device_name  = "/dev/sda1"
+              - ebs          = {
+                  - "delete_on_termination" = "true"
+                  - "encrypted"             = "false"
+                  - "iops"                  = "0"
+                  - "snapshot_id"           = "snap-0918446e0ecc63585"
+                  - "throughput"            = "0"
+                  - "volume_size"           = "8"
+                  - "volume_type"           = "gp2"
+                }
+              - no_device    = ""
+              - virtual_name = ""
+            },
+          - {
+              - device_name  = "/dev/sdb"
+              - ebs          = {}
+              - no_device    = ""
+              - virtual_name = "ephemeral0"
+            },
+          - {
+              - device_name  = "/dev/sdc"
+              - ebs          = {}
+              - no_device    = ""
+              - virtual_name = "ephemeral1"
+            },
+        ] -> (known after apply)
+      ~ boot_mode             = "uefi-preferred" -> (known after apply)
+      ~ creation_date         = "2024-10-01T00:07:15.000Z" -> (known after apply)
+      + deprecation_time      = (known after apply)
+      + description           = (known after apply)
+      ~ ena_support           = true -> (known after apply)
+      ~ hypervisor            = "xen" -> (known after apply)
+      ~ id                    = "ami-07d410e5ae52cbd63" -> (known after apply)
+      ~ image_id              = "ami-07d410e5ae52cbd63" -> (known after apply)
+      ~ image_location        = "683290208331/diso-devops/bastion/ubuntu-jammy-22.04-amd64-server-generic-1727741025" -> (known after apply)
+      + image_owner_alias     = (known after apply)
+      ~ image_type            = "machine" -> (known after apply)
+      + imds_support          = (known after apply)
+      - include_deprecated    = false -> null
+      + kernel_id             = (known after apply)
+      ~ name                  = "diso-devops/bastion/ubuntu-jammy-22.04-amd64-server-generic-1727741025" -> (known after apply)
+      ~ owner_id              = "683290208331" -> (known after apply)
+      + platform              = (known after apply)
+      ~ platform_details      = "Linux/UNIX" -> (known after apply)
+      ~ product_codes         = [] -> (known after apply)
+      ~ public                = false -> (known after apply)
+      + ramdisk_id            = (known after apply)
+      ~ root_device_name      = "/dev/sda1" -> (known after apply)
+      ~ root_device_type      = "ebs" -> (known after apply)
+      ~ root_snapshot_id      = "snap-0918446e0ecc63585" -> (known after apply)
+      ~ sriov_net_support     = "simple" -> (known after apply)
+      ~ state                 = "available" -> (known after apply)
+      ~ state_reason          = {
+          - "code"    = "UNSET"
+          - "message" = "UNSET"
+        } -> (known after apply)
+      ~ tags                  = {
+          + "deploy_to_all_environments" = "True"
+        }
+      + tpm_support           = (known after apply)
+      ~ usage_operation       = "RunInstances" -> (known after apply)
+      ~ virtualization_type   = "hvm" -> (known after apply)
+        # (2 unchanged attributes hidden)
+
+
+      + timeouts {
+          + read = (known after apply)
+        }
+        # (1 unchanged block hidden)
+    }
+
+  # module.rds_admin_bastion[0].data.aws_caller_identity.current will be read during apply
+  # (config refers to values not yet known)
+ <= data "aws_caller_identity" "current"  {
+      ~ account_id = "068084030754" -> (known after apply)
+      ~ arn        = "arn:aws:sts::068084030754:assumed-role/SharedServicesCodeBuild/aws-go-sdk-1728664918552521238" -> (known after apply)
+      ~ id         = "068084030754" -> (known after apply)
+      ~ user_id    = "AROAQ7WQ73URA373G56PR:aws-go-sdk-1728664918552521238" -> (known after apply)
+    }
+
+  # module.rds_admin_bastion[0].data.aws_iam_policy_document.kms_key_policy will be read during apply
+  # (config refers to values not yet known)
+ <= data "aws_iam_policy_document" "kms_key_policy"  {
+      ~ id      = "1346700860" -> (known after apply)
+      ~ json    = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = "kms:*"
+                      - Effect    = "Allow"
+                      - Principal = {
+                          - AWS = "arn:aws:iam::068084030754:root"
+                        }
+                      - Resource  = "*"
+                      - Sid       = ""
+                    },
+                  - {
+                      - Action    = [
+                          - "kms:ReEncrypt*",
+                          - "kms:GenerateDataKey*",
+                          - "kms:Encrypt*",
+                          - "kms:Describe*",
+                          - "kms:Decrypt*",
+                        ]
+                      - Effect    = "Allow"
+                      - Principal = {
+                          - Service = "logs.eu-west-2.amazonaws.com"
+                        }
+                      - Resource  = "*"
+                      - Sid       = ""
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> (known after apply)
+      - version = "2012-10-17" -> null
+
+      ~ statement {
+          - not_actions   = [] -> null
+          - not_resources = [] -> null
+            # (3 unchanged attributes hidden)
+
+          - principals {
+              - identifiers = [
+                  - "arn:aws:iam::068084030754:root",
+                ] -> null
+              - type        = "AWS" -> null
+            }
+          + principals {
+              + identifiers = [
+                  + (known after apply),
+                ]
+              + type        = "AWS"
+            }
+        }
+      ~ statement {
+          - not_actions   = [] -> null
+          - not_resources = [] -> null
+            # (3 unchanged attributes hidden)
+
+          - principals {
+              - identifiers = [
+                  - "logs.eu-west-2.amazonaws.com",
+                ] -> null
+              - type        = "Service" -> null
+            }
+          + principals {
+              + identifiers = [
+                  + (known after apply),
+                ]
+              + type        = "Service"
+            }
+        }
+    }
+
+  # module.rds_admin_bastion[0].data.aws_iam_policy_document.kms_key_policy_iam_profile will be read during apply
+  # (config refers to values not yet known)
+ <= data "aws_iam_policy_document" "kms_key_policy_iam_profile"  {
+      ~ id      = "580291295" -> (known after apply)
+      ~ json    = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action   = "kms:Encrypt"
+                      - Effect   = "Allow"
+                      - Resource = "arn:aws:kms:eu-west-2:068084030754:key/a6343365-dc99-405d-ae00-caa4a8934fad"
+                      - Sid      = ""
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> (known after apply)
+      - version = "2012-10-17" -> null
+
+      ~ statement {
+          - not_actions   = [] -> null
+          - not_resources = [] -> null
+            # (3 unchanged attributes hidden)
+        }
+    }
+
+  # module.rds_admin_bastion[0].data.aws_iam_policy_document.trust_policy will be read during apply
+  # (config refers to values not yet known)
+ <= data "aws_iam_policy_document" "trust_policy"  {
+      ~ id      = "3443809763" -> (known after apply)
+      ~ json    = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = "sts:AssumeRole"
+                      - Effect    = "Allow"
+                      - Principal = {
+                          - Service = [
+                              - "ssm.amazonaws.com",
+                              - "ec2.amazonaws.com",
+                            ]
+                        }
+                      - Sid       = ""
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> (known after apply)
+      - version = "2012-10-17" -> null
+
+      ~ statement {
+          - not_actions   = [] -> null
+          - not_resources = [] -> null
+          - resources     = [] -> null
+            # (2 unchanged attributes hidden)
+
+            # (1 unchanged block hidden)
+        }
+    }
+
+  # module.rds_admin_bastion[0].data.aws_region.current will be read during apply
+  # (config refers to values not yet known)
+ <= data "aws_region" "current"  {
+      ~ description = "Europe (London)" -> (known after apply)
+      ~ endpoint    = "ec2.eu-west-2.amazonaws.com" -> (known after apply)
+      ~ id          = "eu-west-2" -> (known after apply)
+      ~ name        = "eu-west-2" -> (known after apply)
+    }
+
+  # module.rds_admin_bastion[0].data.template_file.bucket_access_policy will be read during apply
+  # (config refers to values not yet known)
+ <= data "template_file" "bucket_access_policy"  {
+      ~ id       = "74c0577df58e746de09e997bfbb7564323a4d544398b69b3a8d11928c8b30539" -> (known after apply)
+      ~ rendered = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action   = "sts:AssumeRole"
+                      - Effect   = "Allow"
+                      - Resource = "arn:aws:iam::683290208331:role/s3-mojo-file-transfer-assume-role"
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> (known after apply)
+        # (2 unchanged attributes hidden)
+    }
+
+  # module.rds_admin_bastion[0].data.template_file.user_data will be read during apply
+  # (config refers to values not yet known)
+ <= data "template_file" "user_data"  {
+      ~ id       = "e79bd30eee9deb6416ef7e9d8c5e3d3f805f3a2f28457f8c95691a6cb713364f" -> (known after apply)
+      ~ rendered = <<-EOT
+            #!/usr/bin/env bash
+            set -x
+            
+            mkdir ~/.aws
+            cat << 'EOF' > ~/.aws/config
+            [profile s3-role]
+            role_arn = arn:aws:iam::683290208331:role/s3-mojo-file-transfer-assume-role
+            credential_source = Ec2InstanceMetadata
+            EOF
+        EOT -> (known after apply)
+        # (2 unchanged attributes hidden)
+    }
+
+  # module.rds_admin_bastion[0].aws_iam_policy.s3_bucket_access will be updated in-place
+  ~ resource "aws_iam_policy" "s3_bucket_access" {
+        id        = "arn:aws:iam::068084030754:policy/bastion-ssm-iam-Tj6g6s3-bucket-access"
+        name      = "bastion-ssm-iam-Tj6g6s3-bucket-access"
+      ~ policy    = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action   = "sts:AssumeRole"
+                      - Effect   = "Allow"
+                      - Resource = "arn:aws:iam::683290208331:role/s3-mojo-file-transfer-assume-role"
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> (known after apply)
+        tags      = {}
+        # (4 unchanged attributes hidden)
+    }
+
+  # module.rds_admin_bastion[0].aws_iam_role.iam_instance_role will be updated in-place
+  ~ resource "aws_iam_role" "iam_instance_role" {
+      ~ assume_role_policy    = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = "sts:AssumeRole"
+                      - Effect    = "Allow"
+                      - Principal = {
+                          - Service = [
+                              - "ssm.amazonaws.com",
+                              - "ec2.amazonaws.com",
+                            ]
+                        }
+                      - Sid       = ""
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> (known after apply)
+        id                    = "bastion-ssm-iam-Tj6g6"
+        name                  = "bastion-ssm-iam-Tj6g6"
+        tags                  = {}
+        # (9 unchanged attributes hidden)
+
+        # (1 unchanged block hidden)
+    }
+
+  # module.rds_admin_bastion[0].aws_iam_role_policy.kms will be updated in-place
+  ~ resource "aws_iam_role_policy" "kms" {
+        id     = "bastion-ssm-iam-Tj6g6:inline-policy-kms-access"
+        name   = "inline-policy-kms-access"
+      ~ policy = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action   = "kms:Encrypt"
+                      - Effect   = "Allow"
+                      - Resource = "arn:aws:kms:eu-west-2:068084030754:key/a6343365-dc99-405d-ae00-caa4a8934fad"
+                      - Sid      = ""
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> (known after apply)
+        # (1 unchanged attribute hidden)
+    }
+
+  # module.rds_admin_bastion[0].aws_instance.bastion[0] must be replaced
++/- resource "aws_instance" "bastion" {
+      ~ ami                                  = "ami-07d410e5ae52cbd63" -> (known after apply) # forces replacement
+      ~ arn                                  = "arn:aws:ec2:eu-west-2:068084030754:instance/i-0110ccc45e315262c" -> (known after apply)
+      ~ availability_zone                    = "eu-west-2a" -> (known after apply)
+      ~ cpu_core_count                       = 1 -> (known after apply)
+      ~ cpu_threads_per_core                 = 2 -> (known after apply)
+      ~ disable_api_stop                     = false -> (known after apply)
+      ~ disable_api_termination              = false -> (known after apply)
+      ~ ebs_optimized                        = false -> (known after apply)
+      - hibernation                          = false -> null
+      + host_id                              = (known after apply)
+      + host_resource_group_arn              = (known after apply)
+      ~ id                                   = "i-0110ccc45e315262c" -> (known after apply)
+      ~ instance_state                       = "running" -> (known after apply)
+      ~ ipv6_address_count                   = 0 -> (known after apply)
+      ~ ipv6_addresses                       = [] -> (known after apply)
+      + key_name                             = (known after apply)
+      + outpost_arn                          = (known after apply)
+      + password_data                        = (known after apply)
+      + placement_group                      = (known after apply)
+      ~ placement_partition_number           = 0 -> (known after apply)
+      ~ primary_network_interface_id         = "eni-072867017268408ab" -> (known after apply)
+      ~ private_dns                          = "ip-10-0-1-230.eu-west-2.compute.internal" -> (known after apply)
+      ~ private_ip                           = "10.0.1.230" -> (known after apply)
+      + public_dns                           = (known after apply)
+      + public_ip                            = (known after apply)
+      ~ secondary_private_ips                = [] -> (known after apply)
+      ~ security_groups                      = [] -> (known after apply)
+        tags                                 = {
+            "Name"             = "mojo-development-rds-admin-bastion"
+            "Namespace"        = "mojo"
+            "Stage"            = "development"
+            "application"      = "network-access-control"
+            "business-unit"    = "HQ"
+            "environment-name" = "development"
+            "is-production"    = "false"
+            "owner"            = "NVVS DevOps Team: nac@justice.gov.uk"
+            "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+        }
+      ~ tenancy                              = "default" -> (known after apply)
+      ~ user_data                            = "3dd1b821d8638878bdf732070fd3640df4497e59" -> (known after apply)
+      + user_data_base64                     = (known after apply)
+        # (11 unchanged attributes hidden)
+
+      ~ capacity_reservation_specification {
+          ~ capacity_reservation_preference = "open" -> (known after apply)
+
+          + capacity_reservation_target {
+              + capacity_reservation_id                 = (known after apply)
+              + capacity_reservation_resource_group_arn = (known after apply)
+            }
+        }
+
+      ~ cpu_options {
+          + amd_sev_snp      = (known after apply)
+          ~ core_count       = 1 -> (known after apply)
+          ~ threads_per_core = 2 -> (known after apply)
+        }
+
+      - credit_specification {
+          - cpu_credits = "unlimited" -> null
+        }
+
+      + ebs_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + snapshot_id           = (known after apply)
+          + tags                  = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+
+      ~ enclave_options {
+          ~ enabled = false -> (known after apply)
+        }
+
+      + ephemeral_block_device {
+          + device_name  = (known after apply)
+          + no_device    = (known after apply)
+          + virtual_name = (known after apply)
+        }
+
+      ~ maintenance_options {
+          ~ auto_recovery = "default" -> (known after apply)
+        }
+
+      ~ metadata_options {
+          ~ http_endpoint               = "enabled" -> (known after apply)
+          ~ http_put_response_hop_limit = 1 -> (known after apply)
+          ~ http_tokens                 = "optional" -> (known after apply)
+          ~ instance_metadata_tags      = "disabled" -> (known after apply)
+        }
+
+      + network_interface {
+          + delete_on_termination = (known after apply)
+          + device_index          = (known after apply)
+          + network_card_index    = (known after apply)
+          + network_interface_id  = (known after apply)
+        }
+
+      ~ private_dns_name_options {
+          ~ enable_resource_name_dns_a_record    = false -> (known after apply)
+          ~ enable_resource_name_dns_aaaa_record = false -> (known after apply)
+          ~ hostname_type                        = "ip-name" -> (known after apply)
+        }
+
+      ~ root_block_device {
+          ~ delete_on_termination = true -> (known after apply)
+          ~ device_name           = "/dev/sda1" -> (known after apply)
+          ~ encrypted             = false -> (known after apply)
+          ~ iops                  = 100 -> (known after apply)
+          + kms_key_id            = (known after apply)
+          ~ tags                  = {} -> (known after apply)
+          ~ throughput            = 0 -> (known after apply)
+          ~ volume_id             = "vol-02a9b7c00c013ac7e" -> (known after apply)
+          ~ volume_size           = 8 -> (known after apply)
+          ~ volume_type           = "gp2" -> (known after apply)
+        }
+    }
+
+  # module.rds_admin_bastion[0].aws_kms_key.this will be updated in-place
+  ~ resource "aws_kms_key" "this" {
+        id                                 = "a6343365-dc99-405d-ae00-caa4a8934fad"
+      ~ policy                             = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = "kms:*"
+                      - Effect    = "Allow"
+                      - Principal = {
+                          - AWS = "arn:aws:iam::068084030754:root"
+                        }
+                      - Resource  = "*"
+                      - Sid       = ""
+                    },
+                  - {
+                      - Action    = [
+                          - "kms:ReEncrypt*",
+                          - "kms:GenerateDataKey*",
+                          - "kms:Encrypt*",
+                          - "kms:Describe*",
+                          - "kms:Decrypt*",
+                        ]
+                      - Effect    = "Allow"
+                      - Principal = {
+                          - Service = "logs.eu-west-2.amazonaws.com"
+                        }
+                      - Resource  = "*"
+                      - Sid       = ""
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> (known after apply)
+        tags                               = {}
+        # (11 unchanged attributes hidden)
+    }
+
+  # module.rds_servers_bastion[0].data.aws_ami.ubuntu will be read during apply
+  # (config refers to values not yet known)
+ <= data "aws_ami" "ubuntu"  {
+      ~ architecture          = "x86_64" -> (known after apply)
+      ~ arn                   = "arn:aws:ec2:eu-west-2::image/ami-07d410e5ae52cbd63" -> (known after apply)
+      ~ block_device_mappings = [
+          - {
+              - device_name  = "/dev/sda1"
+              - ebs          = {
+                  - "delete_on_termination" = "true"
+                  - "encrypted"             = "false"
+                  - "iops"                  = "0"
+                  - "snapshot_id"           = "snap-0918446e0ecc63585"
+                  - "throughput"            = "0"
+                  - "volume_size"           = "8"
+                  - "volume_type"           = "gp2"
+                }
+              - no_device    = ""
+              - virtual_name = ""
+            },
+          - {
+              - device_name  = "/dev/sdb"
+              - ebs          = {}
+              - no_device    = ""
+              - virtual_name = "ephemeral0"
+            },
+          - {
+              - device_name  = "/dev/sdc"
+              - ebs          = {}
+              - no_device    = ""
+              - virtual_name = "ephemeral1"
+            },
+        ] -> (known after apply)
+      ~ boot_mode             = "uefi-preferred" -> (known after apply)
+      ~ creation_date         = "2024-10-01T00:07:15.000Z" -> (known after apply)
+      + deprecation_time      = (known after apply)
+      + description           = (known after apply)
+      ~ ena_support           = true -> (known after apply)
+      ~ hypervisor            = "xen" -> (known after apply)
+      ~ id                    = "ami-07d410e5ae52cbd63" -> (known after apply)
+      ~ image_id              = "ami-07d410e5ae52cbd63" -> (known after apply)
+      ~ image_location        = "683290208331/diso-devops/bastion/ubuntu-jammy-22.04-amd64-server-generic-1727741025" -> (known after apply)
+      + image_owner_alias     = (known after apply)
+      ~ image_type            = "machine" -> (known after apply)
+      + imds_support          = (known after apply)
+      - include_deprecated    = false -> null
+      + kernel_id             = (known after apply)
+      ~ name                  = "diso-devops/bastion/ubuntu-jammy-22.04-amd64-server-generic-1727741025" -> (known after apply)
+      ~ owner_id              = "683290208331" -> (known after apply)
+      + platform              = (known after apply)
+      ~ platform_details      = "Linux/UNIX" -> (known after apply)
+      ~ product_codes         = [] -> (known after apply)
+      ~ public                = false -> (known after apply)
+      + ramdisk_id            = (known after apply)
+      ~ root_device_name      = "/dev/sda1" -> (known after apply)
+      ~ root_device_type      = "ebs" -> (known after apply)
+      ~ root_snapshot_id      = "snap-0918446e0ecc63585" -> (known after apply)
+      ~ sriov_net_support     = "simple" -> (known after apply)
+      ~ state                 = "available" -> (known after apply)
+      ~ state_reason          = {
+          - "code"    = "UNSET"
+          - "message" = "UNSET"
+        } -> (known after apply)
+      ~ tags                  = {
+          + "deploy_to_all_environments" = "True"
+        }
+      + tpm_support           = (known after apply)
+      ~ usage_operation       = "RunInstances" -> (known after apply)
+      ~ virtualization_type   = "hvm" -> (known after apply)
+        # (2 unchanged attributes hidden)
+
+
+      + timeouts {
+          + read = (known after apply)
+        }
+        # (1 unchanged block hidden)
+    }
+
+  # module.rds_servers_bastion[0].data.aws_caller_identity.current will be read during apply
+  # (config refers to values not yet known)
+ <= data "aws_caller_identity" "current"  {
+      ~ account_id = "068084030754" -> (known after apply)
+      ~ arn        = "arn:aws:sts::068084030754:assumed-role/SharedServicesCodeBuild/aws-go-sdk-1728665045160299292" -> (known after apply)
+      ~ id         = "068084030754" -> (known after apply)
+      ~ user_id    = "AROAQ7WQ73URA373G56PR:aws-go-sdk-1728665045160299292" -> (known after apply)
+    }
+
+  # module.rds_servers_bastion[0].data.aws_iam_policy_document.kms_key_policy will be read during apply
+  # (config refers to values not yet known)
+ <= data "aws_iam_policy_document" "kms_key_policy"  {
+      ~ id      = "1346700860" -> (known after apply)
+      ~ json    = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = "kms:*"
+                      - Effect    = "Allow"
+                      - Principal = {
+                          - AWS = "arn:aws:iam::068084030754:root"
+                        }
+                      - Resource  = "*"
+                      - Sid       = ""
+                    },
+                  - {
+                      - Action    = [
+                          - "kms:ReEncrypt*",
+                          - "kms:GenerateDataKey*",
+                          - "kms:Encrypt*",
+                          - "kms:Describe*",
+                          - "kms:Decrypt*",
+                        ]
+                      - Effect    = "Allow"
+                      - Principal = {
+                          - Service = "logs.eu-west-2.amazonaws.com"
+                        }
+                      - Resource  = "*"
+                      - Sid       = ""
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> (known after apply)
+      - version = "2012-10-17" -> null
+
+      ~ statement {
+          - not_actions   = [] -> null
+          - not_resources = [] -> null
+            # (3 unchanged attributes hidden)
+
+          - principals {
+              - identifiers = [
+                  - "arn:aws:iam::068084030754:root",
+                ] -> null
+              - type        = "AWS" -> null
+            }
+          + principals {
+              + identifiers = [
+                  + (known after apply),
+                ]
+              + type        = "AWS"
+            }
+        }
+      ~ statement {
+          - not_actions   = [] -> null
+          - not_resources = [] -> null
+            # (3 unchanged attributes hidden)
+
+          - principals {
+              - identifiers = [
+                  - "logs.eu-west-2.amazonaws.com",
+                ] -> null
+              - type        = "Service" -> null
+            }
+          + principals {
+              + identifiers = [
+                  + (known after apply),
+                ]
+              + type        = "Service"
+            }
+        }
+    }
+
+  # module.rds_servers_bastion[0].data.aws_iam_policy_document.kms_key_policy_iam_profile will be read during apply
+  # (config refers to values not yet known)
+ <= data "aws_iam_policy_document" "kms_key_policy_iam_profile"  {
+      ~ id      = "4138173220" -> (known after apply)
+      ~ json    = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action   = "kms:Encrypt"
+                      - Effect   = "Allow"
+                      - Resource = "arn:aws:kms:eu-west-2:068084030754:key/2a2e8e92-ec25-43c6-99eb-5cbe86bfde56"
+                      - Sid      = ""
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> (known after apply)
+      - version = "2012-10-17" -> null
+
+      ~ statement {
+          - not_actions   = [] -> null
+          - not_resources = [] -> null
+            # (3 unchanged attributes hidden)
+        }
+    }
+
+  # module.rds_servers_bastion[0].data.aws_iam_policy_document.trust_policy will be read during apply
+  # (config refers to values not yet known)
+ <= data "aws_iam_policy_document" "trust_policy"  {
+      ~ id      = "3443809763" -> (known after apply)
+      ~ json    = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = "sts:AssumeRole"
+                      - Effect    = "Allow"
+                      - Principal = {
+                          - Service = [
+                              - "ssm.amazonaws.com",
+                              - "ec2.amazonaws.com",
+                            ]
+                        }
+                      - Sid       = ""
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> (known after apply)
+      - version = "2012-10-17" -> null
+
+      ~ statement {
+          - not_actions   = [] -> null
+          - not_resources = [] -> null
+          - resources     = [] -> null
+            # (2 unchanged attributes hidden)
+
+            # (1 unchanged block hidden)
+        }
+    }
+
+  # module.rds_servers_bastion[0].data.aws_region.current will be read during apply
+  # (config refers to values not yet known)
+ <= data "aws_region" "current"  {
+      ~ description = "Europe (London)" -> (known after apply)
+      ~ endpoint    = "ec2.eu-west-2.amazonaws.com" -> (known after apply)
+      ~ id          = "eu-west-2" -> (known after apply)
+      ~ name        = "eu-west-2" -> (known after apply)
+    }
+
+  # module.rds_servers_bastion[0].data.template_file.bucket_access_policy will be read during apply
+  # (config refers to values not yet known)
+ <= data "template_file" "bucket_access_policy"  {
+      ~ id       = "74c0577df58e746de09e997bfbb7564323a4d544398b69b3a8d11928c8b30539" -> (known after apply)
+      ~ rendered = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action   = "sts:AssumeRole"
+                      - Effect   = "Allow"
+                      - Resource = "arn:aws:iam::683290208331:role/s3-mojo-file-transfer-assume-role"
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> (known after apply)
+        # (2 unchanged attributes hidden)
+    }
+
+  # module.rds_servers_bastion[0].data.template_file.user_data will be read during apply
+  # (config refers to values not yet known)
+ <= data "template_file" "user_data"  {
+      ~ id       = "e79bd30eee9deb6416ef7e9d8c5e3d3f805f3a2f28457f8c95691a6cb713364f" -> (known after apply)
+      ~ rendered = <<-EOT
+            #!/usr/bin/env bash
+            set -x
+            
+            mkdir ~/.aws
+            cat << 'EOF' > ~/.aws/config
+            [profile s3-role]
+            role_arn = arn:aws:iam::683290208331:role/s3-mojo-file-transfer-assume-role
+            credential_source = Ec2InstanceMetadata
+            EOF
+        EOT -> (known after apply)
+        # (2 unchanged attributes hidden)
+    }
+
+  # module.rds_servers_bastion[0].aws_iam_policy.s3_bucket_access will be updated in-place
+  ~ resource "aws_iam_policy" "s3_bucket_access" {
+        id        = "arn:aws:iam::068084030754:policy/bastion-ssm-iam-dduIXs3-bucket-access"
+        name      = "bastion-ssm-iam-dduIXs3-bucket-access"
+      ~ policy    = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action   = "sts:AssumeRole"
+                      - Effect   = "Allow"
+                      - Resource = "arn:aws:iam::683290208331:role/s3-mojo-file-transfer-assume-role"
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> (known after apply)
+        tags      = {}
+        # (4 unchanged attributes hidden)
+    }
+
+  # module.rds_servers_bastion[0].aws_iam_role.iam_instance_role will be updated in-place
+  ~ resource "aws_iam_role" "iam_instance_role" {
+      ~ assume_role_policy    = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = "sts:AssumeRole"
+                      - Effect    = "Allow"
+                      - Principal = {
+                          - Service = [
+                              - "ssm.amazonaws.com",
+                              - "ec2.amazonaws.com",
+                            ]
+                        }
+                      - Sid       = ""
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> (known after apply)
+        id                    = "bastion-ssm-iam-dduIX"
+        name                  = "bastion-ssm-iam-dduIX"
+        tags                  = {}
+        # (9 unchanged attributes hidden)
+
+        # (1 unchanged block hidden)
+    }
+
+  # module.rds_servers_bastion[0].aws_iam_role_policy.kms will be updated in-place
+  ~ resource "aws_iam_role_policy" "kms" {
+        id     = "bastion-ssm-iam-dduIX:inline-policy-kms-access"
+        name   = "inline-policy-kms-access"
+      ~ policy = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action   = "kms:Encrypt"
+                      - Effect   = "Allow"
+                      - Resource = "arn:aws:kms:eu-west-2:068084030754:key/2a2e8e92-ec25-43c6-99eb-5cbe86bfde56"
+                      - Sid      = ""
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> (known after apply)
+        # (1 unchanged attribute hidden)
+    }
+
+  # module.rds_servers_bastion[0].aws_instance.bastion[0] must be replaced
++/- resource "aws_instance" "bastion" {
+      ~ ami                                  = "ami-07d410e5ae52cbd63" -> (known after apply) # forces replacement
+      ~ arn                                  = "arn:aws:ec2:eu-west-2:068084030754:instance/i-039b6a53db44326b6" -> (known after apply)
+      ~ availability_zone                    = "eu-west-2a" -> (known after apply)
+      ~ cpu_core_count                       = 1 -> (known after apply)
+      ~ cpu_threads_per_core                 = 2 -> (known after apply)
+      ~ disable_api_stop                     = false -> (known after apply)
+      ~ disable_api_termination              = false -> (known after apply)
+      ~ ebs_optimized                        = false -> (known after apply)
+      - hibernation                          = false -> null
+      + host_id                              = (known after apply)
+      + host_resource_group_arn              = (known after apply)
+      ~ id                                   = "i-039b6a53db44326b6" -> (known after apply)
+      ~ instance_state                       = "running" -> (known after apply)
+      ~ ipv6_address_count                   = 0 -> (known after apply)
+      ~ ipv6_addresses                       = [] -> (known after apply)
+      + key_name                             = (known after apply)
+      + outpost_arn                          = (known after apply)
+      + password_data                        = (known after apply)
+      + placement_group                      = (known after apply)
+      ~ placement_partition_number           = 0 -> (known after apply)
+      ~ primary_network_interface_id         = "eni-07c85288e575cb2c5" -> (known after apply)
+      ~ private_dns                          = "ip-10-180-108-32.eu-west-2.compute.internal" -> (known after apply)
+      ~ private_ip                           = "10.180.108.32" -> (known after apply)
+      + public_dns                           = (known after apply)
+      + public_ip                            = (known after apply)
+      ~ secondary_private_ips                = [] -> (known after apply)
+      ~ security_groups                      = [] -> (known after apply)
+        tags                                 = {
+            "Name"             = "mojo-development-rds-servers-bastion"
+            "Namespace"        = "mojo"
+            "Stage"            = "development"
+            "application"      = "network-access-control"
+            "business-unit"    = "HQ"
+            "environment-name" = "development"
+            "is-production"    = "false"
+            "owner"            = "NVVS DevOps Team: nac@justice.gov.uk"
+            "source-code"      = "https://github.com/ministryofjustice/network-access-control-infrastructure"
+        }
+      ~ tenancy                              = "default" -> (known after apply)
+      ~ user_data                            = "3dd1b821d8638878bdf732070fd3640df4497e59" -> (known after apply)
+      + user_data_base64                     = (known after apply)
+        # (11 unchanged attributes hidden)
+
+      ~ capacity_reservation_specification {
+          ~ capacity_reservation_preference = "open" -> (known after apply)
+
+          + capacity_reservation_target {
+              + capacity_reservation_id                 = (known after apply)
+              + capacity_reservation_resource_group_arn = (known after apply)
+            }
+        }
+
+      ~ cpu_options {
+          + amd_sev_snp      = (known after apply)
+          ~ core_count       = 1 -> (known after apply)
+          ~ threads_per_core = 2 -> (known after apply)
+        }
+
+      - credit_specification {
+          - cpu_credits = "unlimited" -> null
+        }
+
+      + ebs_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + snapshot_id           = (known after apply)
+          + tags                  = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+
+      ~ enclave_options {
+          ~ enabled = false -> (known after apply)
+        }
+
+      + ephemeral_block_device {
+          + device_name  = (known after apply)
+          + no_device    = (known after apply)
+          + virtual_name = (known after apply)
+        }
+
+      ~ maintenance_options {
+          ~ auto_recovery = "default" -> (known after apply)
+        }
+
+      ~ metadata_options {
+          ~ http_endpoint               = "enabled" -> (known after apply)
+          ~ http_put_response_hop_limit = 1 -> (known after apply)
+          ~ http_tokens                 = "optional" -> (known after apply)
+          ~ instance_metadata_tags      = "disabled" -> (known after apply)
+        }
+
+      + network_interface {
+          + delete_on_termination = (known after apply)
+          + device_index          = (known after apply)
+          + network_card_index    = (known after apply)
+          + network_interface_id  = (known after apply)
+        }
+
+      ~ private_dns_name_options {
+          ~ enable_resource_name_dns_a_record    = false -> (known after apply)
+          ~ enable_resource_name_dns_aaaa_record = false -> (known after apply)
+          ~ hostname_type                        = "ip-name" -> (known after apply)
+        }
+
+      ~ root_block_device {
+          ~ delete_on_termination = true -> (known after apply)
+          ~ device_name           = "/dev/sda1" -> (known after apply)
+          ~ encrypted             = false -> (known after apply)
+          ~ iops                  = 100 -> (known after apply)
+          + kms_key_id            = (known after apply)
+          ~ tags                  = {} -> (known after apply)
+          ~ throughput            = 0 -> (known after apply)
+          ~ volume_id             = "vol-03d1f983f2eb9b04a" -> (known after apply)
+          ~ volume_size           = 8 -> (known after apply)
+          ~ volume_type           = "gp2" -> (known after apply)
+        }
+    }
+
+  # module.rds_servers_bastion[0].aws_kms_key.this will be updated in-place
+  ~ resource "aws_kms_key" "this" {
+        id                                 = "2a2e8e92-ec25-43c6-99eb-5cbe86bfde56"
+      ~ policy                             = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = "kms:*"
+                      - Effect    = "Allow"
+                      - Principal = {
+                          - AWS = "arn:aws:iam::068084030754:root"
+                        }
+                      - Resource  = "*"
+                      - Sid       = ""
+                    },
+                  - {
+                      - Action    = [
+                          - "kms:ReEncrypt*",
+                          - "kms:GenerateDataKey*",
+                          - "kms:Encrypt*",
+                          - "kms:Describe*",
+                          - "kms:Decrypt*",
+                        ]
+                      - Effect    = "Allow"
+                      - Principal = {
+                          - Service = "logs.eu-west-2.amazonaws.com"
+                        }
+                      - Resource  = "*"
+                      - Sid       = ""
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> (known after apply)
+        tags                               = {}
+        # (11 unchanged attributes hidden)
+    }
+
+Plan: 8 to add, 23 to change, 15 to destroy.
+
+Changes to Outputs:
+  ~ rds_bastion       = {
+      ~ admin  = [
+          - [
+              - "i-0110ccc45e315262c",
+            ],
+          + [
+              + (known after apply),
+            ],
+        ]
+      ~ server = [
+          - [
+              - "i-039b6a53db44326b6",
+            ],
+          + [
+              + (known after apply),
+            ],
+        ]
+    }
+  ~ terraform_outputs = {
+      ~ admin                   = {
+          ~ ecs = {
+              ~ task_definition_name           = "mojo-development-nac-admin-task" -> (known after apply)
+                # (3 unchanged elements hidden)
+            }
+          ~ rds = {
+              + username            = "admin"
+                # (7 unchanged elements hidden)
+            }
+            # (2 unchanged elements hidden)
+        }
+      ~ radius                  = {
+          ~ ecs = {
+              ~ task_definition_name  = "mojo-development-nac-server-task" -> (known after apply)
+                # (6 unchanged elements hidden)
+            }
+            # (4 unchanged elements hidden)
+        }
+        # (3 unchanged elements hidden)
+    }
+
+Warning: Attribute Deprecated
+
+  with module.performance_testing[0].local_file.ec2_private_key,
+  on modules/performance_testing/outputs.tf line 8, in resource "local_file" "ec2_private_key":
+   8:   sensitive_content = tls_private_key.ec2.private_key_pem
+
+Use the `local_sensitive_file` resource instead
+
+─────────────────────────────────────────────────────────────────────────────
+
+Note: You didn't use the -out option to save this plan, so Terraform can't
+guarantee to take exactly these actions if you run "terraform apply" now.
