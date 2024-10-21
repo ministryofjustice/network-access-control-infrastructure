@@ -51,117 +51,117 @@ data "aws_ssm_parameter" "assume_role" {
 }
 
 data "aws_ssm_parameter" "azure_federation_metadata_url" {
-  name = "/moj-network-access-control/${terraform.workspace}/azure_federation_metadata_url" 
+  name = "/moj-network-access-control/${terraform.workspace}/azure_federation_metadata_url"
 }
 
 data "aws_ssm_parameter" "hosted_zone_domain" {
-  name = "/moj-network-access-control/${terraform.workspace}/hosted_zone_domain" 
+  name = "/moj-network-access-control/${terraform.workspace}/hosted_zone_domain"
 }
 
 data "aws_ssm_parameter" "hosted_zone_id" {
-  name = "/moj-network-access-control/${terraform.workspace}/hosted_zone_id" 
+  name = "/moj-network-access-control/${terraform.workspace}/hosted_zone_id"
 }
 
 data "aws_ssm_parameter" "admin_db_username" {
-  name = "/moj-network-access-control/${terraform.workspace}/admin_db_username" 
+  name = "/moj-network-access-control/${terraform.workspace}/admin_db_username"
 }
 
 data "aws_ssm_parameter" "admin_db_password" {
-  name = "/moj-network-access-control/${terraform.workspace}/admin_db_password" 
+  name = "/moj-network-access-control/${terraform.workspace}/admin_db_password"
 }
 
 data "aws_ssm_parameter" "admin_sentry_dsn" {
-  name = "/moj-network-access-control/${terraform.workspace}/admin_sentry_dsn" 
+  name = "/moj-network-access-control/${terraform.workspace}/admin_sentry_dsn"
 }
 
 data "aws_ssm_parameter" "transit_gateway_id" {
-  name = "/moj-network-access-control/${terraform.workspace}/transit_gateway_id" 
+  name = "/moj-network-access-control/${terraform.workspace}/transit_gateway_id"
 }
 
 data "aws_ssm_parameter" "transit_gateway_route_table_id" {
-  name = "/moj-network-access-control/${terraform.workspace}/transit_gateway_route_table_id" 
+  name = "/moj-network-access-control/${terraform.workspace}/transit_gateway_route_table_id"
 }
 
 data "aws_ssm_parameter" "mojo_dns_ip_1" {
-  name = "/moj-network-access-control/${terraform.workspace}/mojo_dns_ip_1" 
+  name = "/moj-network-access-control/${terraform.workspace}/mojo_dns_ip_1"
 }
 
 data "aws_ssm_parameter" "mojo_dns_ip_2" {
-  name = "/moj-network-access-control/${terraform.workspace}/mojo_dns_ip_2" 
+  name = "/moj-network-access-control/${terraform.workspace}/mojo_dns_ip_2"
 }
 
 data "aws_ssm_parameter" "ocsp_endpoint_ip" {
-  name = "/moj-network-access-control/${terraform.workspace}/ocsp/endpoint_ip" 
+  name = "/moj-network-access-control/${terraform.workspace}/ocsp/endpoint_ip"
 }
 
 data "aws_ssm_parameter" "ocsp_endpoint_port" {
-  name = "/moj-network-access-control/${terraform.workspace}/ocsp/endpoint_port" 
+  name = "/moj-network-access-control/${terraform.workspace}/ocsp/endpoint_port"
 }
 
 data "aws_ssm_parameter" "ocsp_atos_domain" {
-  name = "/moj-network-access-control/${terraform.workspace}/ocsp/atos/domain" 
+  name = "/moj-network-access-control/${terraform.workspace}/ocsp/atos/domain"
 }
 
 data "aws_ssm_parameter" "cidr_range_1" {
-  name = "/moj-network-access-control/${terraform.workspace}/ocsp/atos/cidr_range_1" 
+  name = "/moj-network-access-control/${terraform.workspace}/ocsp/atos/cidr_range_1"
 }
 
 data "aws_ssm_parameter" "cidr_range_2" {
-  name = "/moj-network-access-control/${terraform.workspace}/ocsp/atos/cidr_range_2" 
+  name = "/moj-network-access-control/${terraform.workspace}/ocsp/atos/cidr_range_2"
 }
 
 data "aws_ssm_parameter" "enable_ocsp" {
-  name = "/moj-network-access-control/${terraform.workspace}/enable_ocsp" 
+  name = "/moj-network-access-control/${terraform.workspace}/enable_ocsp"
 }
 
 data "aws_ssm_parameter" "ocsp_override_cert_url" {
-  name = "/moj-network-access-control/${terraform.workspace}/ocsp_override_cert_url" 
+  name = "/moj-network-access-control/${terraform.workspace}/ocsp_override_cert_url"
 }
 
 data "aws_ssm_parameter" "byoip_pool_id" {
-  name = "/moj-network-access-control/${terraform.workspace}/public_ip_pool_id" 
+  name = "/moj-network-access-control/${terraform.workspace}/public_ip_pool_id"
 }
 
 data "aws_ssm_parameter" "eap_private_key_password" {
-  name = "/moj-network-access-control/${terraform.workspace}/eap_private_key_password" 
+  name = "/moj-network-access-control/${terraform.workspace}/eap_private_key_password"
 }
 
 data "aws_ssm_parameter" "radsec_private_key_password" {
-  name = "/moj-network-access-control/${terraform.workspace}/radsec_private_key_password" 
+  name = "/moj-network-access-control/${terraform.workspace}/radsec_private_key_password"
 }
 
 data "aws_ssm_parameter" "enable_packet_capture" {
-  name = "/moj-network-access-control/${terraform.workspace}/debug/radius/enable_packet_capture" 
+  name = "/moj-network-access-control/${terraform.workspace}/debug/radius/enable_packet_capture"
 }
 
 data "aws_ssm_parameter" "packet_capture_duration_seconds" {
-  name = "/moj-network-access-control/${terraform.workspace}/debug/radius/packet_capture_duration_seconds" 
+  name = "/moj-network-access-control/${terraform.workspace}/debug/radius/packet_capture_duration_seconds"
 }
 
 data "aws_ssm_parameter" "cloudwatch_link" {
-  name = "/moj-network-access-control/${terraform.workspace}/cloudwatch_link" 
+  name = "/moj-network-access-control/${terraform.workspace}/cloudwatch_link"
 }
 
 data "aws_ssm_parameter" "grafana_dashboard_link" {
-  name = "/moj-network-access-control/${terraform.workspace}/grafana_dashboard_link" 
+  name = "/moj-network-access-control/${terraform.workspace}/grafana_dashboard_link"
 }
 
 data "aws_ssm_parameter" "enable_rds_admin_bastion" {
-  name = "/moj-network-access-control/${terraform.workspace}/enable_rds_admin_bastion" 
+  name = "/moj-network-access-control/${terraform.workspace}/enable_rds_admin_bastion"
 }
 
 data "aws_ssm_parameter" "enable_rds_servers_bastion" {
-  name = "/moj-network-access-control/${terraform.workspace}/enable_rds_servers_bastion" 
+  name = "/moj-network-access-control/${terraform.workspace}/enable_rds_servers_bastion"
 }
 
 data "aws_ssm_parameter" "ocsp_dep_ip" {
-  name = "/moj-network-access-control/${terraform.workspace}/ocsp_dep_ip" 
+  name = "/moj-network-access-control/${terraform.workspace}/ocsp_dep_ip"
 }
 
 data "aws_ssm_parameter" "ocsp_prs_ip" {
-  name = "/moj-network-access-control/${terraform.workspace}/ocsp_prs_ip" 
+  name = "/moj-network-access-control/${terraform.workspace}/ocsp_prs_ip"
 }
 
 data "aws_ssm_parameter" "ocsp_dhl_ip" {
-  name = "/moj-network-access-control/${terraform.workspace}/ocsp_dhl_ip" 
+  name = "/moj-network-access-control/${terraform.workspace}/ocsp_dhl_ip"
 }

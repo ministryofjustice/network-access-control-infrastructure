@@ -8,7 +8,7 @@ variable "assume_role" {
 }
 
 variable "enable_authentication" {
-  type = bool
+  type    = bool
   default = true
 }
 

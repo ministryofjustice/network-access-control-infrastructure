@@ -15,7 +15,7 @@ locals {
   run_restore_from_backup = false
 
   s3-mojo_file_transfer_assume_role_arn = data.terraform_remote_state.staff-device-shared-services-infrastructure.outputs.s3-mojo_file_transfer_assume_role_arn
-  
+
   assume_role                     = data.aws_ssm_parameter.assume_role.value
   azure_federation_metadata_url   = data.aws_ssm_parameter.azure_federation_metadata_url.value
   hosted_zone_domain              = nonsensitive(data.aws_ssm_parameter.hosted_zone_domain.value)
