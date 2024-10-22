@@ -31,7 +31,7 @@ variable "enable_hosted_zone" {
 #TODO check the correct value for this email
 variable "owner_email" {
   type    = string
-  default = "nac@justice.gov.uk"
+  default = "lanwifi-devops@digital.justice.gov.uk"
 }
 
 variable "allowed_ips" {
