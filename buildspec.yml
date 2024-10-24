@@ -25,8 +25,6 @@ env:
     TF_VAR_enable_ocsp: "/moj-network-access-control/$ENV/enable_ocsp"
     TF_VAR_ocsp_override_cert_url: "/moj-network-access-control/$ENV/ocsp_override_cert_url"
     TF_VAR_byoip_pool_id: "/moj-network-access-control/$ENV/public_ip_pool_id"
-    TF_VAR_eap_private_key_password: "/moj-network-access-control/$ENV/eap_private_key_password"
-    TF_VAR_radsec_private_key_password: "/moj-network-access-control/$ENV/radsec_private_key_password"
     TF_VAR_radius_enable_packet_capture: "/moj-network-access-control/$ENV/debug/radius/enable_packet_capture"
     TF_VAR_packet_capture_duration_seconds: "/moj-network-access-control/$ENV/debug/radius/packet_capture_duration_seconds"
     TF_VAR_cloudwatch_link: "/moj-network-access-control/$ENV/cloudwatch_link"
