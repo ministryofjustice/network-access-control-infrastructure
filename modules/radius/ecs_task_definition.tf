@@ -104,11 +104,11 @@ resource "aws_ecs_task_definition" "server_task" {
           "valueFrom": "${var.secret_arns["moj_network_access_control_env_admin_db"]}:password::"
         },
         {
-          "name": "EAP_SERVER_PRIVATE_KEY_PASSPHRASE",
+          "name": "EAP_PRIVATE_KEY_PASSWORD",
           "valueFrom": "${var.secret_arns["moj_network_access_control_env_eap_private_key_password"]}"
         },
         {
-          "name": "RADSEC_SERVER_PRIVATE_KEY_PASSPHRASE",
+          "name": "RADSEC_PRIVATE_KEY_PASSWORD",
           "valueFrom": "${var.secret_arns["moj_network_access_control_env_radsec_private_key_password"]}"
         }
     ],
