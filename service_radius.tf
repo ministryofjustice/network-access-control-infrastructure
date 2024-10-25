@@ -31,8 +31,6 @@ module "radius" {
   read_replica = {
     name = module.admin_read_replica.rds.name
     host = module.admin_read_replica.rds.host
-    #user = var.admin_db_username
-    #pass = var.admin_db_password
     user = jsondecode(data.aws_secretsmanager_secret_version.moj_network_access_control_env_admin_db.secret_string)["username"]
     pass = jsondecode(data.aws_secretsmanager_secret_version.moj_network_access_control_env_admin_db.secret_string)["password"]
   }
