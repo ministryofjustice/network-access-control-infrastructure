@@ -46,8 +46,6 @@ module "admin" {
     password                  = jsondecode(data.aws_secretsmanager_secret_version.moj_network_access_control_env_admin_db.secret_string)["password"]
     skip_final_snapshot       = true
     username                  = jsondecode(data.aws_secretsmanager_secret_version.moj_network_access_control_env_admin_db.secret_string)["username"]
-    #username                  = var.admin_db_username
-    #password                  = var.admin_db_password
   }
 
   vpc = {
