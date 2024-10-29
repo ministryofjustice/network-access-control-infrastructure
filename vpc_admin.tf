@@ -4,7 +4,6 @@ module "admin_vpc" {
   region     = data.aws_region.current_region.id
   cidr_block = "10.0.0.0/16"
   tags       = module.label.tags
-  #   ssm_session_manager_endpoints = var.enable_rds_admin_bastion
 
   providers = {
     aws = aws.env
