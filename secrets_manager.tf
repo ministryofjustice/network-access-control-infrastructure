@@ -11,9 +11,6 @@ resource "aws_secretsmanager_secret" "moj_network_access_control_env_admin_db" {
   name = "/moj-network-access-control/${terraform.workspace}/admin/db"
   #  description = "Network Access Control - Admin RDS Database password."
   provider = aws.env
-  #  tags = merge(local.tags_minus_name,
-  #    { "Name" : "/moj-network-access-control/${terraform.workspace}/admin/db" }
-  #  )
 }
 
 data "aws_secretsmanager_secret_version" "moj_network_access_control_env_admin_db" {

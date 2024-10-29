@@ -1,10 +1,9 @@
 module "admin_vpc" {
-  source                        = "./modules/admin_vpc"
-  prefix                        = "${module.label.id}-admin"
-  region                        = data.aws_region.current_region.id
-  cidr_block                    = "10.0.0.0/16"
-  tags                          = module.label.tags
-  ssm_session_manager_endpoints = var.enable_rds_admin_bastion
+  source     = "./modules/admin_vpc"
+  prefix     = "${module.label.id}-admin"
+  region     = data.aws_region.current_region.id
+  cidr_block = "10.0.0.0/16"
+  tags       = module.label.tags
 
   providers = {
     aws = aws.env

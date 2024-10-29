@@ -4,7 +4,7 @@ module "admin" {
   short_prefix                      = module.label.stage # avoid 32 char limit on certain resources
   tags                              = module.label.tags
   run_restore_from_backup           = local.run_restore_from_backup
-  sentry_dsn                        = var.admin_sentry_dsn
+  sentry_dsn                        = data.aws_secretsmanager_secret_version.moj_network_access_control_env_admin_sentry_dsn.secret_string
   secret_key_base                   = "tbc"
   radius_certificate_bucket_arn     = module.radius.s3.radius_certificate_bucket_arn
   radius_certificate_bucket_name    = module.radius.s3.radius_certificate_bucket_name
@@ -28,9 +28,10 @@ module "admin" {
   local_development_domain_affix    = var.local_development_domain_affix
   cloudwatch_link                   = var.cloudwatch_link
   grafana_dashboard_link            = var.grafana_dashboard_link
-  eap_private_key_password          = var.eap_private_key_password
-  radsec_private_key_password       = var.radsec_private_key_password
+  eap_private_key_password          = data.aws_secretsmanager_secret_version.moj_network_access_control_env_eap_private_key_password.secret_string
+  radsec_private_key_password       = data.aws_secretsmanager_secret_version.moj_network_access_control_env_radsec_private_key_password.secret_string
   shared_services_account_id        = var.shared_services_account_id
+  secret_arns                       = local.secret_manager_arns
   server_ips = join(", ", [
     module.radius.load_balancer.nac_eu_west_2a_ip_address,
     module.radius.load_balancer.nac_eu_west_2b_ip_address,
@@ -42,9 +43,9 @@ module "admin" {
     backup_retention_period   = var.admin_db_backup_retention_period
     delete_automated_backups  = local.is_production ? false : true
     deletion_protection       = local.is_production ? true : false
-    password                  = var.admin_db_password
+    password                  = jsondecode(data.aws_secretsmanager_secret_version.moj_network_access_control_env_admin_db.secret_string)["password"]
     skip_final_snapshot       = true
-    username                  = var.admin_db_username
+    username                  = jsondecode(data.aws_secretsmanager_secret_version.moj_network_access_control_env_admin_db.secret_string)["username"]
   }
 
   vpc = {

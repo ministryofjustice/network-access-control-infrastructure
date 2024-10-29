@@ -132,3 +132,7 @@ variable "allowed_ips" {
   description = "List of allowed IP addresses"
   default     = []
 }
+
+variable "secret_arns" {
+  type = map(any)
+}
