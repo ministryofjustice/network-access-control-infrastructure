@@ -11,12 +11,10 @@ module "radius_vpc" {
   ocsp_endpoint_ip                      = local.ocsp_endpoint_ip
   ocsp_atos_cidr_range_1                = local.ocsp_atos_cidr_range_1
   ocsp_atos_cidr_range_2                = local.ocsp_atos_cidr_range_2
-  tags                                  = module.label.tags
-  ssm_session_manager_endpoints         = local.enable_rds_servers_bastion
   ocsp_dep_ip                           = local.ocsp_dep_ip
   ocsp_prs_ip                           = local.ocsp_prs_ip
   ocsp_dhl_ip                           = local.ocsp_dhl_ip
-
+  tags                                  = module.label.tags
   providers = {
     aws = aws.env
   }

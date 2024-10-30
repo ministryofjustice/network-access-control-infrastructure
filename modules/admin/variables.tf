@@ -148,3 +148,7 @@ variable "radsec_private_key_password" {
 variable "shared_services_account_id" {
   type = string
 }
+
+variable "secret_arns" {
+  type = map(any)
+}
