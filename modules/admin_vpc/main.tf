@@ -1,7 +1,8 @@
 module "vpc" {
-  source  = "terraform-aws-modules/vpc/aws"
-  version = "3.0.0"
-  name    = var.prefix
+  source = "../vpc_hashicorp"
+  # source  = "terraform-aws-modules/vpc/aws"
+  # version = "3.0.0"
+  name    = "${var.prefix}-vpc"
 
   cidr                 = var.cidr_block
   enable_nat_gateway   = true

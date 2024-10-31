@@ -161,7 +161,7 @@ lock: ## terraform providers lock (reset hashes after upgrades prior to commit)
 
 .PHONY: clean
 clean: ## clean terraform cached providers etc
-	rm -rf .terraform/ terraform.tfstate* .env #&& echo "" > ./.env
+	rm -rf .terraform* terraform.tfstate* .env #&& echo "" > ./.env
 
 .PHONY: gen-env
 gen-env: ## generate a ".env" file with the correct TF_VARS for the environment e.g. (make gen-env ENV_ARGUMENT=pre-production)
