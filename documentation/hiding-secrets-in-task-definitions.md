@@ -1,4 +1,4 @@
-# Hiding Secrets in ECS Task Definition
+# Hiding Secrets in ECS Task Definitions
 
 Where secrets are stored in plain text in the ECS task definitions, these secrets should be moved into Secrets Manager and referenced as a secrets instead, so it does not get populated as plain text. This work is necessary as there is a security vulnerability in exposing secrets in task definitions.
 
@@ -120,7 +120,11 @@ The above secrets which are stored in SSM Parameter Store will need to be moved 
 
 ## Creating Secrets in Secrets Manager
 
-Once you have identified the secrets in the task definitions which are being sourced from SSM parameter store the next step is to create the secrets within secrets manager. This will involve a combination of automation via terraform and manual steps. We will define the secrets in a new file named 'secrets_manager.tf' in the root directory of the repository. 
+Once you have identified the secrets in the task definitions which are being sourced from SSM parameter store the next step is to create the secrets within secrets manager. This will involve a combination of automation via terraform and manual steps. 
+
+The secrets will need to be created in the target account secrets manager for each environment (e.g development / pre-production / production). Previously we have stored secrets in the shared services account parameter store. We are unable store secrets into the shared services account secrets manager as using a secrets block in task definitions does not allow cross account secret retrieval. So if we have defined 'secrets' in the 'secrets' block of a task definition for a service deployed into the 'development' environment the task will not be able to do cross account secret retrieval to access secrets stored in the shared services account. For secret retrieval to work secrets need to be stored in the target account secrets manager (e.g. development / pre-production / production), so secrets have to be in the same account that the service is deployed into.
+
+We will define the secrets in a new file named 'secrets_manager.tf' in the root directory of the repository. 
 
 An example of defining the admin_db secrets is shown below: 
 
@@ -177,6 +181,14 @@ In the code snippet above you will also see a data lookup block to retrieve the 
 
 We previously assigned tags and descriptions to secrets (see hashed out values in example below) but this was causing the admin db to get destroyed and recreated. We don't want this to happen for existing environments and believe it could be a bug which is causing this. The tags/descriptions have been left hashed out in case this bug can be looked into in the future and reinstated
 
+Deploy the changes into the required environment using terraform, run the following from the root of the directory:
+
+```shell
+make clean
+make init
+make plan
+make apply
+```
 
 When the terraform is applied the secret names and values will be created in secrets manager for each environment at the paths specified in the secrets_manager.tf file. 
 
@@ -231,13 +243,13 @@ type = map(any)
 ```
 
 
-Then in the root module e.g. service_admin we assign values to 'secret_arns' input variable by doing the following:
+Then in the root module e.g. service_admin we assign values to the 'secret_arns' input variable by doing the following:
 
 ```shell
 secret_arns = local.secret_manager_arns
 ```
 
-This will allow us to pass the secret arns in the list to the module so task definitions will be able to call these arns. An example of how the secret arn for 'admin_db username' is retrieved from the arns list within a task definition:
+This will allow us to pass the secret arns in the list to the module so task definitions will be able to call these arns for each secret. An example of how the secret arn for 'admin_db username' is retrieved from the arns list within a task definition:
 
 ```shell
 {
@@ -246,7 +258,7 @@ This will allow us to pass the secret arns in the list to the module so task def
 }
 ```
 
-Make sure the correct secrets are present in the target account secrets manager for each workspace/environment (e.g. development / pre-production / production) before proceeding to next section.
+Make sure the secrets are created and that the correct secrets are present in the target account secrets manager for each workspace/environment (e.g. development / pre-production / production) before proceeding to next section.
 
 
 ## Using Secrets Block in Task Definitions
@@ -295,10 +307,169 @@ modules/admin/ecs.tf
     ],
 ```
 
+Above you can see the secrets for the admin task container definition have been added to a 'secrets' block. The secret value for each secret is then specified in the 'valueFrom' field. The 'secret' value is retrieved from secrets manager using a secret arns list map lookup. The task definitions will be able to retrieve these arns by doing a lookup for the secret in the secret arns list map.
+
+There are a number of dependencies required to enable secret retrieval from secrets manager to work and to allow ecs (task definitions) to connect to secrets manager. We will go through this in the latter steps. Once all the dependency work is completed the ecs task definitions should be able to retrieve the secrets from secrets manager and the secret values within the secrets block will be hidden from plain sight
 
 
 ## Adding New VPC Endpoint for Access to Secrets Manager
+
+The next step is to add new vpc endpoints to allow ECS network access to AWS Secrets Manager to retrieve secrets for the service task definitions. The endpoints will need to be added to both the vpc (where radius services reside) and admin vpc (where admin services reside) modules. Below you can see how the endpoints have been added to each of the vpc modules:
+
+Adding New VPC Endpoint to Admin VPC Module
+
+File location:
+modules/admin_vpc/endpoints.tf
+
+```shell
+// endpoint required for ecs tasks to get secrets manager secrets
+
+resource "aws_vpc_endpoint" "secrets" {
+  vpc_id              = module.vpc.vpc_id
+  subnet_ids          = module.vpc.private_subnets
+  service_name        = "com.amazonaws.${var.region}.secretsmanager"
+  vpc_endpoint_type   = "Interface"
+  security_group_ids  = [aws_security_group.endpoints.id]
+  private_dns_enabled = true
+  tags                = var.tags
+  depends_on          = [aws_security_group.endpoints]
+}
+```
+###
+
+Adding New VPC Endpoint to VPC Module
+
+File location:
+modules/vpc/endpoints.tf
+
+```shell
+// endpoint required for ecs tasks to get secrets manager secrets
+
+resource "aws_vpc_endpoint" "secrets" {
+  vpc_id              = module.vpc.vpc_id
+  subnet_ids          = module.vpc.public_subnets
+  service_name        = "com.amazonaws.${var.region}.secretsmanager"
+  vpc_endpoint_type   = "Interface"
+  security_group_ids  = [aws_security_group.endpoints.id]
+  private_dns_enabled = true
+  tags                = var.tags
+  depends_on          = [aws_security_group.endpoints]
+}
+```
+
+Once the above VPC endpoints have been added the ECS task definitions should have network access to AWS Secrets Manager to retrieve secrets.
+
+
 ## Using Custom IAM Policy to Allow Secret Retrieval
+
+The next step is to attach a custom IAM policy (Secrets Manager Read Only) to ECS IAM roles to allow ECS tasks to retrieve secrets from the target account AWS Secrets Manager. This custom Secrets Manager Read Only IAM policy will need to be defined to the admin and radius modules. Once the policy is defined it will need to be attached to the ECS Execution IAM Role. See below as to how this is done: 
+
+The custom IAM policy will be locked down so the ECS Task only has read only access to the secrets specified in the secret arns list map as shown below, it will not be able to retrieve any other secrets:
+
+File location:
+secrets_manager.tf
+
+```shell
+locals {
+  secret_manager_arns = {
+    moj_network_access_control_env_admin_db                    = aws_secretsmanager_secret.moj_network_access_control_env_admin_db.arn
+    moj_network_access_control_env_admin_sentry_dsn            = aws_secretsmanager_secret.moj_network_access_control_env_admin_sentry_dsn.arn
+    moj_network_access_control_env_eap_private_key_password    = aws_secretsmanager_secret.moj_network_access_control_env_eap_private_key_password.arn
+    moj_network_access_control_env_radsec_private_key_password = aws_secretsmanager_secret.moj_network_access_control_env_radsec_private_key_password.arn
+  }
+}
+```
+
+
+Admin Module
+
+Creating Custom IAM Policy for Secret Manager Read Only Access
+
+File location:
+modules/admin/iam.tf
+
+```shell
+resource "aws_iam_policy" "secrets_manager_read_only" {
+  name        = "SecretsManagerReadOnly-${var.prefix}"
+  path        = "/"
+  description = "allow all secrets to be read in secrets manager by ecs"
+
+
+  policy = jsonencode({
+    "Version" : "2012-10-17",
+    "Statement" : [
+      {
+        "Effect" : "Allow",
+        "Action" : [
+          "secretsmanager:GetResourcePolicy",
+          "secretsmanager:GetSecretValue",
+          "secretsmanager:DescribeSecret",
+          "secretsmanager:ListSecretVersionIds",
+          "secretsmanager:ListSecrets"
+        ],
+        "Resource" : values(var.secret_arns)
+      }
+    ]
+  })
+}
+```
+
+Attaching Custom IAM Policy (secrets_manager_read_only) to ECS Execution IAM Role:
+
+```shell
+resource "aws_iam_role_policy_attachment" "ecs_task_execution_policy_attachment_sm" {
+  role       = aws_iam_role.ecs_execution_role.name
+  policy_arn = aws_iam_policy.secrets_manager_read_only.arn
+}
+```
+
+###
+
+Radius Module
+
+Creating Custom IAM Policy for Secret Manager Read Only Access
+
+File location:
+modules/radius/iam.tf
+
+```shell
+resource "aws_iam_policy" "secrets_manager_read_only" {
+  name        = "SecretsManagerReadOnly-${var.prefix}"
+  path        = "/"
+  description = "allow all secrets to be read in secrets manager by ecs"
+
+
+  policy = jsonencode({
+    "Version" : "2012-10-17",
+    "Statement" : [
+      {
+        "Effect" : "Allow",
+        "Action" : [
+          "secretsmanager:GetResourcePolicy",
+          "secretsmanager:GetSecretValue",
+          "secretsmanager:DescribeSecret",
+          "secretsmanager:ListSecretVersionIds",
+          "secretsmanager:ListSecrets"
+        ],
+        "Resource" : values(var.secret_arns)
+      }
+    ]
+  })
+}
+```
+
+Attaching Custom IAM Policy (secrets_manager_read_only) to ECS Execution IAM Role:
+
+```shell
+resource "aws_iam_role_policy_attachment" "ecs_task_execution_policy_attachment_sm" {
+  role       = aws_iam_role.ecs_execution_role.name
+  policy_arn = aws_iam_policy.secrets_manager_read_only.arn
+}
+```
+
+Once the above changes have been added task definitions for the admin and radius services will have read only access to the target account secrets manager to retrieve secrets.
+
+
 ## Using Data Source Lookups for Input Variables which are Secrets in Root Modules
 ## Removal of Parameters from SSM Get Parameters Script Buildspec and Vars Moved to Secrets Manager
 ## Deploying Changes
