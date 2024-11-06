@@ -116,7 +116,7 @@ The above secrets which are stored in SSM Parameter Store will need to be moved 
 
 
 
- [here](https://github.com/ministryofjustice/network-access-control-disaster-recovery#corrupt-container)
+
 
 ## Creating Secrets in Secrets Manager
 
@@ -183,12 +183,17 @@ We previously assigned tags and descriptions to secrets (see hashed out values i
 
 Deploy the changes into the required environment using terraform, run the following from the root of the directory:
 
+To deploy the changes into the 'Development' environment from your local machine, run the following terraform make commands from the root of the repository directory:
+
 ```shell
 make clean
 make init
 make plan
 make apply
 ```
+
+Deploying the changes into higher environments ie pre-production / production ia done via the nac-infrastructure pipeline in aws codepipeline [here](https://eu-west-2.console.aws.amazon.com/codesuite/codepipeline/pipelines/network-access-control-infrastructure/view?region=eu-west-2)
+
 
 When the terraform is applied the secret names and values will be created in secrets manager for each environment at the paths specified in the secrets_manager.tf file. 
 
@@ -311,6 +316,7 @@ Above you can see the secrets for the admin task container definition have been 
 
 There are a number of dependencies required to enable secret retrieval from secrets manager to work and to allow ecs (task definitions) to connect to secrets manager. We will go through this in the latter steps. Once all the dependency work is completed the ecs task definitions should be able to retrieve the secrets from secrets manager and the secret values within the secrets block will be hidden from plain sight
 
+###
 
 ## Adding New VPC Endpoint for Access to Secrets Manager
 
@@ -467,11 +473,158 @@ resource "aws_iam_role_policy_attachment" "ecs_task_execution_policy_attachment_
 }
 ```
 
-Once the above changes have been added task definitions for the admin and radius services will have read only access to the target account secrets manager to retrieve secrets.
+Once the above changes have been added the task definitions for the admin and radius services will have read only access to the target account secrets manager to retrieve secrets (as defined in the secrets arns list).
+
+## 
 
 
 ## Using Data Source Lookups for Input Variables which are Secrets in Root Modules
+
+In root modules where input variables are secrets, aws data lookups will need to be used to retrieve the secret values directly from the target account secrets manager instead of using the previous method of using vars which sourced the secret values using the SSM Get Parameters script. The secret values are then passed to the child modules (e.g admin / radius) via the input variables. Below we show how this is done in the service_admin root module for the admin db username / password input variables:
+
+File location:
+service_admin.tf
+
+```shell
+  db = {
+    apply_updates_immediately = local.is_production ? false : true
+    backup_retention_period   = var.admin_db_backup_retention_period
+    delete_automated_backups  = local.is_production ? false : true
+    deletion_protection       = local.is_production ? true : false
+    password                  = jsondecode(data.aws_secretsmanager_secret_version.moj_network_access_control_env_admin_db.secret_string)["password"]
+    skip_final_snapshot       = true
+    username                  = jsondecode(data.aws_secretsmanager_secret_version.moj_network_access_control_env_admin_db.secret_string)["username"]
+  }
+```
+
+The same will need to be done for all root modules where the input variables are secrets and the secrets have been moved to secrets manager:
+
+service_radius.tf
+service_radius_admin_read_replica.tf
+
+
 ## Removal of Parameters from SSM Get Parameters Script Buildspec and Vars Moved to Secrets Manager
+
+The next step is to remove vars and parameters from 
+
+Removing Parameters from Buildspec that are being sourced from Secrets Manager
+
+File location:
+buildspec.yml
+
+```shell
+TF_VAR_admin_db_username: "/moj-network-access-control/$ENV/admin_db_username"
+TF_VAR_admin_db_password: "/moj-network-access-control/$ENV/admin_db_password"
+TF_VAR_admin_sentry_dsn: "/moj-network-access-control/$ENV/admin_sentry_dsn"
+TF_VAR_eap_private_key_password: "/moj-network-access-control/$ENV/eap_private_key_password"
+TF_VAR_radsec_private_key_password: "/moj-network-access-control/$ENV/radsec_private_key_password"
+```
+
+Removing Unused Variables
+
+File location:
+variables.tf
+
+```shell
+variable "admin_db_password" {
+  type = string
+}
+variable "admin_db_username" {
+  type = string
+}
+variable "admin_sentry_dsn" {
+  type = string
+}
+variable "eap_private_key_password" {
+  type = string
+}
+variable "radsec_private_key_password" {
+  type = string
+}
+```
+
+
+Remove Parameters from SSM Get Parameters Script that are being sourced from Secrets Manager
+
+File location:
+scripts/aws_ssm_get_parameters.sh
+
+```shell
+"/moj-network-access-control/$ENV/admin_db_username" \
+"/moj-network-access-control/$ENV/admin_db_password" \
+"/moj-network-access-control/$ENV/admin_sentry_dsn" \
+"/moj-network-access-control/$ENV/eap_private_key_password" \
+"/moj-network-access-control/$ENV/radsec_private_key_password" \
+
+parameters["admin_db_username"]="$(echo $PARAM | jq '.[] | select(.Name | test("admin_db_username")) | .Value' --raw-output)"
+parameters["admin_db_password"]="$(echo $PARAM | jq '.[] | select(.Name | test("admin_db_password")) | .Value' --raw-output)"
+parameters["admin_sentry_dsn"]="$(echo $PARAM | jq '.[] | select(.Name | test("admin_sentry_dsn")) | .Value' --raw-output)"
+parameters["eap_private_key_password"]="$(echo $PARAM2 | jq '.[] | select(.Name | test("eap_private_key_password")) | .Value' --raw-output)"
+parameters["radsec_private_key_password"]="$(echo $PARAM3 | jq '.[] | select(.Name | test("radsec_private_key_password")) | .Value' --raw-output)"
+```
+
+## 
+
 ## Deploying Changes
+
+Once all of the required changes have been made you can then be in a position to deploy your changes.
+To deploy the changes into the 'Development' environment from your local machine, run the following terraform make commands from the root of the repository directory:
+
+```shell
+make clean
+make init
+make plan
+make apply
+```
+
+Deploying the changes into higher environments ie pre-production / production is   done via the nac-infrastructure pipeline in aws codepipeline [here](https://eu-west-2.console.aws.amazon.com/codesuite/codepipeline/pipelines/network-access-control-infrastructure/view?region=eu-west-2)
+
+
+
+
+
 ## Encountering Issues with Running Pipelines
+
+When deploying the changes into the pre-production and production environment via the pipeline if the pipeline fails due to the following error on the terraform apply stage:
+
+```shell
+Error: creating ECS Task Definition (mojo-pre-production-nac-admin-task): ClientException: Too many concurrent attempts to create a new revision of the specified family.
+```
+
+Select 'Retry Stage' to rerun the failed stage. The subsequent rerun should result in a successful deployment.
+
+## 
+
 ## Checking New Services are Running and Doing What We Expect
+
+Once the changes have been deployed into the required environments, you will need to check that the updated services are working as expected. Wait for new tasks for each service (Admin  / Admin Background Worker / Radius Internal / Radius Public) to be deployed. Then go into the task for each service and look at the task definition. Select the JSON tab and confirm that the secrets are now appearing as arns and not showing the secrets in plain sight.
+
+Secrets within task definitions should appear within the aws console in the following format where arns are used to retrieve secrets from secrets manager:
+
+```shell
+"secrets": [
+                {
+                    "name": "DB_USER",
+                    "valueFrom": "arn:aws:secretsmanager:eu-west-2:068084030754:secret:/moj-network-access-control/development/admin/db-yBu4O7:username::"
+                },
+                {
+                    "name": "DB_PASS",
+                    "valueFrom": "arn:aws:secretsmanager:eu-west-2:068084030754:secret:/moj-network-access-control/development/admin/db-yBu4O7:password::"
+                },
+                {
+                    "name": "SENTRY_DSN",
+                    "valueFrom": "arn:aws:secretsmanager:eu-west-2:068084030754:secret:/moj-network-access-control/development/admin/sentry_dsn-mBzQf6"
+                },
+                {
+                    "name": "EAP_SERVER_PRIVATE_KEY_PASSPHRASE",
+                    "valueFrom": "arn:aws:secretsmanager:eu-west-2:068084030754:secret:/moj-network-access-control/development/eap/private_key_password-Epc8R1"
+                },
+                {
+                    "name": "RADSEC_SERVER_PRIVATE_KEY_PASSPHRASE",
+                    "valueFrom": "arn:aws:secretsmanager:eu-west-2:068084030754:secret:/moj-network-access-control/development/radsec/private_key_password-mBzQf6"
+                }
+            ],
+```
+
+You should then check the new containers for the services are up and running and there no issues showing in the container logs. 
+Finally you should log into the nacs admin portal for each environment to check everything is working as expected.
