@@ -510,8 +510,6 @@ service_radius_admin_read_replica.tf
 
 ## Removal of Parameters from SSM Get Parameters Script Buildspec and Vars Moved to Secrets Manager
 
-The next step is to remove vars and parameters from 
-
 Removing Parameters from Buildspec that are being sourced from Secrets Manager
 
 File location:
