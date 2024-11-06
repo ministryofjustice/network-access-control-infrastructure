@@ -69,7 +69,7 @@ Admin Task
   "value": "${var.radsec_private_key_password}"
 },
 ```
-
+###
 
 Admin Background Worker Task
 
@@ -87,6 +87,8 @@ Admin Background Worker Task
   "value": "${var.sentry_dsn}"
 },
 ```
+
+###
 
 Radius Task
 
@@ -116,7 +118,7 @@ The above secrets which are stored in SSM Parameter Store will need to be moved 
 
 
 
-
+###
 
 ## Creating Secrets in Secrets Manager
 
@@ -265,6 +267,7 @@ This will allow us to pass the secret arns in the list to the module so task def
 
 Make sure the secrets are created and that the correct secrets are present in the target account secrets manager for each workspace/environment (e.g. development / pre-production / production) before proceeding to next section.
 
+###
 
 ## Using Secrets Block in Task Definitions
 
@@ -365,6 +368,7 @@ resource "aws_vpc_endpoint" "secrets" {
 
 Once the above VPC endpoints have been added the ECS task definitions should have network access to AWS Secrets Manager to retrieve secrets.
 
+###
 
 ## Using Custom IAM Policy to Allow Secret Retrieval
 
@@ -502,6 +506,7 @@ The same will need to be done for all root modules where the input variables are
 service_radius.tf
 service_radius_admin_read_replica.tf
 
+###
 
 ## Removal of Parameters from SSM Get Parameters Script Buildspec and Vars Moved to Secrets Manager
 
@@ -563,7 +568,7 @@ parameters["eap_private_key_password"]="$(echo $PARAM2 | jq '.[] | select(.Name 
 parameters["radsec_private_key_password"]="$(echo $PARAM3 | jq '.[] | select(.Name | test("radsec_private_key_password")) | .Value' --raw-output)"
 ```
 
-## 
+###
 
 ## Deploying Changes
 
@@ -627,4 +632,5 @@ Secrets within task definitions should appear within the aws console in the foll
 ```
 
 You should then check the new containers for the services are up and running and there no issues showing in the container logs. 
+
 Finally you should log into the nacs admin portal for each environment to check everything is working as expected.
