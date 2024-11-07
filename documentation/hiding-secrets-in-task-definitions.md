@@ -49,6 +49,9 @@ The first step of this process is to got through all of the ECS task definitions
 
 Admin Task
 
+File location:
+modules/admin/ecs.tf
+
 ```shell
 {
   "name": "DB_USER",
@@ -75,6 +78,9 @@ Admin Task
 
 Admin Background Worker Task
 
+File location:
+modules/admin/ecs.tf
+
 ```shell
 {
   "name": "DB_USER",
@@ -93,6 +99,9 @@ Admin Background Worker Task
 ###
 
 Radius Task
+
+File location:
+modules/radius/ecs_task_definition.tf
 
 ```shell
 {
@@ -133,6 +142,9 @@ We will define the secrets in a new file named 'secrets_manager.tf' in the root 
 If applying terraform to a new workspace/environment a new secret will be generated for admin db password. However, if applying terraform to an existing workspace/environment e.g. development a random string will be generated for admin db password, this will need to be replaced with the existing secret (for db password) for the workspace/environment. This will require the manual steps of going into the shared services account systems manager parameter store via the aws console, obtaining the secrets for the existing workspace/environment and copying these into secrets manager for the same environment. This will need to be repeated for each existing environment (e.g. development / pre-production / production). Once all secrets for existing environments have been copied across from the shared services account parameter store into the target account secret manager (development / pre-production / production).
 
 How we define the admin_db secrets is shown below: 
+
+File location:
+secrets_manager.tf
 
 ```shell
 locals {
@@ -209,6 +221,9 @@ However for existing workspaces/environments (development / pre-production / pro
 
 For the following secrets created in the secrets_manager.tf file: 'eap_private_key_password' / 'radsec_private_key_password' / 'sentry_dsn' the secret value will be 'REPLACE_ME' as shown below. These will also need to be replaced manually with the actual values of those secrets. For existing environments (development / pre-production / production) you will need to go into the Shared Services Account SSM Parameter Store find the secret for that environment and then copy that secret value into the secret created in the target account (development / pre-production / production) Secrets Manager. Cross check that the secret values between shared services parameter store / target account secrets manager match.
 
+File location:
+secrets_manager.tf
+
 ```shell
 resource "aws_secretsmanager_secret" "moj_network_access_control_env_radsec_private_key_password" {
   name = "/moj-network-access-control/${terraform.workspace}/radsec/private_key_password"
@@ -231,7 +246,7 @@ resource "aws_secretsmanager_secret_version" "moj_network_access_control_env_rad
 }
 ```
 
-Finally in the secrets_manager.tf file we have a locals block as shown below. We are adding a local list to secrets so we can pass around the secrets to modules which use them e.g module task definitions
+Finally in the secrets_manager.tf file we have a locals block for the secret_manager_arns list map as shown below. We are adding a local list to secrets so we can pass around the secrets to modules which use them e.g module task definitions
 
 
 ```shell
