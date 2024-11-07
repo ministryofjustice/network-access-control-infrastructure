@@ -1,6 +1,6 @@
 # Hiding Secrets in ECS Task Definitions
 
-Where secrets are stored in plain text in the ECS task definitions, these secrets should be moved into Secrets Manager and referenced as a secrets instead, so it does not get populated as plain text. This work is necessary as there is a security vulnerability in exposing secrets in task definitions.
+Where secrets are stored in plain text in the ECS task definitions, these secrets should be moved into Secrets Manager and referenced as a secret instead, so it does not get populated as plain text. This work is necessary as there is a security vulnerability in exposing secrets in task definitions.
 
 example of a secret defined in a task definition which results in it being hidden from plain sight:
 
