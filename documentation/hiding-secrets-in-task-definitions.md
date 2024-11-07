@@ -116,7 +116,7 @@ Radius Task
 
 Leaving the above secrets as they are in the task definitions results in the values being visible in plain sight within the AWS console. In the latter steps we will go through how to hide secrets from plain sight within task definitions through the utilisation of 'secrets' blocks. 
 
-The above secrets which are stored in SSM Parameter Store will need to be moved to AWS Secrets Manager as it offers greater security. Currently the SSM Get Parameters script goes to SSM Parameter Store to source the secrets/values for the input variables and then populates the .env file with the variables/values. We want to move away from using the SSM get parameters script to source the secrets and populate into .env file. Instead we will move the secrets to secrets manager and then retrieve the values for the vars directly using data source lookups.
+The above secrets which are stored in SSM Parameter Store will need to be moved to AWS Secrets Manager as it offers greater security. Currently the SSM Get Parameters script goes to SSM Parameter Store to source the secrets/values for the input variables and then populates the .env file with the variables/values. We want to move away from using the SSM get parameters script to source the secrets and populate into .env file. Instead we will move the secrets to secrets manager and then retrieve the values for the vars directly using data source arn lookups.
 
 
 
