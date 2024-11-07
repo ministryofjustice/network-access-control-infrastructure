@@ -19,10 +19,9 @@ https://docs.aws.amazon.com/AmazonECS/latest/developerguide/secrets-envvar-secre
 
 All identified secrets should be pulled from AWS Secrets Manager.
 
+This documentation will detail the steps required for hiding secrets from plain sight in ECS task definitions. There are a number of dependencies which are required to enable secret retrieval and hiding of secrets in task definitions, these will be covered in this documentation.
 
-This documentation will detail the steps required for hiding secrets from plain sight in ECS task definitions. There are a number of dependencies which are required to enable secret retrieval and hiding of secrets in task definitions, these will be covered in this documentation. 
-
-The following pattern has also been applied to the staff-device-dns-dhcp-infrastructure repo. Those changes can be found [here](https://github.com/ministryofjustice/staff-device-dns-dhcp-infrastructure/pull/341) &  [here](https://github.com/ministryofjustice/staff-device-dns-dhcp-infrastructure/pull/342) to meet the same requirement of hiding secrets from task definitions for those services. 
+The following pattern has also been applied to the staff-device-dns-dhcp-infrastructure repo. Those changes can be found [here](https://github.com/ministryofjustice/staff-device-dns-dhcp-infrastructure/pull/341) & [here](https://github.com/ministryofjustice/staff-device-dns-dhcp-infrastructure/pull/342) to meet the same requirement of hiding secrets from task definitions for those services.
 
 The work to create the secrets will be separated out from the work to use arns for secrets in task definitions. Secrets will be identified within the task definitions which we want to hide from plain sight. These secrets will then be created in secrets manager via terraform utilising the secrets_manager.tf file. Once the secrets are in place you can then move onto the next steps to implement the changes to allow secret retrieval to work in task definitions and to hide secrets from plain sight.
 
@@ -38,8 +37,6 @@ The steps that will be covered to achieve this work of hiding secrets from task 
 - [Deploying changes](#deploying-changes)
 - [Encountering issues with running pipelines](#encountering-issues-with-running-pipelines)
 - [Checking new services are running and doing what we expect](#checking-new-services-are-running-and-doing-what-we-expect)
-
-
 
 #
 
@@ -74,6 +71,7 @@ modules/admin/ecs.tf
   "value": "${var.radsec_private_key_password}"
 },
 ```
+
 ###
 
 Admin Background Worker Task
@@ -122,18 +120,15 @@ modules/radius/ecs_task_definition.tf
 },
 ```
 
-
-Leaving the above secrets as they are in the task definitions results in the values being visible in plain sight within the AWS console. In the latter steps we will go through how to hide secrets from plain sight within task definitions through the utilisation of 'secrets' blocks. 
+Leaving the above secrets as they are in the task definitions results in the values being visible in plain sight within the AWS console. In the latter steps we will go through how to hide secrets from plain sight within task definitions through the utilisation of 'secrets' blocks.
 
 The above secrets which are stored in SSM Parameter Store will need to be moved to AWS Secrets Manager as it offers greater security. Currently the SSM Get Parameters script goes to SSM Parameter Store to source the secrets/values for the input variables and then populates the .env file with the variables/values. We want to move away from using the SSM get parameters script to source the secrets and populate into .env file. Instead we will move the secrets to secrets manager and then retrieve the values for the vars directly using data source arn lookups.
-
-
 
 #
 
 ## Creating Secrets in Secrets Manager
 
-Once you have identified the secrets in the task definitions which are being sourced from SSM parameter store the next step is to create the secrets within secrets manager. This will involve a combination of automation via terraform and manual steps. 
+Once you have identified the secrets in the task definitions which are being sourced from SSM parameter store the next step is to create the secrets within secrets manager. This will involve a combination of automation via terraform and manual steps.
 
 The secrets will need to be created in the target account secrets manager for each environment (e.g development / pre-production / production). Previously we have stored secrets in the shared services account parameter store. We are unable store secrets into the shared services account secrets manager as using a secrets block in task definitions does not allow cross account secret retrieval. So if we have defined 'secrets' in the 'secrets' block of a task definition for a service deployed into the 'development' environment the task will not be able to do cross account secret retrieval to access secrets stored in the shared services account. For secret retrieval to work secrets need to be stored in the target account secrets manager (e.g. development / pre-production / production), so secrets have to be in the same account that the service is deployed into.
 
@@ -141,7 +136,7 @@ We will define the secrets in a new file named 'secrets_manager.tf' in the root 
 
 If applying terraform to a new workspace/environment a new secret will be generated for admin db password. However, if applying terraform to an existing workspace/environment e.g. development a random string will be generated for admin db password, this will need to be replaced with the existing secret (for db password) for the workspace/environment. This will require the manual steps of going into the shared services account systems manager parameter store via the aws console, obtaining the secrets for the existing workspace/environment and copying these into secrets manager for the same environment. This will need to be repeated for each existing environment (e.g. development / pre-production / production). Once all secrets for existing environments have been copied across from the shared services account parameter store into the target account secret manager (development / pre-production / production).
 
-How we define the admin_db secrets is shown below: 
+How we define the admin_db secrets is shown below:
 
 File location:
 secrets_manager.tf
@@ -195,8 +190,6 @@ The first step is to create a new secrets manager secret resource for the secret
 We then create a secrets manager secret version resource to specify the secret value for the secret resource which we have created e.g moj_network_access_control_env_admin_db. This then calls the 'random_password' resource which generates a random secret value and assigns it to the 'password' field of the secret.
 In the code snippet above you will also see a data lookup block to retrieve the value of a secret.
 
-
-
 We previously assigned tags and descriptions to secrets (see hashed out values in example below) but this was causing the admin db to get destroyed and recreated. We don't want this to happen for existing environments and believe it could be a bug which is causing this. The tags/descriptions have been left hashed out in case this bug can be looked into in the future and reinstated
 
 Deploy the changes into the required environment using terraform, run the following from the root of the directory:
@@ -212,10 +205,9 @@ make apply
 
 Deploying the changes into higher environments ie pre-production / production ia done via the nac-infrastructure pipeline in aws codepipeline [here](https://eu-west-2.console.aws.amazon.com/codesuite/codepipeline/pipelines/network-access-control-infrastructure/view?region=eu-west-2)
 
+When the terraform is applied the secret names and values will be created in secrets manager for each environment at the paths specified in the secrets_manager.tf file.
 
-When the terraform is applied the secret names and values will be created in secrets manager for each environment at the paths specified in the secrets_manager.tf file. 
-
-For new workspaces/environments the secrets names secret values populated for admin db can be used as they are. 
+For new workspaces/environments the secrets names secret values populated for admin db can be used as they are.
 
 However for existing workspaces/environments (development / pre-production / production) the secret values populated will need to be replaced by the actual secret values for that environment. The manual step would be to copy the actual secret values for the target workspace/environment e.g development from the Shared Services account SSM Parameter store into secrets manager secret path. Cross check that the secret values between shared services parameter store / target account secrets manager match.
 
@@ -248,7 +240,6 @@ resource "aws_secretsmanager_secret_version" "moj_network_access_control_env_rad
 
 Finally in the secrets_manager.tf file we have a locals block for the secret_manager_arns list map as shown below. We are adding a local list to secrets so we can pass around the secrets to modules which use them e.g module task definitions
 
-
 ```shell
 locals {
   secret_manager_arns = {
@@ -267,7 +258,6 @@ variable "secret_arns" {
 type = map(any)
 }
 ```
-
 
 Then in the root module e.g. service_admin we assign values to the 'secret_arns' input variable by doing the following:
 
@@ -305,9 +295,8 @@ Once new secrets have been created in secrets manager the next step is configure
 
 Below is a representation of how our configuration is to be structured. An example which we will go through showing utilistion of 'secrets' block and arn retrieval from secrets manager is the task definition for the admin task:
 
-File location: 
+File location:
 modules/admin/ecs.tf
-
 
 ```shell
       "secrets": [
@@ -363,6 +352,7 @@ resource "aws_vpc_endpoint" "secrets" {
   depends_on          = [aws_security_group.endpoints]
 }
 ```
+
 ###
 
 Adding New VPC Endpoint to VPC Module
@@ -391,7 +381,7 @@ Once the above VPC endpoints have been added the ECS task definitions should hav
 
 ## Using Custom IAM Policy to Allow Secret Retrieval
 
-The next step is to attach a custom IAM policy (Secrets Manager Read Only) to ECS IAM roles to allow ECS tasks to retrieve secrets from the target account AWS Secrets Manager. This custom Secrets Manager Read Only IAM policy will need to be defined to the admin and radius modules. Once the policy is defined it will need to be attached to the ECS Execution IAM Role. See below as to how this is done: 
+The next step is to attach a custom IAM policy (Secrets Manager Read Only) to ECS IAM roles to allow ECS tasks to retrieve secrets from the target account AWS Secrets Manager. This custom Secrets Manager Read Only IAM policy will need to be defined to the admin and radius modules. Once the policy is defined it will need to be attached to the ECS Execution IAM Role. See below as to how this is done:
 
 The custom IAM policy will be locked down so the ECS Task only has read only access to the secrets specified in the secret arns list map as shown below, it will not be able to retrieve any other secrets:
 
@@ -408,7 +398,6 @@ locals {
   }
 }
 ```
-
 
 Admin Module
 
@@ -564,7 +553,6 @@ variable "radsec_private_key_password" {
 }
 ```
 
-
 Remove Parameters from SSM Get Parameters Script that are being sourced from Secrets Manager
 
 File location:
@@ -598,10 +586,9 @@ make plan
 make apply
 ```
 
-Deploying the changes into higher environments ie pre-production / production is   done via the nac-infrastructure pipeline in aws codepipeline [here](https://eu-west-2.console.aws.amazon.com/codesuite/codepipeline/pipelines/network-access-control-infrastructure/view?region=eu-west-2)
+Deploying the changes into higher environments ie pre-production / production is done via the nac-infrastructure pipeline in aws codepipeline [here](https://eu-west-2.console.aws.amazon.com/codesuite/codepipeline/pipelines/network-access-control-infrastructure/view?region=eu-west-2)
 
-
-# 
+#
 
 ## Encountering Issues with Running Pipelines
 
@@ -613,11 +600,11 @@ Error: creating ECS Task Definition (mojo-pre-production-nac-admin-task): Client
 
 Select 'Retry Stage' to rerun the failed stage. The subsequent rerun should result in a successful deployment.
 
-# 
+#
 
 ## Checking New Services are Running and Doing What We Expect
 
-Once the changes have been deployed into the required environments, you will need to check that the updated services are working as expected. Wait for new tasks for each service (Admin  / Admin Background Worker / Radius Internal / Radius Public) to be deployed. Then go into the task for each service and look at the task definition. Select the JSON tab and confirm that the secrets are now appearing as arns and not showing the secrets in plain sight.
+Once the changes have been deployed into the required environments, you will need to check that the updated services are working as expected. Wait for new tasks for each service (Admin / Admin Background Worker / Radius Internal / Radius Public) to be deployed. Then go into the task for each service and look at the task definition. Select the JSON tab and confirm that the secrets are now appearing as arns and not showing the secrets in plain sight.
 
 Secrets within task definitions should appear within the aws console in the following format where arns are used to retrieve secrets from secrets manager:
 
@@ -646,6 +633,6 @@ Secrets within task definitions should appear within the aws console in the foll
             ],
 ```
 
-You should then check the new containers for the services are up and running and there no issues showing in the container logs. 
+You should then check the new containers for the services are up and running and there no issues showing in the container logs.
 
 Finally you should log into the nacs admin portal for each environment to check everything is working as expected.
