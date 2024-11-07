@@ -129,7 +129,7 @@ The above secrets which are stored in SSM Parameter Store will need to be moved 
 
 
 
-###
+#
 
 ## Creating Secrets in Secrets Manager
 
@@ -286,7 +286,7 @@ This will allow us to pass the secret arns in the list to the module so task def
 
 Make sure the secrets are created and that the correct secrets are present in the target account secrets manager for each workspace/environment (e.g. development / pre-production / production) before proceeding to next section.
 
-###
+#
 
 ## Using Secrets Block in Task Definitions
 
@@ -338,7 +338,7 @@ Above you can see the secrets for the admin task container definition have been 
 
 There are a number of dependencies required to enable secret retrieval from secrets manager to work and to allow ecs (task definitions) to connect to secrets manager. We will go through this in the latter steps. Once all the dependency work is completed the ecs task definitions should be able to retrieve the secrets from secrets manager and the secret values within the secrets block will be hidden from plain sight
 
-###
+#
 
 ## Adding New VPC Endpoint for Access to Secrets Manager
 
@@ -387,7 +387,7 @@ resource "aws_vpc_endpoint" "secrets" {
 
 Once the above VPC endpoints have been added the ECS task definitions should have network access to AWS Secrets Manager to retrieve secrets.
 
-###
+#
 
 ## Using Custom IAM Policy to Allow Secret Retrieval
 
@@ -498,8 +498,7 @@ resource "aws_iam_role_policy_attachment" "ecs_task_execution_policy_attachment_
 
 Once the above changes have been added the task definitions for the admin and radius services will have read only access to the target account secrets manager to retrieve secrets (as defined in the secrets arns list).
 
-## 
-
+#
 
 ## Using Data Source Lookups for Input Variables which are Secrets in Root Modules
 
@@ -525,7 +524,7 @@ The same will need to be done for all root modules where the input variables are
 service_radius.tf
 service_radius_admin_read_replica.tf
 
-###
+#
 
 ## Removal of Parameters from SSM Get Parameters Script Buildspec and Vars Moved to Secrets Manager
 
@@ -585,7 +584,7 @@ parameters["eap_private_key_password"]="$(echo $PARAM2 | jq '.[] | select(.Name 
 parameters["radsec_private_key_password"]="$(echo $PARAM3 | jq '.[] | select(.Name | test("radsec_private_key_password")) | .Value' --raw-output)"
 ```
 
-###
+#
 
 ## Deploying Changes
 
@@ -602,8 +601,7 @@ make apply
 Deploying the changes into higher environments ie pre-production / production is   done via the nac-infrastructure pipeline in aws codepipeline [here](https://eu-west-2.console.aws.amazon.com/codesuite/codepipeline/pipelines/network-access-control-infrastructure/view?region=eu-west-2)
 
 
-
-
+# 
 
 ## Encountering Issues with Running Pipelines
 
@@ -615,7 +613,7 @@ Error: creating ECS Task Definition (mojo-pre-production-nac-admin-task): Client
 
 Select 'Retry Stage' to rerun the failed stage. The subsequent rerun should result in a successful deployment.
 
-## 
+# 
 
 ## Checking New Services are Running and Doing What We Expect
 
