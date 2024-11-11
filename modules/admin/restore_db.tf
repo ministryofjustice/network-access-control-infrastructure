@@ -1,5 +1,5 @@
 data "aws_db_snapshot" "latest" {
-  db_instance_identifier = aws_db_instance.admin_db.id
+  db_instance_identifier = aws_db_instance.admin_db.identifier
   most_recent            = true
 }
 
@@ -15,7 +15,7 @@ resource "aws_db_instance" "admin_db_restored" {
   delete_automated_backups    = true
   instance_class              = "db.t3.medium"
   identifier                  = "${var.prefix}-restored"
-  name                        = replace(var.prefix, "-", "_")
+  db_name                     = replace(var.prefix, "-", "_")
   username                    = var.db.username
   password                    = var.db.password
   backup_retention_period     = 1

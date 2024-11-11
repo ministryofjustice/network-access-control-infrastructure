@@ -22,14 +22,12 @@ resource "aws_kinesis_firehose_delivery_stream" "xsiam_delivery_stream" {
       log_group_name  = aws_cloudwatch_log_group.xsiam_delivery_group.name
       log_stream_name = aws_cloudwatch_log_stream.xsiam_delivery_stream.name
     }
-  }
 
-  s3_configuration {
-    role_arn           = aws_iam_role.xsiam_kinesis_firehose_role.arn
-    bucket_arn         = aws_s3_bucket.xsiam_firehose_bucket.arn
-    buffer_size        = 10
-    buffer_interval    = 400
-    compression_format = "GZIP"
+    s3_configuration {
+      role_arn           = aws_iam_role.xsiam_kinesis_firehose_role.arn
+      bucket_arn         = aws_s3_bucket.xsiam_firehose_bucket.arn
+      compression_format = "GZIP"
+    }
   }
 }
 

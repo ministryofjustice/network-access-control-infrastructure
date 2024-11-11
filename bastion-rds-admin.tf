@@ -5,7 +5,7 @@ module "rds_admin_bastion_label" {
 }
 
 module "rds_admin_bastion" {
-  source                      = "github.com/ministryofjustice/diso-devops-module-ssm-bastion.git?depth=1&ref=aws_provider_v4_for_nac"
+  source                      = "github.com/ministryofjustice/diso-devops-module-ssm-bastion"
   prefix                      = module.rds_admin_bastion_label.id
   ami_owners                  = ["${local.shared_services_account_id}"]
   associate_public_ip_address = false
