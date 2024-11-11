@@ -28,7 +28,7 @@ output "rds" {
     rds_monitoring_role = aws_iam_role.rds_monitoring_role.arn
     fqdn                = aws_route53_record.admin_db.fqdn
     endpoint            = aws_db_instance.admin_db.endpoint
-    name                = aws_db_instance.admin_db.name
+    name                = aws_db_instance.admin_db.db_name
     port                = aws_db_instance.admin_db.port
     #username            = aws_db_instance.admin_db.username
   }

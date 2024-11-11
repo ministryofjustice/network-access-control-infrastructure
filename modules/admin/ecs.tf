@@ -78,7 +78,7 @@ EOF
 
 locals {
   db_address = var.run_restore_from_backup ? element(aws_db_instance.admin_db_restored.*.address, 0) : aws_db_instance.admin_db.address
-  db_name    = var.run_restore_from_backup ? element(aws_db_instance.admin_db_restored.*.name, 0) : aws_db_instance.admin_db.name
+  db_name    = var.run_restore_from_backup ? element(aws_db_instance.admin_db_restored.*.name, 0) : aws_db_instance.admin_db.db_name
 }
 
 resource "aws_ecs_task_definition" "admin" {
@@ -238,7 +238,7 @@ resource "aws_ecs_task_definition" "admin_background_worker" {
       "environment": [
         {
           "name": "DB_NAME",
-          "value": "${aws_db_instance.admin_db.name}"
+          "value": "${aws_db_instance.admin_db.db_name}"
         },{
           "name": "DB_HOST",
           "value": "${aws_db_instance.admin_db.address}"
