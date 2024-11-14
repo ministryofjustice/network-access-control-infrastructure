@@ -15,10 +15,6 @@ resource "aws_wafv2_web_acl" "admin_alb_acl" {
   description = "Admin WAF ACL"
   scope       = "REGIONAL"
 
-  lifecycle {
-    ignore_changes = [tags]
-  }
-
   default_action {
     block {}
   }
