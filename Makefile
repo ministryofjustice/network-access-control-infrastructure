@@ -116,6 +116,10 @@ refresh: ## terraform refresh
 output: ## terraform output (make output OUTPUT_ARGUMENT='--raw dns_dhcp_vpc_id')
 	$(DOCKER_RUN) /bin/bash -c "terraform output -no-color ${OUTPUT_ARGUMENT}"
 
+.PHONY: state
+state: ## terraform state list
+	$(DOCKER_RUN) /bin/bash -c "terraform state list"
+
 .PHONY: output-bastion-rds-admin
 output-bastion-rds-admin: ## terraform output (make output-bastion-rds-admin)
 	$(DOCKER_RUN) /bin/bash -c "terraform output -no-color -json rds_bastion | jq -r .admin[][]"
@@ -190,6 +194,10 @@ authorise_performance_test_clients: ## Update a config file with IPs for test cl
 .PHONY: move_script
 move_script: ## terraform state move operations from within a script e.g. make move_script SCRIPT="ND-134-vpc-module" APPLY=[true|false]
 	$(DOCKER_RUN) /bin/bash -c "./scripts/tf_mv/$$SCRIPT.sh $$APPLY"
+
+.PHONY: trace-logs
+trace-logs: ## terraform logs output
+	$(DOCKER_RUN) /bin/bash -c "TF_LOG=TRACE terraform apply --auto-approve 2>&1 | tee terraform_trace.log"
 
 help:
 	@grep -h -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
