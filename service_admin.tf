@@ -21,10 +21,10 @@ module "admin" {
   radius_internal_service_name      = module.radius.ecs.internal_service_name
   radius_service_arn                = module.radius.ecs.service_arn
   radius_internal_service_arn       = module.radius.ecs.internal_service_arn
-  cognito_user_pool_id              = module.authentication.cognito_user_pool_id
+  cognito_user_pool_id              = data.aws_secretsmanager_secret_version.moj_network_access_control_env_cognito_userpool_id.secret_string
   cognito_user_pool_domain          = module.authentication.cognito_user_pool_domain
-  cognito_user_pool_client_id       = module.authentication.cognito_user_pool_client_id
-  cognito_user_pool_client_secret   = module.authentication.cognito_user_pool_client_secret
+  cognito_user_pool_client_id       = data.aws_secretsmanager_secret_version.moj_network_access_control_env_cognito_client_id.secret_string
+  cognito_user_pool_client_secret   = data.aws_secretsmanager_secret_version.moj_network_access_control_env_cognito_client_secret.secret_string
   local_development_domain_affix    = var.local_development_domain_affix
   cloudwatch_link                   = local.cloudwatch_link
   grafana_dashboard_link            = local.grafana_dashboard_link

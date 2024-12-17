@@ -4,6 +4,9 @@ locals {
     moj_network_access_control_env_admin_sentry_dsn            = aws_secretsmanager_secret.moj_network_access_control_env_admin_sentry_dsn.arn
     moj_network_access_control_env_eap_private_key_password    = aws_secretsmanager_secret.moj_network_access_control_env_eap_private_key_password.arn
     moj_network_access_control_env_radsec_private_key_password = aws_secretsmanager_secret.moj_network_access_control_env_radsec_private_key_password.arn
+    moj_network_access_control_env_cognito_client_id           = aws_secretsmanager_secret.moj_network_access_control_env_cognito_client_id.arn
+    moj_network_access_control_env_cognito_client_secret       = aws_secretsmanager_secret.moj_network_access_control_env_cognito_client_secret.arn
+    moj_network_access_control_env_cognito_userpool_id         = aws_secretsmanager_secret.moj_network_access_control_env_cognito_userpool_id.arn
   }
 }
 
@@ -102,4 +105,56 @@ resource "aws_secretsmanager_secret_version" "moj_network_access_control_env_rad
   provider      = aws.env
   secret_id     = aws_secretsmanager_secret.moj_network_access_control_env_radsec_private_key_password.id
   secret_string = "REPLACE_ME"
+}
+# --------------------------------
+
+resource "aws_secretsmanager_secret" "moj_network_access_control_env_cognito_client_id" {
+  name = "/moj-network-access-control/${terraform.workspace}/cognito/cognito_client_id"
+  #  description = "Network Access Control - Cognito client id"
+  provider = aws.env
+}
+
+resource "aws_secretsmanager_secret_version" "moj_network_access_control_env_cognito_client_id" {
+  provider      = aws.env
+  secret_id     = aws_secretsmanager_secret.moj_network_access_control_env_cognito_client_id.id
+  secret_string = "REPLACE_ME"
+}
+
+data "aws_secretsmanager_secret_version" "moj_network_access_control_env_cognito_client_id" {
+  secret_id = aws_secretsmanager_secret.moj_network_access_control_env_cognito_client_id.id
+  provider  = aws.env
+}
+
+resource "aws_secretsmanager_secret" "moj_network_access_control_env_cognito_userpool_id" {
+  name = "/moj-network-access-control/${terraform.workspace}/cognito/cognito_userpool_id"
+  #  description = "Network Access Control - Cognito user pool id"
+  provider = aws.env
+}
+
+resource "aws_secretsmanager_secret_version" "moj_network_access_control_env_cognito_userpool_id" {
+  provider      = aws.env
+  secret_id     = aws_secretsmanager_secret.moj_network_access_control_env_cognito_userpool_id.id
+  secret_string = "REPLACE_ME"
+}
+
+data "aws_secretsmanager_secret_version" "moj_network_access_control_env_cognito_userpool_id" {
+  secret_id = aws_secretsmanager_secret.moj_network_access_control_env_cognito_userpool_id.id
+  provider  = aws.env
+}
+
+resource "aws_secretsmanager_secret" "moj_network_access_control_env_cognito_client_secret" {
+  name = "/moj-network-access-control/${terraform.workspace}/cognito/cognito_client_secret"
+  #  description = "Network Access Control - Cognito client secret"
+  provider = aws.env
+}
+
+resource "aws_secretsmanager_secret_version" "moj_network_access_control_env_cognito_client_secret" {
+  provider      = aws.env
+  secret_id     = aws_secretsmanager_secret.moj_network_access_control_env_cognito_client_secret.id
+  secret_string = "REPLACE_ME"
+}
+
+data "aws_secretsmanager_secret_version" "moj_network_access_control_env_cognito_client_secret" {
+  secret_id = aws_secretsmanager_secret.moj_network_access_control_env_cognito_client_secret.id
+  provider  = aws.env
 }

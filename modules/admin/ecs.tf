@@ -132,20 +132,8 @@ resource "aws_ecs_task_definition" "admin" {
           "value": "1"
         },
         {
-          "name": "COGNITO_CLIENT_ID",
-          "value": "${var.cognito_user_pool_client_id}"
-        },
-        {
-          "name": "COGNITO_CLIENT_SECRET",
-          "value": "${var.cognito_user_pool_client_secret}"
-        },
-        {
           "name": "COGNITO_USER_POOL_SITE",
           "value": "https://${var.cognito_user_pool_domain}.auth.${var.region}.amazoncognito.com"
-        },
-        {
-          "name": "COGNITO_USER_POOL_ID",
-          "value": "${var.cognito_user_pool_id}"
         },
         {
           "name": "RADIUS_CLUSTER_NAME",
@@ -200,6 +188,18 @@ resource "aws_ecs_task_definition" "admin" {
         {
           "name": "RADSEC_SERVER_PRIVATE_KEY_PASSPHRASE",
           "valueFrom": "${var.secret_arns["moj_network_access_control_env_radsec_private_key_password"]}"
+        },
+        {
+          "name": "COGNITO_USER_POOL_ID",
+          "valueFrom": "${var.secret_arns["moj_network_access_control_env_cognito_userpool_id"]}"
+        },
+        {
+          "name": "COGNITO_CLIENT_SECRET",
+          "valueFrom": "${var.secret_arns["moj_network_access_control_env_cognito_client_secret"]}"
+        },
+        {
+          "name": "COGNITO_CLIENT_ID",
+          "valueFrom": "${var.secret_arns["moj_network_access_control_env_cognito_client_id"]}"
         }
     ],
       "image": "${aws_ecr_repository.admin.repository_url}",
