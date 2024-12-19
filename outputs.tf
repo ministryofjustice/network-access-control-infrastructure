@@ -1,5 +1,5 @@
 output "terraform_outputs" {
-
+  sensitive = true
   value = {
     radius = {
       ecs = module.radius.ecs
