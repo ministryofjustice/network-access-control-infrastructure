@@ -35,6 +35,7 @@ locals {
   ocsp_dep_ip                     = nonsensitive(data.aws_ssm_parameter.ocsp_dep_ip.value)
   ocsp_prs_ip                     = nonsensitive(data.aws_ssm_parameter.ocsp_prs_ip.value)
   ocsp_dhl_ip                     = nonsensitive(data.aws_ssm_parameter.ocsp_dhl_ip.value)
+  ocsp_dhl_failover_ip            = nonsensitive(data.aws_ssm_parameter.ocsp_dhl_failover_ip.value)
   enable_ocsp                     = data.aws_ssm_parameter.enable_ocsp.value
   ocsp_override_cert_url          = data.aws_ssm_parameter.ocsp_override_cert_url.value
   byoip_pool_id                   = nonsensitive(data.aws_ssm_parameter.byoip_pool_id.value)
