@@ -199,5 +199,9 @@ move_script: ## terraform state move operations from within a script e.g. make m
 trace-logs: ## terraform logs output
 	$(DOCKER_RUN) /bin/bash -c "TF_LOG=TRACE terraform apply --auto-approve 2>&1 | tee terraform_trace.log"
 
+.PHONY: target
+target: ## terraform target
+	$(DOCKER_RUN) /bin/bash -c "terraform apply --auto-approve -target=module.radius_vpc.aws_route.nat-gateway-public-ocsp-endpoint-4[0]"
+
 help:
 	@grep -h -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
