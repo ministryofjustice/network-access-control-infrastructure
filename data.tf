@@ -169,3 +169,7 @@ data "aws_ssm_parameter" "ocsp_dhl_ip" {
 data "aws_ssm_parameter" "ocsp_dhl_failover_ip" {
   name = "/moj-network-access-control/${terraform.workspace}/ocsp_dhl_failover_ip"
 }
+
+data "aws_ssm_parameter" "ocsp_nhs_oxleas_ip" {
+  name = "/moj-network-access-control/${terraform.workspace}/ocsp_nhs_oxleas_ip"
+}

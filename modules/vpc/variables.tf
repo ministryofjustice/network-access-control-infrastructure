@@ -71,3 +71,7 @@ variable "ocsp_dhl_ip" {
 variable "ocsp_dhl_failover_ip" {
   type = string
 }
+
+variable "ocsp_nhs_oxleas_ip" {
+  type = string
+}
