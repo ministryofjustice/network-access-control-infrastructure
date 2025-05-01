@@ -15,7 +15,7 @@ module "radius_vpc" {
   ocsp_prs_ip                           = local.ocsp_prs_ip
   ocsp_dhl_ip                           = local.ocsp_dhl_ip
   ocsp_dhl_failover_ip                  = local.ocsp_dhl_failover_ip
-  ocsp_nhs_oxleas_ip                    = local.ocsp_nhs_oxlease_ip
+  ocsp_nhs_oxleas_ip                    = local.ocsp_nhs_oxleas_ip
   tags                                  = module.label.tags
   providers = {
     aws = aws.env
