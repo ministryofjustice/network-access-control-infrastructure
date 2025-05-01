@@ -111,6 +111,18 @@ resource "aws_route" "nat-gateway-public-ocsp-endpoint-4" {
   ]
 }
 
+resource "aws_route" "nat-gateway-public-ocsp-endpoint-5" {
+  count = length(module.vpc.public_route_table_ids)
+
+  route_table_id         = split("_", local.public_table_id)[count.index]
+  destination_cidr_block = "${var.ocsp_nhs_oxleas_ip}/32"
+  nat_gateway_id         = aws_nat_gateway.eu_west_2c.id
+
+  depends_on = [
+    module.vpc
+  ]
+}
+
 resource "aws_nat_gateway" "eu_west_2c" {
   allocation_id = aws_eip.nat_eu_west_2c.id
   subnet_id     = element(module.vpc.private_subnets, 2)
